@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+   <script type="text/javascript">
+            function asignarLugar(dep, prov, dis, sgcomponent){
+            	dep.value = sgcomponent.getSelectedItems().pluck('idDprtmnto');
+            	prov.value = sgcomponent.getSelectedItems().pluck('idPrvnca');
+            	dis.value = sgcomponent.getSelectedItems().pluck('idDstrto');
+            }
+    </script>
+    
+    <h:inputHidden id="accionRealizada" value="#{registrarEstablecimientoMB.accionRealizada}" />
+	<h:form>
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel styleClass="gridContent"
+				style="background-color: #FFFFFF;"
+				rendered="#{registrarEstablecimientoMB.accionRealizada eq registrarEstablecimientoMB.acciones.ACCION_NUEVO or
+							registrarEstablecimientoMB.accionRealizada eq registrarEstablecimientoMB.acciones.ACCION_EDITAR or
+							registrarEstablecimientoMB.accionRealizada eq registrarEstablecimientoMB.acciones.ACCION_VISUALIZAR}">
+
+				
+			<t:panelGroup colspan="7">
+			   <t:panelGrid columns="7" border="0" width="100%">
+			   
+				<t:outputLabel
+					title="Seleccione un tipo de estableciminto acorde a su empresa"
+					value="Tipo de Establecimiento:"
+					for="tipoEstablecimientoId" />
+				<t:panelGroup>
+					<h:selectOneMenu id="tipoEstablecimientoId"
+						style="width: 120px; #{UtilBean.estiloCampoRequerido}"
+						value="#{registrarEstablecimientoMB.establecimientoBean.tipoEstablecimiento}"> 
+						<f:selectItems value="#{registrarEstablecimientoMB.itemsTipoEstablecimiento}" /> 
+						<f:validateLongRange minimum="1" />
+					</h:selectOneMenu>
+				</t:panelGroup>
+				<h:outputText value=" (*)" />
+				
+				
+				
+				
+			<t:outputLabel title="#{msg['prf-ayuda-datos-personales-ciudad']}"
+				value="#{msg['prf-registro-datos-personales-formulario-ciudad']}:"
+				for="idDepResidencia" />
+			<h:panelGroup>
+				<h:inputHidden id="idDepResidencia"
+					value="#{registrarEstablecimientoMB.establecimientoBean.departamento}" />
+				<h:inputHidden id="idProvResidencia"
+					value="#{registrarEstablecimientoMB.establecimientoBean.provincia}" />
+				<h:inputHidden id="idDisResidencia"
+					value="#{registrarEstablecimientoMB.establecimientoBean.distrito}" />
+
+				<h:inputText id="descripcionResidencia" required="false"
+					value="#{registrarEstablecimientoMB.establecimientoBean.nombreLugarResidencia}"
+					styleClass="width100" maxlength="254"
+					title="Longitud máxima: 254 caracteres" style="#{UtilBean.estiloCampoRequerido}" 
+					ondblclick="#{rich:component('suggestionResidencia')}.callSuggestion(true)" />
+
+				<rich:suggestionbox width="250" border="1" shadowDepth=""
+					minChars="3"
+					requestDelay="100"
+					usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+					onobjectchange="asignarLugar(#{rich:element('idDepResidencia')}, #{rich:element('idProvResidencia')}, #{rich:element('idDisResidencia')}, #{rich:component('suggestionResidencia')});"
+					suggestionAction="#{registrarEstablecimientoMB.autocompletarResidencia}"
+					var="residencia" for="descripcionResidencia"
+					fetchValue="#{residencia.nombre}" id="suggestionResidencia"
+					tokens=",">
+					<t:column>
+						<f:facet name="header">
+							<h:outputText value="Distrito" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.nombre} " />
+						<h:outputText rendered="#{!residencia.distrito}" value="--" />
+					</t:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Provincia" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.nombre}" />
+						<h:outputText rendered="#{residencia.departamento}" value="--" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoProvincia.nombre}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Región" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.departamento}"
+							value="#{residencia.ubigeoRegion.nombre} " />
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+					</h:column>
+
+				</rich:suggestionbox>
+			</h:panelGroup>
+			<h:outputText value=" (*)" />
+					
+				
+				
+				
+				
+			   
+			   <t:column>
+				  <rich:spacer width="5" height="5" title="espacio" /></t:column>
+			   <t:column>	
+				  <t:outputLabel
+					title="Ingresar Direccion"
+					value="Direccion:"
+					for="direccion" /></t:column>			   
+				<t:column>
+				  <h:inputText id="direccion"
+					value="#{registrarEstablecimientoMB.establecimientoBean.direccion}"
+					required="true" maxlength="254"
+					title="Longitud máxima: 254 caracteres" styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" /></t:column>
+				<t:column><h:outputText value=" (*)" /></t:column>
+				 
+				<t:column>
+				  <t:outputLabel
+					title="Ingresar Telefono de la Oficina y anexo "
+					value="Telefono:"
+					for="telefonoEst" /></t:column>				
+				<t:column>
+				 <h:inputText id="telefonoEst"
+					value="#{registrarEstablecimientoMB.establecimientoBean.telefono}"
+					required="true" maxlength="254"
+					title="Ingresar telefono y anexo si fuera el caso." styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" /></t:column>
+				<t:column><h:outputText value=" (*)" /></t:column>
+				
+				
+				
+				
+				<rich:spacer width="5" height="10" title="espacio" />
+				<t:outputLabel title="Persona de contacto	"
+						value="Contactar con: " for="contacId" />
+				<h:inputText id="contacId"
+					value="#{registrarEstablecimientoMB.establecimientoBean.personaContacto}"
+					required="true" maxlength="254"
+					title="Ingresar nombre de la persona de contacto para el establecimiento." styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" />
+				<h:outputText value=" (*)" />
+				
+				<t:outputLabel title="Ofician asociada"
+						value="Oficina: " for="oficinaId" />
+				<t:panelGroup>
+						<t:selectOneMenu id="oficinaId" 
+							value="#{registrarEstablecimientoMB.establecimientoBean.codigoOficinaAsociada}"
+							styleClass="width100">
+							<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+							<f:selectItems
+								value="#{registrarEstablecimientoMB.itemsOficinas}" />
+						</t:selectOneMenu>
+				</t:panelGroup>
+				<h:outputText value=" " />
+				
+				
+			 </t:panelGrid>
+			</t:panelGroup>
+					
+					
+					
+
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+				<rich:spacer width="5" height="10" title="espacio" />
+
+				<t:panelGrid columns="2" styleClass="gridContent"
+					columnClasses="columnaIzquierda,columnaDerecha">
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup>
+						<a4j:commandButton  
+							value="#{msg['prf-registro-certificacion-formulario-cancelar']}"
+							actionListener="#{registrarEstablecimientoMB.cancelarEstablecimiento}" immediate="true"
+							styleClass="botonBuscar" 
+							reRender="gridDatosGenerales, dataEstablecimiento"/>
+						<rich:spacer width="10" height="5" title="espacio" />
+						<a4j:commandButton
+							disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolEmpleador)}"
+							value="#{msg['prf-registro-certificacion-formulario-guardar']}"
+							actionListener="#{registrarEstablecimientoMB.guardarEstablecimiento}"
+							reRender="gridDatosGenerales, dataEstablecimiento"
+							styleClass="botonBuscar" />
+					</t:panelGroup>
+
+				</t:panelGrid>
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+
+
+	<h:form>
+
+		<rich:dataTable id="dataEstablecimiento" var="establecimiento"
+			styleClass="gridContent"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" width="600px"
+			value="#{registrarEstablecimientoMB.listEstablecimiento}"
+			columnClasses="columnaIzquierda,columnaIzquierda,columnaAcciones">
+			<f:facet name="header">
+
+				<h:panelGroup>
+					<h:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+
+						<h:panelGroup>
+							<h:outputText value="  " />
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<h:outputText value=" " />
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<h:outputText value=" " />
+						</h:panelGroup>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolEmpleador}"
+							actionListener="#{registrarEstablecimientoMB.nuevoEstablecimiento}"
+							reRender="gridDatosGenerales" title="Nuevo">
+							<h:graphicImage value="/images/nuevo.png" alt="Nuevo"/>
+						</a4j:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+			</f:facet>
+			
+
+			<rich:column sortBy="#{establecimiento.direccion}" sortOrder="ASCENDING">
+				<f:facet name="header">
+					<h:outputText value="Direccion" />
+				</f:facet>
+				<h:outputText value="#{establecimiento.direccion}" />
+			</rich:column>
+			
+			<rich:column sortBy="#{establecimiento.telefono}" sortOrder="ASCENDING">
+				<f:facet name="header">
+					<h:outputText value="Telefono" />
+				</f:facet>
+				<h:outputText value="#{establecimiento.telefono}" />
+			</rich:column>
+
+			
+			
+			
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-certificacion-lista-acciones']}" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="establecimientoPrm" name="establecimientoPrm"
+						value="#{establecimiento}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					actionListener="#{registrarEstablecimientoMB.editarEstablecimiento}"
+					reRender="gridDatosGenerales"
+					rendered="#{!sesionMB.usuarioSesion.rolAdministrador}" title="Editar">
+					<h:graphicImage value="/images/editar.png" alt="Editar" />
+				</a4j:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					actionListener="#{registrarEstablecimientoMB.editarEstablecimiento}"
+					reRender="gridDatosGenerales"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador}" title="Editar">
+					<h:graphicImage value="/images/editar.png"
+						alt="#{msg['prf-registro-certificacion-lista-accion-editar']}" />
+				</a4j:commandLink>
+				<rich:spacer width="10" height="5" title="espacio" />
+				<a4j:commandLink styleClass="columnaAcciones"
+					onclick="if (!confirmar('#{establecimiento.direccion}')) return false;"
+					actionListener="#{registrarEstablecimientoMB.eliminarEstablecimiento}"
+					reRender="gridDatosGenerales, dataEstablecimiento"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador}" title="Eliminar">
+
+					<h:graphicImage value="/images/eliminar.png"
+						alt="#{msg['prf-registro-certificacion-lista-accion-eliminar']}" />
+				</a4j:commandLink>
+			</rich:column>
+			
+			
+
+
+			<f:facet name="footer">
+				<rich:datascroller for="dataEstablecimiento" renderIfSinglePage="false" reRender="dataEstablecimiento"></rich:datascroller>
+			</f:facet>
+		</rich:dataTable>
+
+
+	</h:form>
+</ui:composition>
+
+</html>

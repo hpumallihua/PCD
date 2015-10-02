@@ -1,0 +1,26 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<rich:messages rendered="false"
+		passedLabel="Data is allowed to be stored." layout="table"
+		tooltip="true" showDetail="false" showSummary="false">
+		<f:facet name="header">
+			<h:outputText value="Entered Data Status:"></h:outputText>
+		</f:facet>
+		<f:facet name="errorMarker">
+			<script type="text/javascript">
+			if (#{UtilBean.existenMensajes}){ Richfaces.showModalPanel('modalError');}
+		    </script>
+		</f:facet>
+		<f:facet name="infoMarker">
+			<script type="text/javascript">
+			if (#{UtilBean.existenMensajes}){ Richfaces.showModalPanel('modalError');}
+		    </script>
+		</f:facet>
+	</rich:messages>
+
+</ui:composition>
+

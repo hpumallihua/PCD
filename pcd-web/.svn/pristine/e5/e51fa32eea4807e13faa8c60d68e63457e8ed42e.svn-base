@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form>
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel styleClass="gridContent"
+				style="background-color: #FFFFFF;"
+				rendered="#{registrarMaestroMB.accionRealizada eq registrarMaestroMB.acciones.ACCION_NUEVO
+							or 
+							registrarMaestroMB.accionRealizada eq registrarMaestroMB.acciones.ACCION_EDITAR
+							or
+							registrarMaestroMB.accionRealizada eq registrarMaestroMB.acciones.ACCION_VISUALIZAR}">
+
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Registrar #{registrarMaestroMB.tituloFormulario}" />
+					</h:panelGroup>
+				</f:facet>
+				<h:panelGrid columns="3" styleClass="gridFormulario"
+					columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer">
+					<h:outputLabel
+						value="#{msg['prf-registro-certificacion-formulario-descripcion']}:"
+						for="nombre" />
+
+					<t:panelGroup colspan="4">
+						<h:inputTextarea id="nombre"
+							onkeyup="contar(this, #{rich:element('outActividades')}, 1000)"
+							value="#{registrarMaestroMB.bean.nombre}"
+							styleClass="width100" required="true"
+							style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+							validatorMessage="bla bla" />
+					</t:panelGroup>
+					<h:outputText styleClass="body" value=" (*)" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="6" styleClass="contadorCaracteres">
+
+						<h:outputText styleClass="body" value=" " />
+						<h:outputLabel id="outActividades" value="*"
+							title="Contador de caracteres" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+
+
+
+
+
+
+
+
+				</h:panelGrid>
+
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+				<rich:spacer width="5" height="10" title="espacio" />
+
+				<t:panelGrid columns="2" styleClass="gridContent"
+					columnClasses="columnaIzquierda,columnaDerecha">
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup>
+						<a4j:commandButton
+							value="#{msg['prf-registro-certificacion-formulario-cancelar']}"
+							actionListener="#{registrarMaestroMB.cancelar}"
+							reRender="gridDatosGenerales,dataMaestros" immediate="true"
+							styleClass="botonBuscar" />
+						<rich:spacer width="10" height="5" title="espacio" />
+						<a4j:commandButton
+							disabled="#{!sesionMB.usuarioSesion.rolAdministrador}"
+							value="#{msg['prf-registro-certificacion-formulario-guardar']}"
+							onclick=" " actionListener="#{registrarMaestroMB.guardar}"
+							reRender="gridDatosGenerales, dataMaestros"
+							styleClass="botonBuscar" />
+					</t:panelGroup>
+
+				</t:panelGrid>
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+
+
+	<h:form>
+
+		<rich:dataTable id="dataMaestros" var="maestro"
+			styleClass="gridContent"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" width="600px"
+			value="#{registrarMaestroMB.listaMaestroEmpresas}"
+			columnClasses="columnaIzquierda,columnaAcciones">
+			<f:facet name="header">
+
+				<h:panelGroup>
+
+					<h:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+
+
+						<h:panelGroup>
+							<h:outputText value="Lista de #{registrarMaestroMB.tituloLista}" />
+						</h:panelGroup>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador}"
+							actionListener="#{registrarMaestroMB.nuevo}"
+							reRender="gridDatosGenerales, dataMaestros" title="Nuevo">
+							<h:graphicImage value="/images/nuevo.png" alt="Nuevo"/>
+						</a4j:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+
+			</f:facet>
+
+			<rich:column sortBy="#{maestro.nombre}" sortOrder="ASCENDING">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-certificacion-lista-descripcion']}" />
+				</f:facet>
+				<h:outputText value="#{maestro.nombre}" />
+			</rich:column>
+
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-certificacion-lista-acciones']}" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="maestroPrm" name="maestroPrm"
+						value="#{maestro}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					actionListener="#{registrarMaestroMB.editar}"
+					reRender="gridDatosGenerales"
+					rendered="#{!sesionMB.usuarioSesion.rolAdministrador}" title="Ver">
+					<h:graphicImage value="/images/ver.png" alt="Ver" />
+				</a4j:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					actionListener="#{registrarMaestroMB.editar}"
+					reRender="gridDatosGenerales"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador}" title="Editar">
+					<h:graphicImage value="/images/editar.png"
+						alt="#{msg['prf-registro-certificacion-lista-accion-editar']}" />
+				</a4j:commandLink>
+				<rich:spacer width="10" height="5" title="espacio" />
+				<a4j:commandLink styleClass="columnaAcciones"
+					onclick="if (!confirmar('#{maestro.descripcion}')) return false;"
+					actionListener="#{registrarMaestroMB.eliminar}"
+					reRender="gridDatosGenerales, dataMaestros"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador}" title="Eliminar">
+
+					<h:graphicImage value="/images/eliminar.png"
+						alt="#{msg['prf-registro-certificacion-lista-accion-eliminar']}" />
+				</a4j:commandLink>
+			</rich:column>
+			<f:facet name="footer">
+				<rich:datascroller for="dataMaestros"
+					renderIfSinglePage="false" reRender="dataMaestros"></rich:datascroller>
+			</f:facet>
+		</rich:dataTable>
+
+
+	</h:form>
+</ui:composition>
+
+</html>

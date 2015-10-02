@@ -1,0 +1,42 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		rendered="#{sesionMB.usuarioSesion.rolAdministrador 
+		or sesionMB.usuarioSesion.rolConsultorEmpleo 
+		or sesionMB.usuarioSesion.rolConsultorABE
+		or sesionMB.usuarioSesion.rolEmpleador}">
+		
+		
+		
+		<rich:panelMenuGroup label="Datos Empleador" expanded="true">
+			<rich:panelMenuItem label="Mis Datos"
+				disabled="#{!(empresaMB.empresaBean.id gt 0)}"
+				action="empresaDatos" immediate="true"
+				actionListener="#{registrarEmpresaMB.nuevo}">
+				<a4j:actionparam value="0" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Mis Establecimientos"
+				disabled="#{!(empresaMB.empresaBean.id gt 0)}"
+				action="establecimientoDatos" immediate="true"
+				actionListener="#{registrarEstablecimientoMB.menuEstablecimiento}">
+				<a4j:actionparam value="0" assignTo="#{sesionMB.opcionAsistente}" />				
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Cambiar contrasena"
+				disabled="#{!(empresaMB.empresaBean.id gt 0)}"
+				action="usuarioEmpresa"
+				rendered="#{(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolEmpleador)}"
+				immediate="true">
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+	</rich:panelMenu>
+
+</ui:composition>
+

@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Ambiente de Trabajo" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses=",,,celdaSeparadorFormulario,,,">
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<h:outputText value="  " />
+			<t:panelGroup colspan="3">
+				<t:outputLabel value="Comentarios" style="width: 100%;" />
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<t:outputLabel value="Puntuacion"       style="width: 20%;"/>
+			</t:panelGroup>							
+			<h:outputText value="  " />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de ruido" value="ruido:" for="ruidovalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="ruido" 
+					value="#{registrarPedidoMB.pedidoBean.ambRuidoComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="ruidovalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambRuidoValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de Iluminacion" value="Iluminacion:" for="iluminacionvalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="iluminacion" 
+					value="#{registrarPedidoMB.pedidoBean.ambIluminaComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="iluminacionvalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambIluminaValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de Ventilacion" value="Ventilacion:" for="ventilavalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="ventilacion" 
+					value="#{registrarPedidoMB.pedidoBean.ambVentilaComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="ventilavalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambVentilaValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />			
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de Temperatura" value="Temperatura:" for="temperavalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="temperatura" 
+					value="#{registrarPedidoMB.pedidoBean.ambTemperaComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="temperavalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambTemperaValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de Humedad" value="Humedad:" for="humedadvalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="humedad" 
+					value="#{registrarPedidoMB.pedidoBean.ambHumedadComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="humedadvalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambHumedadValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de  Polvo" value="Polvo:" for="polvovalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="polvo" 
+					value="#{registrarPedidoMB.pedidoBean.ambPolvoComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="polvovalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambPolvoValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar datos de  Vibraciones" value="Vibraciones:" for="vibravalor" />
+			<t:panelGroup colspan="3">
+				<h:inputText id="vibra" 
+					value="#{registrarPedidoMB.pedidoBean.ambVibraComennt}"
+					maxlength="254" title="Ingresar comentarios. Longitud máxima: 254 caracteres"
+					style="width: 100%;" />					
+			</t:panelGroup>
+			<t:panelGroup colspan="1">
+				<h:selectOneMenu id="vibravalor" title="Seleccionar valor"  style="width: 20%;"
+								 value="#{registrarPedidoMB.pedidoBean.ambVibraValor}">
+					<f:selectItem itemValue="0" itemLabel="0" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+				</h:selectOneMenu>	
+			</t:panelGroup>
+			<h:outputText value="  " />			
+
+			
+			
+		</t:panelGrid> 
+		
+		
+
+		<rich:spacer width="5" height="25" title="espacio" />
+		
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Medidas de Adaptaciones y Ajustes para el puesto" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,,celdaExtremoFormulario">		
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar las supresiones de barreras arquitectonicas" value="Supresion de barreras arquitectonicas:" for="supre" />
+			<t:panelGroup colspan="4" styleClass="width100">
+				<h:inputTextarea id="supre" 
+					onkeyup="contar(this, #{rich:element('outSupre')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.supresionArquitectura}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value="  " />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outSupre" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para equipamentos" value="Equipamento:" for="equip" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="equip"
+					onkeyup="contar(this, #{rich:element('outEquip')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.equipamento}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outEquip" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para horarios Trabajo" value="Horario de Trabajo:" for="horTrab" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="horTrab"
+					onkeyup="contar(this, #{rich:element('outHorTrab')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.horariosTrabajo}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outHorTrab" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para adaptaciones" value="Adaptaciones:" for="adapta" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="adapta"
+					onkeyup="contar(this, #{rich:element('outAdapt')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.adaptaciones}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outAdapt" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />			
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para Servicios Asistencia Personal" value="Servicios Asistencia Personal:" for="serAs" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="serAs"
+					onkeyup="contar(this, #{rich:element('outSerAs')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.serviciosAsistencia}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outSerAs" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para Diseño del Puesto" value="Diseño del Puesto:" for="disPu" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="disPu"
+					onkeyup="contar(this, #{rich:element('outdisPu')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.disenoPuesto}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outdisPu" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+						
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para Productos de Apoyo" value="Productos de Apoyo:" for="prodApy" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="prodApy"
+					onkeyup="contar(this, #{rich:element('outprodApy')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.productosApoyo}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outprodApy" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+						
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:outputLabel title="Ingresar datos para Asignacion Temporal" value="Asignacion Temporal:" for="asgTmp" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="asgTmp"
+					onkeyup="contar(this, #{rich:element('outasgTmp')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.asignacionTemporal}"
+					styleClass="width100" required="false"  maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outasgTmp" value="*" title="Contador de caracteres" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+						
+			
+		</t:panelGrid>
+		
+		
+
+		<rich:spacer width="5" height="25" title="espacio" />
+
+
+		
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="buscarPedido"
+						immediate="true"
+						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{(!sesionMB.usuarioSesion.rolEmpleador and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_PEDIDO}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:commandButton action="#"
+						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+						disabled="#{sesionMB.usuarioSesion.rolProfesional}"
+						actionFor="frmDatosGenerales,frmMenu"
+						actionListener="#{registrarPedidoMB.guardar}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+
+		
+		
+
+	</h:form>
+
+</ui:composition>
+
+</html>

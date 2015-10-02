@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Menu"
+		table="SITB_MENUS">
+		<composite-id name="id"
+			class="pe.gob.trabajo.pcd.modelo.dominio.MenuId">
+			<key-property name="idMenu" type="string">
+				<column name="V_CODMEN" length="30" />
+			</key-property>
+			<key-property name="idSistema" type="string">
+				<column name="V_CODSIS" length="3" />
+			</key-property>
+		</composite-id>
+		<many-to-one name="sistema"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Sistema" update="false"
+			insert="false" fetch="select">
+			<column name="V_CODSIS" length="3" not-null="true" />
+		</many-to-one>
+		<property name="nivel" type="java.lang.Integer">
+			<column name="N_NIVEL" scale="0" />
+		</property>
+		<property name="codMenuPadre" type="string">
+			<column name="V_CODPAD" length="30" />
+		</property>
+		<property name="descripcion" type="string">
+			<column name="V_DESMEN" length="100" />
+		</property>
+		<property name="url" type="string">
+			<column name="V_URL" length="500" />
+		</property>
+		<property name="estado" type="string">
+			<column name="V_FLGACT" length="1" />
+		</property>
+		<property name="orden" type="java.lang.Integer">
+			<column name="N_ORDEN" scale="0" />
+		</property>
+		<property name="icono" type="string">
+			<column name="V_ICONO" length="50" />
+		</property>
+	</class>
+</hibernate-mapping>

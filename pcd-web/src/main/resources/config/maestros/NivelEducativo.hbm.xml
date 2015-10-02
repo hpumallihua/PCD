@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.NivelEducativo"
+		table="SITB_NIVELEDUCATI">
+		<id name="id" type="string">
+			<column name="V_CODNIVEDU" length="6" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESNIVEDU" length="150" />
+		</property>
+		<property name="flgsunmin" type="java.lang.Integer">
+			<column name="N_FLGSUNMIN" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,183 @@
+.topAligned {
+    vertical-align: top;
+}
+
+.gridFormulario {
+	vertical-align: top;
+	width: 100%;
+	padding: 10px;
+}
+
+.celdaFormulario {
+	vertical-align: top;
+	padding: 10px;
+}
+
+.celdaFormularioBorde {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	height: 20px;
+}
+
+.botonLimpiarValor {
+	border: 0;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.celdaSeparadorFormulario {
+	width: 40px;
+}
+
+.celdaExtremoFormulario {
+	width: 5px;
+}
+
+.celdaEtiquetaFormulario {
+	width: 100px;
+}
+
+.formularioBusqueda2colsIzq {
+	text-align: left;
+	width: 30%;
+}
+
+.formularioBusqueda2colsDer {
+	text-align: left;
+	width: 70%;
+}
+
+.formularioBusqueda4colsIzq {
+	text-align: left;
+	width: 30%;
+}
+
+.formularioBusqueda4colsDer {
+	text-align: left;
+	width: 20%;
+}
+
+.botonPostularSeleccionados {
+	padding: 3px 0;
+	width: 300px;
+	font-size: 1.2em;
+	cursor: pointer;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	border: 1px solid #999;
+}
+
+.botonPostularSeleccionados:hover {
+	border: 1px solid #CCC;
+	cursor: pointer;
+	background-color: #EE0808;
+}
+
+.dr-sb-common-container {
+	position: absolute;
+	text-align: left;
+	background-color: inherit;
+}
+
+.dr-sb-ext-decor-1 {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+
+.dr-sb-ext-decor-2 {
+	border: 1px solid;
+	height: 100%;
+	width: 100%;
+}
+
+.dr-sb-ext-decor-3 {
+	height: 100%;
+	width: 100%;
+}
+
+.dr-sb-overflow {
+	overflow: auto;
+}
+
+.dr-sb-int-decor-table {
+	width: 100%;
+}
+
+.dr-sb-shadow {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	border: 1px solid;
+	z-index: 1;
+}
+
+.dr-sb-int-sel {
+	cursor: default;
+	background-position: left top;
+	background-repeat: repeat-x;
+}
+
+.dr-sb-cell-padding {
+	padding: 1px 3px 1px 5px;
+}
+
+.dr-sb-int {
+	cursor: pointer;
+}
+
+.dr-sb-ext-decor-2 {
+	border-color: black;
+	background-color: white;
+}
+
+.dr-sb-shadow {
+	background-color: black;
+	border-color: white;
+	opacity: 1;
+	border-width: 0;
+}
+
+.dr-sb-int {
+	font-size: 11px;
+	font-family: Arial, Verdana, sans-serif;
+	color: #000;
+}
+
+.dr-sb-int-sel {
+	background-color: #4A75B5;
+	font-size: 11px;
+	font-family: Arial, Verdana, sans-serif;
+	color: #FFF;
+	background-image:
+		url(/silnet2/a4j/g/3_3_0.GAorg.richfaces.renderkit.html.GradientA/DATB/eAF7emTy1lIvJgASigOz.jsf);
+}
+
+.dr-table-cell {
+	border-right: solid 0px #C0C0C0;
+	border-bottom: solid 2px #C0C0C0;
+	padding: 4px 4px 4px 4px;
+	font-size: 11px;
+	color: #000;
+	font-family: Arial, Verdana, sans-serif;
+}
+
+.dr-table {
+	border-top: solid 0px #C0C0C0;
+	border-left: solid 0px #C0C0C0;
+	background-color: #FFF;
+	empty-cells: show;
+	border-collapse: collapse;
+	color: black;
+}
+
+.rich-mpnl-mask-div {
+	
+}
+
+.dr-pmenu-top-group {
+	color: #FFFFFF;
+}

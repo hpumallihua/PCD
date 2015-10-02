@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Oficina" table="SITB_OFICINA">
+		<id name="codigoOficina" type="string">
+			<column name="V_CODOFIC" length="4" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESOFIC" length="250" />
+		</property>
+		<property name="direccion" type="string">
+			<column name="V_DIROFIC" length="250" />
+		</property>
+		<property name="codigoDepartamento" type="string">
+			<column name="V_CODDEP" length="2" />
+		</property>
+		<property name="codigoProvincia" type="string">
+			<column name="V_CODPRO" length="2" />
+		</property>
+		<property name="codigoDistrito" type="string">
+			<column name="V_CODDIS" length="2" />
+		</property>
+		<property name="flag" type="string">
+			<column name="V_FLGACT" length="1" />
+		</property>
+		<property name="telefono" type="string">
+			<column name="V_TELOFIC" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

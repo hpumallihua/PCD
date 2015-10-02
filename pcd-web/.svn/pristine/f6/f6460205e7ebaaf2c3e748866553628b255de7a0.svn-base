@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Configuracion"
+		table="PDTBC_PARAMETRO">
+		<cache usage="nonstrict-read-write" />
+		<!-- <cache usage="read-only" /> -->
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRMTRO" precision="6" scale="0">
+				<comment>CODIGO DEL PARAMETRO</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_PRMTROID</param>
+			</generator>
+		</id>
+		<discriminator force="false" insert="true" not-null="true">
+			<column name="V_DSCRMNDOR" length="100">
+				<comment>DISCRIMINADOR DEL VALOR.</comment>
+			</column>
+		</discriminator>
+		<version generated="never" name="versionTransaccion" type="java.lang.Long">
+			<column name="N_VRSNTRNSC">
+				<comment>VERSION DE TRANSACCION.</comment>
+			</column>
+		</version>
+		<!-- <property name="versionTransaccion" type="java.lang.Long"> <column 
+			name="VRSON_TRNSCCON" scale="0" not-null="true" /> </property> -->
+		<property generated="never" lazy="false" name="descripcion"
+			type="string">
+			<column length="500" name="V_DESCRPCN">
+				<comment>DESCRIPCION DEL PARAMETRO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nemonico"
+			type="string">
+			<column length="50" name="V_NEMNCO">
+				<comment>NUMERO DE MEMONICO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nombre" type="string">
+			<column length="500" name="V_NOMBRE">
+				<comment>DESCRIPCION DEL NOMBRE</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="valor" type="string">
+			<column length="500" name="V_DESVALOR">
+				<comment>DESCRIPCION DEL VALOR</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="orden"
+			type="java.lang.Integer">
+			<column name="N_NUMORDEN">
+				<comment>NUMERO DE ORDEN</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nivel" type="string">
+			<column length="140" name="V_DESNIVEL">
+				<comment>DESCRIPCION DEL NIVEL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tipoAcceso"
+			type="string">
+			<column length="1" name="V_TPOACCSO">
+				<comment>INDICADOR DEL TIPO DE ACCESO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="estadoRegistro"
+			type="java.lang.Character">
+			<column length="1" name="C_ESTRGSTRO">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="fechaCreacion"
+			type="timestamp">
+			<column length="23" name="D_FECCREA">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="fechaActualizacion"
+			type="timestamp">
+			<column length="23" name="D_FECACT">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="idUsuarioCreador"
+			type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="idUsroActualizador"
+			type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<subclass discriminator-value="NIVEL_FORMACION"
+			name="pe.gob.trabajo.pcd.modelo.dominio.NivelFormacion"
+			select-before-update="false" />
+		<subclass discriminator-value="NIVEL_IDIOMA"
+			name="pe.gob.trabajo.pcd.modelo.dominio.NivelIdioma"
+			select-before-update="false" />
+		<subclass discriminator-value="ESTADO_CIVIL"
+			name="pe.gob.trabajo.pcd.modelo.dominio.EstadoCivil"
+			select-before-update="false" />
+		<subclass discriminator-value="TIPO_EMPLEO"
+			name="pe.gob.trabajo.pcd.modelo.dominio.TipoEmpleo"
+			select-before-update="false" />
+		<subclass discriminator-value="PARENTESCO"
+			name="pe.gob.trabajo.pcd.modelo.dominio.Parentesco"
+			select-before-update="false" />
+		<subclass discriminator-value="PARAMETRO"
+			name="pe.gob.trabajo.pcd.modelo.dominio.Parametro"
+			select-before-update="false" />
+		<subclass discriminator-value="CATEGORIA_LICENCIA_CONDUCIR"
+			name="pe.gob.trabajo.pcd.modelo.dominio.CategoriaLicenciaConducir"
+			select-before-update="false" />
+	</class>
+</hibernate-mapping>

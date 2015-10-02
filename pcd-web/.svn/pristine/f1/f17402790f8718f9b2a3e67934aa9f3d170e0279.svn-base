@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral"
+		table="PDMVD_PRFEXPLBRAL">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODEXPRCA" scale="0">
+				<comment>CÓDIGO DE LA EXPERIENCIA LABORAL.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_EXPRNCALBRALID</param>
+			</generator>
+		</id>
+<!-- 		<many-to-one name="empresa" -->
+<!-- 			class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" fetch="select"> -->
+<!-- 			<column name="N_CODEMPRSA" scale="0"> -->
+<!-- 				<comment>CÓDIGO DE LA EMPRESAL.</comment> -->
+<!-- 			</column> -->
+<!-- 		</many-to-one> -->
+		<!-- <many-to-one name="rolLaboral" class="pe.gob.trabajo.pcd.modelo.dominio.RolLaboral" 
+			fetch="select"> -->
+		<!-- <column name="N_CODROL_LBRAL" precision="9" scale="0"/> -->
+		<!-- </many-to-one> -->
+
+<!-- 		<many-to-one name="area" -->
+<!-- 			class="pe.gob.trabajo.pcd.modelo.dominio.Area" fetch="select"> -->
+<!-- 			<column name="N_CODAREA" precision="6" scale="0"> -->
+<!-- 				<comment>CÓDIGO DEL AREA.</comment> -->
+<!-- 			</column> -->
+<!-- 		</many-to-one> -->
+		<many-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" fetch="select">
+			<column name="N_CODPRSNAL" scale="0">
+				<comment>CÓDIGO PROFESIONAL.</comment>
+			</column>
+		</many-to-one>
+		<!-- <many-to-one name="puesto" class="pe.gob.trabajo.pcd.modelo.dominio.Puesto" 
+			fetch="select"> -->
+		<!-- <column name="N_CODPSTO" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<!-- <many-to-one name="sector" class="pe.gob.trabajo.pcd.modelo.dominio.Sector" 
+			fetch="select"> -->
+		<!-- <column name="N_CODSCTOR" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<property name="idOcupacion" type="string">
+			<column name="V_CODOCUPAC" length="6">
+				<comment>CÓDIGO OCUPACIONAL</comment>
+			</column>
+		</property>
+		<property name="institucion" type="string">
+			<column name="V_INSTTCON" length="500">
+				<comment>INSTITUCION.</comment>
+			</column>
+		</property>
+		<property name="horas" type="java.lang.Integer">
+			<column name="N_HRAS">
+				<comment>NUMERO HORAS AL DIA.</comment>
+			</column>
+		</property>
+<!-- 		<property name="idSector" type="java.lang.Long"> -->
+<!-- 			<column name="N_CODSEC" scale="0"> -->
+<!-- 				<comment>CÓDIGO DEL SECTOR.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+		<property name="cargo" type="string">
+			<column name="V_CODCARGO" length="2">
+				<comment>DESCRIPCION DEL CARGO.</comment>
+			</column>
+		</property>
+		<property name="inicio" type="timestamp">
+			<column name="D_INICIO" length="23">
+				<comment>FECHA DE INICIO</comment>
+			</column>
+		</property>
+		<property name="termino" type="timestamp">
+			<column name="D_TERMNO" length="23">
+				<comment>FECHA DE TERMINO</comment>
+			</column>
+		</property>
+<!-- 		<property name="rubro" type="string"> -->
+<!-- 			<column name="V_DESRUBRO" length="250"> -->
+<!-- 				<comment>DESCRIPCION DEL RUBRO.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="pais" type="java.lang.Integer"> -->
+<!-- 			<column name="N_NUMPAIS"> -->
+<!-- 				<comment>NUMERO DEL PAIS.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="ciudad" type="string"> -->
+<!-- 			<column name="V_CIUDAD" length="254"> -->
+<!-- 				<comment>DESCRIPCION DE LA CIUDAD.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+		<property name="actividades" type="string">
+			<column name="V_ACTVDDES" length="500">
+				<comment>DESCRIPCION DE LA ACTIVIDAD.</comment>
+			</column>
+		</property>
+<!-- 		<property name="logros" type="string"> -->
+<!-- 			<column name="V_LOGROS" length="500"> -->
+<!-- 				<comment>DESCRIPCION DEL LOGRO.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="jefe" type="string"> -->
+<!-- 			<column name="V_DESJEFE" length="254"> -->
+<!-- 				<comment>DESCRIPCION DEL JEFE.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="telefono" type="string"> -->
+<!-- 			<column name="V_TLFNOS" length="50"> -->
+<!-- 				<comment>DESCRIPCION DEL TELEFONO.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="motivoCese" type="string"> -->
+<!-- 			<column name="V_MTVOCSE" length="254"> -->
+<!-- 				<comment>DESCRIPCION DEL MOTIVO DEL CESE.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+<!-- 		<property name="sueldo" type="java.lang.Double"> -->
+<!-- 			<column name="N_SALDOS" precision="9"> -->
+<!-- 				<comment>SUELDO</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="idUsroValidador" type="java.lang.Long">
+			<column name="N_CODUSRVAL" scale="0">
+				<comment>USUARIO QUE VALIDA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="fechaValidacion" type="timestamp">
+			<column name="D_FECVAL" length="23">
+				<comment>FECHA EN LA QUE SE VALIDO EL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="validado" type="java.lang.Character">
+			<column name="C_ESTVAL" length="1">
+				<comment>INDICADOR DE VALIDACION SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="principal" type="java.lang.Integer">
+			<column name="N_PRINCIPAL">
+				<comment>1:exp. laboral principal 0:secundario</comment>
+			</column>
+		</property>
+    </class>
+</hibernate-mapping>

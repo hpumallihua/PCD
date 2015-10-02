@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Referencia"
+		table="PDTBC_REFERENCIA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODRFRNCA" scale="0">
+				<comment>CÓDIGO DE REFERENCIA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_PRFSNALRFRNCAID</param>
+			</generator>
+		</id>
+		<!-- <many-to-one name="puesto" class="pe.gob.trabajo.pcd.modelo.dominio.Puesto" 
+			fetch="select"> -->
+		<!-- <column name="N_CODPSTO" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<many-to-one name="empresa"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" fetch="select">
+			<column name="N_CODEMPRSA" scale="0">
+				<comment>CÓDIGO DE LA EMPRESA.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="Persona"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Persona" fetch="select">
+			<column name="N_CODPRSNA" scale="0">
+				<comment>CÓDIGO DE LA PERSONA.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="tipoReferencia"
+			class="pe.gob.trabajo.pcd.modelo.dominio.TipoReferencia" fetch="select">
+			<column name="N_CODTPORFR">
+				<comment>CÓDIGO DEL TIPO DE REFERENCIA.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" fetch="select">
+			<column name="N_CODPRSNAL" scale="0" not-null="true">
+				<comment>CÓDIGO PROFESIONAL.</comment>
+			</column>
+		</many-to-one>
+		<property name="cargo" type="string">
+			<column name="V_CODCARGO" length="2">
+				<comment>DESCRIOPCIO DEL CARGO.</comment>
+			</column>
+		</property>
+		<property name="nombreReferenciaDestino" type="string">
+			<column name="V_RFRDSTINO" length="100">
+				<comment>NONBRE DE LA REFERENCIA DESTINO.</comment>
+			</column>
+		</property>
+		<property name="telefonoPrincipal" type="string">
+			<column name="V_TLFNO1" length="15">
+				<comment>NUMERO TELEFONICO PRINCIPAL.</comment>
+			</column>
+		</property>
+		<property name="telefonoSecundario" type="string">
+			<column name="V_TLFNO2" length="15">
+				<comment>NUMERO TELEFONICO SECUNDARIO.</comment>
+			</column>
+		</property>
+		<property name="email" type="string">
+			<column name="V_EMAILR" length="250">
+				<comment>CORREO ELECTRONICO.</comment>
+			</column>
+		</property>
+		<property name="comentario" type="string">
+			<column name="V_CMNTRO" length="250">
+				<comment>COMENTARIO.</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="idUsroValidador" type="java.lang.Long">
+			<column name="N_CODUSRVAL" scale="0">
+				<comment>USUARIO QUE VALIDO LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="fechaValidacion" type="timestamp">
+			<column name="D_FECVAL" length="23">
+				<comment>FECHA EN LA QUE SE VALIDO EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="validado" type="java.lang.Character">
+			<column name="C_ESTVAL" length="1">
+				<comment>INDICADOR DE VALIDACION SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

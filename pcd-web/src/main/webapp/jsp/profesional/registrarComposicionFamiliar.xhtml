@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/layout/plantillaGestor.xhtml">
+
+	<ui:define name="tituloPagina">Composición familiar</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    	</script>
+		<h:form>
+			<t:panelGrid columns="1" styleClass="gridContent"
+				id="gridDatosGenerales">
+				<rich:panel styleClass="gridContent"
+					style="background-color: #FFFFFF;"
+					rendered="#{registrarPersonaComposicionFamiliarMB.accionRealizada eq registrarPersonaComposicionFamiliarMB.acciones.ACCION_NUEVO
+							or 
+							registrarPersonaComposicionFamiliarMB.accionRealizada eq registrarPersonaComposicionFamiliarMB.acciones.ACCION_EDITAR
+							or
+							registrarPersonaComposicionFamiliarMB.accionRealizada eq registrarPersonaComposicionFamiliarMB.acciones.ACCION_VISUALIZAR}">
+
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText value="integrante de familia de " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.nombres} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+						</h:panelGroup>
+					</f:facet>
+					<t:panelGrid columns="9" styleClass="gridFormulario"
+						columnClasses=",,,">
+						<h:outputLabel title="Nombre" value="Nombre:" for="nombre" />
+
+						<t:panelGroup colspan="7">
+							<h:inputText id="nombre"
+								value="#{registrarPersonaComposicionFamiliarMB.bean.nombreIntegrante}"
+								required="true" maxlength="500"
+								title="Longitud máxima: 500 caracteres" styleClass="width100"
+								style="#{UtilBean.estiloCampoRequerido}" />
+						</t:panelGroup>
+						<h:outputText styleClass="body" value=" (*)" />
+
+						<h:outputLabel title="Edad" value="Edad:" for="edad" />
+
+						<h:inputText id="edad" size="4" maxlength="3"
+							title="Longitud máxima: 3 caracteres"
+							value="#{registrarPersonaComposicionFamiliarMB.bean.edad}"
+							required="false">
+							<f:validateLongRange minimum="0" />
+						</h:inputText>
+
+						<h:outputLabel title="Parentesco" value="Parentesco:"
+							for="parentesco" />
+						<t:panelGroup colspan="5">
+							<t:panelGrid columns="2" styleClass="gridContent"
+								columnClasses=",columnaDerecha">
+								<t:panelGroup>
+									<t:selectOneMenu id="parentesco" required="true"
+										value="#{registrarPersonaComposicionFamiliarMB.bean.codigoParentesco}"
+										styleClass="width100" style="#{UtilBean.estiloCampoRequerido}">
+										<f:selectItems
+											value="#{registrarPersonaComposicionFamiliarMB.itemsParentesco}" />
+										<f:validateLongRange minimum="1" />
+									</t:selectOneMenu>
+								</t:panelGroup>
+							</t:panelGrid>
+						</t:panelGroup>
+						<h:outputText styleClass="body" value=" (*)" />
+
+						<h:outputLabel title="#{msg['prf-ayuda-experiencias-tecnologia']}"
+							value="#{msg['prf-registro-experiencias-lista-tecnologia']}:"
+							for="idEspecialidad" />
+
+
+						<t:panelGroup colspan="7">
+							<h:inputHidden id="idEspecialidad" required="true"
+								value="#{registrarPersonaComposicionFamiliarMB.bean.codigoOcupacion}" />
+							<h:inputText id="descripcionEspecialidad" required="false"
+								title="Longitud máxima: 254 caracteres"
+								value="#{registrarPersonaComposicionFamiliarMB.bean.descripcionOcupacion}"
+								style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+								ondblclick="#{rich:component('suggestionEspecialidad')}.callSuggestion(true)" />
+							<rich:suggestionbox width="450" border="1" shadowDepth=""
+								usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+								onobjectchange="printObjectsSelected(#{rich:element('idEspecialidad')}, #{rich:component('suggestionEspecialidad')});"
+								suggestionAction="#{registrarPersonaComposicionFamiliarMB.autocompletarOcupacion}"
+								var="especialidad" for="descripcionEspecialidad"
+								fetchValue="#{especialidad.descripcion}"
+								id="suggestionEspecialidad" tokens=",">
+								<h:column>
+									<h:outputText value="#{especialidad.descripcion}" />
+								</h:column>
+							</rich:suggestionbox>
+						</t:panelGroup>
+						<h:outputText value=" (*)" />
+
+
+						<rich:spacer width="5" height="5" title="espacio" />
+						<rich:spacer width="5" height="5" title="espacio" />
+
+
+
+
+					</t:panelGrid>
+
+					<rich:separator lineType="beveled" height="3" width="100%"
+						style="background-color: #808080; background-image: url('');"
+						align="center" />
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<rich:spacer width="5" height="5" title="espacio" />
+						<t:panelGroup>
+
+							<a4j:commandButton
+								value="#{msg['prf-registro-certificacion-formulario-cancelar']}"
+								actionListener="#{registrarPersonaComposicionFamiliarMB.cancelar}"
+								reRender="gridDatosGenerales,dataCertificaciones"
+								immediate="true" styleClass="botonBuscar" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<a4j:commandButton
+								value="#{msg['prf-registro-certificacion-formulario-guardar']}"
+								actionListener="#{registrarPersonaComposicionFamiliarMB.guardar}"
+								reRender="gridDatosGenerales, dataCertificaciones"
+								styleClass="botonBuscar"
+								onclick="Richfaces.showModalPanel('modalEstado')"
+								oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+						</t:panelGroup>
+
+					</t:panelGrid>
+				</rich:panel>
+			</t:panelGrid>
+		</h:form>
+
+
+
+		<h:form>
+
+			<rich:dataTable id="dataCertificaciones" var="integrante"
+				styleClass="gridContent"
+				rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" width="600px"
+				value="#{registrarPersonaComposicionFamiliarMB.integrantesFamilia}"
+				columnClasses=",,columnaCentro,columnaCentro,columnaAcciones">
+				<f:facet name="header">
+
+					<h:panelGroup>
+
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+
+
+							<h:panelGroup>
+								<h:outputText value="Lista de integrantes de familia de " />
+								<h:panelGroup
+									rendered="#{registrarPersonaComposicionFamiliarMB.accionRealizada eq registrarPersonaComposicionFamiliarMB.acciones.ACCION_LISTAR}">
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.nombres} " />
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<a4j:commandLink styleClass="columnaAcciones"
+								rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+								actionListener="#{registrarPersonaComposicionFamiliarMB.nuevo}"
+								reRender="gridDatosGenerales, dataCertificaciones"
+								title="Registrar Nuevo integrante">
+								<h:graphicImage value="/images/nuevo.png"
+									alt="Registrar Nuevo integrante" />
+							</a4j:commandLink>
+						</h:panelGrid>
+					</h:panelGroup>
+
+				</f:facet>
+
+
+				<rich:column sortBy="#{integrante.nombreIntegrante}">
+					<f:facet name="header">
+						<h:outputText value="Nombre" />
+					</f:facet>
+					<h:outputText value="#{integrante.nombreIntegrante}" />
+				</rich:column>
+				<rich:column sortBy="#{integrante.edad}">
+					<f:facet name="header">
+						<h:outputText value="Edad" />
+					</f:facet>
+					<h:outputText value="#{integrante.edad}" />
+				</rich:column>
+				<rich:column sortBy="#{integrante.codigoParentesco}">
+					<f:facet name="header">
+						<h:outputText value="Parentesco" />
+					</f:facet>
+					<h:outputText value="#{integrante.codigoParentesco}" />
+				</rich:column>
+				<rich:column sortBy="#{integrante.descripcionOcupacion}">
+					<f:facet name="header">
+						<h:outputText value="Ocupación" />
+					</f:facet>
+					<h:outputText value="#{integrante.descripcionOcupacion}" />
+				</rich:column>
+				<rich:column sortBy="#{integrante.enActividad}">
+					<f:facet name="header">
+						<h:outputText value="Activo/Desocupado" />
+					</f:facet>
+					<h:outputText value="#{integrante.enActividad}" />
+				</rich:column>
+				<rich:column sortBy="#{integrante.resideEnViviendaFamiliar}">
+					<f:facet name="header">
+						<h:outputText value="Reside en vivienda familiar" />
+					</f:facet>
+					<h:outputText value="#{integrante.resideEnViviendaFamiliar}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['prf-registro-certificacion-lista-acciones']}" />
+					</f:facet>
+					<h:commandLink>
+						<f:param id="integranteFamiliaPrm" name="integranteFamiliaPrm"
+							value="#{integrante}" />
+					</h:commandLink>
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+						actionListener="#{registrarPersonaComposicionFamiliarMB.editar}"
+						reRender="gridDatosGenerales" title="Ver Detalle">
+						<h:graphicImage value="/images/ver.png" alt="Ver Detalle" />
+					</a4j:commandLink>
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+						actionListener="#{registrarPersonaComposicionFamiliarMB.editar}"
+						reRender="gridDatosGenerales" title="Editar Certificación">
+						<h:graphicImage value="/images/editar.png"
+							alt="#{msg['prf-registro-certificacion-lista-accion-editar']}" />
+					</a4j:commandLink>
+					<rich:spacer width="10" height="5" title="espacio" />
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+						onclick="if (!confirmar('#{tipo.dscrpcon}')) return false;"
+						actionListener="#{registrarPersonaComposicionFamiliarMB.eliminar}"
+						reRender="gridDatosGenerales, dataCertificaciones"
+						title="Eliminar Certificación">
+						<h:graphicImage value="/images/eliminar.png"
+							alt="#{msg['prf-registro-certificacion-lista-accion-eliminar']}" />
+					</a4j:commandLink>
+				</rich:column>
+				<f:facet name="footer">
+					<rich:datascroller for="dataCertificaciones"
+						renderIfSinglePage="false"></rich:datascroller>
+				</f:facet>
+			</rich:dataTable>
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

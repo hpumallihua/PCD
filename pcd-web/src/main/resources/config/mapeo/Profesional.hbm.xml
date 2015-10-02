@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Profesional"
+		table="PDTBC_PROFESIONAL">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRSNAL" scale="0">
+				<comment>CÓDIGO PROFESIONAL.</comment>
+			</column>
+			<generator class="foreign">
+				<param name="property">persona</param>
+			</generator>
+		</id>
+		<one-to-one class="pe.gob.trabajo.pcd.modelo.dominio.Persona"
+			constrained="true" name="persona" />
+		<property generated="never" lazy="false" name="curriculum"
+			type="string">
+			<column length="250" name="V_CRRCLUM">
+				<comment>DESCRIPCION DEL CURRICULUM.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="empleoDeseado"
+			type="string">
+			<column length="500" name="V_EMPLODSDO">
+				<comment>DESCRIPCION DEL EMPLEADO DESEADO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tipoTrabajo"
+			type="java.lang.Integer">
+			<column name="N_TPOTRBJO">
+				<comment>CODIGO DEL TIPO DE TRABAJO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sueldoMinimo"
+			type="java.lang.Double">
+			<column name="F_SLDOMNMO" precision="15">
+				<comment>NUMERO DE SUELDO MINIMO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sueldoMaximo"
+			type="java.lang.Double">
+			<column name="F_SLDOMXMO" precision="15">
+				<comment>NUMERO DE SUELDO MAXIMO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="trabajarFuera"
+			type="java.lang.Integer">
+			<column name="N_TRBJOFRA">
+				<comment>NUMERO DEL TRABAJO FUERA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="disponibilidadContratacion"
+			type="java.lang.Integer">
+			<column name="N_DSPCNTCON">
+				<comment>NUMERO DE DISPONIBILIDAD DE CONTRATACION</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="disponibilidadTiempo"
+			type="java.lang.Integer">
+			<column name="N_DSPLADTPO">
+				<comment>NUMERO DE DISPONIBILIDAD DE TIEMPO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="situacionActual"
+			type="java.lang.Integer">
+			<column name="N_STCOACTAL">
+				<comment>NUMERO DEL SITUACION ACTUAL</comment>
+			</column>
+		</property>
+		<property name="categoriaLicenciaDeConducir" type="java.lang.Integer">
+			<column name="N_CTLCNCA">
+				<comment>NUMERO DE CATEGORIA DE LICENCIA DE CONDUCIR</comment>
+			</column>
+		</property>
+		<property name="codigoOficinaAsociada" type="string">
+			<column name="V_CODOFIC" length="4">
+				<comment>CÓDIGO DE LA OFICINA</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="estadoRegistro"
+			type="java.lang.Character">
+			<column length="1" name="C_ESTRGSTRO">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+
+		<!-- <set name="tiprfPrfsnalPreferencias" table="TIPRF_PRFSNAL_PREFERENCIA" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" 
+			scale="0" not-null="true" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalPreferencia" 
+			/> </set> <set name="tiprfPrfsnalIdiomas" table="TIPRF_PRFSNAL_IDIOMA" inverse="true" 
+			lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" scale="0" /> 
+			</key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalIdioma" 
+			/> </set> <set name="tiprfPrfsnalReferencias" table="TIPRF_PRFSNAL_REFERENCIA" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="RFRNCA_ORGEN" 
+			scale="0" not-null="true" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalReferencia" 
+			/> </set> <set name="tiprfPrfsnalCertificacions" table="TIPRF_PRFSNAL_CERTIFICACION" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" 
+			scale="0" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalCertificacion" 
+			/> </set> <set name="tiprfPrfsnalFormacions" table="TIPRF_PRFSNAL_FORMACION" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" 
+			scale="0" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalFormacion" 
+			/> </set> <set name="tiprfPrfsnalExprncaLbrals" table="TIPRF_PRFSNAL_EXPRNCA_LBRAL" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" 
+			scale="0" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalExprncaLbral" 
+			/> </set> <set name="tiprfPrfsnalExprncaEspcldads" table="TIPRF_PRFSNAL_EXPRNCA_ESPCLDAD" 
+			inverse="true" lazy="true" fetch="select"> <key> <column name="ID_PRFSNAL" 
+			scale="0" /> </key> <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalExprncaEspcldad" 
+			/> </set> -->
+		<list fetch="select" inverse="true" lazy="true" name="experienciasLaborales"
+			table="PDMVD_PRFEXPLBRAL">
+			<key>
+				<column name="N_CODPRSNAL" not-null="true" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CODEXPRCA" />
+			<one-to-many
+				class="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral" />
+		</list>
+		<list fetch="select" inverse="true" lazy="true"
+			name="experienciasEspecialidad" table="PDMVD_PRFEXPESPC">
+			<key>
+				<column name="N_CODPRSNAL" not-null="true" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CODEXESPC" />
+			<one-to-many
+				class="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad" />
+		</list>
+		<!-- <set name="tiprfPrfsnalFormacions" table="TIPRF_PRFSNAL_FORMACION" 
+			inverse="true" lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="ID_PRFSNAL" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalFormacion" 
+			/> -->
+		<!-- </set> -->
+		<list fetch="select" inverse="true" lazy="true" name="formaciones"
+			table="PDTBC_PRFLFRMACION">
+			<key>
+				<column name="N_CODPRSNAL" not-null="true" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CODFRMCON" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.Formacion" />
+		</list>
+		<!-- <set name="tiprfPrfsnalIdiomas" table="TIPRF_PRFSNAL_IDIOMA" inverse="true" 
+			lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="ID_PRFSNAL" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalIdioma" 
+			/> -->
+		<!-- </set> -->
+		<list fetch="select" inverse="true" lazy="true" name="idiomas"
+			table="PDMVD_PRFSNALIDIOMA">
+			<key>
+				<column name="N_CODPRSNAL" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CODPRFIDM" />
+			<one-to-many
+				class="pe.gob.trabajo.pcd.modelo.dominio.ProfesionalIdioma" />
+		</list>
+
+		<list fetch="select" inverse="true" lazy="true" name="certificaciones"
+			table="PDMVD_PRFSNALCERT">
+			<key>
+				<column name="N_CODPRSNAL" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CODCERTIF" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.Certificacion" />
+		</list>
+
+		<list fetch="select" inverse="true" lazy="true" name="preferencias"
+			table="PDMVD_PRFLPREFEREN">
+			<key>
+				<column name="N_CODPRSNAL" scale="0">
+					<comment>CODIGO PROFESIONAL.</comment>
+				</column>
+			</key>
+			<index column="N_CDPRFRNCA" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.Preferencia" />
+			<filter name="filtroPreferencias2"
+				condition="N_CDPRFRNCA in :preferenciasParam and N_CODTPOPRF = :tipoPreferenciasParam"></filter>
+			<filter name="filtroPreferencias"
+				condition="N_CDPRFRNCA in (:preferenciasParam) and N_CODTPOPRF = :tipoPreferenciasParam"></filter>
+		</list>
+
+		<filter name="filtroCurriculum" condition="V_CRRCLUM is not null"></filter>
+	</class>
+
+	<filter-def name="filtroCurriculum">
+		<filter-param name="currParam" type="string" />
+	</filter-def>
+
+	<filter-def name="filtroPreferencias">
+		<filter-param name="preferenciasParam" type="long" />
+		<filter-param name="tipoPreferenciasParam" type="long" />
+	</filter-def>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<h:inputHidden value="#{pedidoMB.pedido.id}" /> 
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		rendered="#{true or sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolConsultorABE}">
+
+
+		<rich:panelMenuGroup label="Ofertas laborales" expanded="true">
+			<rich:panelMenuItem label="Nuevo" action="crearPedido"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			
+			<rich:panelMenuItem label="Datos Complementarios" action="detallePedido"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			
+			<rich:panelMenuItem label="Datos Adicionales" action="formacionPedido"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			
+			
+			<rich:panelMenuItem label="Buscar" action="buscarPedido"
+				immediate="true"
+				actionListener="#{buscarPedidoMB.limpiarBusqueda}">
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+	</rich:panelMenu>
+
+</ui:composition>
+

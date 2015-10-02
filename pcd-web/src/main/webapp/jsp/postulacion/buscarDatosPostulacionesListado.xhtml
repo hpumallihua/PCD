@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmListPostulacion">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<h:panelGroup>
+				<h:outputLabel
+					value="Listado de Profesionales que postularon al pedido: "
+					styleClass="tituloSeccion" />
+				<h:outputLabel value="#{registrarPedidoMB.pedidoBean.descripcion}"
+					styleClass="tituloSeccion" style="text-transform:uppercase;" />
+			</h:panelGroup>
+		</rich:panel>
+
+		<rich:dataGrid id="dataBusqueda"
+			value="#{registrarPedidoMB.listaPostulaciones}"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" border="0"
+			var="varPostulacion" styleClass="gridContent" rowKeyVar="fila"
+			onRowMouseOver="this.className='filaMouseOver'"
+			onRowMouseOut="this.className='filaMouseOut'"
+			headerClass="columnaDerecha rich-pmenu-top-group rich-table-subheadercell">
+			<f:facet name="header">
+
+				<h:panelGrid columns="4" styleClass="gridContent"
+					columnClasses="columnaIzquierda,columnaDerecha,columnaDerecha,columnaIzquierda">
+					<t:dataScroller id="paginador" for="dataBusqueda"
+						styleClass="gridContent" rowsCountVar="rowsCount"
+						displayedRowsCountVar="displayedRowsCount"
+						firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+						pageCountVar="pageCount" pageIndexVar="pageIndex" paginator="	">
+						<h:outputFormat id="paginadorFormat" styleClass="standard"
+							value="#{msg['tabla-comun-paginador-simple']}">
+							<f:param value="#{rowsCount}" />
+						</h:outputFormat>
+					</t:dataScroller>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:datascroller for="dataBusqueda" maxPages="20"
+						renderIfSinglePage="false" styleClass="gridContent" />
+				</h:panelGrid>
+			</f:facet>
+
+			<h:panelGrid id="panelContent" styleClass="gridContent" columns="1">
+
+				<t:panelGroup colspan="2">
+					<!-- 1 -->
+					<rich:column width="70%">
+						<h:panelGrid>
+							<h:outputText
+								value="#{varPostulacion.profesional.persona.nombres}, #{varPostulacion.profesional.persona.apellidoPaterno} #{varPostulacion.profesional.persona.apellidoMaterno}"
+								styleClass="tituloSeccion" style="text-transform:uppercase;" />
+							<h:outputText
+								value="Documento Identidad: #{varPostulacion.profesional.persona.numeroDocumentoIdentidad}" />
+						</h:panelGrid>
+					</rich:column>
+
+					<!-- 2 -->
+					<rich:column width="30%">
+						<h:commandLink>
+							<f:param name="profesionalPrm" id="profesionalPrm"
+								value="#{varPostulacion.profesional}" />
+						</h:commandLink>
+						<h:panelGrid>
+							<t:panelGroup colspan="2">
+								<h:outputText value="Registrado el  " />
+								<h:outputText value="#{varPostulacion.fechaCreacion}">
+									<f:convertDateTime pattern="dd-MMM/yyyy  - HH:mm"
+										locale="es_PE" timeZone="America/Lima" />
+								</h:outputText>
+							</t:panelGroup>
+
+							<a4j:commandLink actionListener="#{profesionalMB.seleccionar}"
+								action="profesionalDatosPersonales"
+								title="ver datos del profesional"
+								rendered="#{!sesionMB.usuarioSesion.rolProfesional}">
+								<h:graphicImage value="/images/ver.png" alt="Postular" />
+								<a4j:actionparam name="opcion" value="3"
+									assignTo="#{profesionalMB.opcionProfesional}" />
+								<a4j:actionparam name="accion"
+									value="#{sesionMB.constantes.CONTEXTO_POSTULACION}"
+									assignTo="#{sesionMB.contexto}" />
+							</a4j:commandLink>
+
+						</h:panelGrid>
+					</rich:column>
+
+				</t:panelGroup>
+
+			</h:panelGrid>
+
+
+		</rich:dataGrid>
+
+
+		<t:panelGrid columns="2" styleClass="gridContent"
+			columnClasses="columnaIzquierda,columnaDerecha">
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup>
+				<a4j:commandButton action="buscarPedido" immediate="true"
+					value="Regresar" styleClass="botonBuscar">
+					<a4j:actionparam name="accion"
+						value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+						assignTo="#{sesionMB.contexto}" />
+				</a4j:commandButton>
+				<rich:spacer width="5" height="5" title="espacio" />
+
+			</t:panelGroup>
+		</t:panelGrid>
+
+	</h:form>
+</ui:composition>
+
+
+
+</html>

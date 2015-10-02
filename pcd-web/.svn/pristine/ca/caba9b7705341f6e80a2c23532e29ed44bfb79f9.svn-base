@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Persona"
+		table="PDTBC_PERSONA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRSNA" scale="0">
+				<comment>CÓDIGO DE LA PERSONA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_PRSNAID</param>
+			</generator>
+		</id>
+		<!-- <many-to-one name="tipoDocumentoIdentidad" class="pe.gob.trabajo.pcd.modelo.dominio.TipoDocumentoIdentidad" 
+			fetch="select"> -->
+		<!-- <column name="N_CODTPO_DCMNTO" precision="3" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<!-- <many-to-one name="lugarNacimiento" class="pe.gob.trabajo.pcd.modelo.dominio.Ubigeo" 
+			fetch="select" unique="false"> -->
+		<!-- <column name="LGAR_NCMNTO" precision="6" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<property name="tipoDocumentoIdentidad" type="string">
+			<column name="V_CODTPODCM" length="2">
+				<comment>CÓDIGO DE TIPO DE DOCUMENTO.</comment>
+			</column>
+		</property>
+		<property name="departamentoNacimiento" type="string">
+			<column name="V_CODDEPNTO" length="2">
+				<comment>CÓDIGO DEL DEPARTAMENTO DE NACIMIENTO.</comment>
+			</column>
+		</property>
+
+		<property name="provinciaNacimiento" type="string">
+			<column name="V_CODPRONTO" length="2">
+				<comment>CÓDIGO DE LA PROVINCIA DE NACIMIENTO.</comment>
+			</column>
+		</property>
+
+		<property name="distritoNacimiento" type="string">
+			<column name="V_CODDISNTO" length="2">
+				<comment>CÓDIGO DEL DISTRITO DE NACIMIENTO.</comment>
+			</column>
+		</property>
+
+		<property name="departamentoResidencia" type="string">
+			<column name="V_CODRDENCA" length="2">
+				<comment>CÓDIGO DEL DEPARTAMENTO DE RESIDENCIA.</comment>
+			</column>
+		</property>
+
+		<property name="provinciaResidencia" type="string">
+			<column name="V_CODPRDNCA" length="2">
+				<comment>CÓDIGO DE LA PROVINCIA DE RESIDENCIA.</comment>
+			</column>
+		</property>
+
+		<property name="distritoResidencia" type="string">
+			<column name="V_CODDIRCIA" length="2">
+				<comment>CÓDIGO DE LA DISTRITO DE RESIDENCIA.</comment>
+			</column>
+		</property>
+
+		<!-- <many-to-one name="lugarResidencia" class="pe.gob.trabajo.pcd.modelo.dominio.Ubigeo" 
+			fetch="select"> -->
+		<!-- <column name="LGAR_RSDNCA" precision="6" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<property name="apellidoPaterno" type="string">
+			<column name="V_APPTRNO" length="254">
+				<comment>APELLIDO PATERNO DE LA PERSONA.</comment>
+			</column>
+		</property>
+		<property name="apellidoMaterno" type="string">
+			<column name="V_APMTRNO" length="254">
+				<comment>APELLIDO MATERNO DE LA PERSONA.</comment>
+			</column>
+		</property>
+		<property name="nombres" type="string">
+			<column name="V_NOMBRES" length="254">
+				<comment>NOMBRES DE LA PERSONA.</comment>
+			</column>
+		</property>
+		<property name="sexo" type="java.lang.Integer">
+			<column name="N_NUMSEXO">
+				<comment>NUMERO DE SEXO DE LA PERSONA.</comment>
+			</column>
+		</property>
+		<property name="esJefeHogar" type="java.lang.Integer">
+			<column name="N_JEFEHOGAR">
+				<comment>NUMERO DE JEFE DE HOGAR.</comment>
+			</column>
+		</property>
+		<property name="numeroDocumentoIdentidad" type="string">
+			<column name="V_DCTOIDTDD" length="15">
+				<comment>NUMERO DE DOCUMENTO DE IDENTIDAD.</comment>
+			</column>
+		</property>
+		<property name="direccion" type="string">
+			<column name="V_DRCCON" length="254">
+				<comment>DESCRIPCION DE LA DIRECCION.</comment>
+			</column>
+		</property>
+		<property name="telefono" type="string">
+			<column name="V_TLFNO" length="50">
+				<comment>NUMERO DE TELEFONO.</comment>
+			</column>
+		</property>
+		<property name="contacto" type="string">
+			<column name="V_CNTCTO" length="500">
+				<comment>PERSONA DE CONTACTO.</comment>
+			</column>
+		</property>
+		<property name="fechaNacimiento" type="timestamp">
+			<column name="D_FCHANCNTO" length="23">
+				<comment>FECHA DE NACIMIENTO DE LA PERSONA</comment>
+			</column>
+		</property>
+		<property name="paisNacimiento" type="string">
+			<column name="V_PISNCNTO" length="50">
+				<comment>DESCRIPCION DEL PAIS DE NACIMIENTO</comment>
+			</column>
+		</property>
+		<property name="paisResidencia" type="string">
+			<column name="V_PISRSDNCA" length="50">
+				<comment>DESCRIPCION DEL PAIS DE RESIDENCIA</comment>
+			</column>
+		</property>
+		<property name="nacionalidad" type="string">
+			<column name="V_NCNLDAD" length="254">
+				<comment>DESCRIPCION DE LA NACIONALIDAD</comment>
+			</column>
+		</property>
+		<property name="estadoCivil" type="java.lang.Integer">
+			<column name="N_ESTCVIL">
+				<comment>NUMERO DEL ESTADO CIVIL</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fotografia" type="string">
+			<column name="V_FTGRFIA" length="254">
+				<comment>FOTOGRAFIA DE LA PERSONA</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<one-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional"></one-to-one>
+		<one-to-one name="usuario"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Usuario"></one-to-one>
+		<one-to-one name="personaDiscapacidad"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PersonaDiscapacidad"></one-to-one>
+		<one-to-one name="personaDatosMedicos"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PersonaDatosMedicos"></one-to-one>
+		<one-to-one name="personaMotivacion"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PersonaMotivacion"></one-to-one>
+		<one-to-one name="personaInteresesOcupacionales"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PersonaInteresesOcupacionales"></one-to-one>
+		<one-to-one name="personaCondicionesTrabajo"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PersonaCondicionesTrabajo"></one-to-one>
+		
+		<list fetch="select" inverse="true" lazy="true" name="contactos"
+			table="PDTBC_PERSONCONT">
+			<key>
+				<column name="N_CODPRSNA" not-null="true" scale="0">
+					<comment>CODIGO DE LA PERSONA.</comment>
+				</column>
+			</key>
+			<index column="N_CODCNTCTO" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.Contacto" />
+			<!-- <filter name="filtroContactos" condition=":filtroContactosParam = 
+				ESTDO_RGSTRO"></filter> -->
+		</list>
+
+		<list fetch="join" inverse="true" lazy="false" name="discapacidades"
+			cascade="all" table="PDMVD_PSONDISCAPDA">
+			<key>
+				<column name="N_CODPRSNA" not-null="true" scale="0">
+					<comment>CODIGO DE LA PERSONA.</comment>
+				</column>
+			</key>
+			<index column="N_CODDCPDAD" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.Discapacidad" />
+		</list>
+		
+		<list fetch="select" inverse="true" lazy="true" name="necesidadesApoyo"
+			table="PDMVD_PRSNAAPYO">
+			<key>
+				<column name="N_CODPRSNA" not-null="true" scale="0">
+					<comment>CODIGO DE LA PERSONA.</comment>
+				</column>
+			</key>
+			<index column="N_CODAPYO" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.PersonaNecesidadApoyo" />
+		</list>
+		
+		<list fetch="select" inverse="true" lazy="true" name="integrantesFamilia"
+			table="PDMVD_PRSNAINTGRNT">
+			<key>
+				<column name="N_CODPRSNA" not-null="true" scale="0">
+					<comment>CODIGO DE LA PERSONA.</comment>
+				</column>
+			</key>
+			<index column="N_CODINTGRT" />
+			<one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.PersonaIntegranteFamilia" />
+		</list>
+	</class>
+</hibernate-mapping>

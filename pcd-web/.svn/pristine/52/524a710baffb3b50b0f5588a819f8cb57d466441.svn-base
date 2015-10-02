@@ -1,0 +1,30 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<h:inputHidden value="#{profesionalMB.profesional.id}" />
+	
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		disabled="#{!(sesionMB.usuarioSesion.persona.usuario.id gt 0)}"
+		rendered="#{true or sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolConsultorABE}">
+
+
+		<rich:panelMenuGroup label="Postulaciones" expanded="true">
+			<rich:panelMenuItem label="#{!sesionMB.usuarioSesion.rolProfesional?'Postulaciones':'Mis postulaciones'}" action="postulaciones"
+				actionListener="#{postulacionesProfesionalMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 1?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam value="1"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+
+	</rich:panelMenu>
+
+</ui:composition>
+

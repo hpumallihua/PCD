@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Empleos</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<h:form>
+			<rich:dataTable id="dataPostulaciones" var="postulacion"
+				styleClass="gridContent"
+				rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}"
+				value="#{postulacionesProfesionalMB.postulaciones}"
+				columnClasses="columnaIzquierda,columnaIzquierda,columnaCentro">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<h:panelGroup>
+								<h:outputText value="Postulaciones de " />
+								<h:panelGroup
+									rendered="#{postulacionesProfesionalMB.accionRealizada eq registrarEmpleosMB.acciones.ACCION_LISTAR}">
+
+									<h:outputText
+										value="de #{postulacionesProfesionalMB.profesionalBean.persona.nombres} " />
+									<h:outputText
+										value="#{postulacionesProfesionalMB.profesionalBean.persona.apellidoPaterno} " />
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
+				</f:facet>
+				<rich:column sortBy="#{postulacion.pedido.descripcion}">
+					<f:facet name="header">
+						<h:outputText value="Pedido" />
+					</f:facet>
+					<h:outputText value="#{postulacion.pedido.descripcion}" />
+				</rich:column>
+				<rich:column
+					sortBy="#{postulacion.pedido.empleador.establecimiento.empresa.nombreComercial}">
+					<f:facet name="header">
+						<h:outputText value="Empresa" />
+					</f:facet>
+					<h:outputText
+						value="#{postulacion.pedido.empleador.establecimiento.empresa.nombreComercial}" />
+				</rich:column>
+				<rich:column sortBy="#{postulacion.pedido.fechaCreacion}"
+					sortOrder="DESCENDING">
+					<f:facet name="header">
+						<h:outputText value="Fecha de postulacion" />
+					</f:facet>
+					<h:outputText value="#{postulacion.pedido.fechaCreacion}">
+						<f:convertDateTime timeZone="#{registrarEmpleosMB.timeZone}"
+							pattern="dd/MM/yyyy - HH:mm" />
+					</h:outputText>
+				</rich:column>
+
+				<f:facet name="footer">
+					<rich:datascroller for="dataPostulaciones" maxPages="20"
+						renderIfSinglePage="false" />
+				</f:facet>
+
+			</rich:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

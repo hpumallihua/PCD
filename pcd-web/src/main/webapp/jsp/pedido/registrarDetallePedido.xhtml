@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Datos Puesto Solicitado</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value="Datos Complementarios del Puesto para " />
+					<h:outputText value="#{registrarPedidoMB.pedidoBean.nombre} "  
+								  style="text-transform:uppercase;"/>
+				</h:panelGroup>
+			</f:facet>
+			<ui:include src="datosDetallePedido.xhtml" />
+		</rich:panel>
+		
+		<rich:spacer width="5" height="15" title="espacio" />
+		
+		
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>

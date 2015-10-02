@@ -1,0 +1,123 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = output.value + ',' + sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+
+	<h:outputLabel value="#{msg['prf-busqueda-formacion']}"
+		styleClass="tituloSeccion" />
+	<rich:separator lineType="beveled" height="3" width="100%"
+		style="background-color: #808080; background-image: url('');"
+		align="center" />
+
+	<h:panelGrid columns="2" styleClass="gridFormulario"
+		columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer"
+		id="gridFormacion">
+		<h:outputLabel value="Profesión:" for="descripcionProfesion" />
+		<h:panelGroup>
+			<h:inputHidden id="idProfesion" value="" />
+			<h:inputText id="descripcionProfesion" required="false"
+				maxlength="254" title="Longitud máxima: 254 caracteres"
+				value="#{buscarProfesionalMB.bean.profesion.descripcion}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionProfesion')}.callSuggestion(true)" />
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idProfesion')}, #{rich:component('suggestionProfesion')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarProfesion}"
+				var="profesion" for="descripcionProfesion"
+				fetchValue="#{profesion.descripcion}" id="suggestionProfesion"
+				tokens=";">
+				<h:column>
+					<h:outputText value="#{profesion.descripcion}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+		<h:outputLabel value="#{msg['prf-busqueda-formacion-nivel']}:"
+			for="descripcionNivelEducativo" />
+		<h:panelGroup>
+			<h:inputHidden id="idNivelEducativo" value="" />
+			<h:inputText id="descripcionNivelEducativo" required="false"
+				maxlength="254" title="Longitud máxima: 254 caracteres"
+				value="#{buscarProfesionalMB.bean.nivelEducativo}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionNivelEducativo')}.callSuggestion(true)" />
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idNivelEducativo')}, #{rich:component('suggestionNivelEducativo')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarNivelEducativo}"
+				var="nivelEducativo" for="descripcionNivelEducativo"
+				fetchValue="#{nivelEducativo.descripcion}"
+				id="suggestionNivelEducativo" tokens=";">
+				<h:column>
+					<h:outputText value="#{nivelEducativo.descripcion}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+		
+	</h:panelGrid>
+
+	<h:outputLabel value="#{msg['prf-busqueda-idiomas']}"
+		styleClass="tituloSeccion" />
+	<rich:separator lineType="beveled" height="3" width="100%"
+		style="background-color: #808080; background-image: url('');"
+		align="center" />
+
+	<h:panelGrid columns="2" styleClass="gridFormulario"
+		columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer"
+		id="gridIdiomas">
+		<h:outputLabel value="#{msg['prf-busqueda-idiomas-idioma']}:"
+			for="descripcionIdioma" />
+
+		<h:panelGroup>
+			<h:inputHidden id="idIdioma" value="" />
+			<h:inputText id="descripcionIdioma" required="false" maxlength="254"
+				title="Longitud máxima: 254 caracteres"
+				value="#{buscarProfesionalMB.bean.profesionalIdioma.idioma.descripcion}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionIdioma')}.callSuggestion(true)" />
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idIdioma')}, #{rich:component('suggestionIdioma')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarIdioma}"
+				var="idioma" for="descripcionIdioma"
+				fetchValue="#{idioma.descripcion}" id="suggestionIdioma" tokens=";">
+				<h:column>
+					<h:outputText value="#{idioma.descripcion}" />
+				</h:column>
+
+			</rich:suggestionbox>
+		</h:panelGroup>
+
+		<h:outputLabel value="#{msg['prf-busqueda-idiomas-nivel']}:"
+			for="descripcionNivelIdioma" />
+		<h:panelGroup>
+			<h:inputHidden id="idNivelIdioma"
+				value="" />
+			<h:inputText id="descripcionNivelIdioma" required="false"
+				maxlength="254" title="Longitud máxima: 254 caracteres"
+				value="#{buscarProfesionalMB.bean.nivelIdioma}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionNivelIdioma')}.callSuggestion(true)" />
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idNivelIdioma')}, #{rich:component('suggestionNivelIdioma')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarNivelIdioma}"
+				var="nivelIdioma" for="descripcionNivelIdioma"
+				fetchValue="#{nivelIdioma.valor}" id="suggestionNivelIdioma"
+				tokens=";">
+				<h:column>
+					<h:outputText value="#{nivelIdioma.valor}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+	</h:panelGrid>
+</ui:composition>
+</html>

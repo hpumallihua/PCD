@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.GrupoProfesion"
+		table="SITB_GGPROFESION">
+		<id name="id" type="string">
+			<column name="V_CODGGPROF" length="1" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESGGPROF" length="250" />
+		</property>
+	</class>
+</hibernate-mapping>

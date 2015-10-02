@@ -1,0 +1,199 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<h:inputHidden value="#{profesionalMB.profesional.id}" />
+
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		disabled="#{!(sesionMB.usuarioSesion.persona.usuario.id gt 0) and !(sesionMB.usuarioSesion.empresa.usuario.id gt 0)}">
+		<rich:panelMenuGroup label="Ficha Postulante PCD" expanded="true">
+
+			<rich:panelMenuItem label="Datos Personales"
+				action="profesionalDatosPersonales" immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 1?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="1"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Composición Familiar"
+				action="composicionFamiliar" immediate="true"
+				actionListener="#{registrarPersonaComposicionFamiliarMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Discapacidad"
+				action="profesionalDatosDiscapacidad" immediate="true"
+				actionListener="#{registrarPersonaDiscapacidadMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 3?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="3"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Datos Médicos"
+				action="profesionalDatosMedicos" immediate="true"
+				actionListener="#{registrarPersonaDatosMedicosMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 4?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="4"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Estudios" action="profesionalFormacion"
+				immediate="true"
+				actionListener="#{registrarFormacionMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 5?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="5"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Experiencia Laboral"
+				action="profesionalEmpleos"
+				actionListener="#{registrarEmpleosMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 6?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="6"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Motivación"
+				action="profesionalDatosMotivacion" immediate="true"
+				actionListener="#{registrarPersonaMotivacionMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 7?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="7"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Interés ocupacional"
+				action="profesionalInteresOcupacional" immediate="true"
+				actionListener="#{registrarPersonaInteresesOcupacionalesMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 8?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="8"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+			
+			<rich:panelMenuItem label="Perfil de Empleabilidad"
+				action="profesionalPerfilEmpleabilidad" immediate="true"
+				actionListener="#{registrarEvaluacionPerfilEmpleabilidadMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 8?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="9"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Condiciones de trabajo"
+				action="profesionalCondicionesTrabajo" immediate="true"
+				actionListener="#{registrarPersonaCondicionesTrabajoMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 9?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="10"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Necesidad de apoyo"
+				action="necesidadesApoyo" immediate="true"
+				actionListener="#{registrarPersonaNecesidadesApoyoMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 10?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="11"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Preferencias" rendered="false"
+				actionListener="#{registrarPreferenciasProfesionalesMB.seleccionarProfesional}"
+				action="profesionalPreferencias" immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 4?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="4"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Ocupaciones" rendered="false"
+				action="profesionalExperienciaEspecialidades" immediate="true"
+				actionListener="#{registrarExperienciaEspecialidadMB.seleccionarProfesional}"
+				styleClass="#{profesionalMB.opcionProfesional eq 6?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="6"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Certificaciones" rendered="false"
+				action="profesionalCertificaciones"
+				actionListener="#{registrarCertificacionMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 8?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="8"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Idiomas" rendered="false"
+				action="profesionalIdiomas"
+				actionListener="#{registrarIdiomaMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 9?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="9"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Referencias" rendered="false"
+				action="profesionalReferencias"
+				actionListener="#{registrarReferenciaMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 10?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="10"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Datos de contacto" rendered="false"
+				action="profesionalContacto"
+				actionListener="#{registrarContactoMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 11?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null)}">
+				<a4j:actionparam value="11"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+			<rich:panelMenuItem label="Cambiar contraseña" rendered="false"
+				action="inicioProfesional"
+				actionListener="#{registrarContactoMB.seleccionarProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 12?'dr-pmenu-selected-item':''}"
+				disabled="#{!(profesionalMB.profesionalBean.persona.id ne null) or (sesionMB.usuarioSesion.rolEmpleador)}">
+				<a4j:actionparam value="12"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+			</rich:panelMenuItem>
+
+		</rich:panelMenuGroup>
+
+	</rich:panelMenu>
+
+	<rich:panel styleClass="columnaCentro"
+		style="width: 100%;background-color: #FFFFFF;"
+		onclick="Richfaces.showModalPanel('modalArchivo')" id="foto">
+		<h:panelGrid columnClasses="columnaCentro" styleClass="gridContent"
+			width="130">
+			<a4j:mediaOutput element="img" cacheable="false" session="true"
+				createContent="#{imagenBean.paint}" style="width: 140px;"
+				value="#{profesionalMB.profesionalBean.persona}" />
+		</h:panelGrid>
+	</rich:panel>
+
+</ui:composition>
+

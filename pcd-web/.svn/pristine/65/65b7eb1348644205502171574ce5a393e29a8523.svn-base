@@ -1,0 +1,42 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+
+	<!-- ventana modal de respuesta-->
+	<rich:modalPanel id="modalMensaje" width="300" height="120"
+		resizeable="false" headerClass="dr-pmenu-selected-item">
+		<f:facet name="header">
+			<h:outputText value="Atenci&#243;n" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:graphicImage title="cerrar" value="/images/cerrar.png"
+				style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('modalMensaje')" />
+		</f:facet>
+
+		<h:panelGrid columns="2" styleClass="gridContent"
+			columnClasses="columnaCentro,columnaDerecha">
+			<h:graphicImage title="cerrar" value="/images/advertencia.png" />
+			<h:outputText
+				value="Ya existe una persona con el mismo n&#250;mero de DNI, desea modificar ?" />
+			<rich:spacer width="20" height="15" title="espacio" />
+			<h:outputText value="" />
+			<h:outputText value="" />
+			<h:panelGroup>
+				<a4j:commandButton value="Registrar otro"
+					action="profesionalDatosPersonales"
+					oncomplete="Richfaces.hideModalPanel('modalMensaje')"
+					immediate="true" actionListener="#{profesionalMB.nuevo}">
+				</a4j:commandButton>
+				<a4j:commandButton value="Modificar"
+					onclick="Richfaces.hideModalPanel('modalMensaje')" immediate="true">
+				</a4j:commandButton>
+			</h:panelGroup>
+		</h:panelGrid>
+	</rich:modalPanel>
+</ui:composition>
+

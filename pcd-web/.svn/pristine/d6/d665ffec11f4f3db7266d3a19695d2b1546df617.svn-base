@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Informacion sobre la discapacidad</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['prf-registro-datos-personales-datos-personales']} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombres} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoPaterno} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoMaterno}" />
+				</h:panelGroup>
+			</f:facet>
+			<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+
+
+				<t:panelGrid id="gridDatosPersonales" columns="7"
+					styleClass="gridContent"
+					columnClasses="topAligned,topAligned,topAligned,celdaSeparadorFormulario topAligned,topAligned,topAligned,topAligned">
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel styleClass="tituloFila"
+							value="(a) Intereses ocupacionales" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel
+							value="A continuación se presenta una relación de tareas del mundo doméstico que se corresponden
+						con algunos de los ámbitos de actividad del mundo productivo. Marcar con una 'X' aquellas tareas que el candidato
+						hace y/o prefiere." />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="3" style="vertical-align: top;">
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+							<h:panelGroup styleClass="gridContent">
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Aire libre" />
+									</f:facet>
+									<h:outputLabel for="motivo111" value="Sembrar plantas" />
+									<h:selectBooleanCheckbox id="motivo111"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre1}" />
+									<h:outputLabel for="motivo211" value="Mantener un huerto" />
+									<h:selectBooleanCheckbox id="motivo211"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre2}" />
+									<h:outputLabel for="motivo311" value="Hacer arreglos florales" />
+									<h:selectBooleanCheckbox id="motivo311"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre3}" />
+									<h:outputLabel for="motivo411"
+										value="Dedicarse a la apicultura" />
+									<h:selectBooleanCheckbox id="motivo411"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre4}" />
+									<h:outputLabel for="motivo511" value="Cuidar animales" />
+									<h:selectBooleanCheckbox id="motivo511"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre5}" />
+									<h:outputLabel for="motivo611" value="Cultivar plantas" />
+									<h:selectBooleanCheckbox id="motivo611"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre6}" />
+									<h:outputLabel for="motivo711" value="Secar flores" />
+									<h:selectBooleanCheckbox id="motivo711"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre7}" />
+									<h:outputLabel for="motivo811" value="Criar animales" />
+									<h:selectBooleanCheckbox id="motivo811"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.aireLibre8}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Técnico - Manual" />
+									</f:facet>
+									<h:outputLabel for="motivo112"
+										value="Reparar electrodomésticos" />
+									<h:selectBooleanCheckbox id="motivo112"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual1}" />
+									<h:outputLabel for="motivo212" value="Pintar habitaciones" />
+									<h:selectBooleanCheckbox id="motivo212"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual2}" />
+									<h:outputLabel for="motivo312" value="Restaurar muebles" />
+									<h:selectBooleanCheckbox id="motivo312"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual3}" />
+									<h:outputLabel for="motivo412" value="Arreglas enchufes" />
+									<h:selectBooleanCheckbox id="motivo412"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual4}" />
+									<h:outputLabel for="motivo512"
+										value="Desatascar lavabos, caños, etc." />
+									<h:selectBooleanCheckbox id="motivo512"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual5}" />
+									<h:outputLabel for="motivo612"
+										value="Cambiar una llanta de bicicleta/carro" />
+									<h:selectBooleanCheckbox id="motivo612"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.tecnicoManual6}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Científico - Abstractas" />
+									</f:facet>
+									<h:outputLabel for="motivo113" value="Combinar alimentos" />
+									<h:selectBooleanCheckbox id="motivo113"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas1}" />
+									<h:outputLabel for="motivo213" value="Hacer perfumes" />
+									<h:selectBooleanCheckbox id="motivo213"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas2}" />
+									<h:outputLabel for="motivo313" value="Combinar y crear licores" />
+									<h:selectBooleanCheckbox id="motivo313"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas3}" />
+									<h:outputLabel for="motivo413" value="Controlar las calorías" />
+									<h:selectBooleanCheckbox id="motivo413"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas4}" />
+									<h:outputLabel for="motivo513"
+										value="Inventar remedios caseros" />
+									<h:selectBooleanCheckbox id="motivo513"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas5}" />
+									<h:outputLabel for="motivo613"
+										value="Manejar productos químicos" />
+									<h:selectBooleanCheckbox id="motivo613"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas6}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Sociales" />
+									</f:facet>
+									<h:outputLabel for="motivo114"
+										value="Hacer visitas a personas mayores" />
+									<h:selectBooleanCheckbox id="motivo114"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales1}" />
+									<h:outputLabel for="motivo214" value="Jugar con niños/as" />
+									<h:selectBooleanCheckbox id="motivo214"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales2}" />
+									<h:outputLabel for="motivo314"
+										value="Hacer trabajos voluntarios en asociaciones" />
+									<h:selectBooleanCheckbox id="motivo314"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales3}" />
+									<h:outputLabel for="motivo414"
+										value="Participar a favor de una asociación benéfica" />
+									<h:selectBooleanCheckbox id="motivo414"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales4}" />
+									<h:outputLabel for="motivo514"
+										value="Invitar a niños/as extranjeros/as a su casa" />
+									<h:selectBooleanCheckbox id="motivo514"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales5}" />
+									<h:outputLabel for="motivo614"
+										value="Acompañar a escolares de excursión" />
+									<h:selectBooleanCheckbox id="motivo614"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales6}" />
+									<h:outputLabel for="motivo714" value="Preparar celebraciones" />
+									<h:selectBooleanCheckbox id="motivo714"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales7}" />
+									<h:outputLabel for="motivo814"
+										value="Atender a familiares enfermos" />
+									<h:selectBooleanCheckbox id="motivo814"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.sociales8}" />
+								</h:panelGrid>
+							</h:panelGroup>
+							<h:panelGroup styleClass="gridContent">
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Comerciales" />
+									</f:facet>
+									<h:outputLabel for="motivo125"
+										value="Vender ropa/bisutería, muebles, comida, etc." />
+									<h:selectBooleanCheckbox id="motivo125"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales1}" />
+									<h:outputLabel for="motivo225" value="Pagar recibos" />
+									<h:selectBooleanCheckbox id="motivo225"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales2}" />
+									<h:outputLabel for="motivo325"
+										value="Archivar documentos, fotocopiar" />
+									<h:selectBooleanCheckbox id="motivo325"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales3}" />
+									<h:outputLabel for="motivo425" value="Atender el teléfono" />
+									<h:selectBooleanCheckbox id="motivo425"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales4}" />
+									<h:outputLabel for="motivo525" value="Brindar información" />
+									<h:selectBooleanCheckbox id="motivo525"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales5}" />
+									<h:outputLabel for="motivo625" value="Hacer un presupuesto" />
+									<h:selectBooleanCheckbox id="motivo625"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales6}" />
+									<h:outputLabel for="motivo725" value="Ir de compras" />
+									<h:selectBooleanCheckbox id="motivo725"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales7}" />
+									<h:outputLabel for="motivo825" value="Administrar el sueldo" />
+									<h:selectBooleanCheckbox id="motivo825"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales8}" />
+									<h:outputLabel for="motivo925" value="Ahorrar" />
+									<h:selectBooleanCheckbox id="motivo925"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.comerciales9}" />
+									<rich:spacer width="5" height="18" title="espacio" />
+									<h:outputText value=" " />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Musicales" />
+									</f:facet>
+									<h:outputLabel for="motivo126" value="Tocar algún instrumento" />
+									<h:selectBooleanCheckbox id="motivo126"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.musicales1}" />
+									<h:outputLabel for="motivo226" value="Escuchar música" />
+									<h:selectBooleanCheckbox id="motivo226"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.musicales2}" />
+									<h:outputLabel for="motivo326" value="Cantar" />
+									<h:selectBooleanCheckbox id="motivo326"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.musicales3}" />
+									<h:outputLabel for="motivo426" value="Inventar canciones" />
+									<h:selectBooleanCheckbox id="motivo426"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.musicales4}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Artísticas" />
+									</f:facet>
+									<h:outputLabel for="motivo127" value="Tejer (palitos, crochet)" />
+									<h:selectBooleanCheckbox id="motivo127"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas1}" />
+									<h:outputLabel for="motivo227" value="Pintar y/o dibujar" />
+									<h:selectBooleanCheckbox id="motivo227"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas2}" />
+									<h:outputLabel for="motivo327" value="Poner y decorar la mesa" />
+									<h:selectBooleanCheckbox id="motivo327"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas3}" />
+									<h:outputLabel for="motivo427"
+										value="Componer el menú de las fiestas" />
+									<h:selectBooleanCheckbox id="motivo427"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas4}" />
+									<h:outputLabel for="motivo527"
+										value="Inventar una nueva receta de cocina" />
+									<h:selectBooleanCheckbox id="motivo527"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas5}" />
+									<h:outputLabel for="motivo627" value="Coser ropa" />
+									<h:selectBooleanCheckbox id="motivo627"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas6}" />
+									<h:outputLabel for="motivo727" value="Hacer bisutería" />
+									<h:selectBooleanCheckbox id="motivo727"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas7}" />
+									<h:outputLabel for="motivo827" value="Decorar la casa" />
+									<h:selectBooleanCheckbox id="motivo827"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.artisticas8}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses=",columnaCheck"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Ocio" />
+									</f:facet>
+									<h:outputLabel for="motivo128"
+										value="Ir a conciertos, teatro, exposiciones" />
+									<h:selectBooleanCheckbox id="motivo128"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio1}" />
+									<h:outputLabel for="motivo228" value="Leer un libro" />
+									<h:selectBooleanCheckbox id="motivo228"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio2}" />
+									<h:outputLabel for="motivo328" value="Ir al cine" />
+									<h:selectBooleanCheckbox id="motivo328"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio3}" />
+									<h:outputLabel for="motivo428"
+										value="Leer periódicos o revistas" />
+									<h:selectBooleanCheckbox id="motivo428"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio4}" />
+									<h:outputLabel for="motivo528" value="Escribir un diario" />
+									<h:selectBooleanCheckbox id="motivo528"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio5}" />
+									<h:outputLabel for="motivo628" value="Escribir poemas" />
+									<h:selectBooleanCheckbox id="motivo628"
+										value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.ocio6}" />
+								</h:panelGrid>
+							</h:panelGroup>
+
+						</h:panelGrid>
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel value="Otros intereses:" />
+					</t:panelGroup>
+
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="5">
+						<h:inputTextarea
+							value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.otrosIntereses}"
+							styleClass="width100"
+							onkeyup="contar(this, #{rich:element('outOtrosIntereses')}, 500)" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="6" styleClass="contadorCaracteres">
+						<h:outputLabel id="outOtrosIntereses" value="*"
+							title="Contador de caracteres" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel styleClass="tituloFila"
+							value="(b) Preferencias laborales" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="5">
+						<h:outputLabel style="font-weight: bold;"
+							value="¿Qué trabajos le gustaría realizar ahora?" />
+						<br />
+						<h:outputLabel
+							value="Preguntar al candidato y detallar los deseos y preferencias laborales,
+							su conocimiento sobre el mercado laboral, grado de realismo en función
+							de sus cualidades (personales, actitudinales y formativas), experiencia laboral
+							y sus deseos y preferencias." />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="5">
+						<h:inputTextarea
+							value="#{registrarPersonaInteresesOcupacionalesMB.personaBean.personaInteresesOcupacionales.preferenciasLaborales}"
+							styleClass="width100"
+							onkeyup="contar(this, #{rich:element('outPreferenciasLaborales')}, 500)" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6" styleClass="contadorCaracteres">
+						<h:outputLabel id="outPreferenciasLaborales" value="*"
+							title="Contador de caracteres" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+									immediate="true"
+									value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+									styleClass="botonBuscar">
+									<a4j:actionparam name="accion"
+										value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_POSTULANTE}"
+										assignTo="#{sesionMB.contexto}" />
+								</a4j:commandButton>
+
+								<rich:spacer width="5" height="5" title="espacio" />
+								<t:commandButton action="#"
+									value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+									disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+									actionFor="frmDatosGenerales,frmMenu"
+									actionListener="#{registrarPersonaInteresesOcupacionalesMB.guardar}"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+
+				</t:panelGrid>
+
+				<f:subview id="subArchivo">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+				</f:subview>
+
+				<f:subview id="subMensaje">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+				</f:subview>
+
+			</h:form>
+		</rich:panel>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>

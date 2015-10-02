@@ -1,0 +1,121 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
+
+		<rich:panelMenuGroup label="Administración" expanded="true">
+			<rich:panelMenuItem label="Especialidades" action="registrarMaestro"
+				rendered="false" immediate="true"
+				actionListener="#{registrarMaestroMB.init}">
+				<a4j:actionparam value="EspecialidadProfesional"
+					assignTo="#{registrarMaestroMB.parametro}" />
+				<a4j:actionparam value="Especialidades Profesionales"
+					assignTo="#{registrarMaestroMB.tituloLista}" />
+				<a4j:actionparam value="Especialidad Profesional"
+					assignTo="#{registrarMaestroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Áreas" action="registrarMaestro"
+				immediate="true" actionListener="#{registrarMaestroMB.init}">
+				<a4j:actionparam value="Area"
+					assignTo="#{registrarMaestroMB.parametro}" />
+				<a4j:actionparam value="Área"
+					assignTo="#{registrarMaestroMB.tituloLista}" />
+				<a4j:actionparam value="Área"
+					assignTo="#{registrarMaestroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Instituciones formativas"
+				action="registrarMaestro" immediate="true"
+				actionListener="#{registrarMaestroMB.init}">
+				<a4j:actionparam value="InstitucionFormativa"
+					assignTo="#{registrarMaestroMB.parametro}" />
+				<a4j:actionparam value="Instituciones formativas"
+					assignTo="#{registrarMaestroMB.tituloLista}" />
+				<a4j:actionparam value="Institución formativa"
+					assignTo="#{registrarMaestroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Idiomas" action="registrarMaestro"
+				immediate="true" actionListener="#{registrarMaestroMB.init}">
+				<a4j:actionparam value="Idioma"
+					assignTo="#{registrarMaestroMB.parametro}" />
+				<a4j:actionparam value="Idiomas"
+					assignTo="#{registrarMaestroMB.tituloLista}" />
+				<a4j:actionparam value="Idioma"
+					assignTo="#{registrarMaestroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+
+		</rich:panelMenuGroup>
+
+		<rich:panelMenuGroup label="Configuración" expanded="true">															
+			<rich:panelMenuItem label="Estados estudio" action="registrarMaestro"
+				immediate="true" actionListener="#{registrarMaestroMB.init}">
+				<a4j:actionparam value="EstadoFormacion"
+					assignTo="#{registrarMaestroMB.parametro}" />
+				<a4j:actionparam value="Estados de estudio"
+					assignTo="#{registrarMaestroMB.tituloLista}" />
+				<a4j:actionparam value="Estado de estudio"
+					assignTo="#{registrarMaestroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Niveles de idioma"
+				action="registrarConfiguracion" immediate="true"
+				actionListener="#{registrarParametroMB.init}">
+				<a4j:actionparam value="NivelIdioma"
+					assignTo="#{registrarParametroMB.parametro}" />
+				<a4j:actionparam value="Niveles de Idioma"
+					assignTo="#{registrarParametroMB.tituloLista}" />
+				<a4j:actionparam value="Nivel de Idioma"
+					assignTo="#{registrarParametroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Estados Civiles"
+				action="registrarConfiguracion" immediate="true"
+				actionListener="#{registrarParametroMB.init}">
+				<a4j:actionparam value="EstadoCivil"
+					assignTo="#{registrarParametroMB.parametro}" />
+				<a4j:actionparam value="Estados Civiles"
+					assignTo="#{registrarParametroMB.tituloLista}" />
+				<a4j:actionparam value="Estado Civil"
+					assignTo="#{registrarParametroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Parentesco"
+				action="registrarConfiguracion" immediate="true"
+				actionListener="#{registrarParametroMB.init}">
+				<a4j:actionparam value="Parentesco"
+					assignTo="#{registrarParametroMB.parametro}" />
+				<a4j:actionparam value="Formas de Parentesco"
+					assignTo="#{registrarParametroMB.tituloLista}" />
+				<a4j:actionparam value="Parentesco"
+					assignTo="#{registrarParametroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Tipos de empleo"
+				action="registrarConfiguracion" immediate="true"
+				actionListener="#{registrarParametroMB.init}">
+				<a4j:actionparam value="TipoEmpleo"
+					assignTo="#{registrarParametroMB.parametro}" />
+				<a4j:actionparam value="Tipos de Empleo"
+					assignTo="#{registrarParametroMB.tituloLista}" />
+				<a4j:actionparam value="Tipo de Empleo"
+					assignTo="#{registrarParametroMB.tituloFormulario}" />
+			</rich:panelMenuItem>
+			
+			<rich:panelMenuItem label="Parámetros" action="registrarParametro"
+				immediate="true" actionListener="#{registrarParametroMB.init}">
+				<a4j:actionparam value="Parametro"
+					assignTo="#{registrarParametroMB.parametro}" />
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+
+		<rich:panelMenuGroup label="Reportes" expanded="true" rendered="true">
+			<rich:panelMenuItem label="Reporte Estadistico - 1" action="reporte"
+				rendered="true" immediate="true">
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+	</rich:panelMenu>
+</ui:composition>
+

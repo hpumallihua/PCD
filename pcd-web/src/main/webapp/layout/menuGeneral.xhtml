@@ -1,0 +1,197 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<h:form>
+		<f:subview id="opcionesAdministrador"
+			rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
+			<f:subview id="contextoAdministrador"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuAdministrador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+			<f:subview id="contextoEmpleador"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_EMPLEADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedido"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedidoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+		</f:subview>
+
+		<f:subview id="opcionesConsultorEmpleo"
+			rendered="#{sesionMB.usuarioSesion.rolConsultorEmpleo}">
+			<f:subview id="contextoAdministrador"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuPostulaciones.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+			<f:subview id="contextoEmpleador"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_EMPLEADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedido"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedidoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+		</f:subview>
+
+		<f:subview id="opcionesConsultorABE"
+			rendered="#{sesionMB.usuarioSesion.rolConsultorABE}">
+			<f:subview id="contextoAdministrador"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuPostulaciones.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+			<f:subview id="contextoEmpleador"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_EMPLEADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedido"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedidoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+		</f:subview>
+
+		<f:subview id="opcionesConsultorCUL"
+			rendered="#{sesionMB.usuarioSesion.rolConsultorCUL}">
+			<f:subview id="contextoAdministrador"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuPostulaciones.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+			<f:subview id="contextoEmpleador"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_EMPLEADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedido"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedidoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuEmpleador.xhtml" />
+				<ui:include src="menuPedido.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+		</f:subview>
+
+		<f:subview id="opcionesPostulante"
+			rendered="#{sesionMB.usuarioSesion.rolProfesional}">
+			<ui:include src="menuPostulaciones.xhtml" />
+			<ui:include src="menuPedido.xhtml" />
+			<ui:include src="menuProfesional.xhtml" />
+		</f:subview>
+
+		<f:subview id="opcionesEmpleador"
+			rendered="#{sesionMB.usuarioSesion.rolEmpleador}">
+			<f:subview id="contextoAdministrador"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuPedidoEmpleador.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPostulante"
+				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuPedidoEmpleador.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedido"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuPedidoEmpleador.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+			</f:subview>
+			<f:subview id="contextoPedidoPostulante"
+				rendered="#{sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION}">
+				<ui:include src="menuPostulante.xhtml" />
+				<ui:include src="menuPedidoEmpleador.xhtml" />
+				<ui:include src="menuDatosEmpleador.xhtml" />
+				<ui:include src="menuProfesional.xhtml" />
+			</f:subview>
+		</f:subview>
+	</h:form>
+</ui:composition>
+

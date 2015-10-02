@@ -1,0 +1,64 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+
+	<rich:spacer width="20" height="10" title="espacio" />
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown">
+		<h:commandLink>
+			<f:param id="personaPrm" name="personaPrm" value="#{personaMB.bean}" />
+		</h:commandLink>
+		<rich:panelMenuGroup label="Registro de candidato" expanded="true">
+			<rich:panelMenuItem label="Datos Personales"
+				styleClass="#{sesionMB.opcionAsistente eq 0?'dr-pmenu-selected-item':''}"
+				action="candidatoDatosPersonales">
+				<a4j:actionparam value="0" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Preferencias"
+				styleClass="#{sesionMB.opcionAsistente eq 1?'dr-pmenu-selected-item':''}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}"
+				actionListener="#{postulantePreferenciaMB.seleccionarPostulante}"
+				action="candidatoPreferencias">
+				<a4j:actionparam value="1" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Empleos"
+				styleClass="#{sesionMB.opcionAsistente eq 2?'dr-pmenu-selected-item':''}"
+				action="candidatoEmpleos"
+				actionListener="#{postulanteExperienciaMB.seleccionarPostulante}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}">
+				<a4j:actionparam value="2" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Experiencia"
+				styleClass="#{sesionMB.opcionAsistente eq 3?'dr-pmenu-selected-item':''}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}">
+				<a4j:actionparam value="3" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Estudios"
+				styleClass="#{sesionMB.opcionAsistente eq 4?'dr-pmenu-selected-item':''}"
+				action="candidatoEstudios"
+				actionListener="#{postulanteFormacionMB.seleccionarPostulante}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}">
+				<a4j:actionparam value="4" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Idiomas"
+				styleClass="#{sesionMB.opcionAsistente eq 5?'dr-pmenu-selected-item':''}"
+				action="candidatoIdiomas"
+				actionListener="#{postulanteIdiomasMB.seleccionarPostulante}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}">
+				<a4j:actionparam value="5" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Otros datos"
+				styleClass="#{sesionMB.opcionAsistente eq 6?'dr-pmenu-selected-item':''}"
+				disabled="#{!(personaMB.bean.idPrsna ne null)}">
+				<a4j:actionparam value="6" assignTo="#{sesionMB.opcionAsistente}" />
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+	</rich:panelMenu>
+
+</ui:composition>
+

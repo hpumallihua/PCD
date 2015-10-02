@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<f:loadBundle
+	basename="pe.gob.trabajo.pcd.vista.recursos.mensajes" var="msg" />
+<head>
+<title><ui:insert name="tituloPagina">Titulo</ui:insert></title>
+<a4j:loadStyle src="/styles/silnetbase.css" />
+<a4j:loadStyle src="/styles/silnetformularios.css" />
+<a4j:loadStyle src="/styles/silnettablas.css" />
+<a4j:loadScript src="/js/silnet.js" />
+<ui:include src="estilos.jsp" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<table style="border: 0px solid #bdced1" align="center" cellpadding="0"
+	cellspacing="0" border="0" width="900">
+	<tbody>
+
+		<tr>
+			<td class="header" height="42" align="center" valign="middle"
+				colspan="3" width="100%" bgcolor="#FFFFFF"><ui:insert
+				name="cabeceraPagina">
+				<ui:include src="../layout/cabecera.xhtml" />
+			</ui:insert><rich:separator lineType="beveled" height="3" width="100%"
+				align="center" /></td>
+		</tr>
+
+		<tr>
+
+			<td>
+			<table width="100%" style="height: 450px" align="left" 
+				cellpadding="0" cellspacing="0" border="0">
+				<tbody>
+					<tr valign="top">
+						<td valign="top" style="width: 180px;"></td>
+						<td valign="top" style="width: 30px;"></td>
+						<td align="left" valign="top"><h:panelGrid id="panelMensajes"
+							styleClass="gridContent">
+							<a4j:outputPanel ajaxRendered="true">
+								<ui:insert name="mensajes">
+
+								</ui:insert>
+							</a4j:outputPanel>
+
+						</h:panelGrid></td>
+					</tr>
+					<tr valign="top">
+						<td valign="top" style="width: 180px;"><ui:insert
+							name="menuLateral" /> <ui:insert name="subMenu" /></td>
+						<td valign="top" style="width: 30px;"></td>
+						<td align="left" valign="top"><ui:insert name="cuerpo">Contenido</ui:insert></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="3" valign="bottom" height="1" width="100%"
+				align="center" style="color: #006d92; font-size: 12px;"
+				bgcolor="#FFFFFF"><ui:insert name="pie">
+				<ui:include src="../layout/piepagina.xhtml" />
+			</ui:insert></td>
+		</tr>
+	</tbody>
+</table>
+<f:subview id="subError">
+	<rich:modalPanel id="modalError" minWidth="400" autosized="true"
+		headerClass="dr-pmenu-selected-item">
+		<f:facet name="header">
+			<h:outputText value="Silnet 2" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:graphicImage title="cerrar" value="/images/cerrar.png"
+				style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('modalError')" />
+		</f:facet>
+		<a4j:outputPanel ajaxRendered="true">
+			<ui:include src="../layout/mensajes.xhtml" />
+		</a4j:outputPanel>
+		<h:panelGrid styleClass="gridContent" columns="1"
+			columnClasses="columnaCentro">
+			<h:commandButton value="Aceptar"
+				onclick="Richfaces.hideModalPanel('modalError')" />
+		</h:panelGrid>
+		<rich:hotKey key="return"
+			handler="Richfaces.hideModalPanel('modalError')" />
+		<rich:hotKey key="esc"
+			handler="Richfaces.hideModalPanel('modalError')" />
+	</rich:modalPanel>
+</f:subview>
+<a4j:form>
+	<a4j:outputPanel ajaxRendered="true">
+		<script type="text/javascript">
+			if (#{UtilBean.existenMensajes}){ Richfaces.showModalPanel('modalError');}
+		</script>
+	</a4j:outputPanel>
+	<a4j:jsFunction name="mostrarModalMensajes"
+		onbeforedomupdate="if (#{UtilBean.existenMensajes}){ Richfaces.showModalPanel('modalError');}">
+	</a4j:jsFunction>
+</a4j:form>
+<f:subview id="subEstado">
+	<rich:modalPanel id="modalEstado" autosized="true"
+		headerClass="dr-pmenu-selected-item">
+		
+		<h:panelGrid styleClass="gridContent" columns="1"
+			columnClasses="columnaCentro" rendered="true">
+			<h:graphicImage value="/images/tiempo.gif" />
+		</h:panelGrid>
+	</rich:modalPanel>
+</f:subview>
+</body>
+
+</html>

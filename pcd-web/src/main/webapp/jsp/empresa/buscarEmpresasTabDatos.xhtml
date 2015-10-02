@@ -1,0 +1,106 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+
+	<t:panelGrid columns="7" styleClass="gridContent" id="criteriosDatosPersonales">
+	
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Datos de Empresa"
+				styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		
+				
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,celdaSeparadorFormulario,,,">
+
+			<t:column>
+			<rich:spacer width="10" height="10" title="espacio" /></t:column>
+			
+			<t:column>
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-empresa-numero-ruc']}"
+				value="#{msg['prf-registro-datos-empresa-formulario-numero-ruc']}:"
+				for="numeroRuc" /></t:column>
+				
+			<t:column>			
+			<t:panelGroup>
+				<a4j:region>
+					<h:inputText id="numeroRuc" tabindex="0"
+						value="#{buscarEmpresaMB.busquedaBean.empresa.ruc}"
+						style=" " maxlength="11"
+						title="Longitud máxima: 11 caracteres"/> 
+					<h:outputText value=" " />
+				</a4j:region>
+			</t:panelGroup></t:column>
+			
+			<t:column>
+			  <rich:spacer width="5" height="5" title="espacio" /></t:column>
+			  
+		   <t:column>	
+			  <t:outputLabel
+				title="#{msg['prf-ayuda-datos-empresa-nombre-comercial']}"
+				value="#{msg['prf-registro-datos-empresa-formulario-nombre-comercial']}:"
+				for="nombreComercial" styleClass="width100"/></t:column>	
+						   
+			<t:column>
+			  <h:inputText id="nombreComercial"
+				value="#{buscarEmpresaMB.busquedaBean.empresa.nombreComercial}"
+				style=" "  maxlength="254"
+				title="Longitud máxima: 254 caracteres" styleClass="width100"/>
+				</t:column>
+				
+			<t:column><h:outputText value=" " /></t:column>
+			
+			
+			<t:column>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:column>
+					<t:column>
+						<t:outputLabel
+							title="#{msg['prf-ayuda-datos-empresa-actividad-economica']}"
+							value="#{msg['prf-registro-datos-empresa-formulario-actividad-economica']}:"
+							for="idCiiuHidden" />
+					</t:column>
+					<t:panelGroup colspan="4">
+						<h:inputHidden id="idCiiuHidden"
+							value="#{buscarEmpresaMB.busquedaBean.empresa.ciiu}" />
+						<h:inputText id="descripcionCiiu" required="false" maxlength="254"
+							title="Longitud máxima: 254 caracteres"
+							value="#{buscarEmpresaMB.busquedaBean.empresa.ciiuDescripcion}"
+							styleClass="width100"
+							ondblclick="#{rich:component('suggestionCiiu')}.callSuggestion(true)" />
+
+						<rich:suggestionbox width="450" border="1" shadowDepth=""
+							usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+							onobjectchange="printObjectsSelected(#{rich:element('idCiiuHidden')}, #{rich:component('suggestionCiiu')});"
+							suggestionAction="#{buscarEmpresaMB.autocompletarCiiu}"
+							var="ciiu" for="descripcionCiiu" fetchValue="#{ciiu.descripcion}"
+							id="suggestionCiiu">
+							<h:column>
+								<h:outputText value="#{ciiu.descripcion}" />
+							</h:column>
+						</rich:suggestionbox>
+					</t:panelGroup>
+					<t:column>
+						<h:outputText value=" " />
+					</t:column>
+			
+		</t:panelGrid> 
+
+
+
+	</t:panelGrid>
+
+
+
+
+</ui:composition>
+</html>

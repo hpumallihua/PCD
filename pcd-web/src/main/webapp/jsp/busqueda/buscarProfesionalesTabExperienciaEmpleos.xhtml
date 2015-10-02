@@ -1,0 +1,140 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:outputLabel value="#{msg['prf-busqueda-experiencia-ocupacional']}"
+		styleClass="tituloSeccion" />
+	<rich:separator lineType="beveled" height="3" width="100%"
+		style="background-color: #808080; background-image: url('');"
+		align="center" />
+
+	<h:panelGrid columns="2" styleClass="gridFormulario"
+		columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer"
+		id="gridTabExperiencia">
+		<h:outputLabel value="#{msg['prf-busqueda-tecnologias-utilizadas']}:"
+			for="descripcionOcupacionExperiencia" />
+
+		<t:panelGroup colspan="4">
+			<h:inputHidden id="idOcupacionExperiencia" required="false" value="" />
+			<h:inputText id="descripcionOcupacionExperiencia" required="false"
+				value="#{buscarProfesionalMB.bean.especialidad.descripcion}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionOcupacionExperiencia')}.callSuggestion(true)" />
+
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idOcupacionExperiencia')}, #{rich:component('suggestionOcupacionExperiencia')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarOcupacion}"
+				var="suggestion" for="descripcionOcupacionExperiencia"
+				fetchValue="#{puesto.descripcion}"
+				id="suggestionOcupacionExperiencia" tokens=";">
+				<h:column>
+					<h:outputText value="#{suggestion.descripcion}" />
+				</h:column>
+			</rich:suggestionbox>
+
+
+		</t:panelGroup>
+	</h:panelGrid>
+
+
+	<h:outputLabel value="#{msg['prf-busqueda-experiencia-laboral']}"
+		styleClass="tituloSeccion" />
+	<rich:separator lineType="beveled" height="3" width="100%"
+		style="background-color: #808080; background-image: url('');"
+		align="center" />
+
+	<h:panelGrid columns="2" styleClass="gridFormulario"
+		columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer"
+		id="gridTabEmpleos">
+		<h:outputLabel value="#{msg['prf-busqueda-cargos']}:" />
+		<h:panelGroup>
+			<h:inputHidden id="idPuesto" value="" />
+			<h:inputText id="descripcionPuesto" required="false"
+				value="#{buscarProfesionalMB.bean.puesto.descripcion}"
+				maxlength="254" title="Longitud máxima: 254 caracteres"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionPuesto')}.callSuggestion(true)" />
+
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idPuesto')}, #{rich:component('suggestionPuesto')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarCargo}"
+				var="puesto" for="descripcionPuesto" fetchValue="#{puesto.nombre}"
+				id="suggestionPuesto" tokens=";">
+				<h:column>
+					<h:outputText value="#{puesto.nombre}" />
+				</h:column>
+			</rich:suggestionbox>
+			
+			
+		</h:panelGroup>
+		<h:outputLabel value="Ocupaciones:" />
+		<h:panelGroup>
+			<h:inputHidden id="idRol" value="" />
+			<h:inputText id="descripcionRol" required="false"
+				value="#{buscarProfesionalMB.bean.rol.descripcion}" maxlength="254"
+				title="Longitud máxima: 254 caracteres"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionRol')}.callSuggestion(true)" />
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idRol')}, #{rich:component('suggestionRol')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarOcupacion}"
+				var="rol" for="descripcionRol" fetchValue="#{rol.descripcion}"
+				id="suggestionRol" tokens=";">
+				<h:column>
+					<h:outputText value="#{rol.descripcion}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+		<h:outputLabel value="#{msg['prf-busqueda-empresas']}:" />
+		<h:panelGroup>
+			<h:inputHidden id="idEmprsa" value="" />
+			<h:inputText id="nmbreEmpresa" required="false"
+				value="#{buscarProfesionalMB.bean.empresa.nombreComercial}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestion')}.callSuggestion(true)" />
+
+
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idEmprsa')}, #{rich:component('suggestion')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarEmpresa}"
+				var="empresa" for="nmbreEmpresa"
+				fetchValue="#{empresa.nombreComercial}" id="suggestion" tokens=";">
+				<h:column>
+					<h:outputText value="#{empresa.nombreComercial}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+		<h:outputLabel value="#{msg['prf-busqueda-sector']}:" />
+		<h:panelGroup>
+			<h:inputHidden id="idSector" value="" />
+			<h:inputText id="descripcionSector" required="false"
+				value="#{buscarProfesionalMB.bean.sector.descripcion}"
+				style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+				ondblclick="#{rich:component('suggestionSector')}.callSuggestion(true)" />
+
+
+			<rich:suggestionbox width="450" border="1" shadowDepth=""
+				usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+				onobjectchange="printObjectsSelected(#{rich:element('idSector')}, #{rich:component('suggestionSector')});"
+				suggestionAction="#{buscarProfesionalMB.autocompletarSector}"
+				var="sector" for="descripcionSector"
+				fetchValue="#{sector.descripcion}" id="suggestionSector" tokens=";">
+				<h:column>
+					<h:outputText value="#{sector.descripcion}" />
+				</h:column>
+			</rich:suggestionbox>
+		</h:panelGroup>
+		<rich:spacer width="5" height="10" title="espacio" />
+		
+
+	</h:panelGrid>
+
+</ui:composition>
+</html>

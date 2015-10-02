@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.EmpresaSunat" table="SITB_EMPLEADOR">
+		<id name="id" type="string">
+			<column name="V_CODEMP" length="11">
+			</column>
+		</id>
+		<property name="codigoSector" type="string">
+			<column name="V_CODSEC" length="2" />
+		</property>
+		<property name="ciiu" type="string">
+			<column name="V_CODCIIU" length="10" />
+		</property>
+		<property name="codigoDepartamento" type="string">
+			<column name="V_CODDEP" length="2" />
+		</property>
+		<property name="codigoProvincia" type="string">
+			<column name="V_CODPRO" length="2" />
+		</property>
+		<property name="codigoDistrito" type="string">
+			<column name="V_CODDIS" length="2" />
+		</property>
+		<property name="razonSocial" type="string">
+			<column name="V_RAZSOC" length="500" />
+		</property>
+		<property name="nombreComercial" type="string">
+			<column name="V_NOMCOM" length="100" />
+		</property>
+		<property name="fechaInicioActividades" type="timestamp">
+			<column name="D_FECINIACT" length="23"/>
+		</property>
+		<property name="direccion" type="string">
+			<column name="V_DIREMP" length="100" />
+		</property>
+		<property name="numero" type="string">
+			<column name="V_NUMEMP" length="6" />
+		</property>
+		<property name="telefono1" type="string">
+			<column name="V_TELEMP1" length="8" />
+		</property>
+		<property name="telefono2" type="string">
+			<column name="V_TELEMP2" length="8" />
+		</property>
+		<property name="ruc" type="string">
+			<column name="V_NUMRUC" length="11" />
+		</property>
+		<property name="email" type="string">
+			<column name="V_EMAIL" length="50" />
+		</property>
+	</class>
+</hibernate-mapping>

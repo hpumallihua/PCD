@@ -1,0 +1,38 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+
+
+	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
+		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
+		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
+		rendered="#{sesionMB.usuarioSesion.rolAdministrador 
+		or sesionMB.usuarioSesion.rolConsultorEmpleo 
+		or sesionMB.usuarioSesion.rolConsultorABE
+		or sesionMB.usuarioSesion.rolEmpleador}">
+		<rich:panelMenuGroup label="Candidato" expanded="true">
+			<rich:panelMenuItem label="Nuevo"
+				disabled="#{sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolEmpleador}"
+				action="profesionalDatosPersonales" immediate="true"
+				actionListener="#{profesionalMB.nuevo}">
+				<a4j:actionparam value="0" assignTo="#{sesionMB.opcionAsistente}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_POSTULANTE}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Buscar" action="buscarProfesionales"
+				immediate="true">
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+
+	</rich:panelMenu>
+
+</ui:composition>
+

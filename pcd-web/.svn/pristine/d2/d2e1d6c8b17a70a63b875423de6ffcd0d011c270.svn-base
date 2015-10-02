@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="#{registrarPedidoMB.pedidoBean.descripcion} "
+				styleClass="tituloSeccion" style="text-transform:uppercase;" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,,,,">
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel
+				value="#{msg['prf-registro-datos-empresa-formulario-razon-social']}:" />
+			<t:panelGroup colspan="4">
+				<t:outputLabel id="razonSocial" styleClass="width100"
+					value="#{registrarPedidoMB.pedidoBean.empleador.establecimiento.empresa.razonSocial}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel value="Acercarse a: " />
+			<t:panelGroup colspan="4">
+				<t:outputLabel id="personaContact" style="text-transform:uppercase;"
+					styleClass="width100"
+					value="#{registrarPedidoMB.pedidoBean.empleador.establecimiento.direccion} - #{registrarPedidoMB.pedidoBean.empleador.establecimiento.nombreLugarResidencia}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+		</t:panelGrid>
+
+		<rich:spacer width="5" height="25" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Requisitos" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,,,,">
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Tares y responsabilidades:" />
+			<t:panelGroup colspan="4">
+				<h:outputText
+					value="#{registrarPedidoMB.pedidoBean.tareaResponsabilidad}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Vacantes requeridas:" />
+			<t:panelGroup colspan="4">
+				<h:outputText value="#{registrarPedidoMB.pedidoBean.numeroVacantes}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Rango de edades:" />
+			<t:panelGroup colspan="4">
+				<h:outputText
+					value=" #{registrarPedidoMB.pedidoBean.edadMinima} a  #{registrarPedidoMB.pedidoBean.edadMaxima} " />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Vigencia:" />
+			<t:panelGroup colspan="4">
+				<h:outputText
+					value="#{registrarPedidoMB.pedidoBean.fechaVigenciaDesde}" />
+				<h:outputText value=" - " />
+				<h:outputText
+					value="#{registrarPedidoMB.pedidoBean.fechaVigenciaHasta}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+
+		</t:panelGrid>
+
+		<rich:spacer width="5" height="25" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Detalle" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,,,,">
+
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Experiencia en:" />
+			<t:panelGroup colspan="4">
+				<t:outputLabel
+					value="#{registrarPedidoMB.pedidoBean.descripcionOcupacionExperiencia}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Tiempo de experiencia:" />
+			<t:panelGroup colspan="4">
+				<t:outputLabel
+					value="#{registrarPedidoMB.pedidoBean.experienciaRequerida} meses" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<h:outputText value="  " />
+			<t:outputLabel value="Observaciones:" />
+			<t:panelGroup colspan="4">
+				<t:outputLabel value="#{registrarPedidoMB.pedidoBean.observacion}" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+
+		</t:panelGrid>
+
+
+
+		<rich:spacer width="5" height="10" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="buscarPedido" immediate="true"
+						value="Regresar" styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:commandButton action="#"
+						rendered="#{registrarPedidoMB.pedidoBean.estadoPedido ne 0}"
+						value="Postular"
+						disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+						actionFor="frmDatosGenerales,frmMenu"
+						actionListener="#{registrarPedidoMB.postularPedido}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+
+		<f:subview id="subArchivo">
+			<!-- ventana modal de respuesta-->
+			<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+		</f:subview>
+
+		<f:subview id="subMensaje">
+			<!-- ventana modal de respuesta-->
+			<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+		</f:subview>
+
+	</h:form>
+
+</ui:composition>
+
+</html>

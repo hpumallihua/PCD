@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/aop
+              http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<bean id="auditAspect" class="pe.gob.trabajo.pcd.servicio.spring.auditoria.AuditoriaServiceImpl"></bean>
+	<aop:config>
+		<aop:aspect id="systemAspect" ref="auditAspect">
+			<aop:pointcut id="pointSave" expression="execution(public * pe.gob.trabajo.pcd.servicio.*.*Service+.guardar*(Object+)) and args(entidad)" />
+			<aop:pointcut id="pointSaveGeneric" expression="execution(public * pe.gob.trabajo.pcd.servicio.*.*Service+.save*(Object+)) and args(entidad)" />
+		 	<aop:before method="insertarAuditoria" pointcut-ref="pointSave"/>
+		 	<aop:before method="insertarAuditoria" pointcut-ref="pointSaveGeneric"/>
+		 	<aop:before method="comprobarGuardados" pointcut-ref="pointSave"/>
+		 	<aop:after method="grabarAuditoriaGrabados"  pointcut-ref="pointSaveGeneric"/>
+		 	<aop:after method="grabarAuditoriaGrabados"  pointcut-ref="pointSave"/>
+		</aop:aspect>
+		
+		<aop:aspect id="filterAspect" ref="auditAspect">
+			<aop:pointcut id="methods" 
+			expression="execution(public * pe.gob.trabajo.pcd.modelo.dao.*.*ProfesionalDAO*.buscarProfesional(..))" />
+		 	<aop:before method="filtrarBusqueda"  pointcut-ref="methods"/>
+		</aop:aspect>
+	</aop:config>
+
+	
+</beans>

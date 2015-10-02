@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<context-param>
+		<param-name>javax.faces.DISABLE_FACELET _JSF_VIEWHANDLER</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>com.sun.faces.serializationProvider</param-name>
+		<param-value>org.jboss.web.jsf.integration.serialization.JBossSerializationProvider</param-value>
+	</context-param>
+	<context-param>
+      <param-name>com.sun.faces.displayConfiguration</param-name>
+      <param-value>true</param-value>
+   </context-param>
+   <context-param>
+      <param-name>com.sun.faces.forceLoadConfiguration</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   <context-param>
+      <param-name>com.sun.faces.disableVersionTracking</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   <context-param>
+      <param-name>com.sun.faces.enableHtmlTagLibValidator</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   <context-param>
+      <param-name>com.sun.faces.compressViewState</param-name>
+      <param-value>true</param-value>
+   </context-param>
+   
+   <context-param>
+      <description>Added in Mojarra 1.2_05.  See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.enableLazyBeanValidation</param-name>
+      <param-value>true</param-value>
+   </context-param>
+
+   <context-param>
+      <description>Added in Mojarra 1.2_05.  See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.enabledLoadBundle11Compatibility</param-name>
+      <param-value>false</param-value>
+   </context-param>
+
+   <context-param>
+      <description>Added in Mojarra 1.2_05.  See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.clientStateTimeout</param-name>
+      <param-value>none</param-value>
+   </context-param>
+
+   <context-param>
+      <description>Added in Mojarra 1.2_05.  See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.serializeServerState</param-name>
+      <param-value>false</param-value>
+   </context-param>
+
+   <context-param>
+      <description>Added in Mojarra 1.2_08.  See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.enableViewStateIdRendering</param-name>
+      <param-value>true</param-value>
+   </context-param>
+
+   <context-param>
+      <description>Added in Mojarra 1.2_08. See wiki.jboss.org/wiki/Wiki.jsp?page=UpgradeToMojarra1_2_08</description>
+      <param-name>com.sun.faces.enableScriptsInAttributeValues</param-name>
+      <param-value>true</param-value>
+   </context-param>
+   
+   <context-param>
+      <param-name>org.jboss.jbossfaces.JSF_CONFIG_NAME</param-name>
+      <param-value>Mojarra-1.2</param-value>
+   </context-param>
+   <context-param>
+	  <param-name>com.sun.faces.expressionFactory</param-name>
+	  <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+<!-- 	  <param-value>org.jboss.el.ExpressionFactoryImpl</param-value> -->
+	</context-param>
+   <context-param>
+	  <param-name>org.apache.myfaces.EXPRESSION_FACTORY</param-name>
+	  <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+<!-- 	  <param-value>org.jboss.el.ExpressionFactoryImpl</param-value> -->
+	</context-param>
+
+
+	<context-param>
+		<param-name>com.sun.faces.validateXml</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.verifyObjects</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/config/applicationContext*.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.BUILD_BEFORE_RESTORE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-value>2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DISABLE_FACELET_JSF_VIEWHANDLER</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>Define partial state saving as true/false.</description>
+		<param-name>javax.faces.PARTIAL_STATE_SAVING_METHOD</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<!-- <context-param> <param-name>org.apache.myfaces.COMPRESS_STATE_IN_SESSION</param-name> 
+		<param-value>true</param-value> </context-param> <context-param> <param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name> 
+		<param-value>true</param-value> </context-param> -->
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jExposeWebAppRoot</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.COMPRESS_SCRIPT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.COMPRESS_STYLE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.SKIN</param-name>
+		<param-value>classic</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+		<param-value>com.sun.facelets.FaceletViewHandler</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.handleViewExpiredOnClient</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.xmlparser.NEKO</param-name>
+		<param-value>/pages/login.jspx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.ajax4jsf.xmlparser.NONE</param-name>
+		<param-value>/pages/login.jspx</param-value>
+	</context-param>
+	<!-- Configurar TIDY por defecto para que funcione el sort de la tabla -->
+	<context-param>
+		<param-name>org.ajax4jsf.xmlparser.ORDER</param-name>
+		<param-value>NONE,NEKO,TIDY</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.ADD_RESOURCE_CLASS</param-name>
+		<param-value>org.apache.myfaces.renderkit.html.util.DefaultAddResource</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.CONFIG_REFRESH_PERIOD</param-name>
+		<param-value>2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.READONLY_AS_DISABLED_FOR_SELECTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.RENDER_VIEWSTATE_ID</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.RESOURCE_VIRTUAL_PATH</param-name>
+		<param-value>/faces/myFacesExtensionResource</param-value>
+	</context-param>
+	<!-- <context-param> <param-name>org.apache.myfaces.COMPRESS_STATE_IN_CLIENT</param-name> 
+		<param-value>true</param-value> </context-param> <context-param> <param-name>com.sun.faces.enableViewStateIdRendering</param-name> 
+		<param-value>false</param-value> </context-param> <context-param> <param-name>org.richfaces.queue.global.enabled</param-name> 
+		<param-value>true</param-value> </context-param> -->
+	<context-param>
+		<param-name>org.apache.myfaces.STRICT_XHTML_LINKS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
+		<param-value>enable</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.LoadScriptStrategy</param-name>
+		<param-value>ALL</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.LoadStyleStrategy</param-name>
+		<param-value>ALL</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.SKIN</param-name>
+		<param-value>classic</param-value>
+	</context-param>
+	<filter>
+		<filter-name>MyFacesExtensionsFilter</filter-name>
+		<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+		<init-param>
+			<param-name>uploadMaxFileSize</param-name>
+			<param-value>20m</param-value>
+		</init-param>
+	</filter>
+	<!-- <filter> <filter-name>MyFacesExtensionFilter</filter-name> <filter-class>org.apache.myfaces.component.html.util.ExtensionsFilter</filter-class> 
+		<init-param> <param-name>createTempFiles</param-name> <param-value>true</param-value> 
+		</init-param> </filter> RichFaces -->
+	<filter>
+		<display-name>Ajax4jsf Filter</display-name>
+		<filter-name>ajax4jsf</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+		<init-param>
+			<param-name>createTempFiles</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>maxRequestSize</param-name>
+			<param-value>10000000</param-value>
+		</init-param>
+	</filter>
+	<!-- Sitemesh filter to give a consistent page layout <filter> <filter-name>sitemesh</filter-name> 
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> 
+		</filter> -->
+	<filter>
+		<filter-name>FiltroSesionUsuario</filter-name>
+		<filter-class>pe.gob.trabajo.pcd.vista.seguridad.FiltroSesion</filter-class>
+	</filter>
+	<!-- <filter> <filter-name>openSessionInViewFilter</filter-name> <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class> 
+		<init-param> <param-name>singleSession</param-name> <param-value>true</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>sitemesh</filter-name> 
+		<url-pattern>*.stm</url-pattern> </filter-mapping> RichFaces -->
+	<filter-mapping>
+		<filter-name>ajax4jsf</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FiltroSesionUsuario</filter-name>
+		<url-pattern>/jsp/*</url-pattern>
+	</filter-mapping>
+	<!-- <filter-mapping> <filter-name>MyFacesExtensionFilter</filter-name> 
+		<servlet-name>Faces Servlet</servlet-name> </filter-mapping> <filter-mapping> 
+		<filter-name>MyFacesExtensionFilter</filter-name> <url-pattern>*.jsf</url-pattern> 
+		</filter-mapping> -->
+	<filter-mapping>
+		<filter-name>MyFacesExtensionsFilter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>MyFacesExtensionsFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+	<!-- <filter-mapping> <filter-name>openSessionInViewFilter</filter-name> 
+		<url-pattern>*.jsf</url-pattern> </filter-mapping> -->
+	<!-- 
+		-->
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class> 
+	</listener>
+	<!-- Listener implementation to handle web application lifecycle events -->
+<!-- 	<listener> -->
+<!-- 		<listener-class>com.sun.faces.application.WebappLifecycleListener</listener-class> -->
+<!-- 	</listener> -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>pe.gob.trabajo.pcd.vista.faces.util.SilnetIni</listener-class>
+	</listener>
+	<!-- <listener> <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class> 
+		</listener> Spring MVC front controller. Automatically loads mycart-servlet.xml 
+		based on servlet name. -->
+	<servlet>
+		<servlet-name>mycart</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<!-- RichFaces -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<!-- <enabled>true</enabled> -->
+		<!-- <async-supported>false</async-supported> -->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/jsp/error/error.xhtml?err=500</location>
+	</error-page>
+</web-app>

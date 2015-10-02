@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Informacion sobre la discapacidad</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['prf-registro-datos-personales-datos-personales']} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombres} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoPaterno} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoMaterno}" />
+				</h:panelGroup>
+			</f:facet>
+			<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+
+
+				<t:panelGrid id="gridDatosPersonales" columns="7"
+					styleClass="gridContent"
+					columnClasses="topAligned,topAligned,topAligned,celdaSeparadorFormulario topAligned,topAligned,topAligned,topAligned">
+
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="6">
+						<h:outputLabel value="(a) ¿ Por qué deseas trabajar ?" />
+					</t:panelGroup>
+
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="5">
+						<h:inputTextarea
+							value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.deseosTrabajar}"
+							styleClass="width100"
+							onkeyup="contar(this, #{rich:element('outMotivacion')}, 500)" />
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+					<t:panelGroup colspan="6" styleClass="contadorCaracteres">
+						<h:outputLabel id="outMotivacion" value="*"
+							title="Contador de caracteres" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="3">
+						<h:panelGrid columns="2" columnClasses=",columnaCheck"
+							styleClass="gridContent rich-table-headercell"
+							rowClasses="filaTabla">
+							<f:facet name="header">
+								<h:outputText value="Motivación" />
+							</f:facet>
+
+							<h:outputLabel for="motivo1" value="Tener éxito en la vida" />
+							<h:selectBooleanCheckbox id="motivo1"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoExito}" />
+							<h:outputLabel for="motivo2"
+								value="Aumentar mi poder adquisitivo" />
+							<h:selectBooleanCheckbox id="motivo2"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoPoderAdquisitivo}" />
+							<h:outputLabel for="motivo3" value="Ganar un salario" />
+							<h:selectBooleanCheckbox id="motivo3"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoGanarSalario}" />
+							<h:outputLabel for="motivo4" value="Sentirme útil" />
+							<h:selectBooleanCheckbox id="motivo4"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoSerUtil}" />
+							<h:outputLabel for="motivo5" value="Ser independiente" />
+							<h:selectBooleanCheckbox id="motivo5"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoIndependencia}" />
+							<h:outputLabel for="motivo6"
+								value="Ganar en respeto propio y autoestima" />
+							<h:selectBooleanCheckbox id="motivo6"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoAutoestima}" />
+							<h:outputLabel for="motivo7" value="Reconocimiento social" />
+							<h:selectBooleanCheckbox id="motivo7"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoReconocimiento}" />
+							<h:outputLabel for="motivo8"
+								value="Relacionarme con otras personas" />
+							<h:selectBooleanCheckbox id="motivo8"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoRelacionarse}" />
+							<h:outputLabel for="motivo9"
+								value="Poner en prática lo estudiado" />
+							<h:selectBooleanCheckbox id="motivo9"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoPracticaEstudiado}" />
+							<h:outputLabel for="motivo10" value="Aprender algo nuevo" />
+							<h:selectBooleanCheckbox id="motivo10"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoAprender}" />
+							<h:outputLabel for="motivo11" value="Ayudar a mi familia" />
+							<h:selectBooleanCheckbox id="motivo11"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoAyudarFamilia}" />
+							<h:outputLabel for="motivo12"
+								value="Romper el aislamiento social" />
+							<h:selectBooleanCheckbox id="motivo12"
+								value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivoDesaislamiento}" />
+						</h:panelGrid>
+
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="3">
+						<h:outputLabel
+							value="(b) Confunde sus motivaciones con las preferencias de otras persona significativas"
+							for="confundeMotivacion" />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="2">
+						<h:selectOneRadio id="confundeMotivacion"
+							styleClass="width100 columnaDerecha" layout="lineDirection"
+							required="true"
+							value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.confundeMotivacion}">
+							<f:selectItem itemLabel="SI" itemValue="S" />
+							<f:selectItem itemLabel="NO" itemValue="N" />
+						</h:selectOneRadio>
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="3">
+						<h:outputLabel value="(c) No expresa sus motivaciones"
+							for="expresaMotivaciones" />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="2">
+						<h:selectOneRadio id="expresaMotivaciones"
+							styleClass="width100 columnaDerecha" layout="lineDirection"
+							required="true"
+							value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.noExpresaMotivacion}">
+							<f:selectItem itemLabel="SI" itemValue="S" />
+							<f:selectItem itemLabel="NO" itemValue="N" />
+						</h:selectOneRadio>
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="3">
+						<h:outputLabel
+							value="(d) No tiene claro los motivos por los que quiere trabajar"
+							for="motivosClaros" />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="2">
+						<h:selectOneRadio id="motivosClaros"
+							styleClass="width100 columnaDerecha" layout="lineDirection"
+							required="true"
+							value="#{registrarPersonaMotivacionMB.personaBean.personaMotivacion.motivosNoClaros}">
+							<f:selectItem itemLabel="SI" itemValue="S" />
+							<f:selectItem itemLabel="NO" itemValue="N" />
+						</h:selectOneRadio>
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+
+								<a4j:commandButton action="listaPostulaciones" value="Volver"
+									title="Volver a postulaciones de este pedido" immediate="true"
+									styleClass="botonBuscar"
+									rendered="#{!sesionMB.usuarioSesion.rolProfesional and (sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION)}">
+								</a4j:commandButton>
+								<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+									immediate="true"
+									value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+									styleClass="botonBuscar">
+									<a4j:actionparam name="accion"
+										value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_POSTULANTE}"
+										assignTo="#{sesionMB.contexto}" />
+								</a4j:commandButton>
+
+								<rich:spacer width="5" height="5" title="espacio" />
+								<t:commandButton action="#"
+									value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+									disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+									actionFor="frmDatosGenerales,frmMenu"
+									actionListener="#{registrarPersonaMotivacionMB.guardar}"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+
+				</t:panelGrid>
+
+				<f:subview id="subArchivo">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+				</f:subview>
+
+				<f:subview id="subMensaje">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+				</f:subview>
+
+			</h:form>
+		</rich:panel>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>

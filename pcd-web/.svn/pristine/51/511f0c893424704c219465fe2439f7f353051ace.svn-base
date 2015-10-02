@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+	<script type="text/javascript">
+            function asignarLugar(dep, prov, dis, sgcomponent){
+            	dep.value = sgcomponent.getSelectedItems().pluck('idDprtmnto');
+            	prov.value = sgcomponent.getSelectedItems().pluck('idPrvnca');
+            	dis.value = sgcomponent.getSelectedItems().pluck('idDstrto');
+            }
+    </script>
+
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,celdaSeparadorFormulario,,,">
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-tipo-documento']}"
+				value="#{msg['prf-registro-datos-personales-formulario-tipo-documento']}:"
+				for="tipoDocumentoIdentidadId" />
+			<t:panelGroup styleClass="width100">
+				<h:selectOneMenu id="tipoDocumentoIdentidadId" styleClass="width100"
+					style="width: 300px; #{UtilBean.estiloCampoRequerido}"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.tipoDocumentoIdentidad}">
+					<f:selectItems
+						value="#{registrarDatosPersonalesMB.itemsTipoDocumento}" />
+					<f:validateLongRange minimum="1" />
+				</h:selectOneMenu>
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-numero-documento']}"
+				value="#{msg['prf-registro-datos-personales-formulario-numero-documento']}:"
+				for="numeroDocumentoIdentidad" />
+			<t:panelGroup>
+				<a4j:region>
+					<h:inputText id="numeroDocumentoIdentidad" tabindex="0"
+						style="#{UtilBean.estiloCampoRequerido}" maxlength="8"
+						title="Longitud máxima: 8 caracteres"
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.numeroDocumentoIdentidad}">
+						<a4j:support event="onkeyup"
+							oncomplete="if (#{registrarDatosPersonalesMB.profesionalBean.persona.id gt 0}){ Richfaces.showModalPanel('modalMensaje');}"
+							actionListener="#{registrarDatosPersonalesMB.buscarPersona}"
+							reRender="gridDatosPersonales, foto">
+						</a4j:support>
+					</h:inputText>
+					<h:outputText value=" (*)" />
+				</a4j:region>
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+		</t:panelGrid>
+
+		<t:panelGrid id="gridDatosPersonales" columns="7"
+			styleClass="gridContent"
+			columnClasses="topAligned,topAligned,topAligned,celdaSeparadorFormulario topAligned,topAligned,topAligned,topAligned">
+
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+			</t:panelGroup>
+
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-ape-paterno']}"
+				value="#{msg['prf-registro-datos-personales-formulario-apellido-paterno']}:"
+				for="apellidoPaterno" />
+			<t:panelGroup>
+				<h:inputText id="apellidoPaterno"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoPaterno}"
+					required="true" maxlength="254"
+					title="Longitud máxima: 254 caracteres" styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-ape-materno']}"
+				value="#{msg['prf-registro-datos-personales-formulario-apellido-materno']}:"
+				for="apellidoMaterno" />
+			<t:panelGroup>
+				<h:inputText id="apellidoMaterno"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoMaterno}"
+					required="true" maxlength="254"
+					title="Longitud máxima: 254 caracteres" styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="#{msg['prf-ayuda-datos-personales-nombres']}"
+				value="#{msg['prf-registro-datos-personales-formulario-nombres']}:"
+				for="nombres" />
+			<t:panelGroup>
+				<h:inputHidden id="idPersona"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.id}" />
+				<h:inputHidden id="idProfesional"
+					value="#{registrarDatosPersonalesMB.profesionalBean.id}" />
+				<h:inputText id="nombres"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombres}"
+					required="true" maxlength="254"
+					title="Longitud máxima: 254 caracteres" styleClass="width100"
+					style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			<t:outputLabel title="#{msg['prf-ayuda-datos-personales-sexo']}"
+				value="#{msg['prf-registro-datos-personales-formulario-sexo']}:"
+				for="sexo" />
+			<t:panelGroup>
+				<t:selectOneMenu id="sexo" required="true"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.sexo}"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}">
+					<f:selectItems value="#{registrarDatosPersonalesMB.itemsSexo}" />
+					<f:validateLongRange minimum="1" />
+				</t:selectOneMenu>
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+			</t:panelGroup>
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-fecha-nacimiento']}"
+				value="#{msg['prf-registro-datos-personales-formulario-fecha-nacimiento']}:"
+				for="fechaNacimiento" />
+			<t:panelGroup>
+				<rich:calendar id="fechaNacimiento" popup="true" locale="es_PE"
+					showWeekDaysBar="false" showWeeksBar="false" required="true"
+					showApplyButton="false" enableManualInput="true"
+					inputStyle="#{UtilBean.estiloCampoRequerido}"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.fechaNacimiento}"
+					datePattern="dd/MM/yyyy">
+					<f:facet name="header">
+						<h:panelGrid columns="3" width="100%"
+							columnClasses="fake, width100 talign">
+							<h:outputText value="{previousMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{currentMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{nextMonthControl}"
+								style="font-weight:bold;" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="{day}"></h:outputText>
+					<f:facet name="footer">
+						<h:outputText value="{selectedDateControl}" />
+					</f:facet>
+				</rich:calendar>
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+
+			<t:outputLabel
+				title="#{msg['prf-ayuda-datos-personales-estado-civil']}"
+				value="#{msg['prf-registro-datos-personales-formulario-estado-civil']}:"
+				for="estadoCivil" />
+			<t:panelGroup>
+				<t:selectOneMenu id="estadoCivil"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.estadoCivil}"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}">
+					<f:selectItem value="#{UtilBean.itemSeleccioneCero}" />
+					<f:selectItems
+						value="#{registrarDatosPersonalesMB.itemsEstadoCivil}" />
+					<f:validateLongRange minimum="1" />
+				</t:selectOneMenu>
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="5" title="espacio" />
+			</t:panelGroup>
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+			</t:panelGroup>
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="#{msg['prf-ayuda-datos-personales-direccion']}"
+				value="#{msg['prf-registro-datos-personales-formulario-direccion']}:"
+				for="direccion" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="direccion"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.direccion}"
+					styleClass="width100p" maxlength="254"
+					title="Longitud máxima: 254 caracteres" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<t:outputLabel title="Distrito" value="Distrito:"
+				for="idDepResidencia" />
+			<h:panelGroup>
+				<h:inputHidden id="idDepResidencia"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.departamentoResidencia}" />
+				<h:inputHidden id="idProvResidencia"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.provinciaResidencia}" />
+				<h:inputHidden id="idDisResidencia"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.distritoResidencia}" />
+
+				<h:inputText id="descripcionResidencia" required="false"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombreLugarResidencia}"
+					styleClass="width100" maxlength="254"
+					title="Longitud máxima: 254 caracteres"
+					ondblclick="#{rich:component('suggestionResidencia')}.callSuggestion(true)" />
+
+				<rich:suggestionbox width="250" border="1" shadowDepth=""
+					minChars="3" requestDelay="100" usingSuggestObjects="true"
+					selectValueClass="dr-pnl-h"
+					onobjectchange="asignarLugar(#{rich:element('idDepResidencia')}, #{rich:element('idProvResidencia')}, #{rich:element('idDisResidencia')}, #{rich:component('suggestionResidencia')});"
+					suggestionAction="#{registrarDatosPersonalesMB.autocompletarResidencia}"
+					var="residencia" for="descripcionResidencia"
+					fetchValue="#{residencia.nombre}" id="suggestionResidencia"
+					tokens=",">
+					<t:column>
+						<f:facet name="header">
+							<h:outputText value="Distrito" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.nombre} " />
+						<h:outputText rendered="#{!residencia.distrito}" value="--" />
+					</t:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Provincia" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.nombre}" />
+						<h:outputText rendered="#{residencia.departamento}" value="--" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoProvincia.nombre}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Región" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.departamento}"
+							value="#{residencia.ubigeoRegion.nombre} " />
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+					</h:column>
+
+				</rich:suggestionbox>
+			</h:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<t:outputLabel title="Telefono" value="Telefono:" for="telefono" />
+			<h:inputText id="telefono"
+				value="#{registrarDatosPersonalesMB.profesionalBean.persona.telefono}"
+				styleClass="width100p" maxlength="254"
+				title="Longitud máxima: 254 caracteres" />
+
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Persona de contacto"
+				value="Persona de contacto:" for="contacto" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="contacto"
+					value="#{registrarDatosPersonalesMB.profesionalBean.persona.contacto}"
+					styleClass="width100p" maxlength="254"
+					title="Longitud máxima: 254 caracteres" />
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+			</t:panelGroup>
+
+			<rich:spacer width="5" height="5" title="espacio" />
+
+			<t:outputLabel title="Examinador" value="Examinador:" />
+			<t:panelGroup colspan="2">
+				<h:outputText rendered="#{!sesionMB.usuarioSesion.rolEmpleador}"
+					value="#{sesionMB.usuarioSesion.persona.nombres} #{sesionMB.usuarioSesion.persona.apellidoPaterno}" />
+			</t:panelGroup>
+			<t:panelGroup>
+				<t:outputLabel
+					rendered="#{!empty registrarDatosPersonalesMB.profesionalBean.curriculum}"
+					value="#{msg['prf-registro-datos-personales-formulario-descargar']}:" />
+			</t:panelGroup>
+			<t:panelGroup colspan="1" id="descargar">
+				<h:commandLink styleClass="columnaAcciones" immediate="true"
+					actionListener="#{registrarDatosPersonalesMB.mostrarUpload}"
+					title="Descargar CV"
+					rendered="#{!empty registrarDatosPersonalesMB.profesionalBean.curriculum}"
+					action="#">
+					<f:param id="profesionalPrm" name="profesionalPrm"
+						value="#{registrarDatosPersonalesMB.profesionalBean}" />
+					<h:graphicImage height="32"
+						value="/images/mimetypes/#{UtilBean.obtenerExtension[registrarDatosPersonalesMB.profesionalBean.curriculum] ne null?UtilBean.obtenerExtension[registrarDatosPersonalesMB.profesionalBean.curriculum]:'cv'}.png"
+						alt="Descargar CV" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones" reRender="descargar"
+					rendered="#{!empty registrarDatosPersonalesMB.profesionalBean.curriculum}"
+					actionListener="#{registrarDatosPersonalesMB.limpiarCurriculum}"
+					title="Eliminar CV">
+					<h:graphicImage height="12" value="/images/limpiar.png"
+						alt="Eliminar" />
+				</a4j:commandLink>
+			</t:panelGroup>
+			<rich:spacer width="5" height="10" title="espacio" />
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+			<t:panelGroup colspan="7">
+				<t:panelGrid columns="2" styleClass="gridContent"
+					columnClasses="columnaIzquierda,columnaDerecha">
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup>
+
+						<a4j:commandButton action="listaPostulaciones" value="Volver"
+							title="Volver a postulaciones de este pedido" immediate="true"
+							styleClass="botonBuscar"
+							rendered="#{!sesionMB.usuarioSesion.rolProfesional and (sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULACION)}">
+						</a4j:commandButton>
+						<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+							immediate="true"
+							value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+							styleClass="botonBuscar">
+							<a4j:actionparam name="accion"
+								value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_POSTULANTE}"
+								assignTo="#{sesionMB.contexto}" />
+						</a4j:commandButton>
+
+						<rich:spacer width="5" height="5" title="espacio" />
+						<t:commandButton action="#"
+							value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+							disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+							actionFor="frmDatosGenerales,frmMenu"
+							actionListener="#{registrarDatosPersonalesMB.guardar}"
+							styleClass="botonBuscar"
+							onclick="Richfaces.showModalPanel('modalEstado')"
+							oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+					</t:panelGroup>
+
+				</t:panelGrid>
+			</t:panelGroup>
+
+		</t:panelGrid>
+
+		<f:subview id="subArchivo">
+			<!-- ventana modal de respuesta-->
+			<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+		</f:subview>
+
+		<f:subview id="subMensaje">
+			<!-- ventana modal de respuesta-->
+			<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+		</f:subview>
+
+	</h:form>
+
+</ui:composition>
+
+</html>

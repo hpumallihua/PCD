@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Bienvenida</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<h:form id="frmUsuario">
+			<t:panelGrid columns="1" styleClass="gridContent"
+				id="gridDatosGenerales">
+				<rich:panel styleClass="gridContent"
+					style="background-color: #FFFFFF;">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText rendered="#{!(profesionalMB.profesional.id gt 0)}"
+								value="Nuevo - " />
+							<h:outputText
+								value="#{profesionalMB.profesional.persona.nombres} " />
+							<h:outputText
+								value="#{profesionalMB.profesional.persona.apellidoPaterno} " />
+							<h:outputText
+								value="#{profesionalMB.profesional.persona.apellidoMaterno}" />
+							<h:outputText rendered="false"
+								value="#{profesionalMB.profesional.persona.usuario.id}" />
+						</h:panelGroup>
+					</f:facet>
+
+					<t:panelGrid columns="3" id="gridUsuario"
+						rendered="#{sesionMB.usuarioSesion.rolProfesional}"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<h:outputLabel value="Usuario:" />
+
+						<a4j:region>
+							<h:inputText id="nombreUsuario" tabindex="0"
+								style="#{UtilBean.estiloCampoRequerido}"
+								value="#{registrarDatosPersonalesMB.usuarioSesion.persona.usuario.nombreUsuario}"
+								disabled="#{registrarDatosPersonalesMB.usuarioSesion.persona.usuario.id gt 0}">
+								<a4j:support event="onkeyup"
+									actionListener="#{registrarDatosPersonalesMB.buscarUsuario}"
+									reRender="validacionUsuario,grupoGuardar">
+								</a4j:support>
+							</h:inputText>
+						</a4j:region>
+						<h:graphicImage id="validacionUsuario"
+							value="#{registrarDatosPersonalesMB.usuarioValido?'/images/validado.png':'/images/bloqueado.png'}"
+							alt="Validado" title="Validado" />
+						<h:outputLabel for="claveUsuario" value="Clave:" />
+						<h:inputSecret id="claveUsuario"
+							value="#{registrarDatosPersonalesMB.usuarioSesion.persona.usuario.claveUsuario}">
+						</h:inputSecret>
+						<rich:spacer width="5" height="5" title="espacio" />
+						<rich:spacer width="5" height="5" title="espacio" />
+						<h:panelGroup id="grupoGuardar">
+							<t:commandButton action="#"
+								value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+								disabled="#{!registrarDatosPersonalesMB.usuarioValido and !(registrarDatosPersonalesMB.usuarioSesion.persona.usuario.id gt 0)}"
+								actionFor="frmUsuario"
+								actionListener="#{registrarDatosPersonalesMB.guardarUsuario}"
+								styleClass="botonBuscar"
+								onclick="Richfaces.showModalPanel('modalEstado')"
+								oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+						</h:panelGroup>
+					</t:panelGrid>
+
+					<t:panelGrid columns="3" id="gridUsuarioProfesional"
+						rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<h:outputLabel
+							rendered="#{!(profesionalMB.profesional.persona.usuario.id gt 0)}"
+							value="Usuario:" />
+
+						<a4j:region
+							rendered="#{!(profesionalMB.profesional.persona.usuario.id gt 0)}">
+							<h:inputText id="nuevoNombreUsuario" tabindex="0"
+								style="#{UtilBean.estiloCampoRequerido}"
+								value="#{registrarDatosPersonalesMB.nuevoUsuario}">
+								<a4j:support event="onkeyup"
+									actionListener="#{registrarDatosPersonalesMB.buscarUsuario}"
+									reRender="validacionUsuarioNuevo,grupoGuardar">
+								</a4j:support>
+							</h:inputText>
+						</a4j:region>
+						<h:graphicImage id="validacionUsuarioNuevo"
+							rendered="#{!(profesionalMB.profesional.persona.usuario.id gt 0)}"
+							value="#{registrarDatosPersonalesMB.usuarioValido?'/images/validado.png':'/images/bloqueado.png'}"
+							alt="Validado" title="Validado" />
+
+						<h:outputLabel value="Nueva clave:" />
+						<h:inputSecret id="claveUsuarioProfesional"
+							value="#{registrarDatosPersonalesMB.nuevaClave}" />
+						<t:commandButton action="#"
+							value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+							actionFor="frmUsuario"
+							actionListener="#{registrarDatosPersonalesMB.cambiarClaveUsuario}"
+							styleClass="botonBuscar"
+							onclick="Richfaces.showModalPanel('modalEstado')"
+							oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+					</t:panelGrid>
+
+				</rich:panel>
+			</t:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

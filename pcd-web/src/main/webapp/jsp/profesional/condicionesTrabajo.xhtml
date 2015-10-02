@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Condiciones de Trabajo</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['prf-registro-datos-personales-datos-personales']} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombres} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoPaterno} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoMaterno}" />
+				</h:panelGroup>
+			</f:facet>
+			<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+
+
+				<t:panelGrid id="gridDatosPersonales" columns="7"
+					styleClass="gridContent"
+					columnClasses="topAligned,topAligned,topAligned,celdaSeparadorFormulario topAligned,topAligned,topAligned,topAligned">
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel styleClass="tituloFila"
+							value="(c) Condiciones de trabajo" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel
+							value="Esta parrila identifica las condiciones de trabajo que el candidato prefiere. La selección de la
+							casilla 1 indica su preferencia clara por la afirmación a la izquierda de la escala, la selección de la 
+							casilla 5 indica una preferencia clara por la afirmación de la derecha, y la selección de la casilla 3
+							indica no preferencia ni por una ni por otra en esa área." />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="3" style="vertical-align: top;">
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+
+							<h:panelGrid columns="3" columnClasses="columnaDerecha,,"
+								styleClass="gridContent rich-table-headercell"
+								rowClasses="filaTabla">
+								<h:outputText value=" " />
+								<h:panelGrid columns="5"
+									styleClass="gridContent rich-table-headercell"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="1" />
+									<h:outputText value="2" />
+									<h:outputText value="3" />
+									<h:outputText value="4" />
+									<h:outputText value="5" />
+								</h:panelGrid>
+								<h:outputText value=" " />
+
+								<h:outputText value="jornada completa" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.jornada}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="media jornada" />
+
+								<h:outputText value="dentro" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.interior}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="en el exterior" />
+
+								<h:outputText value="estando en un lugar" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.estabilidadLugar}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="cambiando de lugar" />
+
+								<h:outputText value="donde haya mucha actividad" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.actividad}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="donde haya poca actividad" />
+
+								<h:outputText value="donde haga calor" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.temperatura}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="donde haga frío" />
+
+								<h:outputText value="en un lugar ruidoso" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.ruido}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="en un lugar silencioso" />
+
+								<h:outputText value="en un sitio limpio" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.limpieza}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="en un sitio desaliñado, sucio" />
+
+								<h:outputText value="una tarea constante" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.tarea}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="haciendo diferentes tareas" />
+
+								<h:outputText value="en un espacio grande" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.espacio}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="en un espacio pequeño" />
+
+								<h:outputText value="principalmente con hombres" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.grupo}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="principalmente con mujeres" />
+
+								<h:outputText value="con uniforme" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.uniforme}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="sin uniforme" />
+
+								<h:outputText value="con palabras / libros" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.palabras}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="sin palabras ni libros" />
+
+								<h:outputText value="con números" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.numeros}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="sin números" />
+
+								<h:outputText value="utilizando transporte público" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.transporte}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="sin usar transporte público" />
+
+								<h:outputText value="con otras personas" />
+								<t:selectOneRadio styleClass="gridContent"
+									value="#{registrarPersonaCondicionesTrabajoMB.personaBean.personaCondicionesTrabajo.compania}">
+									<f:selectItem itemValue="1" itemLabel=""/>
+									<f:selectItem itemValue="2" itemLabel=""/>
+									<f:selectItem itemValue="3" itemLabel=""/>
+									<f:selectItem itemValue="4" itemLabel=""/>
+									<f:selectItem itemValue="5" itemLabel=""/>
+								</t:selectOneRadio>
+								<h:outputText value="sin compañía" />
+
+							</h:panelGrid>
+
+
+						</h:panelGrid>
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+									immediate="true"
+									value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+									styleClass="botonBuscar">
+									<a4j:actionparam name="accion"
+										value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_POSTULANTE}"
+										assignTo="#{sesionMB.contexto}" />
+								</a4j:commandButton>
+
+								<rich:spacer width="5" height="5" title="espacio" />
+								<t:commandButton action="#"
+									value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+									disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+									actionFor="frmDatosGenerales,frmMenu"
+									actionListener="#{registrarPersonaCondicionesTrabajoMB.guardar}"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+
+				</t:panelGrid>
+
+				<f:subview id="subArchivo">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+				</f:subview>
+
+				<f:subview id="subMensaje">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+				</f:subview>
+
+			</h:form>
+		</rich:panel>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>

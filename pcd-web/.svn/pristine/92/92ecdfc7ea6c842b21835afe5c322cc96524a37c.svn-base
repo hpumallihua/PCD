@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:/config/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="luceneConfigBean"
+		class="pe.gob.trabajo.pcd.servicio.lucene.config.LuceneConfigBean">
+		<property name="tablaIndice" value="INDICE_CV" />
+		<property name="dialecto"
+			value="org.apache.lucene.store.jdbc.dialect.OracleDialect" />
+	</bean>
+
+<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:jboss/datasources/DSPCDSYS" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="dataSourceMaestros" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:jboss/datasources/DSSIMINTRA" /> -->
+<!-- 	</bean> -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@192.168.0.200:1521:orcl" />
+		<property name="username" value="PCD" />
+		<property name="password" value="123456" />
+	</bean>
+	<bean id="dataSourceMaestros"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@192.168.0.200:1521:orcl" />
+		<property name="username" value="SIMINTRA1" />
+		<property name="password" value="simintra1" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+<!-- 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+				<prop key="hibernate.connection.pool_size">1</prop>
+				<prop key="hibernate.c3p0.maxPoolSize">5</prop>
+				<prop key="hibernate.c3p0.timeout">600</prop>
+				<prop key="hibernate.c3p0.max_statement">50</prop>
+				<!-- Silnet DB -->
+				<!-- <prop key="hibernate.show_sql">true</prop> -->
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+
+				<!--LUCENE - HIBERNATE SEARCH -->
+				<prop key="hibernate.search.default.directory_provider">filesystem</prop>
+				<prop key="hibernate.search.default.indexBase">/var/lucene/indexes</prop>
+
+				<!-- <prop key="hibernate.generate_statistics">true</prop> -->
+				<!-- <prop key="hibernate.connection.autocommit">true</prop> -->
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>config/mapeo/Area.hbm.xml</value>
+				<value>config/mapeo/AuditData.hbm.xml</value>
+				<value>config/mapeo/Certificacion.hbm.xml</value>
+				<value>config/mapeo/Configuracion.hbm.xml</value>
+				<value>config/mapeo/Contacto.hbm.xml</value>
+				<value>config/mapeo/ContactoMedio.hbm.xml</value>
+				<value>config/mapeo/ContactoRedSocial.hbm.xml</value>
+				<value>config/mapeo/Empresa.hbm.xml</value>
+				<value>config/mapeo/EspecialidadProfesional.hbm.xml</value>
+				<value>config/mapeo/Estado.hbm.xml</value>
+				<value>config/mapeo/ExperienciaEspecialidad.hbm.xml</value>
+				<value>config/mapeo/ExperienciaLaboral.hbm.xml</value>
+				<value>config/mapeo/Formacion.hbm.xml</value>
+				<value>config/mapeo/Idioma.hbm.xml</value>
+				<value>config/mapeo/InstitucionFormativa.hbm.xml</value>
+				<value>config/mapeo/Persona.hbm.xml</value>
+				<value>config/mapeo/Discapacidad.hbm.xml</value>
+				<value>config/mapeo/Preferencia.hbm.xml</value>
+				<value>config/mapeo/Profesional.hbm.xml</value>
+				<value>config/mapeo/ProfesionalIdioma.hbm.xml</value>
+				<value>config/mapeo/Puesto.hbm.xml</value>
+				<value>config/mapeo/RedSocial.hbm.xml</value>
+				<value>config/mapeo/Referencia.hbm.xml</value>
+				<value>config/mapeo/Rol.hbm.xml</value>
+				<value>config/mapeo/RolLaboral.hbm.xml</value>
+
+				<value>config/mapeo/TipoDiscapacidad.hbm.xml</value>
+				<value>config/mapeo/TipoContacto.hbm.xml</value>
+				<value>config/mapeo/TipoDocumentoIdentidad.hbm.xml</value>
+				<value>config/mapeo/TipoFormacion.hbm.xml</value>
+				<value>config/mapeo/TipoPreferencia.hbm.xml</value>
+				<value>config/mapeo/TipoReferencia.hbm.xml</value>
+				<value>config/mapeo/Ubigeo.hbm.xml</value>
+				<value>config/mapeo/Usuario.hbm.xml</value>
+				<value>config/mapeo/TipoEmpresa.hbm.xml</value>
+				<value>config/mapeo/TipoEstablecimiento.hbm.xml</value>
+				<value>config/mapeo/Establecimiento.hbm.xml</value>
+				<value>config/mapeo/Empleador.hbm.xml</value>
+				<value>config/mapeo/Pedido.hbm.xml</value>
+				<value>config/mapeo/Postulacion.hbm.xml</value>
+				
+				<value>config/mapeo/PersonaDiscapacidad.hbm.xml</value>
+				<value>config/mapeo/PersonaDatosMedicos.hbm.xml</value>
+				<value>config/mapeo/PersonaMotivacion.hbm.xml</value>
+				<value>config/mapeo/PersonaInteresesOcupacionales.hbm.xml</value>
+				<value>config/mapeo/PersonaCondicionesTrabajo.hbm.xml</value>
+				<value>config/mapeo/PersonaNecesidadApoyo.hbm.xml</value>
+				<value>config/mapeo/PersonaIntegranteFamilia.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!-- Conexion Parametricas -->
+	<bean id="sessionFactoryMaestros"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSourceMaestros" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>config/maestros/EmpleadoMaestro.hbm.xml</value>
+				<value>config/maestros/GrupoOcupacion.hbm.xml</value>
+				<value>config/maestros/GrupoProfesion.hbm.xml</value>
+				<value>config/maestros/NivelEducativo.hbm.xml</value>
+				<value>config/maestros/Ocupacion.hbm.xml</value>
+				<value>config/maestros/Profesion.hbm.xml</value>
+				<value>config/maestros/Ciiu.hbm.xml</value>
+				<value>config/maestros/Departamento.hbm.xml</value>
+				<value>config/maestros/Distrito.hbm.xml</value>
+				<value>config/maestros/EscalaRemuneracion.hbm.xml</value>
+				<value>config/maestros/Nacionalidad.hbm.xml</value>
+				<value>config/maestros/Nivel.hbm.xml</value>
+				<value>config/maestros/Pais.hbm.xml</value>
+				<value>config/maestros/PersonaCargo.hbm.xml</value>
+				<value>config/maestros/Provincia.hbm.xml</value>
+				<value>config/maestros/TipoDocumento.hbm.xml</value>
+				<value>config/maestros/Sistema.hbm.xml</value>
+				<value>config/maestros/Perfil.hbm.xml</value>
+				<value>config/maestros/Menu.hbm.xml</value>
+				<value>config/maestros/Person.hbm.xml</value>
+				<value>config/maestros/Sector.hbm.xml</value>
+				<value>config/maestros/Oficina.hbm.xml</value>
+				<value>config/maestros/EmpresaSunat.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="hibernateInterceptor" class="org.springframework.orm.hibernate3.HibernateInterceptor"
+		autowire="byName" /><!-- sessionFactory will get autowired -->
+
+	<!-- <bean id="hibernateInterceptor" class="org.springframework.orm.hibernate3.HibernateInterceptor"> -->
+	<!-- <property name="sessionFactory"> -->
+	<!-- <ref bean="sessionFactory" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+
+	<!-- THE HIBERNATE INTERCEPTOR -->
+	<bean id="hibernateInterceptorMaestros" class="org.springframework.orm.hibernate3.HibernateInterceptor">
+		<property name="sessionFactory">
+			<ref bean="sessionFactoryMaestros" />
+		</property>
+	</bean>
+</beans>

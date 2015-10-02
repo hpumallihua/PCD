@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.PersonaDatosMedicos"
+		table="PDTBC_PRSNADTSMDCOS">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRSNA" scale="0">
+				<comment>CÓDIGO PERSONA.</comment>
+			</column>
+			<generator class="foreign">
+				<param name="property">persona</param>
+			</generator>
+		</id>
+		
+		<one-to-one class="pe.gob.trabajo.pcd.modelo.dominio.Persona"
+			constrained="true" name="persona" />
+			
+		<property generated="never" lazy="false" name="condicionesAsociadas"
+			type="string">
+			<column length="500" name="V_CNDCON">
+				<comment>CONDICIONES ASOCIADAS AL SD/SA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="problemasSalud"
+			type="string">
+			<column length="500" name="V_PROBSLUD">
+				<comment>PROBLEMAS DE SALUD.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="horarioMedicacion"
+			type="string">
+			<column length="500" name="V_HORMEDICA">
+				<comment>HORARIO DE MEDICACIÓN.</comment>
+			</column>
+		</property>
+		<property name="tipoSeguroSalud" type="string">
+			<column name="V_TPOSEGSAL" length="1">
+				<comment>TIPO DE SEGURO DE SALUD.</comment>
+			</column>
+		</property>
+
+		<property generated="never" lazy="false" name="alteracionAuditiva"
+			type="string">
+			<column length="500" name="V_ALTCONAUD">
+				<comment>ALTERACIÓN DE SENSIBILIDAD AUDITIVA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="alteracionVisual"
+			type="string">
+			<column length="500" name="V_ALTCONVSL">
+				<comment>ALTERACIÓN DE SENSIBILIDAD VISUAL.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="alteracionTactil"
+			type="string">
+			<column length="500" name="V_ALTCONTAC">
+				<comment>ALTERACIÓN DE SENSIBILIDAD TÁCTIL.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="alteracionOlfativa"
+			type="string">
+			<column length="500" name="V_ALTCONOLF">
+				<comment>ALTERACIÓN DE SENSIBILIDAD OLFATIVA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="alteracionTermica"
+			type="string">
+			<column length="500" name="V_ALTCONTRM">
+				<comment>ALTERACIÓN DE SENSIBILIDAD TÉRMICA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="alteracionOtra"
+			type="string">
+			<column length="500" name="V_ALTCONOTR">
+				<comment>OTRA ALTERACIÓN DE SENSIBILIDAD.</comment>
+			</column>
+		</property>
+		
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

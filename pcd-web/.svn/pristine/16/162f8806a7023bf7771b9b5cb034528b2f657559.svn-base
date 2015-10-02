@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/01/2011 05:11:54 PM by Hibernate Tools 3.4.0.Beta1 -->
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Empleador"
+		table="PDTBC_EMPLEADOR">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODEMPLDR" scale="0">
+				<comment>CÓDIGO DEL EMPLEADOR.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_EMPLDRID</param>
+			</generator>
+		</id>
+		<property name="flag" type="string">
+			<column name="V_FLAGEMPLE" length="500">
+				<comment>FLAG DEL EMPLEADOR</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<many-to-one name="establecimiento"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Establecimiento" unique="true"
+			not-null="true">
+			<column name="N_CODETBNTO" scale="0">
+				<comment>CÓDIGO DE ESTABLECIMIENTO</comment>
+			</column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

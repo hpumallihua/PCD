@@ -1,0 +1,51 @@
+package pe.gob.trabajo.silnet2.test.service;
+
+import java.util.List;
+
+import junit.framework.Assert;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import pe.gob.trabajo.silnet2.modelo.dominio.Persona;
+import pe.gob.trabajo.silnet2.vista.locator.ServiceLocator;
+
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {
+//		"classpath:/config/applicationContext-audit.xml",
+//        "classpath:/config/applicationContext-bach.xml", 
+//        "classpath:/config/applicationContext-bean.xml",
+//        "classpath:/config/applicationContext-dao.xml",
+//        "classpath:/config/applicationContext-log4j-init.xml",
+//        "classpath:/config/applicationContext-service-locator.xml",
+//        "classpath:/config/applicationContext-service.xml",
+//        "classpath:/config/applicationContext-spring-hibernate-jpa-config.xml",
+//        "classpath:/config/applicationContext-tx.xml"        
+//})
+public class ComponenteServiceTest 
+//extends
+//		AbstractTransactionalJUnit4SpringContextTests 
+		{
+
+//	@Autowired
+	private ServiceLocator ServiceLocator;
+
+//	@Test
+	public void obtenerArbolComponentesTest() {
+		List<Persona> lista = (List<Persona>) ServiceLocator.getMaestroService().getAllObject(Persona.class);
+		System.out.println("\n\n\n\n\n>>>>>>>>>>>>>>>>>>>>" + lista);
+		Assert.assertNotNull(lista);
+		Assert.assertTrue(lista.size() > 0);
+	}
+
+//	@Test
+	public void obtenerComponentePorIdTest() {
+//		Componente componente = componenteService.obtenerComponentePorId(1L);
+//		Assert.assertNotNull(componente);
+	}
+
+}

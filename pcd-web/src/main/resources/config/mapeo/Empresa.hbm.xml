@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Empresa"
+		table="PDTBC_EMPRESA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODEMPRSA" scale="0">
+				<comment>CÓDIGO DE LA EMPRESA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_EMPRSAID</param>
+			</generator>
+		</id>
+		<property name="ruc" type="string">
+			<column name="V_RUCEMP" length="15">
+				<comment>NUMERO RUC DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property name="nombreComercial" type="string">
+			<column name="V_NOMBREEMP" length="500">
+				<comment>NOMBRE COMERCIAL DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property name="razonSocial" type="string">
+			<column name="V_RZNSOCIAL" length="500">
+				<comment>RAZON SOCIAL DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property name="empresaMatriz" type="string">
+			<column name="V_EMPPADRE" length="500">
+				<comment>DESCRIPCION DE LA EMPRESA MATRIZ.</comment>
+			</column>
+		</property>
+		<property name="direccion" type="string">
+			<column name="V_DIRC" length="250">
+				<comment>DIRECCION.</comment>
+			</column>
+		</property>
+		<property name="tipoEmpresa" type="java.lang.Long">
+			<column name="N_CODTPOEMP" scale="0">
+				<comment>CODIGO DEL TIPO DE EMPRESA.</comment>
+			</column>
+		</property>
+		<property name="ciiu" type="string">
+			<column name="V_CODCIIU" length="10">
+				<comment>ACTIVIDAD EMPRESA.</comment>
+			</column>
+		</property>
+		<property name="personaContacto" type="string">
+			<column name="V_PERCONT" length="200">
+				<comment>PERSONA DE CONTACTO.</comment>
+			</column>
+		</property>
+		<property name="numEmpleados" type="java.lang.Long">
+			<column name="N_NUMEMP" scale="0">
+				<comment>NUMERO DE EMPLEADOS.</comment>
+			</column>
+		</property>		
+		<one-to-one name="usuario"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Usuario"></one-to-one>
+
+		<property name="fechaCreacion" type="timestamp">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Idioma" table="PDTBC_IDIOMA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODIDMA" precision="5" scale="0">
+				<comment>CÓDIGO DEL IDIOMA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_IDMAID</param>
+			</generator>
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DSCRPCON" length="254">
+				<comment>DESCRIPCION DEL IDIOMA.</comment>
+			</column>
+		</property>
+
+		<!-- <set name="tiprfPrfsnalIdiomas" table="TIPRF_PRFSNAL_IDIOMA" inverse="true" 
+			lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="ID_DMA" precision="5" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalIdioma" 
+			/> -->
+		<!-- </set> -->
+	</class>
+</hibernate-mapping>

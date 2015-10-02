@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Perfil"
+		table="SITB_PERFIL">
+		<composite-id name="id"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PerfilId">
+			<key-property name="idPerfil" type="string">
+				<column name="V_CODPER" length="3" />
+			</key-property>
+			<key-property name="idSistema" type="string">
+				<column name="V_CODSIS" length="3" />
+			</key-property>
+		</composite-id>
+		<many-to-one name="sistema"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Sistema" update="false"
+			insert="false" fetch="select">
+			<column name="V_CODSIS" length="3" not-null="true" />
+		</many-to-one>
+		<property name="nombre" type="string">
+			<column name="V_DESPER" length="50" />
+		</property>
+		<property name="abreviatura" type="string">
+			<column name="V_ABRPER" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

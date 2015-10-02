@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+	<converter>
+		<converter-id>stringConverter</converter-id>
+		<converter-class>pe.gob.trabajo.pcd.vista.faces.convertidor.StringConverter</converter-class>
+	</converter>
+	<managed-bean>
+		<managed-bean-name>UtilBean</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.util.UtilBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>personaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.PersonaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>sesionMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.SesionMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>imagenBean</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.ImagenBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+
+
+
+	<managed-bean>
+		<managed-bean-name>buscarProfesionalMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.BuscarProfesionalMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarCertificacionMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarCertificacionMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarIdiomaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarIdiomaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPreferenciasProfesionalesMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPreferenciasProfesionalesMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarReferenciaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarReferenciaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>profesionalMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.ProfesionalMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarDatosPersonalesMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarDatosPersonalesMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarEmpleosMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarEmpleosMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarExperienciaEspecialidadMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarExperienciaEspecialidadMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarContactoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarContactoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Persona</property-class>
+			<value>#{personaMB.personaBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarFormacionMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarFormacionMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarContactoMedioMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarContactoMedioMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>personaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Persona</property-class>
+			<value>#{personaMB.personaBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarParametroMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarParametroMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>administrarEspecialidadMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.AdministrarEspecialidadMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarMaestroMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarMaestroMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>empresaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.EmpresaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>empresaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Empresa</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarEmpresaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarEmpresaMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>empresaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Empresa</property-class>
+			<value>#{empresaMB.empresaBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarEstablecimientoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarEstablecimientoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>empresaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Empresa</property-class>
+			<value>#{empresaMB.empresaBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>pedidoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.PedidoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>pedidoBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Pedido</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPedidoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPedidoMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>pedidoBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Pedido</property-class>
+			<value>#{pedidoMB.pedidoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPedidoDetalleMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPedidoDetalleMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>pedidoBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Pedido</property-class>
+			<value>#{pedidoMB.pedidoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>buscarPedidoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.BuscarPedidoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>pedidoBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Pedido</property-class>
+			<value>#{pedidoMB.pedidoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>buscarEmpresaMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.BuscarEmpresaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>empresaBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Empresa</property-class>
+			<value>#{empresaMB.empresaBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<!-- add by hever -->
+	<managed-bean>
+		<managed-bean-name>reporteMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.ReporteMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>postulacionesProfesionalMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.PostulacionesProfesionalMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value>#{profesionalMB.profesionalBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaDiscapacidadMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaDiscapacidadMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaDatosMedicosMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaDatosMedicosMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaMotivacionMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaMotivacionMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaInteresesOcupacionalesMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaInteresesOcupacionalesMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarEvaluacionPerfilEmpleabilidadMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarEvaluacionPerfilEmpleabilidadMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaCondicionesTrabajoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaCondicionesTrabajoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaNecesidadesApoyoMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaNecesidadesApoyoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registrarPersonaComposicionFamiliarMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPersonaComposicionFamiliarMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>servicio</property-name>
+			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
+			<value>#{ServiceLocator}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>profesionalBean</property-name>
+			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Profesional</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>postulanteDatosGenerales</from-outcome>
+			<to-view-id>/jsp/postulanteDatosGenerales.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaPersonas</from-outcome>
+			<to-view-id>/jsp/listaPersonas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteExperiencia</from-outcome>
+			<to-view-id>/jsp/postulanteExperiencia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteFormacion</from-outcome>
+			<to-view-id>/jsp/postulanteFormacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteExamenes</from-outcome>
+			<to-view-id>/jsp/admPostulanteExamenes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaTipoExamen</from-outcome>
+			<to-view-id>/jsp/listaTipoExamen.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>preguntasExamen</from-outcome>
+			<to-view-id>/jsp/maestroExamenPreguntas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bandejaPostulante</from-outcome>
+			<to-view-id>/jsp/bandejaPostulante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteExamen</from-outcome>
+			<to-view-id>/jsp/postulanteExamen.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteEntrevista</from-outcome>
+			<to-view-id>/jsp/postulanteEntrevista.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>admPostulanteExamen</from-outcome>
+			<to-view-id>/jsp/admPostulanteExamen.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>programacionExamenes</from-outcome>
+			<to-view-id>/jsp/admProgramacionExamenes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>media</from-outcome>
+			<to-view-id>/jsp/media.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>admPostulaciones</from-outcome>
+			<to-view-id>/jsp/admPostulaciones.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaPerfiles</from-outcome>
+			<to-view-id>/jsp/perfil/listaPerfiles.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registroPerfil</from-outcome>
+			<to-view-id>/jsp/perfil/regPerfil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteCandidatoPreferencias</from-outcome>
+			<to-view-id>/jsp/postulante/postulanteCandidatoPreferencias.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulanteCandidatoIdiomas</from-outcome>
+			<to-view-id>/jsp/postulante/postulanteCandidatoIdiomas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarCandidatos</from-outcome>
+			<to-view-id>/jsp/comun/buscarCandidatos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>candidatoDatosPersonales</from-outcome>
+			<to-view-id>/jsp/candidato/candidatoCandidatoDatosPersonales.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>candidatoEmpleos</from-outcome>
+			<to-view-id>/jsp/candidato/candidatoCandidatoEmpleos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>candidatoPreferencias</from-outcome>
+			<to-view-id>/jsp/candidato/candidatoCandidatoPreferencias.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>candidatoIdiomas</from-outcome>
+			<to-view-id>/jsp/candidato/candidatoCandidatoIdiomas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>candidatoEstudios</from-outcome>
+			<to-view-id>/jsp/candidato/candidatoCandidatoEstudios.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarProfesionales</from-outcome>
+			<to-view-id>/jsp/busqueda/buscarProfesionales.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalDatosPersonales</from-outcome>
+			<to-view-id>/jsp/profesional/registrarDatosPersonales.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalEmpleos</from-outcome>
+			<to-view-id>/jsp/profesional/registrarEmpleos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalPreferencias</from-outcome>
+			<to-view-id>/jsp/profesional/registrarPreferenciaProfesion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalIdiomas</from-outcome>
+			<to-view-id>/jsp/profesional/registrarIdioma.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalCertificaciones</from-outcome>
+			<to-view-id>/jsp/profesional/registrarCertificacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalReferencias</from-outcome>
+			<to-view-id>/jsp/profesional/registrarReferencia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalExperienciaEspecialidades</from-outcome>
+			<to-view-id>/jsp/profesional/registrarExperienciaEspecialidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalContacto</from-outcome>
+			<to-view-id>/jsp/profesional/registrarContacto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalFormacion</from-outcome>
+			<to-view-id>/jsp/profesional/registrarFormacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registrarParametro</from-outcome>
+			<to-view-id>/jsp/parametro/registrarParametro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>administrarEspecialidad</from-outcome>
+			<to-view-id>/jsp/administracion/registrarEspecialidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registrarMaestro</from-outcome>
+			<to-view-id>/jsp/administracion/registrarMaestro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registrarConfiguracion</from-outcome>
+			<to-view-id>/jsp/parametro/registrarConfiguracion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registrarMaestroNombre</from-outcome>
+			<to-view-id>/jsp/administracion/registrarMaestroNombre.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioProfesional</from-outcome>
+			<to-view-id>/jsp/profesional/inicioProfesional.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>empresaDatos</from-outcome>
+			<to-view-id>/jsp/empresa/registrarDatosEmpresa.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>establecimientoDatos</from-outcome>
+			<to-view-id>/jsp/empresa/registrarDatosEstablecimiento.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarEmpleador</from-outcome>
+			<to-view-id>/jsp/empresa/buscarEmpresa.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearPedido</from-outcome>
+			<to-view-id>/jsp/pedido/registrarDatosPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detallePedido</from-outcome>
+			<to-view-id>/jsp/pedido/registrarDetallePedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formacionPedido</from-outcome>
+			<to-view-id>/jsp/pedido/registrarExperienciaPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarPedido</from-outcome>
+			<to-view-id>/jsp/pedido/buscarPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarPersonaPedido</from-outcome>
+			<to-view-id>/jsp/pedido/buscarPersonasPorPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>datosPostulacion</from-outcome>
+			<to-view-id>/jsp/postulacion/registrarDatosPostulacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaPostulaciones</from-outcome>
+			<to-view-id>/jsp/postulacion/buscarDatosPostulaciones.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<!-- add by hever -->
+		<navigation-case>
+			<from-outcome>reporte</from-outcome>
+			<to-view-id>/jsp/reporte/reporte.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuarioEmpresa</from-outcome>
+			<to-view-id>/jsp/empresa/usuarioEmpresa.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>postulaciones</from-outcome>
+			<to-view-id>/jsp/profesional/postulaciones.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalDatosDiscapacidad</from-outcome>
+			<to-view-id>/jsp/profesional/discapacidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalDatosMedicos</from-outcome>
+			<to-view-id>/jsp/profesional/datosMedicos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalDatosMotivacion</from-outcome>
+			<to-view-id>/jsp/profesional/motivacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalInteresOcupacional</from-outcome>
+			<to-view-id>/jsp/profesional/interesOcupacional.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalPerfilEmpleabilidad</from-outcome>
+			<to-view-id>/jsp/profesional/perfilEmplebilidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profesionalCondicionesTrabajo</from-outcome>
+			<to-view-id>/jsp/profesional/condicionesTrabajo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>necesidadesApoyo</from-outcome>
+			<to-view-id>/jsp/profesional/registrarNecesidadesApoyo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>composicionFamiliar</from-outcome>
+			<to-view-id>/jsp/profesional/registrarComposicionFamiliar.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<message-bundle>resources.application</message-bundle>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<variable-resolver>org.springframework.web.jsf.SpringBeanVariableResolver</variable-resolver>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+	</application>
+</faces-config>

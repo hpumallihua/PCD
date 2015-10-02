@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Pais"
+		table="SITB_PAIS">
+		<id name="id" type="string">
+			<column name="V_CODPAIS" length="3" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESPAIS" length="220" />
+		</property>
+	</class>
+</hibernate-mapping>

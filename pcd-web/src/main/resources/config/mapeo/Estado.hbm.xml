@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Estado" table="PDTBC_ESTADO">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODESTDO" scale="0">
+				<comment>CÓDIGO DEL ESTADO.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_ESTDOID</param>
+			</generator>
+		</id>
+
+		<discriminator force="false" insert="true" length="50"
+			not-null="true">
+			<column name="V_DSCRMNDOR" length="100">
+				<comment>DISCRIMINADOR DEL VALOR.</comment>
+			</column>
+		</discriminator>
+
+		<property name="descripcion" type="string">
+			<column name="V_DSCRPCON" length="100">
+				<comment>DESCRIPCION DE ESTADO.</comment>
+			</column>
+		</property>
+
+		<subclass discriminator-value="ESTADO_FORMACION"
+			name="pe.gob.trabajo.pcd.modelo.dominio.EstadoFormacion"
+			select-before-update="false" />
+
+		<!-- <set name="tiprfPrfsnalFormacions" table="TIPRF_PRFSNAL_FORMACION" 
+			inverse="true" lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="ID_ESTDO" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprfPrfsnalFormacion" 
+			/> -->
+		<!-- </set> -->
+	</class>
+</hibernate-mapping>

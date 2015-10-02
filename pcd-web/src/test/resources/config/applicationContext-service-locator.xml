@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="ServiceLocator" class="pe.gob.trabajo.pcd.servicio.ServiceLocatorImpl" scope="singleton">
+		<property name="maestroService">
+			<ref bean="MaestroService" />
+		</property>
+		
+		<property name="personaService">
+			<ref bean="PersonaService" />
+		</property>
+		
+<!--		<property name="postulanteService">-->
+<!--			<ref bean="PostulanteService" />-->
+<!--		</property>-->
+<!--		-->
+<!--		<property name="procesoService">-->
+<!--			<ref bean="ProcesoService" />-->
+<!--		</property>-->
+		
+		<property name="auditoriaService">
+			<ref bean="AuditoriaService" />
+		</property>
+		
+		<property name="profesionalService">
+			<ref bean="ProfesionalService" />
+		</property>
+		
+		<property name="empresaService">
+			<ref bean="EmpresaService" />
+		</property>
+		
+		<property name="pedidoService">
+			<ref bean="PedidoService" />
+		</property>
+	</bean>
+	
+</beans>

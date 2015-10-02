@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="MaestroService" class="pe.gob.trabajo.pcd.servicio.spring.maestro.MaestroServiceImpl">
+		<property name="maestroDAO">
+			<ref bean="MaestroDAO" />
+		</property>
+		<property name="proveedorMaestroDAO">
+			<ref bean="ProveedorMaestroDAO" />
+		</property>
+<!--		<property name="dao">-->
+<!--			<ref bean="MaestroDAO" />-->
+<!--		</property>-->
+	</bean>
+	
+	<bean id="PersonaService" class="pe.gob.trabajo.pcd.servicio.spring.comun.PersonaServiceImpl" scope="singleton">
+		<property name="personaDAO">
+			<ref bean="PersonaDAO" />
+		</property>
+		<property name="proveedorMaestroDAO">
+			<ref bean="ProveedorMaestroDAO" />
+		</property>
+<!--		<property name="postulanteDAO">-->
+<!--			<ref bean="PostulanteDAO" />-->
+<!--		</property>-->
+	</bean>
+	
+<!--	<bean id="PostulanteService" class="pe.gob.trabajo.pcd.servicio.spring.proceso.PostulanteServiceImpl" scope="singleton">-->
+<!--		<property name="postulanteDAO">-->
+<!--			<ref bean="PostulanteDAO" />-->
+<!--		</property>-->
+<!--		<property name="maestroDAO">-->
+<!--			<ref bean="MaestroDAO" />-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+<!--	<bean id="ProcesoService" class="pe.gob.trabajo.pcd.servicio.spring.proceso.ProcesoServiceImpl" scope="singleton">-->
+<!--		<property name="procesoDAO">-->
+<!--			<ref bean="ProcesoDAO" />-->
+<!--		</property>-->
+<!--		<property name="maestroDAO">-->
+<!--			<ref bean="MaestroDAO" />-->
+<!--		</property>-->
+<!--		<property name="postulanteDAO">-->
+<!--			<ref bean="PostulanteDAO" />-->
+<!--		</property>-->
+<!--		<property name="personaDAO">-->
+<!--			<ref bean="PersonaDAO" />-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+	<bean id="AuditoriaService" class="pe.gob.trabajo.pcd.servicio.spring.auditoria.AuditoriaServiceImpl" scope="singleton">
+		<property name="auditoriaDAO">
+			<ref bean="AuditoriaDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ProfesionalService" class="pe.gob.trabajo.pcd.servicio.spring.busqueda.ProfesionalServiceImpl" scope="singleton">
+		<property name="profesionalDAO">
+			<ref bean="ProfesionalDAO" />
+		</property>
+		<property name="proveedorMaestroDAO">
+			<ref bean="ProveedorMaestroDAO" />
+		</property>
+<!--		<property name="dao">-->
+<!--			<ref bean="ProfesionalDAO" />-->
+<!--		</property>-->
+	</bean>
+	
+	<bean id="CronService" class="pe.gob.trabajo.pcd.servicio.spring.programado.CronServiceImpl" scope="singleton">
+		<property name="maestroService">
+			<ref bean="MaestroService" />
+		</property>
+<!--		<property name="maestroDAO">-->
+<!--			<ref bean="MaestroDAO" />-->
+<!--		</property>-->
+	</bean>
+	
+	<bean id="EmpresaService" class="pe.gob.trabajo.pcd.servicio.spring.comun.EmpresaServiceImpl" scope="singleton">
+		<property name="empresaDAO">
+			<ref bean="EmpresaDAO" />
+		</property>
+	</bean>
+	
+	<bean id="PedidoService" class="pe.gob.trabajo.pcd.servicio.spring.comun.PedidoServiceImpl" scope="singleton">
+		<property name="pedidoDAO">
+			<ref bean="PedidoDAO" />
+		</property>
+	</bean>
+	
+</beans>

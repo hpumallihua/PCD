@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Usuario"
+		table="PDTBC_USUARIO">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODUSRO" scale="0">
+				<comment>CÓDIGO DEL USUARIO.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_USROID</param>
+			</generator>
+		</id>
+		<many-to-one name="persona"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Persona" fetch="select">
+			<column name="N_CODPRSNA" scale="0" not-null="false">
+				<comment>CÓDIGO DE LA PERSONA.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="empresa"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" fetch="select">
+			<column name="N_CODEMPRSA" scale="0" not-null="false">
+				<comment>CÓDIGO DE LA EMPRESA.</comment>
+			</column>
+		</many-to-one>
+		<!-- <one-to-one class="pe.gob.trabajo.pcd.modelo.dominio.Rol" constrained="true" 
+			name="rol"/> -->
+		<many-to-one name="rol"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Rol" fetch="select">
+			<column name="N_CODROL" precision="6" scale="0">
+				<comment>CÓDIGO DEL ROL.</comment>
+			</column>
+		</many-to-one>
+		<property name="nombreUsuario" type="string">
+			<column name="V_NOMBREUSR" length="254">
+				<comment>NOMBRE DEL USUARIO.</comment>
+			</column>
+		</property>
+		<property name="claveUsuario" type="string">
+			<column name="V_CLAVEUSR" length="254">
+				<comment>CLAVE DEL USUARIO.</comment>
+			</column>
+		</property>
+		<property name="codigoOficinaAsociada" type="string">
+			<column name="V_CODOFIC" length="4">
+				<comment>CÓDIGO DE LA OFICINA</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

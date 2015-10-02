@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Ubigeo" table="PDTBC_UBIGEO">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODUBGO" precision="6" scale="0">
+				<comment>CÓDIGO DEL UBIGEO.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_UBGOID</param>
+			</generator>
+		</id>
+		<property name="idDprtmnto" type="string">
+			<column name="V_CODDPTO" length="3">
+				<comment>CODIGO DEL DEPARTAMENTO.</comment>
+			</column>
+		</property>
+		<property name="idPrvnca" type="string">
+			<column name="V_CODPROV" length="3">
+				<comment>CÓDIGO DE LA PROVINCIA.</comment>
+			</column>
+		</property>
+		<property name="idDstrto" type="string">
+			<column name="V_CODDSTRTO" length="3">
+				<comment>CÓDIGO DEL DISTRITO.</comment>
+			</column>
+		</property>
+		<property name="nombre" type="string">
+			<column name="V_NOMBRE" length="254">
+				<comment>NOMBRE DEL UBIGEO.</comment>
+			</column>
+		</property>
+		<!-- <set name="tiprmPersonasForLgarRsdnca" table="TIPRM_PERSONA" inverse="true" 
+			lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="LGAR_RSDNCA" precision="6" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprmPersona" 
+			/> -->
+		<!-- </set> -->
+		<!-- <set name="tiprmPersonasForLgarNcmnto" table="TIPRM_PERSONA" inverse="true" 
+			lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="LGAR_NCMNTO" precision="6" scale="0" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprmPersona" 
+			/> -->
+		<!-- </set> -->
+	</class>
+</hibernate-mapping>

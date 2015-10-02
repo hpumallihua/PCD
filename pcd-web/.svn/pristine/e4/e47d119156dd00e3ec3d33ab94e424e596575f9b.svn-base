@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Ciiu"
+		table="SITB_CIIU">
+		<id name="id" type="string">
+			<column name="V_CODCIIU" length="10" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESCIIU" length="300" />
+		</property>
+		<property name="flgsunmin" type="java.lang.Integer">
+			<column name="I_FLGSUNMIN" scale="0" />
+		</property>
+		<property name="ciiuSunat" type="string">
+			<column name="V_CIIU_SUNAT" length="5" />
+		</property>
+	</class>
+</hibernate-mapping>

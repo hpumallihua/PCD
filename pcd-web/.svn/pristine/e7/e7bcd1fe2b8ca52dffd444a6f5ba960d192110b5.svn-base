@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.AuditData"
+		table="PDTBC_AUDITDATA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODAUDIT" precision="38" scale="0">
+				<comment>CÓDIGO DE LA AUDITORIA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_ADITDTAID</param>
+			</generator>
+		</id>
+		<property name="operacion" type="string">
+			<column name="V_OPRCON">
+				<comment>DESCRIPCIÓN DE LA OPERACIÓN</comment>
+			</column>
+		</property>
+
+		<property name="datos" type="string">
+			<column name="V_DATOSAUDI" length="2048">
+				<comment>DESCRIPCIÓN DE LA AUDITORIA</comment>
+			</column>
+		</property>
+
+		<property name="usuario" type="long">
+			<column name="N_CODUSR">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+
+		<property name="fecha" type="timestamp">
+			<column name="D_FECAUDIT">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

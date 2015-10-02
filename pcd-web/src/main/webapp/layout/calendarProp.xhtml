@@ -1,0 +1,30 @@
+<f:facet name="header">
+	<h:panelGrid columns="2" width="100%" columnClasses="width100, fake">
+		<h:outputText value="{selectedDateControl}" />
+		<h:outputText value="{todayControl}"
+			style="font-weight:bold; text-align:left" />
+	</h:panelGrid>
+</f:facet>
+
+<f:facet name="weekDay">
+	<h:panelGroup style="width:60px; overflow:hidden;" layout="block">
+		<h:outputText value="{weekDayLabelShort}" />
+	</h:panelGroup>
+</f:facet>
+
+<f:facet name="weekNumber">
+	<h:panelGroup>
+		<h:outputText value="{weekNumber}" style="color:red" />
+	</h:panelGroup>
+</f:facet>
+
+<f:facet name="footer">
+	<h:panelGrid columns="3" width="100%"
+		columnClasses="fake, width100 talign">
+		<h:outputText value="{previousMonthControl}" style="font-weight:bold;" />
+		<h:outputText value="{currentMonthControl}" style="font-weight:bold;" />
+		<h:outputText value="{nextMonthControl}" style="font-weight:bold;" />
+	</h:panelGrid>
+</f:facet>
+
+<h:outputText value="{day}"></h:outputText>

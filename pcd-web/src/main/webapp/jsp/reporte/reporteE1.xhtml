@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmReporteE1">
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel style="background-color: #FFFFFF;" rendered="true">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Reportes" />
+					</h:panelGroup>
+				</f:facet>
+
+
+				<t:panelGrid columns="2" styleClass="gridContent">
+					<t:outputLabel title="Reporte" value="Reporte:" for="comboReporte" />
+					<t:panelGroup>
+						<h:selectOneMenu id="comboReporte"
+							style="width: 100%; #{UtilBean.estiloCampoRequerido}"
+							value="#{reporteMB.idReporte}">
+							<f:selectItem itemValue="100" itemLabel="PCD1 - PERFIL DE BENEFICIARIOS"/>
+							<f:selectItem itemValue="200" itemLabel="PCD2 - BENEFICIARIOS SEGÚN EDAD, SEXO Y TIPO DE DISCAPACIDAD"/>
+							<f:selectItem itemValue="300" itemLabel="PCD3 - EMPRESAS USUARIAS"/>
+							<f:selectItem itemValue="400" itemLabel="PCD4 - EMPRESAS SEGÚN ACTIVIDAD ECONÓMICA Y TAMAÑO"/>
+							<f:validateLongRange minimum="1" />
+						</h:selectOneMenu>
+					</t:panelGroup>
+					
+					<t:outputLabel title="Consultor" value="Consultor:" for="comboConsultores" />
+					<t:panelGroup>
+						<h:selectOneMenu id="comboConsultores"
+							style="width: 100%; #{UtilBean.estiloCampoRequerido}"
+							value="#{reporteMB.idConsultor}">
+							<f:selectItems value="#{reporteMB.itemsConsultores}"/>
+						</h:selectOneMenu>
+					</t:panelGroup>
+					<t:outputLabel title="Oficina" value="Oficina:" for="comboOficinas" />
+					<t:panelGroup>
+						<h:selectOneMenu id="comboOficinas"
+							style="width: 100%; #{UtilBean.estiloCampoRequerido}"
+							value="#{reporteMB.idOficina}">
+							<f:selectItems value="#{reporteMB.itemsOficinas}"/>
+						</h:selectOneMenu>
+					</t:panelGroup>
+					
+					<t:outputLabel title="Desde" value="Desde:" />
+					<t:panelGroup>
+						<rich:calendar id="desde" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="true"
+							showApplyButton="false" enableManualInput="true"
+							inputStyle="#{UtilBean.estiloCampoRequerido}"
+							value="#{reporteMB.fechaInicio}" datePattern="dd/MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet>
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet> 
+						</rich:calendar>
+					</t:panelGroup>
+
+					<t:outputLabel title="Hasta" value="Hasta:" />
+
+					<t:panelGroup>
+						<rich:calendar id="hasta" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="true"
+							showApplyButton="false" enableManualInput="true"
+							inputStyle="#{UtilBean.estiloCampoRequerido}"
+							value="#{reporteMB.fechaFin}" datePattern="dd/MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet> 
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet>
+						</rich:calendar>
+					</t:panelGroup>
+				</t:panelGrid>
+
+				<h:commandButton action="#{reporteMB.pdf}" value="Buscar"
+					styleClass="columnaAcciones" />
+
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+</ui:composition>
+</html>

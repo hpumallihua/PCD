@@ -1,0 +1,126 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+
+	<t:panelGrid columns="1" styleClass="gridContent" id="criteriosDatosPersonales">
+	
+        
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Datos para la busqueda de Pedido"
+				styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		
+				
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,celdaSeparadorFormulario,,,">
+
+			
+			<rich:spacer width="10" height="10" title="espacio" />
+			<t:outputLabel
+				title="Ingresar un nombre del puesto para la busqueda"
+				value="Nombre:"
+				for="descriBuscaPedido" />	
+			<t:panelGroup colspan="4">
+				<a4j:region>
+					<h:inputText id="descriBuscaPedido" tabindex="0"
+						value="#{buscarPedidoMB.busquedaBean.pedido.nombre}"
+						style=" " maxlength="254" 
+						title="Longitud máxima: 254 caracteres" styleClass="width100"/> 
+				</a4j:region>
+			</t:panelGroup>
+			<h:outputText value=" " />
+			  
+			
+			<rich:spacer width="5" height="5" title="espacio" /> 
+			<t:outputLabel title="Seleccionar fecha inicial:" value="Fecha inicio:" for="desde"/>		   
+			<t:panelGroup>
+					<rich:calendar id="desde" popup="true" locale="es_PE"   
+						showWeekDaysBar="false" showWeeksBar="false"  
+						showApplyButton="false" enableManualInput="true"
+						inputStyle="#{UtilBean.estiloCampoRequerido}"
+						value="#{buscarPedidoMB.busquedaBean.fechaRegistroIni}"
+						datePattern="dd/MM/yyyy">
+						<f:facet name="header">
+							<h:panelGrid columns="3" width="100%"
+								columnClasses="fake, width100 talign">
+								<h:outputText value="{previousMonthControl}"
+									style="font-weight:bold;" />
+								<h:outputText value="{currentMonthControl}"
+									style="font-weight:bold;" />
+								<h:outputText value="{nextMonthControl}"
+									style="font-weight:bold;" />
+							</h:panelGrid>
+						</f:facet>
+						<h:outputText value="{day}"></h:outputText>
+						<f:facet name="footer">
+							<h:outputText value="{selectedDateControl}" />
+						</f:facet>
+					</rich:calendar>
+			</t:panelGroup>
+			<h:outputText value=" " />			
+			  
+			<t:outputLabel title="Seleccionar fecha fin:" value="Fecha fin:" for="hasta"/>		   
+			<t:panelGroup>
+				<rich:calendar id="hasta" popup="true" locale="es_PE"  
+					showWeekDaysBar="false" showWeeksBar="false"  
+					showApplyButton="false" enableManualInput="true"
+					inputStyle="#{UtilBean.estiloCampoRequerido}"
+					value="#{buscarPedidoMB.busquedaBean.fechaRegistroFin}"
+					datePattern="dd/MM/yyyy">
+					<f:facet name="header">
+						<h:panelGrid columns="3" width="100%"
+							columnClasses="fake, width100 talign">
+							<h:outputText value="{previousMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{currentMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{nextMonthControl}"
+								style="font-weight:bold;" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="{day}"></h:outputText>
+					<f:facet name="footer">
+						<h:outputText value="{selectedDateControl}" />
+					</f:facet>
+				</rich:calendar>
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			
+		  <rich:spacer width="5" height="5" title="espacio" />
+		  <t:outputLabel title="Seleccionar la profesion para el pedido"
+						 value="Profesion:" for="profesionId"/>									 
+		  <t:panelGroup>
+		    <h:outputText value=" " />
+		  </t:panelGroup>	
+		  <h:outputText value=" " />
+		  	
+		  <t:outputLabel title="Seleccionar estudios formales"
+							 value="Estudios formales:" for="nivelId" />
+		  <t:panelGroup>					 		   
+		  	<h:outputText value=" " />		
+		  </t:panelGroup>	
+		  <h:outputText value=" " />
+		  
+		  <rich:spacer width="5" height="5" title="espacio" /> 
+		  <t:outputLabel title="Seleccionar Ocupacion"
+						 value="Ocupacion:" for="ocupacId"/>					    
+		  <t:panelGroup colspan="4">
+		  	 <h:outputText value=" " />
+		  </t:panelGroup>						  
+		  <h:outputText value=" " />
+				
+		</t:panelGrid> 
+
+	</t:panelGrid>
+
+</ui:composition>
+</html>

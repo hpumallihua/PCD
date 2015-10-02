@@ -1,0 +1,20 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:spacer width="1" height="10" title="espacio" />
+	<rich:separator lineType="beveled" height="3" width="100%"
+		align="center" />
+		<div Class="footer">
+		 
+		Ministerio de trabajo y Promocion de Empleo <br/>
+	  Contactenos a informes@trabajo.gob.pe <br/>
+	  LIMA-PERU 2013
+		
+		</div>
+	
+
+</ui:composition>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.ContactoMedio"
+		table="PDTBC_CONTMEDIO">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODCTOMDO" scale="0">
+				<comment>CÓDIGO DEL CONTACTO MEDIO.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_CNTCTOMDOID</param>
+			</generator>
+		</id>
+		<many-to-one name="tipoContacto"
+			class="pe.gob.trabajo.pcd.modelo.dominio.TipoContacto" fetch="select"
+			lazy="false">
+			<column name="N_CODTPOCTO" precision="3" scale="0">
+				<comment>CÓDIGO DEL TIPO DE CONTACTO.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="contacto"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Contacto" fetch="select">
+			<column name="N_CODCNTCTO" scale="0">
+				<comment>CÓDIGO DEL CONTACTO.</comment>
+			</column>
+		</many-to-one>
+		<property name="valor" type="string">
+			<column name="V_VALORCONT" length="254">
+				<comment>DESCRIPCION DEL VALOR</comment>
+			</column>
+		</property>
+		<property name="orden" type="java.lang.Integer">
+			<column name="N_ORDENCONT">
+				<comment>NUMERO DE ORDEN.</comment>
+			</column>
+		</property>
+		<one-to-one name="contactoRedSocial"
+			class="pe.gob.trabajo.pcd.modelo.dominio.ContactoRedSocial"
+			cascade="delete-orphan"></one-to-one>
+	</class>
+</hibernate-mapping>

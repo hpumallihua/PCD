@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Ocupacion"
+		table="SITB_OCUPACION">
+		<id name="id" type="string">
+			<column name="V_CODOCUPAC" length="6" />
+		</id>
+		<many-to-one name="grupoOcupacion"
+			class="pe.gob.trabajo.pcd.modelo.dominio.GrupoOcupacion" fetch="select">
+			<column name="V_CODGGOCUP" length="1" not-null="true" />
+		</many-to-one>
+		<property name="descripcion" type="string">
+			<column name="V_DESOCUPAC" length="450" />
+		</property>
+		<property name="flgsunmin" type="java.lang.Integer">
+			<column name="N_FLGSUNMIN" scale="0" />
+		</property>
+		<property name="flginei" type="string">
+			<column name="V_FLGINEI" length="1" />
+		</property>
+	</class>
+</hibernate-mapping>

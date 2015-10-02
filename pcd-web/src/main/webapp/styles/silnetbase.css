@@ -1,0 +1,194 @@
+.cuerpo {
+	width: 800px;
+	text-align: left;
+}
+
+.gridContent {
+	vertical-align: top;
+	width: 100%;
+}
+
+.gridContentCenter {
+	vertical-align: top;
+	width: 100%;
+	text-align: center;
+}
+
+.gridContentTop {
+	vertical-align: top;
+}
+
+.gridContentDosElementos {
+	width: 50%;
+}
+
+.numeroPregunta {
+	width: 20px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.alternativaRespuesta {
+	width: 20px;
+	font-weight: bold;
+}
+
+.enunciadoPregunta {
+	font-weight: bold;
+}
+
+.cuerpoPregunta {
+	font-family: monospace;
+	font-weight: normal;
+}
+.respuestaPregunta {
+	font-weight: bold;
+}
+
+.respuestaPreguntaEvaluacion {
+	font-family: monospace;
+}
+
+.formularioColumnaEtiqueta {
+	width: 60px;
+}
+
+.columnaIzquierda {
+	text-align: left;
+}
+.columnaDerecha {
+	text-align: right;
+}
+.columnaCentro {
+	text-align: center;
+}
+
+.columnaSexo {
+	vertical-align: middle;
+	width: 20px;
+	text-align: center;
+}
+
+.columnaAcciones {
+	vertical-align: middle;
+	width: 80px;
+	text-align: center;
+}
+
+.columnaAcciones img {
+	text-decoration: none;
+	border: 0;
+}
+
+.rich-pmenu-hovered-element {
+	font-weight: bold;
+}
+
+.rich-pmenu-disabled-element {
+	cursor: default;
+}
+
+button[type="button"],button[type="reset"],button[type="submit"],input[type="reset"],input[type="submit"],input[type="button"]
+	{
+	border-color: #C0C0C0;
+	font-size: 11px;
+	font-family: Arial, Verdana, sans-serif;
+	color: #FFF;
+	background-color: #666;
+	background-image: url(/);
+}
+
+input[type=text], input[type=textarea] {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #A59D9D;
+}
+
+input[type=text][disabled],input[type=textarea][disabled], select[disabled], input[type=submit][disabled] {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #808080;
+}
+
+select {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #A59D9D;
+	width: 100%;
+}
+
+.width100 {
+	width: 99%;
+}
+
+.width100p {
+	width: 100%;
+}
+
+.talign {
+	text-align: center;
+}
+
+.guardarRespuestas {
+	width: 40px;
+}
+
+.rich-calendar-input {
+	width: 80%;
+}
+
+.columnaArbol {
+	width: 130px;
+	vertical-align: top;
+	overflow: scroll;
+	height: 300px;
+}
+
+.columnaTecnologias {
+	width: 100%;
+	vertical-align: top;
+}
+
+.textoTecnologiaNombre {
+	font-weight: bold;
+	font-size: large;
+}
+
+.textoTecnologiaDescripcion {
+	font-weight: normal;
+}
+
+.marcoFila {
+	border-style: solid;
+	border-color: fuchsia;
+	border: 1px;
+}
+
+#holder {
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			border: solid 1px #333;
+			height: 200px;
+			width: 200px;
+		}
+
+.tituloSeccion {
+	font-size: large;
+	text-align: left;
+	color: #808080;
+	height:127px;
+	margin-bottom:0px;
+}
+.lineaTitulo {
+	background-color: #808080;
+	background-image: url('');
+}
+
+.textoResaltado {
+	font-weight: bold;
+}
+
+
+.nada {
+}
+

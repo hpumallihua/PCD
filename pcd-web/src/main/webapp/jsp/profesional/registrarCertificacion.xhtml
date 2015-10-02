@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<script type="text/javascript">
+            function validarAnio(){
+            if(Number(document.getElementById('ann').value) > Number(document.getElementById('vigh').value))
+            return true
+            return false     
+            }   
+    </script>
+
+	<ui:define name="tituloPagina">Certificaciones</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    	</script>
+		<h:form>
+			<t:panelGrid columns="1" styleClass="gridContent"
+				id="gridDatosGenerales">
+				<rich:panel styleClass="gridContent"
+					style="background-color: #FFFFFF;"
+					rendered="#{registrarCertificacionMB.accionRealizada eq registrarCertificacionMB.acciones.ACCION_NUEVO
+							or 
+							registrarCertificacionMB.accionRealizada eq registrarCertificacionMB.acciones.ACCION_EDITAR
+							or
+							registrarCertificacionMB.accionRealizada eq registrarCertificacionMB.acciones.ACCION_VISUALIZAR}">
+
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText
+								value="#{msg['prf-registro-certificacion-certificaciones-de']} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.nombres} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+						</h:panelGroup>
+					</f:facet>
+					<t:panelGrid columns="4" styleClass="gridFormulario"
+						columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer,celdaExtremoFormulario,celdaExtremoFormulario">
+						<h:outputLabel
+							title="#{msg['prf-ayuda-certificaciones-denominacion']}"
+							value="#{msg['prf-registro-certificacion-formulario-denominacion']}:"
+							for="nombre" />
+
+						<t:panelGroup colspan="2">
+							<h:inputText id="nombre"
+								onkeyup="contar(this, #{rich:element('outActividades')}, 1000)"
+								value="#{registrarCertificacionMB.bean.nombre}"
+								styleClass="width100" required="true"
+								style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+								validatorMessage="bla bla" />
+						</t:panelGroup>
+						<h:outputText styleClass="body" value=" (*)" />
+
+						<t:panelGroup colspan="3" styleClass="contadorCaracteres">
+
+							<h:outputText styleClass="body" value=" " />
+							<h:outputLabel id="outActividades" value="*"
+								title="Contador de caracteres" />
+						</t:panelGroup>
+						<rich:spacer width="5" height="5" title="espacio" />
+
+
+						<h:outputLabel
+							title="#{msg['prf-ayuda-certificaciones-tecnologia']}"
+							value="#{msg['prf-registro-certificacion-formulario-tecnologia']}:"
+							for="idEspecialidad" />
+						<t:panelGroup colspan="2">
+							<h:inputHidden id="idEspecialidad" required="false"
+								value="#{registrarCertificacionMB.bean.idOcupacion}" />
+							<h:inputText id="descripcionEspecialidad" required="false"
+								maxlength="254" title="Longitud máxima: 254 caracteres"
+								value="#{registrarCertificacionMB.bean.descripcionObjetoOcupacion}"
+								styleClass="width100"
+								ondblclick="#{rich:component('suggestionEspecialidad')}.callSuggestion(true)" />
+							<rich:suggestionbox width="450" border="1" shadowDepth=""
+								usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+								onobjectchange="printObjectsSelected(#{rich:element('idEspecialidad')}, #{rich:component('suggestionEspecialidad')});"
+								suggestionAction="#{registrarCertificacionMB.autocompletarOcupacion}"
+								var="especialidad" for="descripcionEspecialidad"
+								fetchValue="#{especialidad.descripcion}"
+								id="suggestionEspecialidad">
+								<h:column>
+									<h:outputText value="#{especialidad.descripcion}" />
+								</h:column>
+							</rich:suggestionbox>
+						</t:panelGroup>
+						<h:graphicImage value="/images/arrow.png"
+							onclick="#{rich:component('suggestionEspecialidad')}.callSuggestion(true)"
+							alt="" />
+
+						<h:outputLabel
+							title="#{msg['prf-ayuda-certificaciones-descripcion']}"
+							value="#{msg['prf-registro-certificacion-formulario-descripcion']}:"
+							for="descripcion" />
+						<t:panelGroup colspan="2">
+							<h:inputTextarea
+								onkeyup="contar(this, #{rich:element('outActividad')}, 254)"
+								id="descripcion"
+								value="#{registrarCertificacionMB.bean.descripcion}"
+								styleClass="width100" maxlength="254" />
+						</t:panelGroup>
+						<rich:spacer width="5" height="5" title="espacio" />
+						<rich:spacer width="5" height="5" title="espacio" />
+						<t:panelGroup colspan="2" styleClass="contadorCaracteres">
+							<h:outputText styleClass="body" value=" " />
+							<h:outputLabel id="outActividad" value="*"
+								title="Contador de caracteres" />
+						</t:panelGroup>
+						<rich:spacer width="5" height="5" title="espacio" />
+
+
+						<h:outputLabel title="#{msg['prf-ayuda-certificaciones-anio']}"
+							value="#{msg['prf-registro-certificacion-fomulario-anio']}:"
+							for="ann" />
+						<t:panelGroup colspan="2">
+							<t:panelGrid columns="2" styleClass="gridContent"
+								columnClasses=",columnaDerecha">
+								<h:panelGroup>
+									<h:inputText id="ann" required="true"
+										value="#{registrarCertificacionMB.bean.anio}"
+										style="width: 120px; #{UtilBean.estiloCampoRequerido}">
+										<f:validateLongRange minimum="1960" />
+									</h:inputText>
+									<h:outputText styleClass="body" value=" (*)" />
+
+								</h:panelGroup>
+								<h:panelGroup>
+									<h:outputLabel
+										title="#{msg['prf-ayuda-certificaciones-vigente-hasta']}"
+										value="#{msg['prf-registro-certificacion-formulario-vigente-hasta']}:"
+										for="vigh" />
+									<rich:spacer width="10" height="5" title="espacio" />
+									<h:inputText id="vigh" required="false"
+										value="#{registrarCertificacionMB.bean.vigenteHasta}"
+										style="width: 120px">
+
+									</h:inputText>
+								</h:panelGroup>
+							</t:panelGrid>
+						</t:panelGroup>
+					</t:panelGrid>
+
+					<rich:separator lineType="beveled" height="3" width="100%"
+						style="background-color: #808080; background-image: url('');"
+						align="center" />
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<rich:spacer width="5" height="5" title="espacio" />
+						<t:panelGroup>
+							<a4j:commandButton
+								rendered="#{sesionMB.usuarioSesion.rolAdministrador}"
+								value="#{registrarCertificacionMB.bean.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? 'Invalidar':'Validar'}"
+								action="#"
+								disabled="#{!(registrarCertificacionMB.bean.id gt 0) or (!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional))}"
+								actionListener="#{registrarCertificacionMB.validarDato}"
+								reRender="gridDatosGenerales, dataCertificaciones"
+								styleClass="botonBuscar" />
+
+							<rich:spacer width="5" height="5" title="espacio" />
+
+							<a4j:commandButton
+								value="#{msg['prf-registro-certificacion-formulario-cancelar']}"
+								actionListener="#{registrarCertificacionMB.cancelar}"
+								reRender="gridDatosGenerales,dataCertificaciones"
+								immediate="true" styleClass="botonBuscar" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<a4j:commandButton
+								value="#{msg['prf-registro-certificacion-formulario-guardar']}"
+								disabled="#{(registrarCertificacionMB.bean.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO and !(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo)) or 
+									(!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional))}"
+								actionListener="#{registrarCertificacionMB.guardar}"
+								reRender="gridDatosGenerales, dataCertificaciones"
+								styleClass="botonBuscar"
+								onclick="Richfaces.showModalPanel('modalEstado')"
+								oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+						</t:panelGroup>
+
+					</t:panelGrid>
+				</rich:panel>
+			</t:panelGrid>
+		</h:form>
+
+
+
+		<h:form>
+
+			<rich:dataTable id="dataCertificaciones" var="certificacion"
+				styleClass="gridContent"
+				rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" width="600px"
+				value="#{registrarCertificacionMB.certificaciones}"
+				columnClasses=",,columnaCentro,columnaCentro,columnaAcciones">
+				<f:facet name="header">
+
+					<h:panelGroup>
+
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+
+
+							<h:panelGroup>
+								<h:outputText
+									value="#{msg['prf-registro-certificacion-lista-lista-certificaciones']} " />
+								<h:panelGroup
+									rendered="#{registrarCertificacionMB.accionRealizada eq registrarCertificacionMB.acciones.ACCION_LISTAR}">
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.nombres} " />
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+									<h:outputText
+										value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<a4j:commandLink styleClass="columnaAcciones"
+								rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+								actionListener="#{registrarCertificacionMB.nuevo}"
+								reRender="gridDatosGenerales, dataCertificaciones"
+								title="Registrar Nueva Certificación">
+								<h:graphicImage value="/images/nuevo.png"
+									alt="Registrar Nueva Certificación" />
+							</a4j:commandLink>
+						</h:panelGrid>
+					</h:panelGroup>
+
+				</f:facet>
+
+
+				<rich:column sortBy="#{certificacion.nombre}"
+					styleClass="#{certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['prf-registro-certificacion-lista-denominacion']}" />
+					</f:facet>
+					<h:panelGroup>
+						<h:graphicImage
+							rendered="#{(certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+							value="/images/validado.png" alt="Validado" title="Validado" />
+						<rich:spacer
+							rendered="#{!(certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+							width="16" height="5" title="espacio" />
+						<rich:spacer width="5" height="5" title="espacio" />
+					</h:panelGroup>
+					<h:outputText value="#{certificacion.nombre}" />
+					<h:outputText
+						rendered="#{certificacion.descripcionOcupacion ne null}"
+						value=" ( #{certificacion.descripcionOcupacion} ) " />
+				</rich:column>
+
+				<rich:column
+					styleClass="#{certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['prf-registro-certificacion-lista-descripcion']}" />
+					</f:facet>
+					<h:outputText value="#{certificacion.descripcion}" />
+				</rich:column>
+				<rich:column sortBy="#{certificacion.anio}"
+					styleClass="#{certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['prf-registro-certificacion-lista-anio']}" />
+					</f:facet>
+					<h:outputText value="#{certificacion.anio}" />
+				</rich:column>
+				<rich:column sortBy="#{certificacion.vigenteHasta}"
+					sortOrder="DESCENDING"
+					styleClass="#{certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+					<f:facet name="header">
+						<h:outputText value="Vigente Hasta" />
+					</f:facet>
+					<h:outputText value="#{certificacion.vigenteHasta}" />
+				</rich:column>
+				<rich:column
+					styleClass="#{certificacion.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['prf-registro-certificacion-lista-acciones']}" />
+					</f:facet>
+					<h:commandLink>
+						<f:param id="certificacionPrm" name="certificacionPrm"
+							value="#{certificacion}" />
+					</h:commandLink>
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+						actionListener="#{registrarCertificacionMB.editar}"
+						reRender="gridDatosGenerales" title="Ver Detalle">
+						<h:graphicImage value="/images/ver.png" alt="Ver Detalle" />
+					</a4j:commandLink>
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+						actionListener="#{registrarCertificacionMB.editar}"
+						reRender="gridDatosGenerales" title="Editar Certificación">
+						<h:graphicImage value="/images/editar.png"
+							alt="#{msg['prf-registro-certificacion-lista-accion-editar']}" />
+					</a4j:commandLink>
+					<rich:spacer width="10" height="5" title="espacio" />
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+						onclick="if (!confirmar('#{tipo.dscrpcon}')) return false;"
+						actionListener="#{registrarCertificacionMB.eliminar}"
+						reRender="gridDatosGenerales, dataCertificaciones"
+						title="Eliminar Certificación">
+						<h:graphicImage value="/images/eliminar.png"
+							alt="#{msg['prf-registro-certificacion-lista-accion-eliminar']}" />
+					</a4j:commandLink>
+				</rich:column>
+				<f:facet name="footer">
+					<rich:datascroller for="dataCertificaciones"
+						renderIfSinglePage="false"></rich:datascroller>
+				</f:facet>
+			</rich:dataTable>
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	//output.value = sgcomponent.getSelectedItems().pluck('id');
+            	output.value = output.value + ',' + sgcomponent.getSelectedItems().pluck('id');            	
+            }
+            function showCheckedValue(op){
+               if(op==1){
+	               //alert(document.getElementById('frmDatosGenerales:expReq').checked);
+	               if(document.getElementById('frmDatosGenerales:expReq').checked){
+	            	   document.getElementById('frmDatosGenerales:idexpReq').value="1";
+	            	   //alert(document.getElementById('frmDatosGenerales:idexpReq').value);
+	            	   document.getElementById('frmDatosGenerales:idNumexpReq').style.visibility='visible'; 
+	            	   document.getElementById('frmDatosGenerales:numexpReq').style.visibility='visible'; 
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:idexpReq').value="0";
+	            	   //alert(document.getElementById('frmDatosGenerales:idexpReq').value);
+	            	   document.getElementById('frmDatosGenerales:idNumexpReq').style.visibility='hidden'; 
+	            	   document.getElementById('frmDatosGenerales:numexpReq').style.visibility='hidden'; 
+	               }
+               }
+               if(op==2){
+            	   if(document.getElementById('frmDatosGenerales:tipoContrato').checked){
+	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="1";
+	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='hidden'; 
+	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='hidden'; 
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="0"; 
+	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='visible'; 
+	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='visible';
+	               }          	   
+               }
+            }
+            function asignarLugar(dep, prov, dis, sgcomponent){
+            	dep.value = sgcomponent.getSelectedItems().pluck('idDprtmnto');
+            	prov.value = sgcomponent.getSelectedItems().pluck('idPrvnca');
+            	dis.value = sgcomponent.getSelectedItems().pluck('idDstrto');
+            }
+    </script>
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Que hace la persona" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,,celdaExtremoFormulario">
+
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las tareas para el puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Tareas del puesto:" for="descripTarea"/>
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripTarea"
+					onkeyup="contar(this, #{rich:element('outTarea')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.tareas}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />	
+					
+			<rich:spacer width="5" height="5" title="espacio" />
+			
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outTarea" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las operaciones relacionadas al puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Operaciones a realizar:" for="descripOpera" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripOpera"
+					onkeyup="contar(this, #{rich:element('outOpera')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.operaciones}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outOpera" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />		
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las funciones relacionadas al puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Funciones a realizar:" for="descripFunciona" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripFunciona"
+					onkeyup="contar(this, #{rich:element('outFunciona')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.funciones}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outFunciona" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />		    
+			
+			
+		</t:panelGrid> 
+
+		
+
+
+		
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Uso de maquinarias y/o herramientas" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,,celdaExtremoFormulario">
+		
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Nombrar las maquinarias que se utilizaran para el puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Maquinarias:" for="descripMaquina" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripMaquina"
+					onkeyup="contar(this, #{rich:element('outMaquina')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.maquinarias}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outMaquina" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Nombrar las herramientas que se utilizaran para el puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Herramientas:" for="descripHerra" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripHerra"
+					onkeyup="contar(this, #{rich:element('outHerra')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.herramientas}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outHerra" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las observaciones realacionadas al puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Observaciones:" for="descripObser" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripObser"
+					onkeyup="contar(this, #{rich:element('outObser')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.observaciones}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outObser" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+		
+		</t:panelGrid>
+		
+		
+		
+		
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Relaciones de Trabajo" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,,celdaExtremoFormulario">
+		
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="El puesto requiere trabajar en grupo?, para ingresar la siguente linea presione shift + enter" 
+						    value="Trabajo en Grupo:" for="descripTrabGrupo" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripTrabGrupo"
+					onkeyup="contar(this, #{rich:element('outTrabGrupo')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.trabajoGrupo}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outTrabGrupo" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="El puesto requiere aspectos actitudinales y habilidades sociales?, para ingresar la siguente linea presione shift + enter" 
+						    value="Actitudes y Habilidad :" for="descripHabil" />
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripHabil"
+					onkeyup="contar(this, #{rich:element('outHabil')}, 1000)"
+					value="#{registrarPedidoDetalleMB.pedidoBean.habilidadSocial}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outHabil" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+		
+		</t:panelGrid>
+		
+		
+		<rich:spacer width="5" height="25" title="espacio" />
+		
+		
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Experiencia Requerida" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses=",,,celdaSeparadorFormulario,,,">
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar una descripcion para el puesto"
+				value="Nivel Educativo:" for="descripcionNivelEducativo" />
+			<t:panelGroup colspan="4">
+				<h:inputHidden id="idNivelEducativo" value="" />
+				<h:inputText id="descripcionNivelEducativo" required="false"
+					maxlength="254" title="Longitud mÃ¡xima: 254 caracteres"					
+					value="#{registrarPedidoMB.pedidoBean.nivelEducativo}"					
+					style="#{UtilBean.estiloCampoRequerido}" styleClass="width100"
+					ondblclick="#{rich:component('suggestionNivelEducativo')}.callSuggestion(true)" />
+				
+				<rich:suggestionbox width="450" border="1" shadowDepth=""
+					usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+					onobjectchange="printObjectsSelected(#{rich:element('idNivelEducativo')}, #{rich:component('suggestionNivelEducativo')});"
+					suggestionAction="#{registrarPedidoMB.autocompletarNivelEducativo}"
+					var="nivelEducativo" for="descripcionNivelEducativo"
+					fetchValue="#{nivelEducativo.descripcion}"
+					id="suggestionNivelEducativo" tokens=";">
+					<h:column>
+						<h:outputText value="#{nivelEducativo.descripcion}" />
+					</h:column>
+				</rich:suggestionbox>
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			
+
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Indicar si requiere experiencia"
+				value="Experiencia requerida:" for="expReq" />
+			<t:panelGroup>
+				<h:inputHidden id="idexpReq"
+					value="#{registrarPedidoMB.pedidoBean.personalACargo}" />
+				<h:selectBooleanCheckbox id="expReq" onclick="showCheckedValue(1)" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			<t:outputLabel title="Indicar el valor de meses de la experiencia requerida"
+				value="Experiencia en meses:" for="numexpReq" id="idNumexpReq"
+				style="visibility:hidden;" />
+			<h:inputText id="numexpReq" onkeyup="#{UtilBean.campoSoloEntero}"
+				value="#{registrarPedidoMB.pedidoBean.numPersonalACargo}"
+				maxlength="10" title="Digite la cantidad de personas a cargo"
+				styleClass="width5"
+				style="visibility:hidden; #{UtilBean.estiloCampoNumerico}" />
+			<h:outputText value=" " /> 
+			
+			
+			
+			
+						
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar la organizacion"
+				value="Organizacion:" for="organ" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="organ"
+					value="#{registrarPedidoMB.pedidoBean.organigrama}" required="false"
+					maxlength="254" title="Longitud máxima: 254 caracteres"
+					styleClass="width100"  />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las condiciones"
+				value="Condiciones del puesto:" for="condic" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="condic"
+					value="#{registrarPedidoMB.pedidoBean.condiciones}"
+					maxlength="254" title="Longitud máxima: 254 caracteres"
+					styleClass="width100" />
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar informacion complementaria"
+				value="Informacion complementaria:" for="infocomp" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="infocomp"
+					value="#{registrarPedidoMB.pedidoBean.infoComplementaria}"
+					maxlength="254" title="Longitud máxima: 254 caracteres"
+					styleClass="width100" />
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+				
+			
+		</t:panelGrid> 
+
+		
+		
+		
+			
+		
+		<!-- FIN -->
+		<rich:spacer width="5" height="25" title="espacio" />
+
+
+		
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="buscarPedido" immediate="true"
+						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{(!sesionMB.usuarioSesion.rolEmpleador and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_PEDIDO}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:commandButton action="#"
+						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+						disabled="#{sesionMB.usuarioSesion.rolProfesional}"
+						actionFor="frmDatosGenerales,frmMenu"
+						actionListener="#{registrarPedidoDetalleMB.guardar}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+
+		
+		
+
+	</h:form>
+
+</ui:composition>
+
+</html>

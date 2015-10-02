@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.TipoDocumento"
+		table="SITB_TDOCIDE">
+		<cache usage="read-only" />
+		<id name="id" type="string">
+			<column name="V_CODTDOCIDE" length="2" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESTDOCIDE" length="50" />
+		</property>
+		<property name="abreviatura" type="string">
+			<column name="V_DESABR" length="10" />
+		</property>
+		<property name="flgsunmin" type="java.lang.Integer">
+			<column name="N_FLGSUNMIN" scale="0" />
+		</property>
+		<property name="estado" type="java.lang.Integer">
+			<column name="N_FLGESTDOC" scale="0" />
+		</property>
+		<property name="flgvidley" type="java.lang.Integer">
+			<column name="N_FLGVIDLEY" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>

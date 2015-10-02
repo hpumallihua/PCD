@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	   
+	<bean id="springApplicationContext"
+		class="pe.gob.trabajo.pcd.servicio.util.SpringApplicationContextProvider"
+		scope="singleton" />
+
+<!--<bean id="accountService" class="com.foo.DefaultAccountService" scope="prototype"/>-->
+	<bean id="PersonaProt" class="pe.gob.trabajo.pcd.modelo.dominio.Persona" scope="prototype" >
+		<property name="postulante">
+			<ref bean="PostulanteProt"/>
+		</property>	
+	</bean>
+	
+<!--	<bean id="PostulanteProt" class="pe.gob.trabajo.pcd.modelo.dominio.Postulante" scope="prototype" />-->
+	
+<!--	<bean id="EmpresaProt" class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" scope="prototype"/>-->
+	
+<!--	<bean id="InstitucionFormativaProt" class="pe.gob.trabajo.pcd.modelo.dominio.InstitucionFormativa" scope="prototype"/>-->
+	
+<!--	<bean id="ExperienciaLaboralProt" class="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral" scope="prototype">-->
+<!--		<property name="empresa">-->
+<!--			<ref bean="EmpresaProt"/>-->
+<!--		</property>-->
+<!--		<property name="postulante">-->
+<!--			<ref bean="PostulanteProt"/>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+<!--	<bean id="FormacionProt" class="pe.gob.trabajo.pcd.modelo.dominio.Formacion" scope="prototype">-->
+<!--		<property name="institucionFormativa">-->
+<!--			<ref bean="InstitucionFormativaProt"/>-->
+<!--		</property>-->
+<!--		<property name="postulante">-->
+<!--			<ref bean="PostulanteProt"/>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+<!--	<bean id="ProcesoDef" class="pe.gob.trabajo.pcd.modelo.dominio.Proceso" scope="prototype">-->
+<!--		<property name="idPrcso">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+<!--	<bean id="PostulacionDef" class="pe.gob.trabajo.pcd.modelo.dominio.Postulacion" scope="prototype">-->
+<!--		<property name="proceso">-->
+<!--			<ref bean="ProcesoDef"/>-->
+<!--		</property>-->
+<!--	</bean>-->
+<!--	-->
+<!--	<bean id="TipoExamenProt" class="pe.gob.trabajo.pcd.modelo.dominio.TipoExamen" scope="prototype"/>-->
+<!--	-->
+<!--	<bean id="EstadoDef" class="pe.gob.trabajo.pcd.modelo.dominio.Estado">-->
+<!--		<property name="idEstdo">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+<!--	<bean id="EvaluacionProt" class="pe.gob.trabajo.pcd.modelo.dominio.Evaluacion" scope="prototype">-->
+<!--		<property name="postulacion">-->
+<!--			<ref bean="PostulacionDef"/>-->
+<!--		</property>-->
+<!--		<property name="tipoExamen">-->
+<!--			<ref bean="TipoExamenProt"/>-->
+<!--		</property>-->
+<!--		<property name="estado">-->
+<!--			<ref bean="EstadoDef"/>-->
+<!--		</property>-->
+<!--		<property name="evaluador">-->
+<!--			<ref bean="PersonaProt"/>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+	<!--	Beans prototipo	-->
+	<bean id="TipoDocumentoIdentidadPrt" class="pe.gob.trabajo.pcd.modelo.dominio.TipoDocumentoIdentidad" scope="prototype" >
+<!-- 		<property name="id"> -->
+<!-- 			<value>1</value> -->
+<!-- 		</property> -->
+	</bean>
+	
+	<bean id="UbigeoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Ubigeo" scope="prototype" />
+	
+	<bean id="PersonaPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Persona" scope="prototype">
+<!-- 		<property name="tipoDocumentoIdentidad"> -->
+<!-- 			<ref bean="TipoDocumentoIdentidadPrt"/> -->
+<!-- 		</property> -->
+		<property name="lugarNacimiento">
+			<ref bean="UbigeoPrt"/>
+		</property>
+		<property name="lugarResidencia">
+			<ref bean="UbigeoPrt"/>
+		</property>
+	</bean>
+	
+	<bean id="ProfesionalPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" scope="prototype">
+		<property name="persona">
+			<ref bean="PersonaPrt"/>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="EspecialidadProfesionalPrt" class="pe.gob.trabajo.pcd.modelo.dominio.EspecialidadProfesional" scope="prototype" /> -->
+	
+	<bean id="ExperienciaEspecialidadPrt" class="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad" scope="prototype">
+<!-- 		<property name="especialidadProfesional"> -->
+<!-- 			<ref bean="EspecialidadProfesionalPrt"/> -->
+<!-- 		</property> -->
+	</bean>
+	
+	<bean id="EmpresaPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" scope="prototype" >
+	</bean>
+	
+<!-- 	<bean id="RolLaboralPrt" class="pe.gob.trabajo.pcd.modelo.dominio.RolLaboral" scope="prototype" /> -->
+	
+	<bean id="AreaPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Area" scope="prototype" />
+	
+	<bean id="PuestoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Puesto" scope="prototype" />
+	
+	<bean id="SectorPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Sector" scope="prototype" />
+	
+	<bean id="ExperienciaLaboralPrt" class="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral" scope="prototype">
+		<property name="empresa">
+			<ref bean="EmpresaPrt"/>
+		</property>
+<!-- 		<property name="rolLaboral"> -->
+<!-- 			<ref bean="RolLaboralPrt"/> -->
+<!-- 		</property> -->
+		<property name="area">
+			<ref bean="AreaPrt"/>
+		</property>
+<!-- 		<property name="puesto"> -->
+<!-- 			<ref bean="PuestoPrt"/> -->
+<!-- 		</property> -->
+<!-- 		<property name="sector"> -->
+<!-- 			<ref bean="SectorPrt"/> -->
+<!-- 		</property> -->
+	</bean>
+	
+	<bean id="TipoFormacionPrt" class="pe.gob.trabajo.pcd.modelo.dominio.TipoFormacion" scope="prototype" />
+	<bean id="EstadoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Estado" scope="prototype" />
+	<bean id="InstitucionFormativaPrt" class="pe.gob.trabajo.pcd.modelo.dominio.InstitucionFormativa" scope="prototype" />
+	
+	<bean id="FormacionPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Formacion" scope="prototype">
+		<property name="tipoFormacion">
+			<ref bean="TipoFormacionPrt"/>
+		</property>
+		<property name="estado">
+			<ref bean="EstadoPrt"/>
+		</property>
+		<property name="institucionFormativa">
+			<ref bean="InstitucionFormativaPrt"/>
+		</property>
+	</bean>
+	
+	<bean id="TipoContactoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.TipoContacto" scope="prototype" />
+	
+	<bean id="ContactoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Contacto" scope="prototype" >
+		<property name="persona">
+			<ref bean="PersonaPrt"/>
+		</property>
+	</bean>
+	
+	<bean id="ContactoMedioPrt" class="pe.gob.trabajo.pcd.modelo.dominio.ContactoMedio" scope="prototype">
+		<property name="contacto">
+			<ref bean="ContactoPrt"/>
+		</property>
+		<property name="tipoContacto">
+			<ref bean="TipoContactoPrt"/>
+		</property>
+	</bean>
+	
+	<bean id="TipoEmpresaPrt" class="pe.gob.trabajo.pcd.modelo.dominio.TipoEmpresa" scope="prototype" />
+ 
+	<bean id="CiiuPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Ciiu" scope="prototype" />
+	
+	<bean id="PedidoPrt" class="pe.gob.trabajo.pcd.modelo.dominio.Pedido" scope="prototype" >
+		<property name="empleador">
+			<ref bean="EmpresaPrt"/>
+		</property>
+	</bean>
+	
+</beans>

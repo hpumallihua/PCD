@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Fast Eval</title>
+<a4j:loadStyle src="/styles/silnetbase.css" />
+<a4j:loadScript src="/js/silnet.js" />
+<ui:include src="estilos.jsp" />
+<f:loadBundle basename="pe.gob.trabajo.pcd.vista.recursos.mensajes" var="msg" />
+</head>
+
+<body>
+<table align="center" style="" width="800px">
+	<tr>
+		<td colspan="3"><ui:insert name="title">
+			<ui:include src="../layout/cabecera.xhtml" />
+		</ui:insert></td>
+	</tr>
+	<tr valign="top">
+		<td width="150" valign="top"><ui:insert name="menu">
+			<ui:include src="../layout/menuPostulante.xhtml" />
+		</ui:insert> <ui:insert name="subMenu">
+		</ui:insert></td>
+		<td width="10"></td>
+		<td valign="top"><h:panelGrid id="panelMensajes">
+			<a4j:outputPanel ajaxRendered="true">
+				<ui:insert name="mensajes">
+					<ui:include src="../layout/mensajes.xhtml" />
+				</ui:insert>
+			</a4j:outputPanel>
+
+		</h:panelGrid> <rich:panel id="panelContenido" styleClass="gridContent"
+			style="width: 99%; height: 99%; vertical-align: top;">
+
+			<ui:insert name="body">Hola Spring WebFlow!</ui:insert>
+
+		</rich:panel></td>
+	</tr>
+	<tr>
+		<td colspan="3" align="center"><ui:insert name="pie">
+			<ui:include src="../layout/piepagina.xhtml" />
+		</ui:insert></td>
+	</tr>
+</table>
+
+</body>
+</html>

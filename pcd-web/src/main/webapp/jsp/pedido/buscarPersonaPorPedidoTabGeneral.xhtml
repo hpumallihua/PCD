@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmPersonaPedido">
+
+		<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+        </script>
+		<rich:tabPanel switchType="client" selectedTab="tabDatosPersonaPedido"
+			contentStyle="background-color: #FFFFFF;"
+			activeTabClass="tabBusquedaSeleccionada" tabClass="tabBusqueda">
+
+			<rich:tab label="Personas para el pedido: #{registrarPedidoMB.descripcionPedido}"
+				name="tabDatosPersonaPedido"
+				style="background-color: #FFFFFF; text-align: left;">	
+							
+			</rich:tab>
+
+		</rich:tabPanel>
+
+		<rich:spacer width="5" height="5" title="espacio" />
+
+		<t:panelGrid columns="2" styleClass="gridContent"
+			columnClasses="columnaIzquierda,columnaDerecha">
+			<rich:spacer width="5" height="5" title="espacio" />
+			<h:panelGroup>
+				<h:commandButton action="buscarPedido"
+					actionListener="#{registrarPedidoMB.buscarPedido}"
+					value="Regresar"
+					styleClass="botonBuscar" />
+				
+			</h:panelGroup>
+
+		</t:panelGrid>
+		<rich:spacer width="5" height="10" title="espacio" />
+
+	</h:form>
+
+	<!-- <a4j:outputPanel ajaxRendered="true" rendered="false">
+		<rich:panel id="criteriosBusqueda">
+			<h:outputText value="Buscando empleador con" />
+			<h:outputText
+				rendered="#{! empty registrarEmpresaMB.empresaBean.nombreComercial}"
+				value=" el nombre comercial #{registrarEmpresaMB.empresaBean.nombreComercial}" />
+		</rich:panel>
+		<rich:spacer width="10" height="10" title="espacio" />
+	</a4j:outputPanel> -->
+
+
+	<h:form>
+
+		<rich:dataGrid id="dataPersonaPedido"
+			value="#{registrarPedidoMB.listaPersonasPedido}"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}" border="0"
+			var="profesional" styleClass="gridContent" rowKeyVar="fila"
+			onRowMouseOver="this.className='filaMouseOver'"
+			onRowMouseOut="this.className='filaMouseOut'"
+			headerClass="columnaDerecha rich-pmenu-top-group rich-table-subheadercell">
+			<f:facet name="header">
+
+				<h:panelGroup>
+					<h:panelGrid columns="3" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha,columnaIzquierda">
+						<t:dataScroller id="paginador" for="dataPersonaPedido"
+							styleClass="gridContent" rowsCountVar="rowsCount"
+							displayedRowsCountVar="displayedRowsCount"
+							firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+							pageCountVar="pageCount" pageIndexVar="pageIndex"
+							paginator="false">
+							<h:outputFormat id="paginadorFormat" styleClass="standard"
+								value="#{msg['tabla-comun-paginador-simple']}">
+								<f:param value="#{rowsCount}" />
+							</h:outputFormat>
+						</t:dataScroller>
+						<rich:spacer width="5" height="5" title="espacio" />
+						<rich:datascroller for="dataPersonaPedido" maxPages="20"
+							renderIfSinglePage="false" styleClass="gridContent" />
+					</h:panelGrid>
+				</h:panelGroup>
+			</f:facet>
+			
+			<h:panelGrid styleClass="gridContent" columns="4"
+				columnClasses=",,columnaMediosContacto,columnaAcciones">
+				<h:panelGrid>
+					<a4j:commandLink actionListener="#{profesionalMB.seleccionar}"
+						styleClass="tituloFila" action="profesionalDatosPersonales"
+						title="#{msg['prf-busqueda-lista-editar-datos-personales']}">
+						<h:panelGroup>
+							<h:outputText value="#{profesional.persona.nombres} " />
+							<h:outputText value="#{profesional.persona.apellidoPaterno} " />
+							<h:outputText value="#{profesional.persona.apellidoMaterno} " />
+						</h:panelGroup>
+					</a4j:commandLink>
+
+					<h:outputText
+						value="#{profesional.persona.numeroDocumentoIdentidad}" />
+				</h:panelGrid>
+				<rich:spacer width="20" height="5" title="espacio" />
+				<h:dataTable value="#{profesional.persona.personasContacto}"
+					var="contacto" rows="3">
+					<rich:column rendered="false">
+						<h:outputText value="#{contacto.nombreContacto}" />
+					</rich:column>
+					<rich:column>
+						<h:dataTable value="#{contacto.valoresContacto}" var="medio"
+							rows="1">
+							<h:column>
+
+								<h:panelGrid columns="2">
+									<h:graphicImage value="../../images/movil.png"
+										rendered="#{medio.tipoContacto.id eq 1}"
+										alt="#{medio.tipoContacto.descripcion}" />
+									<h:graphicImage value="../../images/email.png"
+										rendered="#{medio.tipoContacto.id eq 2}"
+										alt="#{medio.tipoContacto.descripcion}" />
+									<h:graphicImage value="../../images/casa.png"
+										rendered="#{medio.tipoContacto.id eq 3}"
+										alt="#{medio.tipoContacto.descripcion}" />
+									<h:graphicImage value="../../images/trabajo.png"
+										rendered="#{medio.tipoContacto.id eq 4}"
+										alt="#{medio.tipoContacto.descripcion}" />
+									<h:outputText value="#{medio.valor}" />
+								</h:panelGrid>
+								
+							</h:column>
+						</h:dataTable>
+
+					</rich:column>
+				</h:dataTable>
+				
+				<h:panelGroup>
+					<h:commandLink>
+						<f:param name="profesionalPrm" id="profesionalPrm"
+							value="#{profesional}" />
+					</h:commandLink>
+					<a4j:commandLink actionListener="#{profesionalMB.seleccionar}"
+						action="profesionalDatosPersonales"
+						title="#{msg['prf-busqueda-lista-ver-detalle']}"
+						reRender="gridDatosGenerales"
+						rendered="#{!sesionMB.usuarioSesion.rolAdministrador}">
+						<h:graphicImage value="/images/persona.png"
+							alt="#{msg['prf-busqueda-lista-ver-detalle']}" />
+					</a4j:commandLink>
+					<a4j:commandLink actionListener="#{profesionalMB.seleccionar}"
+						action="profesionalDatosPersonales"
+						title="#{msg['prf-busqueda-lista-editar-datos-personales']}"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
+						<h:graphicImage value="/images/editar.png"
+							alt="#{msg['prf-busqueda-lista-editar-datos-personales']}" />
+					</a4j:commandLink>
+					<rich:spacer width="10" height="5" title="espacio"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador}" />
+					<h:commandLink action="#"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador}"
+						onclick="if (!confirmar('#{profesional.persona.nombres}')) return false;"
+						actionListener="#{buscarProfesionalMB.eliminarProfesional}"
+						title="#{msg['prf-busqueda-lista-eliminar-profesional']}">
+						<h:graphicImage value="/images/eliminar.png"
+							alt="#{msg['prf-busqueda-lista-eliminar-profesional']}" />
+					</h:commandLink>
+					<rich:spacer width="10" height="5" title="espacio" />
+					<h:commandLink
+						actionListener="#{registrarDatosPersonalesMB.mostrarUpload}"
+						title="#{msg['prf-busqueda-lista-descargar-cv']}"
+						rendered="#{!empty profesional.curriculum}" action="#">
+						<f:param id="curriculumPrm" name="curriculumPrm"
+							value="#{profesional.curriculum}" />
+						<h:graphicImage value="/images/cv.png"
+							alt="#{msg['prf-busqueda-lista-descargar-cv']}" />
+					</h:commandLink>
+					<rich:spacer width="16" height="5" title="espacio"
+						rendered="#{empty profesional.curriculum}" />
+				</h:panelGroup>
+
+			</h:panelGrid>
+		</rich:dataGrid>
+
+
+	</h:form>
+</ui:composition>
+
+
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:svg="http://www.w3.org/2000/svg">
+	<html>
+<head>
+<title>PCD</title>
+<a4j:loadStyle src="/styles/silnetbase.css" />
+<style type="text/css">
+.rich-panel-header {
+	/*background-color: #da251d;*/
+	background-image: none;
+}
+</style>
+</head>
+<body>
+
+	<div
+		style="margin: 0 auto; width: 1024px; height: 600px; background-image: url(images/fondo_pcd.jpg); background-size: 1024px 600px; background-repeat: no-repeat;">
+		<div style="padding-top: 158px; padding-left: 295px;">
+			<h:form>
+				<rich:panel
+					style="width: 512px; height: 210px; text-align: left; background-color: #FFFFFF;">
+
+					<f:facet name="header">
+						<h:outputText value="Acceso" />
+					</f:facet>
+
+					<t:messages id="messages" styleClass="mensajesInfo"
+						showDetail="true" showSummary="false" replaceIdWithLabel="true"
+						errorClass="mensajesError" infoClass="mensajesInfo"
+						warnClass="mensajesAdvertencia" />
+
+					<t:panelGrid columns="2" styleClass="gridContentTotal"
+						style="text-align: center;width: 100%; display:#{sesionMB.parametro eq null?'block':'none'};"
+						rowClasses="columnaCentro,columnaCentro gridContentTotal">
+						<h:graphicImage value="/images/acceso.png" />
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzq, columnaDer gridContentTotal">
+							<h:outputLabel value="Usuario:" />
+							<h:inputText id="usuario" required="false"
+								requiredMessage="Usuario requerido"
+								value="#{sesionMB.bean.nombreUsuario}" style="width: 100%;" />
+
+							<h:outputLabel value="Clave:" />
+							<h:inputSecret id="password" required="false"
+								requiredMessage="Password requerido"
+								value="#{sesionMB.bean.clave}" style="width: 100%;" />
+							<h:outputText value="" />
+							<h:panelGroup>
+								<h:commandButton action="#{sesionMB.logIn}" value="Aceptar"
+									styleClass="columnaAcciones" />
+								<button type="reset" styleClass="columnaAcciones">Limpiar</button>
+							</h:panelGroup>
+						</t:panelGrid>
+						<h:outputText styleClass="footer" value="" />
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzquierda, columnaDerecha">
+							<h:outputText value="" />
+							<h:outputText value="" />
+						</t:panelGrid>
+
+					</t:panelGrid>
+
+					<t:panelGrid columns="2" styleClass="gridContentTotal"
+						style="text-align: center;width: 100%; display:#{sesionMB.parametro eq 'empresa'?'block':'none'};"
+						rowClasses="columnaCentro,columnaCentro">
+						<h:graphicImage value="/images/acceso.png" />
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzq, columnaDer">
+							<h:outputLabel value="RUC:" />
+							<h:inputText id="ruc" required="false"
+								requiredMessage="Usuario requerido"
+								value="#{sesionMB.bean.rucEmpresa}" style="width: 100%;" />
+
+							<h:panelGroup>
+								<h:commandButton action="#{sesionMB.registrarEmpleador}"
+									value="Aceptar" styleClass="columnaAcciones" />
+								<button type="reset" styleClass="columnaAcciones">Limpiar</button>
+							</h:panelGroup>
+						</t:panelGrid>
+						<h:outputLink value="http://www.trabajo.gob.pe">
+							<h:outputText styleClass="footer" value="" />
+						</h:outputLink>
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzquierda, columnaDerecha">
+							<h:outputLink value="login.xhtml">
+								<h:outputText styleClass="footer" value="LogIn" />
+							</h:outputLink>
+						</t:panelGrid>
+
+					</t:panelGrid>
+
+					<t:panelGrid columns="2" styleClass="gridContentTotal"
+						style="text-align: center;width: 100%; display:#{sesionMB.parametro eq 'postulante'?'block':'none'};"
+						rowClasses="columnaCentro,columnaCentro">
+						<h:graphicImage value="/images/acceso.png" />
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzq, columnaDer">
+							<h:outputLabel value="DNI:" />
+							<h:inputText id="dni" required="false"
+								requiredMessage="DNI requerido" value="#{sesionMB.bean.dni}"
+								style="width: 100%;" />
+
+							<h:outputLabel value="Fecha Nacimiento:" />
+							<rich:calendar id="fechaNacimiento" popup="true" locale="es_PE"
+								showWeekDaysBar="false" showWeeksBar="false" required="false"
+								showApplyButton="false" enableManualInput="true"
+								inputStyle="#{UtilBean.estiloCampoRequerido}"
+								value="#{sesionMB.bean.fechaNacimiento}"
+								datePattern="dd/MM/yyyy">
+								<f:facet name="header">
+									<h:panelGrid columns="3" width="100%"
+										columnClasses="fake, width100 talign">
+										<h:outputText value="{previousMonthControl}"
+											style="font-weight:bold;" />
+										<h:outputText value="{currentMonthControl}"
+											style="font-weight:bold;" />
+										<h:outputText value="{nextMonthControl}"
+											style="font-weight:bold;" />
+									</h:panelGrid>
+								</f:facet>
+								<h:outputText value="{day}"></h:outputText>
+								<f:facet name="footer">
+									<h:outputText value="{selectedDateControl}" />
+								</f:facet>
+							</rich:calendar>
+							<t:outputLabel title="Sexo" value="Sexo:" for="sexo" />
+							<t:panelGroup>
+								<t:selectOneMenu id="sexo" required="false"
+									value="#{sesionMB.bean.sexo}" styleClass="width100"
+									style="#{UtilBean.estiloCampoRequerido}">
+									<f:selectItems value="#{sesionMB.itemsSexo}" />
+								</t:selectOneMenu>
+							</t:panelGroup>
+							<h:outputText value="" />
+							<h:panelGroup>
+								<h:commandButton action="#{sesionMB.registrarPostulante}"
+									value="Aceptar" styleClass="columnaAcciones" />
+								<button type="reset" styleClass="columnaAcciones">Limpiar</button>
+							</h:panelGroup>
+						</t:panelGrid>
+						<h:outputLink value="http://www.trabajo.gob.pe">
+							<h:outputText styleClass="footer" value="" />
+						</h:outputLink>
+						<t:panelGrid columns="2" styleClass="gridContentTotal"
+							columnClasses="columnaIzquierda, columnaDerecha">
+							<h:outputLink value="login.xhtml">
+								<h:outputText styleClass="footer" value="LogIn" />
+							</h:outputLink>
+						</t:panelGrid>
+
+					</t:panelGrid>
+				</rich:panel>
+			</h:form>
+		</div>
+	</div>
+</body>
+	</html>
+</ui:composition>
+

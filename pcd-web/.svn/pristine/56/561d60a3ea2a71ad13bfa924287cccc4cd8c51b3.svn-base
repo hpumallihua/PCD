@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+
+	<h:form>
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel styleClass="gridContent"
+				style="background-color: #FFFFFF;"
+				rendered="#{registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_NUEVO
+							or 
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_EDITAR
+							or
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_VISUALIZAR}">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText
+							value="#{msg['prf-registro-preferencias-preferencias-de']} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.nombres} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+					</h:panelGroup>
+				</f:facet>
+				<h:panelGrid columns="2" styleClass="gridFormulario"
+					id="gridFormulario"
+					columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer">
+
+					<h:outputLabel
+						value="#{msg['prf-registro-preferencias-formulario-tipo-preferencia']}:"
+						for="tipoPreferencia" />
+					<t:selectOneMenu id="tipoPreferencia"
+						value="#{registrarPreferenciasProfesionalesMB.bean.tipoPreferencia.id}"
+						style="width: 100%; #{UtilBean.estiloCampoRequerido}">
+						<f:selectItem itemLabel="#{msg['prf-listas-seleccion-todos']}"
+							itemValue="0" />
+						<f:selectItems
+							value="#{registrarPreferenciasProfesionalesMB.itemsTipoPreferencia}" />
+						<f:validateLongRange minimum="1" />
+						<a4j:support event="onchange" reRender="gridFormulario"></a4j:support>
+					</t:selectOneMenu>
+
+					<h:outputLabel
+						value="#{msg['prf-registro-preferencias-formulario-tipo']}:"
+						for="tipoId"
+						rendered="#{registrarPreferenciasProfesionalesMB.bean.tipoPreferencia.id eq 2}" />
+					<t:selectOneMenu id="tipoId" forceId="true"
+						rendered="#{registrarPreferenciasProfesionalesMB.bean.tipoPreferencia.id eq 2}"
+						value="#{registrarPreferenciasProfesionalesMB.bean.sector.id}"
+						style="width: 100%; #{UtilBean.estiloCampoRequerido}">
+						<f:selectItem itemLabel="#{msg['prf-listas-seleccion-todos']}"
+							itemValue="0" />
+						<f:selectItems
+							value="#{registrarPreferenciasProfesionalesMB.itemsSector}" />
+						<f:validateLongRange minimum="1" />
+					</t:selectOneMenu>
+					<rich:spacer width="10" height="15" title="espacio" />
+					<rich:spacer width="10" height="15" title="espacio" />
+					<h:outputLabel
+						value="#{msg['prf-registro-preferencias-formulario-detalle']}:"
+						for="detalle"
+						rendered="#{registrarPreferenciasProfesionalesMB.bean.tipoPreferencia.id eq 1}" />
+					<t:selectOneMenu id="detalle" forceId="true"
+						rendered="#{registrarPreferenciasProfesionalesMB.bean.tipoPreferencia.id eq 1}"
+						value="#{registrarPreferenciasProfesionalesMB.bean.area.id}"
+						style="width: 100%; #{UtilBean.estiloCampoRequerido}">
+						<f:selectItem itemLabel="#{msg['prf-listas-seleccion-todos']}"
+							itemValue="0" />
+						<f:selectItems
+							value="#{registrarPreferenciasProfesionalesMB.itemsArea}" />
+						<f:validateLongRange minimum="1" />
+					</t:selectOneMenu>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" styleClass="gridContent"
+					columnClasses=",columnaDerecha">
+					<h:outputText value="" />
+					<h:panelGroup>
+
+						<a4j:commandButton
+							value="#{msg['prf-registro-preferencias-formulario-cancelar']}"
+							actionListener="#{registrarPreferenciasProfesionalesMB.cancelar}"
+							reRender="gridDatosGenerales, dataPreferenciasProfesionales"
+							immediate="true" />
+						<rich:spacer width="10" height="5" title="espacio" />
+						<a4j:commandButton
+							value="#{msg['prf-registro-preferencias-formulario-guardar']}"
+							actionListener="#{registrarPreferenciasProfesionalesMB.guardar}"
+							reRender="gridDatosGenerales, dataPreferenciasProfesionales" />
+					</h:panelGroup>
+				</h:panelGrid>
+
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+	<h:form>
+		<rich:dataTable id="dataPreferenciasProfesionales" var="preferencia"
+			styleClass="gridContent"
+			value="#{registrarPreferenciasProfesionalesMB.preferencias}"
+			columnClasses=",,columnaAcciones">
+			<f:facet name="header">
+				<h:panelGrid columns="2" styleClass="gridContent"
+					columnClasses="columnaIzquierda,columnaDerecha">
+					<h:panelGroup
+						rendered="#{!(registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_NUEVO
+							or 
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_EDITAR
+							or
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_VISUALIZAR)}">
+						<h:outputText
+							value="#{msg['prf-registro-preferencias-lista-preferencia']} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.nombres} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+					</h:panelGroup>
+
+					<a4j:commandLink styleClass="columnaAcciones"
+						rendered="#{sesionMB.usuarioSesion.rolAdministrador}"
+						actionListener="#{registrarPreferenciasProfesionalesMB.nuevo}"
+						reRender="gridDatosGenerales, dataPreferenciasProfesionales">
+						<h:graphicImage value="/images/nuevo.png" />
+					</a4j:commandLink>
+				</h:panelGrid>
+			</f:facet>
+
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['prf-registro-preferencias-lista-id']}" />
+				</f:facet>
+				<h:outputText value="#{preferencia.tipoPreferencia.descripcion}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-preferencias-lista-descripcion']}" />
+				</f:facet>
+				<h:outputText value="#{preferencia.area.descripcion}" />
+				<h:outputText value="#{preferencia.sector.descripcion}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-preferencias-lista-acciones']}" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="preferenciaPrm" name="preferenciaPrm"
+						value="#{preferencia}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones" rendered="false"
+					actionListener="#{registrarPreferenciasProfesionalesMB.editar}"
+					reRender="gridDatosGenerales,dataPreferenciasProfesionales">
+					<h:graphicImage value="/images/editar.png" alt="Editar" />
+				</a4j:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador}"
+					onclick="if (!confirmar('#{tipo.dscrpcon}')) return false;"
+					actionListener="#{registrarPreferenciasProfesionalesMB.eliminar}"
+					title="Eliminar Sector"
+					reRender="gridDatosGenerales,dataPreferenciasProfesionales">
+					<h:graphicImage value="/images/eliminar.png" alt="Eliminar" />
+				</a4j:commandLink>
+			</rich:column>
+
+		</rich:dataTable>
+
+	</h:form>
+</ui:composition>
+
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad"
+		table="PDMVD_PRFEXPESPC">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODEXESPC" precision="22" scale="0">
+				<comment>CÓDIGO DE LA EXPERIENCIA ESPECIALIDAD.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_EXPRNCSPCLDDID</param>
+			</generator>
+		</id>
+		<!-- <many-to-one name="especialidadProfesional" class="pe.gob.trabajo.pcd.modelo.dominio.EspecialidadProfesional" 
+			fetch="select"> -->
+		<!-- <column name="N_CODESPCALDAD_PRFSONAL" precision="15" scale="0" /> -->
+		<!-- </many-to-one> -->
+		<many-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" fetch="select">
+			<column name="N_CODPRSNAL" scale="0">
+				<comment>CÓDIGO PROFESIONAL.</comment>
+			</column>
+		</many-to-one>
+		<property name="idOcupacion" type="string">
+			<column name="V_CODOCUPAC" length="6">
+				<comment>CODIGO OCUPACIONAL.</comment>
+			</column>
+		</property>
+		<property name="meses" type="java.lang.Integer">
+			<column name="N_MESESOCUP">
+				<comment>NUMERO DE MESES</comment>
+			</column>
+		</property>
+		<property name="comentarios" type="string">
+			<column name="V_CMNTROS" length="254">
+				<comment>DESCRIPCION DEL COMENTARIO.</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="idUsroValidador" type="java.lang.Long">
+			<column name="N_CODUSRVAL" scale="0">
+				<comment>USUARIO QUE VALIDO LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="fechaValidacion" type="timestamp">
+			<column name="D_FECVAL" length="23">
+				<comment>FECHA EN LA QUE SE VALIDO EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="validado" type="java.lang.Character">
+			<column name="C_ESTVAL" length="1">
+				<comment>INDICADOR DE VALIDACION SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="principal" type="java.lang.Integer">
+			<column name="N_PRINCIPAL">
+				<comment>1:Ocupacion principal 0:Secundaria</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

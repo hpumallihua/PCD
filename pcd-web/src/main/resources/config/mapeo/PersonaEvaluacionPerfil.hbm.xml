@@ -1,0 +1,696 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.PersonaEvaluacionPerfil"
+		table="PDTBC_PRSNAEVLPRFEPD">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRSNA" scale="0">
+				<comment>CÓDIGO PERSONA.</comment>
+			</column>
+			<generator class="foreign">
+				<param name="property">persona</param>
+			</generator>
+		</id>
+
+		<one-to-one class="pe.gob.trabajo.pcd.modelo.dominio.Persona"
+			constrained="true" name="persona" />
+
+		<property generated="never" lazy="false" name="indPersonalCp1"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe1"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp2"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe2"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp3"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe3"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp4"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe4"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp5"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe5"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp6"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe6"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp7"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe7"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp8"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe8"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp9"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe9"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp10"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe10"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp11"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe11"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp12"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe12"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp13"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe13"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp14"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe14"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp15"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe15"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp16"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe16"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp17"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe17"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalCp18"
+			type="java.lang.Integer">
+			<column name="N_INDPRNCP18">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPersonalMe18"
+			type="java.lang.Integer">
+			<column name="N_INDPRNME18">
+				<comment></comment>
+			</column>
+		</property>
+
+
+		<property generated="never" lazy="false" name="indSocialCp1"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe1"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp2"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe2"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp3"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe3"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp4"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe4"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp5"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe5"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp6"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe6"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp7"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe7"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp8"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe8"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp9"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe9"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp10"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe10"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp11"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe11"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp12"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe12"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp13"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe13"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp14"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe14"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp15"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe15"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp16"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe16"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp17"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe17"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialCp18"
+			type="java.lang.Integer">
+			<column name="N_INDSCLCP18">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indSocialMe18"
+			type="java.lang.Integer">
+			<column name="N_INDSCLME18">
+				<comment></comment>
+			</column>
+		</property>
+
+
+		<property generated="never" lazy="false" name="indPrelaboralCp1"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe1"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME1">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp2"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe2"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME2">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp3"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe3"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME3">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp4"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe4"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME4">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp5"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe5"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME5">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp6"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe6"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME6">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp7"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe7"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME7">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp8"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe8"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME8">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp9"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe9"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME9">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp10"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe10"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME10">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp11"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe11"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME11">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp12"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe12"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME12">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp13"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe13"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME13">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp14"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe14"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME14">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp15"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe15"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME15">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp16"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe16"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME16">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp17"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe17"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME17">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralCp18"
+			type="java.lang.Integer">
+			<column name="N_INDPLBCP18">
+				<comment></comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="indPrelaboralMe18"
+			type="java.lang.Integer">
+			<column name="N_INDPLBME18">
+				<comment></comment>
+			</column>
+		</property>
+
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

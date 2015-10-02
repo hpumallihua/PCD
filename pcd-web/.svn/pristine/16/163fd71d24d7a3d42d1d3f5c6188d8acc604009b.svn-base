@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+	<h:form id="frmEmpleos">
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel style="background-color: #FFFFFF;"
+				rendered="#{registrarParametroMB.accionRealizada eq registrarParametroMB.acciones.ACCION_NUEVO
+							or 
+							registrarParametroMB.accionRealizada eq registrarParametroMB.acciones.ACCION_EDITAR
+							or
+							registrarParametroMB.accionRealizada eq registrarParametroMB.acciones.ACCION_VISUALIZAR}">
+				<f:facet name="header">
+
+					<h:panelGroup>
+						<h:outputText
+							value="Registro de #{registrarParametroMB.tituloFormulario}" />
+					</h:panelGroup>
+				</f:facet>
+				<t:panelGrid id="gridDatosPersonales" columns="4"
+					styleClass="gridContent"
+					columnClasses=",formularioBusqueda4colsDer,,">
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Valor:" for="valor" />
+					<h:panelGroup>
+						<h:inputText id="valor" required="true"
+							style="#{UtilBean.estiloCampoRequerido}"
+							value="#{registrarParametroMB.bean.valor}" styleClass="width100" />
+					</h:panelGroup>
+					<h:outputText value=" (*)" />
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel value="Nemónico:" for="nemonico" />
+					<h:panelGroup>
+
+						<h:inputText id="nemonico" required="false"
+							value="#{registrarParametroMB.bean.nemonico}"
+							styleClass="width100" />
+
+					</h:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Descripción:" for="descripcion" />
+
+					<h:panelGroup>
+						<h:inputText id="descripcion" required="false"
+							value="#{registrarParametroMB.bean.descripcion}"
+							styleClass="width100" />
+					</h:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Tipo Acceso:" for="tipoAcceso" />
+					<t:panelGroup>
+						<t:selectOneMenu id="tipoAcceso" required="false"
+							value="#{registrarParametroMB.bean.tipoAcceso}"
+							style="width: 100%;">
+							<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+							<f:selectItem itemLabel="Lectura" itemValue="1" />
+							<f:selectItem itemLabel="Escritura" itemValue="2" />
+							<f:selectItem itemLabel="Lectura/Escritura" itemValue="3" />
+							<f:validateLongRange minimum="1" />
+						</t:selectOneMenu>
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Orden:" for="orden" />
+					<t:panelGroup>
+						<h:inputText id="orden" required="false"
+							value="#{registrarParametroMB.bean.orden}" styleClass="width100" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+
+
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								<h:commandButton action="#" immediate="true"
+									actionListener="#{registrarParametroMB.cancelar}"
+									value="Cancelar" styleClass="botonBuscar" />
+								<rich:spacer width="5" height="5" title="espacio" />
+
+								<a4j:commandButton value="Guardar" action="#"
+									actionListener="#{registrarParametroMB.guardar}"
+									reRender="gridDatosGenerales, dataFormacion"
+									styleClass="botonBuscar" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+				</t:panelGrid>
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+	<h:form>
+		<rich:dataTable id="dataFormacion" var="configuracion"
+			styleClass="gridContent" value="#{registrarParametroMB.parametros}"
+			columnClasses="columnaAcciones,columnaIzquierda,columnaIzquierda,columnaAcciones">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<h:panelGroup>
+							<h:outputText
+								value="Lista de #{registrarParametroMB.tituloLista}" />
+						</h:panelGroup>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							actionListener="#{registrarParametroMB.nuevo}"
+							reRender="gridDatosGenerales, dataFormacion" title="Nuevo">
+							<h:graphicImage value="/images/nuevo.png" alt="Nuevo"/>
+						</a4j:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+			</f:facet>
+
+			<rich:column sortBy="#{configuracion.orden}" sortOrder="ASCENDING">
+				<f:facet name="header">
+					<h:outputText value="Orden" />
+				</f:facet>
+				<h:outputText value="#{configuracion.orden}" />
+			</rich:column>
+
+			<rich:column sortBy="#{configuracion.valor}">
+				<f:facet name="header">
+					<h:outputText value="#{registrarParametroMB.tituloFormulario}" />
+				</f:facet>
+				<h:outputText value="#{configuracion.valor}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Descripción" />
+				</f:facet>
+				<h:outputText value="#{configuracion.descripcion}" />
+			</rich:column>
+
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Acciones" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="configuracionPrm" name="configuracionPrm"
+						value="#{configuracion}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					actionListener="#{registrarParametroMB.editar}"
+					reRender="gridDatosGenerales,dataFormacion" title="Editar">
+					<h:graphicImage value="/images/editar.png" alt="Editar" />
+				</a4j:commandLink>
+				<rich:spacer width="10" height="5" title="espacio" />
+				<a4j:commandLink styleClass="columnaAcciones"
+					onclick="if (!confirmar('#{configuracion.descripcion}')) return false;"
+					actionListener="#{registrarParametroMB.eliminar}"
+					title="Eliminar"
+					reRender="gridDatosGenerales,dataFormacion">
+					<h:graphicImage value="/images/eliminar.png"
+						alt="Eliminar" />
+				</a4j:commandLink>
+			</rich:column>
+
+		</rich:dataTable>
+	</h:form>
+
+</ui:composition>
+
+</html>

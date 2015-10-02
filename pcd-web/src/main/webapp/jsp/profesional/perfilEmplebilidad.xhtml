@@ -1,0 +1,1592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Evaluacion Perfil de Empleabilidad</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<rich:panel style="background-color: #FFFFFF;">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['prf-registro-datos-personales-datos-personales']} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.nombres} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoPaterno} " />
+					<h:outputText
+						value="#{registrarDatosPersonalesMB.profesionalBean.persona.apellidoMaterno}" />
+				</h:panelGroup>
+			</f:facet>
+			<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+
+
+
+				<t:panelGrid id="gridDatosPersonales" columns="6"
+					styleClass="gridContent"
+					columnClasses="topAligned,topAligned,topAligned,celdaSeparadorFormulario topAligned,topAligned,topAligned,topAligned">
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel styleClass="tituloFila" value="Instrucciones" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="6">
+						<h:outputLabel
+							value="Usted va a calificar el Perfil de Empleabilidad con la ayuda de esta ficha y del instructivo, que presenta
+							indicaciones a las cuales deben asignarle los valores correspondientes considerando las siguientes tablas." />
+					</t:panelGroup>
+
+					<!-- 										<t:panelGroup colspan="6" styleClass="gridContent"> -->
+
+
+					<!-- 					<h:panelGrid id="panel" columns="2" border="0"  -->
+					<!-- 						cellspacing="1" styleClass="gridContent rich-table-headercell"> -->
+
+					<!-- 						<h:outputLabel value="SI" /> -->
+					<!-- 						<h:outputLabel value="NO" /> -->
+					<!-- 						<h:outputLabel value="1" /> -->
+					<!-- 						<h:outputLabel value="0" /> -->
+
+					<!-- 					</h:panelGrid> -->
+
+					<!-- 										</t:panelGroup> -->
+
+
+					<t:panelGroup colspan="6" style="vertical-align: top;">
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+
+							<h:panelGrid columns="2" columnClasses="columnaDerecha,,"
+								styleClass="gridContent rich-table-headercell"
+								rowClasses="filaTabla">
+
+								<h:panelGrid columns="1"
+									styleClass="gridContent rich-table-headercell"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="SI" />
+
+								</h:panelGrid>
+
+
+								<h:panelGrid columns="1"
+									styleClass="gridContent rich-table-headercell"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="NO" />
+
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" styleClass="gridContent"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="1" />
+
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" styleClass="gridContent"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="0" />
+
+								</h:panelGrid>
+
+							</h:panelGrid>
+						</h:panelGrid>
+					</t:panelGroup>
+
+					<t:panelGroup colspan="6" style="vertical-align: top;">
+						<h:panelGrid columns="1" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+
+							<h:panelGrid columns="1" columnClasses="columnaDerecha,,"
+								styleClass="gridContent rich-table-headercell"
+								rowClasses="filaTabla">
+
+								<!-- 								<h:panelGrid columns="1" -->
+								<!-- 									styleClass="gridContent" -->
+								<!-- 									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro"> -->
+								<!-- 									<h:outputText value=" " /> -->
+
+								<!-- 								</h:panelGrid> -->
+
+
+								<h:panelGrid columns="1"
+									styleClass="gridContent rich-table-headercell"
+									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro">
+									<h:outputText value="Metodo de Evaluacion ME" />
+
+								</h:panelGrid>
+
+								<h:panelGrid columns="2" styleClass="gridContent">
+									<h:outputLabel
+										value="Observacion en situacion natural o creada" />
+									<h:outputLabel value="1" />
+									<h:outputLabel value="Observacion en situacion de clase/taller" />
+									<h:outputLabel value="2" />
+									<h:outputLabel
+										value="Entrevista con el postulante con Discapacidad intelectual" />
+									<h:outputLabel value="3" />
+									<h:outputLabel value="Entrevista con la familia" />
+									<h:outputLabel value="4" />
+									<h:outputLabel
+										value="Entrevista con un profesional allegado (profesor, psicologo)" />
+									<h:outputLabel value="5" />
+									<h:outputLabel value="Prueba especifica" />
+									<h:outputLabel value="6" />
+
+
+
+
+								</h:panelGrid>
+
+								<!-- 								<h:panelGrid columns="1" styleClass="gridContent" -->
+								<!-- 									columnClasses="columnaCentro,columnaCentro,columnaCentro,columnaCentro,columnaCentro"> -->
+								<!-- 									<h:outputText value="0" /> -->
+
+								<!-- 								</h:panelGrid> -->
+
+							</h:panelGrid>
+						</h:panelGrid>
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="3" style="vertical-align: top;">
+						<h:panelGrid columns="3" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+							<h:panelGroup styleClass="gridContent">
+								<h:panelGrid columns="3"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Factores Personales" />
+									</f:facet>
+
+									<h:outputLabel for="motivo1" width="100"
+										value="Llega puntual a las citas y reuniones que previamente ha fijado con otras personas" />
+									<t:panelGroup style="text-align:right;">
+										<h:selectOneMenu id="ruidovalor11" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp1}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup>
+										<h:selectOneMenu id="ruidovalor12" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe1}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo2"
+										value="Dice sus datos personales:nombres y apellidos,edad,dirección, teléfono y fecha de nacimiento" />
+
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor21" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp2}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor22" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe2}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo3"
+										value="Hace afirmaciones positivas hacia sí mismo ante otras personas" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor31" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp3}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor32" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe3}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo4"
+										value="Muestra una actitud positiva hacia el futuro" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor41" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp4}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor42" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe4}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo5"
+										value="Llena fichas o escritos con sus datos personal y/o familiares" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor51" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp5}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor52" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe5}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo6"
+										value="Muestra una conducta adecuada y autónoma cuando utliza tranporte público" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor61" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp6}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor62" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe6}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo7"
+										value="Está preparado para pasar una entrevista, responde a las informaciones que le demandan" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor71" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp7}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalor72" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe7}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivo8"
+										value="Manifiesta que quiere trabajar" />
+									<h:selectOneMenu id="ruidovalor81" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp8}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor82" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe8}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo9"
+										value="Menciona al menos 2 razones por las que quiere trabajar" />
+									<h:selectOneMenu id="ruidovalor91" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp9}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor92" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe9}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo10"
+										value="Manifiesta razones por la que no encuentra empleo" />
+
+									<h:selectOneMenu id="ruidovalor101" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp10}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor102" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe10}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo11"
+										value="Describe las cosas de forma coherente" />
+									<h:selectOneMenu id="ruidovalor111" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp1}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor112" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe11}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo12" value="Plantea posibilidades" />
+									<h:selectOneMenu id="ruidovalor121" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp12}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor122" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe12}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo13"
+										value="Reconoce que ha cometido un fallo o error, expresa disculpas y corrige el error" />
+									<h:selectOneMenu id="ruidovalor131" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp13}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor132" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe13}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo14"
+										value="Es autónomo en sus desplazamiento internos y externos" />
+									<h:selectOneMenu id="ruidovalor141" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp14}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor142" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe14}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo15"
+										value="Cumple con lo que se le encarga o ejecuta instrucciones" />
+									<h:selectOneMenu id="ruidovalor151" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp15}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor152" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe15}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo16"
+										value="Conoce y utliza pequeñas cantidades de dinero" />
+									<h:selectOneMenu id="ruidovalor161" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp16}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor162" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe16}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo17"
+										value="Conoce las nociones básicas espaciales (Izq,der,arriba,abajo,adentro y afuera)" />
+									<h:selectOneMenu id="ruidovalor171" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp17}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor172" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe17}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivo18"
+										value="Se comunica claramente (usando el canal habitual)" />
+									<h:selectOneMenu id="ruidovalor181" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalCp18}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalor182" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPersonalMe18}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+								</h:panelGrid>
+							</h:panelGroup>
+						</h:panelGrid>
+
+						<h:panelGrid columns="3" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+							<h:panelGroup styleClass="gridContent">
+								<h:panelGrid columns="3"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Factores Sociales" />
+									</f:facet>
+
+									<h:outputLabel for="motivoa1"
+										value="Saluda de forma adecuada a distintas personas de su entorno social" />
+									<t:panelGroup style="text-align:right;">
+										<h:selectOneMenu id="ruidovalora11" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp1}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup>
+										<h:selectOneMenu id="ruidovalora12" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe1}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa2"
+										value="Dice sus datos personales:nombres y apellidos,edad,dirección, teléfono y fecha de nacimiento" />
+
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora21" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp2}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora22" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe2}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa3"
+										value="Hace afirmaciones positivas hacia sí mismo ante otras personas" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora31" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp3}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora32" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe3}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa4"
+										value="Muestra una actitud positiva hacia el futuro" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora41" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp4}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora42" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe4}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa5"
+										value="Llena fichas o escritos con sus datos personal y/o familiares" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora51" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp5}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora52" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe5}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa6"
+										value="Muestra una conducta adecuada y autónoma cuando utliza tranporte público" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora61" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp6}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora62" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe6}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa7"
+										value="Está preparado para pasar una entrevista, responde a las informaciones que le demandan" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora71" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp7}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalora72" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe7}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivoa8"
+										value="Manifiesta que quiere trabajar" />
+									<h:selectOneMenu id="ruidovalora81" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp8}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora82" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe8}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa9"
+										value="Menciona al menos 2 razones por las que quiere trabajar" />
+									<h:selectOneMenu id="ruidovalora91" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp9}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora92" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe9}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa10"
+										value="Manifiesta razones por la que no encuentra empleo" />
+
+									<h:selectOneMenu id="ruidovalora101" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp10}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora102" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe10}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa11"
+										value="Describe las cosas de forma coherente" />
+									<h:selectOneMenu id="ruidovalora111" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp11}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora112" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe11}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa12" value="Plantea posibilidades" />
+									<h:selectOneMenu id="ruidovalora121" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp12}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora122" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe12}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa13"
+										value="Reconoce que ha cometido un fallo o error, expresa disculpas y corrige el error" />
+									<h:selectOneMenu id="ruidovalora131" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp13}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora132" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe13}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa14"
+										value="Es autónomo en sus desplazamiento internos y externos" />
+									<h:selectOneMenu id="ruidovalora141" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp14}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora142" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe14}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa15"
+										value="Cumple con lo que se le encarga o ejecuta instrucciones" />
+									<h:selectOneMenu id="ruidovalora151" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp15}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora152" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe15}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa16"
+										value="Conoce y utliza pequeñas cantidades de dinero" />
+									<h:selectOneMenu id="ruidovalora161" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp16}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora162" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe16}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa17"
+										value="Conoce las nociones básicas espaciales (Izq,der,arriba,abajo,adentro y afuera)" />
+									<h:selectOneMenu id="ruidovalora171" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp17}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora172" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe17}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivoa18"
+										value="Se comunica claramente (usando el canal habitual)" />
+									<h:selectOneMenu id="ruidovalora181" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialCp18}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalora182" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indSocialMe18}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+								</h:panelGrid>
+							</h:panelGroup>
+						</h:panelGrid>
+
+						<h:panelGrid columns="3" styleClass="gridContent"
+							columnClasses="gridContentTop gridContentDosElementos, gridContentTop gridContentDosElementos">
+							<h:panelGroup styleClass="gridContent">
+								<h:panelGrid columns="3"
+									styleClass="gridContent rich-table-headercell"
+									rowClasses="filaTabla">
+									<f:facet name="header">
+										<h:outputText value="Factores Pre-Laborales" />
+									</f:facet>
+
+									<h:outputLabel for="motivob1" value="Asiste limpio y ordenado" />
+									<t:panelGroup style="text-align:right;">
+										<h:selectOneMenu id="ruidovalorb11" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp1}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup>
+										<h:selectOneMenu id="ruidovalorb12" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe1}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob2"
+										value="Asocia la hora del reloj con distintas actividades diarias, pregunta y dice correctamente la hora que es" />
+
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb21" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp2}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb22" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe2}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob3" value="Lee un texto breve" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb31" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp3}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb32" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe3}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob4"
+										value="Conocimiento numérico:cuenta/sumas básicas" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb41" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp4}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb42" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe4}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob5"
+										value="Se concentra en la tarea hasta que la termine, sin control externo" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb51" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp5}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb52" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe5}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob6"
+										value="Se concentra durante una explicación e instrucción verbal" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb61" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp6}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb62" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe6}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob7"
+										value="Completa una tarea encomendada de un paso (sencilla)" />
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb71" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp7}">
+											<f:selectItem itemValue="0" itemLabel="0" />
+											<f:selectItem itemValue="1" itemLabel="1" />
+
+										</h:selectOneMenu>
+									</t:panelGroup>
+									<t:panelGroup colspan="1">
+										<h:selectOneMenu id="ruidovalorb72" title="Seleccionar valor"
+											value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe7}">
+											<f:selectItem itemValue="1" itemLabel="1" />
+											<f:selectItem itemValue="2" itemLabel="2" />
+											<f:selectItem itemValue="3" itemLabel="3" />
+											<f:selectItem itemValue="4" itemLabel="4" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="6" itemLabel="6" />
+										</h:selectOneMenu>
+									</t:panelGroup>
+
+									<h:outputLabel for="motivob8"
+										value="Completa una tarea encomendada (de forma verbal) de 2 o más pasos (compleja)" />
+									<h:selectOneMenu id="ruidovalorb81" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp8}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb82" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe8}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob9"
+										value="Se adapta con facilidad a cambios no programados" />
+									<h:selectOneMenu id="ruidovalorb91" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp9}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb92" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe9}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob10"
+										value="Muestra interés por aprender cosas nuevas" />
+
+									<h:selectOneMenu id="ruidovalorb101" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp10}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb102" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe10}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob11"
+										value="Sube y baja escaleras con facilidad" />
+									<h:selectOneMenu id="ruidovalorb111" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp11}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb112" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe11}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob12"
+										value="Dobla hojas con presición a un ritmo adecuado" />
+									<h:selectOneMenu id="ruidovalorb121" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp12}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb122" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe12}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob13"
+										value="Se ajustan a un ritmo más rápido que el promedio" />
+									<h:selectOneMenu id="ruidovalorb131" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp13}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb132" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe13}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob14" value="Sabe acceder a Internet" />
+									<h:selectOneMenu id="ruidovalorb141" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp14}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb142" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe14}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob15"
+										value="Conoce y maneja algún programa informático" />
+									<h:selectOneMenu id="ruidovalorb151" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp15}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb152" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe15}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob16"
+										value="Es autónomo en su actuaciones, no necesita la aprobación constante de otras personas para realizar alguna acción o tomar desiciones" />
+									<h:selectOneMenu id="ruidovalorb161" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp16}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb162" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe16}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob17"
+										value="Es capaz de cumplir un horsrio acordado" />
+									<h:selectOneMenu id="ruidovalorb171" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp17}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb172" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe17}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+
+									<h:outputLabel for="motivob18"
+										value="Cuando lo necesita pide ayuda y co seja a otras personas" />
+									<h:selectOneMenu id="ruidovalorb181" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralCp18}">
+										<f:selectItem itemValue="0" itemLabel="0" />
+										<f:selectItem itemValue="1" itemLabel="1" />
+
+									</h:selectOneMenu>
+									<h:selectOneMenu id="ruidovalorb182" title="Seleccionar valor"
+										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaEvaluacionPerfil.indPrelaboralMe18}">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+										<f:selectItem itemValue="6" itemLabel="6" />
+									</h:selectOneMenu>
+								</h:panelGrid>
+							</h:panelGroup>
+						</h:panelGrid>
+					</t:panelGroup>
+
+
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Técnico - Manual" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo112" -->
+					<!-- 										value="Reparar electrodomésticos" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo112" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual1}" /> -->
+					<!-- 									<h:outputLabel for="motivo212" value="Pintar habitaciones" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo212" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual2}" /> -->
+					<!-- 									<h:outputLabel for="motivo312" value="Restaurar muebles" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo312" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual3}" /> -->
+					<!-- 									<h:outputLabel for="motivo412" value="Arreglas enchufes" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo412" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual4}" /> -->
+					<!-- 									<h:outputLabel for="motivo512" -->
+					<!-- 										value="Desatascar lavabos, caños, etc." /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo512" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual5}" /> -->
+					<!-- 									<h:outputLabel for="motivo612" -->
+					<!-- 										value="Cambiar una llanta de bicicleta/carro" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo612" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.tecnicoManual6}" /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Científico - Abstractas" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo113" value="Combinar alimentos" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo113" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas1}" /> -->
+					<!-- 									<h:outputLabel for="motivo213" value="Hacer perfumes" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo213" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas2}" /> -->
+					<!-- 									<h:outputLabel for="motivo313" value="Combinar y crear licores" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo313" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas3}" /> -->
+					<!-- 									<h:outputLabel for="motivo413" value="Controlar las calorías" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo413" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas4}" /> -->
+					<!-- 									<h:outputLabel for="motivo513" -->
+					<!-- 										value="Inventar remedios caseros" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo513" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas5}" /> -->
+					<!-- 									<h:outputLabel for="motivo613" -->
+					<!-- 										value="Manejar productos químicos" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo613" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.cientificoAbstractas6}" /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Sociales" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo114" -->
+					<!-- 										value="Hacer visitas a personas mayores" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo114" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales1}" /> -->
+					<!-- 									<h:outputLabel for="motivo214" value="Jugar con niños/as" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo214" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales2}" /> -->
+					<!-- 									<h:outputLabel for="motivo314" -->
+					<!-- 										value="Hacer trabajos voluntarios en asociaciones" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo314" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales3}" /> -->
+					<!-- 									<h:outputLabel for="motivo414" -->
+					<!-- 										value="Participar a favor de una asociación benéfica" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo414" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales4}" /> -->
+					<!-- 									<h:outputLabel for="motivo514" -->
+					<!-- 										value="Invitar a niños/as extranjeros/as a su casa" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo514" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales5}" /> -->
+					<!-- 									<h:outputLabel for="motivo614" -->
+					<!-- 										value="Acompañar a escolares de excursión" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo614" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales6}" /> -->
+					<!-- 									<h:outputLabel for="motivo714" value="Preparar celebraciones" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo714" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales7}" /> -->
+					<!-- 									<h:outputLabel for="motivo814" -->
+					<!-- 										value="Atender a familiares enfermos" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo814" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.sociales8}" /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 							</h:panelGroup> -->
+					<!-- 							<h:panelGroup styleClass="gridContent"> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Comerciales" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo125" -->
+					<!-- 										value="Vender ropa/bisutería, muebles, comida, etc." /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo125" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales1}" /> -->
+					<!-- 									<h:outputLabel for="motivo225" value="Pagar recibos" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo225" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales2}" /> -->
+					<!-- 									<h:outputLabel for="motivo325" -->
+					<!-- 										value="Archivar documentos, fotocopiar" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo325" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales3}" /> -->
+					<!-- 									<h:outputLabel for="motivo425" value="Atender el teléfono" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo425" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales4}" /> -->
+					<!-- 									<h:outputLabel for="motivo525" value="Brindar información" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo525" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales5}" /> -->
+					<!-- 									<h:outputLabel for="motivo625" value="Hacer un presupuesto" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo625" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales6}" /> -->
+					<!-- 									<h:outputLabel for="motivo725" value="Ir de compras" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo725" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales7}" /> -->
+					<!-- 									<h:outputLabel for="motivo825" value="Administrar el sueldo" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo825" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales8}" /> -->
+					<!-- 									<h:outputLabel for="motivo925" value="Ahorrar" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo925" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.comerciales9}" /> -->
+					<!-- 									<rich:spacer width="5" height="18" title="espacio" /> -->
+					<!-- 									<h:outputText value=" " /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Musicales" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo126" value="Tocar algún instrumento" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo126" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.musicales1}" /> -->
+					<!-- 									<h:outputLabel for="motivo226" value="Escuchar música" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo226" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.musicales2}" /> -->
+					<!-- 									<h:outputLabel for="motivo326" value="Cantar" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo326" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.musicales3}" /> -->
+					<!-- 									<h:outputLabel for="motivo426" value="Inventar canciones" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo426" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.musicales4}" /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Artísticas" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo127" value="Tejer (palitos, crochet)" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo127" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas1}" /> -->
+					<!-- 									<h:outputLabel for="motivo227" value="Pintar y/o dibujar" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo227" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas2}" /> -->
+					<!-- 									<h:outputLabel for="motivo327" value="Poner y decorar la mesa" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo327" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas3}" /> -->
+					<!-- 									<h:outputLabel for="motivo427" -->
+					<!-- 										value="Componer el menú de las fiestas" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo427" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas4}" /> -->
+					<!-- 									<h:outputLabel for="motivo527" -->
+					<!-- 										value="Inventar una nueva receta de cocina" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo527" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas5}" /> -->
+					<!-- 									<h:outputLabel for="motivo627" value="Coser ropa" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo627" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas6}" /> -->
+					<!-- 									<h:outputLabel for="motivo727" value="Hacer bisutería" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo727" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas7}" /> -->
+					<!-- 									<h:outputLabel for="motivo827" value="Decorar la casa" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo827" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.artisticas8}" /> -->
+					<!-- 								</h:panelGrid> -->
+					<!-- 								<h:panelGrid columns="2" columnClasses=",columnaCheck" -->
+					<!-- 									styleClass="gridContent rich-table-headercell" -->
+					<!-- 									rowClasses="filaTabla"> -->
+					<!-- 									<f:facet name="header"> -->
+					<!-- 										<h:outputText value="Ocio" /> -->
+					<!-- 									</f:facet> -->
+					<!-- 									<h:outputLabel for="motivo128" -->
+					<!-- 										value="Ir a conciertos, teatro, exposiciones" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo128" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio1}" /> -->
+					<!-- 									<h:outputLabel for="motivo228" value="Leer un libro" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo228" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio2}" /> -->
+					<!-- 									<h:outputLabel for="motivo328" value="Ir al cine" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo328" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio3}" /> -->
+					<!-- 									<h:outputLabel for="motivo428" -->
+					<!-- 										value="Leer periódicos o revistas" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo428" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio4}" /> -->
+					<!-- 									<h:outputLabel for="motivo528" value="Escribir un diario" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo528" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio5}" /> -->
+					<!-- 									<h:outputLabel for="motivo628" value="Escribir poemas" /> -->
+					<!-- 									<h:selectBooleanCheckbox id="motivo628" -->
+					<!-- 										value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.ocio6}" /> -->
+					<!-- 								</h:panelGrid> -->
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<!-- 					<t:panelGroup colspan="6"> -->
+					<!-- 						<h:outputLabel value="Otros intereses:" /> -->
+					<!-- 					</t:panelGroup> -->
+
+
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<t:panelGroup colspan="5"> -->
+					<!-- 						<h:inputTextarea -->
+					<!-- 							value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.otrosIntereses}" -->
+					<!-- 							styleClass="width100" -->
+					<!-- 							onkeyup="contar(this, #{rich:element('outOtrosIntereses')}, 500)" /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+
+					<!-- 					<t:panelGroup colspan="6" styleClass="contadorCaracteres"> -->
+					<!-- 						<h:outputLabel id="outOtrosIntereses" value="*" -->
+					<!-- 							title="Contador de caracteres" /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+
+					<!-- 					<t:panelGroup colspan="7"> -->
+					<!-- 						<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 						<rich:separator lineType="beveled" height="3" width="100%" -->
+					<!-- 							style="background-color: #808080; background-image: url('');" -->
+					<!-- 							align="center" /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<t:panelGroup colspan="7"> -->
+					<!-- 						<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					</t:panelGroup> -->
+
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<t:panelGroup colspan="6"> -->
+					<!-- 						<h:outputLabel styleClass="tituloFila" -->
+					<!-- 							value="(b) Preferencias laborales" /> -->
+					<!-- 					</t:panelGroup> -->
+
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<t:panelGroup colspan="5"> -->
+					<!-- 						<h:outputLabel style="font-weight: bold;" -->
+					<!-- 							value="¿Qué trabajos le gustaría realizar ahora?" /> -->
+					<!-- 						<br /> -->
+					<!-- 						<h:outputLabel -->
+					<!-- 							value="Preguntar al candidato y detallar los deseos y preferencias laborales, -->
+					<!-- 							su conocimiento sobre el mercado laboral, grado de realismo en función -->
+					<!-- 							de sus cualidades (personales, actitudinales y formativas), experiencia laboral -->
+					<!-- 							y sus deseos y preferencias." /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<t:panelGroup colspan="5"> -->
+					<!-- 						<h:inputTextarea -->
+					<!-- 							value="#{registrarEvaluacionPerfilEmpleabilidadMB.personaBean.personaInteresesOcupacionales.preferenciasLaborales}" -->
+					<!-- 							styleClass="width100" -->
+					<!-- 							onkeyup="contar(this, #{rich:element('outPreferenciasLaborales')}, 500)" /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+					<!-- 					<t:panelGroup colspan="6" styleClass="contadorCaracteres"> -->
+					<!-- 						<h:outputLabel id="outPreferenciasLaborales" value="*" -->
+					<!-- 							title="Contador de caracteres" /> -->
+					<!-- 					</t:panelGroup> -->
+					<!-- 					<rich:spacer width="5" height="10" title="espacio" /> -->
+
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<!-- 						<rich:separator lineType="beveled" height="3" width="100%" -->
+						<!-- 							style="background-color: #808080; background-image: url('');" -->
+						<!-- 							align="center" /> -->
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+									immediate="true"
+									value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+									styleClass="botonBuscar">
+									<a4j:actionparam name="accion"
+										value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_POSTULANTE)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_POSTULANTE}"
+										assignTo="#{sesionMB.contexto}" />
+								</a4j:commandButton>
+
+								<rich:spacer width="5" height="5" title="espacio" />
+								<t:commandButton action="#"
+									value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+									disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+									actionFor="frmDatosGenerales,frmMenu"
+									actionListener="#{registrarEvaluacionPerfilEmpleabilidadMB.guardar}"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+
+				</t:panelGrid>
+
+				<f:subview id="subArchivo">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteModalArchivo.xhtml" />
+				</f:subview>
+
+				<f:subview id="subMensaje">
+					<!-- ventana modal de respuesta-->
+					<ui:include src="/jsp/admPostulanteMensajePersona.xhtml" />
+				</f:subview>
+
+			</h:form>
+		</rich:panel>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>

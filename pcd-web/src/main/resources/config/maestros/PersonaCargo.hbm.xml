@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.PersonaCargo"
+		table="SITB_PERCARGO">
+		<cache usage="read-only" />
+		<id name="id" type="string">
+			<column name="V_CODCARGO" length="2" />
+		</id>
+		<property name="nombre" type="string">
+			<column name="V_NOMCARGO" length="50" />
+		</property>
+		<property name="descripcion" type="string">
+			<column name="V_DESCARGO" length="500" />
+		</property>
+		<property name="flgAct" type="string">
+			<column name="V_FLGACT" length="1" />
+		</property>
+	</class>
+</hibernate-mapping>

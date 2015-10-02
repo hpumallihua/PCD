@@ -1,0 +1,21 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	<t:messages id="messages" showDetail="true" layout="table"
+		showSummary="false" replaceIdWithLabel="true"
+		detailFormat="Error en la entrada de datos de {1}."
+		errorClass="mensajesError" infoClass="mensajeNoVisible"
+		warnClass="mensajeNoVisible">
+	</t:messages>
+	<t:messages id="transaccion" styleClass="mensajesInfo-"
+		showDetail="true" layout="table" showSummary="false"
+		replaceIdWithLabel="true" errorClass="mensajeNoVisible"
+		warnClass="mensajesAdvertencia" infoClass="mensajesInfo">
+	</t:messages>
+
+</ui:composition>
+

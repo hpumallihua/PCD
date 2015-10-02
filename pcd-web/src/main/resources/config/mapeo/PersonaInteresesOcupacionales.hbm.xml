@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.PersonaInteresesOcupacionales"
+		table="PDTBC_PRSNAINTRSES">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRSNA" scale="0">
+				<comment>CÓDIGO PERSONA.</comment>
+			</column>
+			<generator class="foreign">
+				<param name="property">persona</param>
+			</generator>
+		</id>
+
+		<one-to-one class="pe.gob.trabajo.pcd.modelo.dominio.Persona"
+			constrained="true" name="persona" />
+
+		<property generated="never" lazy="false" name="otrosIntereses"
+			type="string">
+			<column length="500" name="V_OTROSINTE">
+				<comment>OTROS INTERESES OCUPACIONALES.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="preferenciasLaborales"
+			type="string">
+			<column length="500" name="V_PREFLABS">
+				<comment>TRABAJOS QUE LE GUSTARÍA REALIZAR.</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="aireLibre1"
+			type="boolean">
+			<column name="N_ARELBRE1">
+				<comment>AIRE LIBRE: SEMBRAR PLANTAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre2"
+			type="boolean">
+			<column name="N_ARELBRE2">
+				<comment>AIRE LIBRE: MANTENER UN HUERTO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre3"
+			type="boolean">
+			<column name="N_ARELBRE3">
+				<comment>AIRE LIBRE: HACER ARREGLOS FLORALES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre4"
+			type="boolean">
+			<column name="N_ARELBRE4">
+				<comment>AIRE LIBRE: DEDICARSE A LA APICULTURA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre5"
+			type="boolean">
+			<column name="N_ARELBRE5">
+				<comment>AIRE LIBRE: CUIDAR ANIMALES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre6"
+			type="boolean">
+			<column name="N_ARELBRE6">
+				<comment>AIRE LIBRE: CULTIVAR PLANTAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre7"
+			type="boolean">
+			<column name="N_ARELBRE7">
+				<comment>AIRE LIBRE: SECAR FLORES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="aireLibre8"
+			type="boolean">
+			<column name="N_ARELBRE8">
+				<comment>AIRE LIBRE: CRIAR ANIMALES</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="tecnicoManual1"
+			type="boolean">
+			<column name="N_TECMANL1">
+				<comment>TÉCNICO - MANUAL: REPARAR ELECTRODOMÉSTICOS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tecnicoManual2"
+			type="boolean">
+			<column name="N_TECMANL2">
+				<comment>TÉCNICO - MANUAL: PINTAR HABITACIONES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tecnicoManual3"
+			type="boolean">
+			<column name="N_TECMANL3">
+				<comment>TÉCNICO - MANUAL: RESTAURAR MUEBLES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tecnicoManual4"
+			type="boolean">
+			<column name="N_TECMANL4">
+				<comment>TÉCNICO - MANUAL: ARREGLAS ENCHUFES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tecnicoManual5"
+			type="boolean">
+			<column name="N_TECMANL5">
+				<comment>TÉCNICO - MANUAL: DESATASCAR LAVABOS, CAÑOS, ETC.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="tecnicoManual6"
+			type="boolean">
+			<column name="N_TECMANL6">
+				<comment>TÉCNICO - MANUAL: CAMBIAR UNA LLANTA DE BICICLETA/CARRO</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="cientificoAbstractas1"
+			type="boolean">
+			<column name="N_CNTFABST1">
+				<comment>CIENTÍFICO - ABSTRACTAS: COMBINAR ALIMENTOS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cientificoAbstractas2"
+			type="boolean">
+			<column name="N_CNTFABST2">
+				<comment>CIENTÍFICO - ABSTRACTAS: HACER PERFUMES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cientificoAbstractas3"
+			type="boolean">
+			<column name="N_CNTFABST3">
+				<comment>CIENTÍFICO - ABSTRACTAS: COMBINAR Y CREAR LICORES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cientificoAbstractas4"
+			type="boolean">
+			<column name="N_CNTFABST4">
+				<comment>CIENTÍFICO - ABSTRACTAS: CONTROLAR LAS CALORÍAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cientificoAbstractas5"
+			type="boolean">
+			<column name="N_CNTFABST5">
+				<comment>CIENTÍFICO - ABSTRACTAS: INVENTAR REMEDIOS CASEROS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cientificoAbstractas6"
+			type="boolean">
+			<column name="N_CNTFABST6">
+				<comment>CIENTÍFICO - ABSTRACTAS: MANEJAR PRODUCTOS QUÍMICOS</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="sociales1"
+			type="boolean">
+			<column name="N_SCLES1">
+				<comment>SOCIALES: HACER VISITAS A PERSONAS MAYORES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales2"
+			type="boolean">
+			<column name="N_SCLES2">
+				<comment>SOCIALES: JUGAR CON NIÑOS/AS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales3"
+			type="boolean">
+			<column name="N_SCLES3">
+				<comment>SOCIALES: HACER TRABAJOS VOLUNTARIOS EN ASOCIACIONES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales4"
+			type="boolean">
+			<column name="N_SCLES4">
+				<comment>SOCIALES: PARTICIPAR A FAVOR DE UNA ASOCIACIÓN BENÉFICA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales5"
+			type="boolean">
+			<column name="N_SCLES5">
+				<comment>SOCIALES: INVITAR A NIÑOS/AS EXTRANJEROS/AS A SU CASA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales6"
+			type="boolean">
+			<column name="N_SCLES6">
+				<comment>SOCIALES: ACOMPAÑAR A ESCOLARES DE EXCURSIÓN</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales7"
+			type="boolean">
+			<column name="N_SCLES7">
+				<comment>SOCIALES: PREPARAR CELEBRACIONES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sociales8"
+			type="boolean">
+			<column name="N_SCLES8">
+				<comment>SOCIALES: ATENDER A FAMILIARES ENFERMOS</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="comerciales1"
+			type="boolean">
+			<column name="N_CMRCLES1">
+				<comment>COMERCIALES: VENDER ROPA/BISUTERÍA, MUEBLES, COMIDA, ETC.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales2"
+			type="boolean">
+			<column name="N_CMRCLES2">
+				<comment>COMERCIALES: PAGAR RECIBOS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales3"
+			type="boolean">
+			<column name="N_CMRCLES3">
+				<comment>COMERCIALES: ARCHIVAR DOCUMENTOS, FOTOCOPIAR</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales4"
+			type="boolean">
+			<column name="N_CMRCLES4">
+				<comment>COMERCIALES: ATENDER EL TELÉFONO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales5"
+			type="boolean">
+			<column name="N_CMRCLES5">
+				<comment>COMERCIALES: BRINDAR INFORMACIÓN</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales6"
+			type="boolean">
+			<column name="N_CMRCLES6">
+				<comment>COMERCIALES: HACER UN PRESUPUESTO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales7"
+			type="boolean">
+			<column name="N_CMRCLES7">
+				<comment>COMERCIALES: IR DE COMPRAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales8"
+			type="boolean">
+			<column name="N_CMRCLES8">
+				<comment>COMERCIALES: ADMINISTRAR EL SUELDO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comerciales9"
+			type="boolean">
+			<column name="N_CMRCLES9">
+				<comment>COMERCIALES: AHORRAR</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="musicales1"
+			type="boolean">
+			<column name="N_MSCLES1">
+				<comment>MUSICALES: TOCAR ALGÚN INSTRUMENTO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="musicales2"
+			type="boolean">
+			<column name="N_MSCLES2">
+				<comment>MUSICALES: ESCUCHAR MÚSICA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="musicales3"
+			type="boolean">
+			<column name="N_MSCLES3">
+				<comment>MUSICALES: CANTAR</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="musicales4"
+			type="boolean">
+			<column name="N_MSCLES4">
+				<comment>MUSICALES: INVENTAR CANCIONES</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="artisticas1"
+			type="boolean">
+			<column name="N_ARTSTCAS1">
+				<comment>ARTÍSTICAS: TEJER (PALITOS, CROCHET)</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas2"
+			type="boolean">
+			<column name="N_ARTSTCAS2">
+				<comment>ARTÍSTICAS: PINTAR Y/O DIBUJAR</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas3"
+			type="boolean">
+			<column name="N_ARTSTCAS3">
+				<comment>ARTÍSTICAS: PONER Y DECORAR LA MESA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas4"
+			type="boolean">
+			<column name="N_ARTSTCAS4">
+				<comment>ARTÍSTICAS: COMPONER EL MENÚ DE LAS FIESTAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas5"
+			type="boolean">
+			<column name="N_ARTSTCAS5">
+				<comment>ARTÍSTICAS: INVENTAR UNA NUEVA RECETA DE COCINA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas6"
+			type="boolean">
+			<column name="N_ARTSTCAS6">
+				<comment>ARTÍSTICAS: COSER ROPA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas7"
+			type="boolean">
+			<column name="N_ARTSTCAS7">
+				<comment>ARTÍSTICAS: HACER BISUTERÍA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="artisticas8"
+			type="boolean">
+			<column name="N_ARTSTCAS8">
+				<comment>ARTÍSTICAS: DECORAR LA CASA</comment>
+			</column>
+		</property>
+		
+		<property generated="never" lazy="false" name="ocio1"
+			type="boolean">
+			<column name="N_OCO1">
+				<comment>OCIO: IR A CONCIERTOS, TEATRO, EXPOSICIONES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="ocio2"
+			type="boolean">
+			<column name="N_OCO2">
+				<comment>OCIO: LEER UN LIBRO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="ocio3"
+			type="boolean">
+			<column name="N_OCO3">
+				<comment>OCIO: IR AL CINE</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="ocio4"
+			type="boolean">
+			<column name="N_OCO4">
+				<comment>OCIO: LEER PERIÓDICOS O REVISTAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="ocio5"
+			type="boolean">
+			<column name="N_OCO5">
+				<comment>OCIO: ESCRIBIR UN DIARIO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="ocio6"
+			type="boolean">
+			<column name="N_OCO6">
+				<comment>OCIO: ESCRIBIR POEMAS</comment>
+			</column>
+		</property>
+
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

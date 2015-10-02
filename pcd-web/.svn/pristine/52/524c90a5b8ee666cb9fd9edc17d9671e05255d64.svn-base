@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.RedSocial"
+		table="PDTBC_REDSOCIAL">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODREDSCL" precision="3" scale="0">
+				<comment>CÓDIGO DE LA RED SOCIAL.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_REDCALID</param>
+			</generator>
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DSCRPCON" length="50">
+				<comment>DESCRIPCION DE LA RED SOCIAL.</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<!-- <set name="tiprmContactoRedSocials" table="TIPRM_CONTACTO_RED_SOCIAL" 
+			inverse="true" lazy="true" fetch="select"> -->
+		<!-- <key> -->
+		<!-- <column name="ID_RED_SCAL" precision="3" scale="0" not-null="true" 
+			/> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="pe.gob.trabajo.pcd.modelo.dominio.TiprmContactoRedSocial" 
+			/> -->
+		<!-- </set> -->
+	</class>
+</hibernate-mapping>

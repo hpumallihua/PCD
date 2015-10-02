@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.ContactoRedSocial"
+		table="PDTBC_CONREDSOCIAL">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODRDSCAL" scale="0">
+				<comment>CÓDIGO DEL CONTACTO DE LA RED SOCIAL.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_CNTCTOREDSCALID</param>
+			</generator>
+		</id>
+		<many-to-one name="redSocial"
+			class="pe.gob.trabajo.pcd.modelo.dominio.RedSocial" fetch="select">
+			<column name="N_CODREDSCL" precision="3" scale="0" not-null="true">
+				<comment>CÓDIGO DE LA RED SOCIAL.</comment>
+			</column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

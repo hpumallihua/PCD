@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Distrito"
+		table="SITB_DISTRITO">
+		<cache usage="read-only" />
+<!-- 		<cache usage="nonstrict-read-write" /> -->
+		<composite-id name="id"
+			class="pe.gob.trabajo.pcd.modelo.dominio.DistritoId">
+			<key-property name="idDistrito" type="string">
+				<column name="V_CODDIS" length="2" />
+			</key-property>
+			<key-property name="idProvincia" type="string">
+				<column name="V_CODPRO" length="2" />
+			</key-property>
+			<key-property name="idDepartamento" type="string">
+				<column name="V_CODDEP" length="2" />
+			</key-property>
+		</composite-id>
+		<many-to-one name="provincia"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Provincia" update="false"
+			insert="false" fetch="select">
+			<column name="V_CODPRO" length="2" not-null="true" />
+			<column name="V_CODDEP" length="2" not-null="true" />
+		</many-to-one>
+		<property name="nombre" type="string">
+			<column name="V_DESDIS" length="30" />
+		</property>
+		<property name="abreviatura" type="string">
+			<column name="V_ABRDIS" length="3" />
+		</property>
+		<property name="codRegion" type="string">
+			<column name="V_CODREG" length="2" />
+		</property>
+		<property name="codZona" type="string">
+			<column name="V_CODZON" length="2" />
+		</property>
+	</class>
+</hibernate-mapping>

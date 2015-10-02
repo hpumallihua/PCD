@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Sistema"
+		table="SITB_SISTEMA">
+		<id name="id" type="string">
+			<column name="V_CODSIS" length="3" />
+		</id>
+		<property name="nombre" type="string">
+			<column name="V_NOMSIS" length="50" />
+		</property>
+		<property name="descripcion" type="string">
+			<column name="V_OBSSIST" length="100" />
+		</property>
+		<property name="abreviatura" type="string">
+			<column name="V_ABRSIS" length="20" />
+		</property>
+		<property name="estado" type="string">
+			<column name="V_FLGACT" length="1" />
+		</property>
+		<property name="tipoSistema" type="string">
+			<column name="V_TIPOSIS" length="1" />
+		</property>
+		<property name="url" type="string">
+			<column name="V_URL" length="200" />
+		</property>
+	</class>
+</hibernate-mapping>

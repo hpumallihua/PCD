@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Preferencia"
+		table="PDMVD_PRFLPREFEREN">
+		<composite-id name="id"
+			class="pe.gob.trabajo.pcd.modelo.dominio.PreferenciaId">
+			<key-property name="idTpoPrfrnca" type="java.lang.Long">
+				<column name="N_CODTPOPRF" precision="3" scale="0">
+					<comment>CÓDIGO DE TIPO DE PREFERENCIA.</comment>
+				</column>
+			</key-property>
+			<key-property name="idPrfrnca" type="java.lang.Long">
+				<column name="N_CDPRFRNCA">
+					<comment>CÓDIGO DE PREFERENCIA.</comment>
+				</column>
+			</key-property>
+			<key-property name="idPrfsnal" type="java.lang.Long">
+				<column name="N_CODPRSNAL" scale="0">
+					<comment>CÓDIGO PROFESIONAL</comment>
+				</column>
+			</key-property>
+			<!-- <generator class="sequence" > -->
+			<!-- <param name="sequence" >SN_ID_PRFRNCA_ID_SEQ</param> -->
+			<!-- </generator> -->
+		</composite-id>
+		<many-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" update="false"
+			insert="false" fetch="select">
+			<column name="N_CODPRSNAL" scale="0" not-null="true">
+				<comment>CÓDIGO PROFESIONAL</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="tipoPreferencia"
+			class="pe.gob.trabajo.pcd.modelo.dominio.TipoPreferencia" update="false"
+			insert="false" fetch="select">
+			<column name="N_CODTPOPRF" precision="3" scale="0" not-null="true">
+				<comment>CÓDIGO DE TIPO DE PREFERENCIA.</comment>
+			</column>
+		</many-to-one>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!--sessionFactory will get autowired-->
+	<!-- TEST -->
+<!--	<bean id="ParametroDaoTarget"-->
+<!--		class="pe.gob.trabajo.pcd.modelo.dao.hibernatejpa.ParametroDAOHibernateImpl"-->
+<!--		autowire="byName" scope="singleton"/>-->
+
+<!--	<bean id="ParametroDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">-->
+<!--		<property name="proxyInterfaces">-->
+<!--			<value>pe.gob.trabajo.pcd.modelo.dao.ParametroDAO</value>-->
+<!--		</property>-->
+<!--		<property name="interceptorNames">-->
+<!--			<list>-->
+<!--				<value>hibernateInterceptor</value>-->
+<!--				<value>ParametroDaoTarget</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+	<!-- PERSONA -->
+	<bean id="PersonaDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.PersonaDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="PersonaDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.PersonaDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>PersonaDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- POSTULANTE -->
+<!--	<bean id="PostulanteDaoTarget"-->
+<!--		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.PostulanteDAOImpl"-->
+<!--		autowire="byName" scope="singleton"/>-->
+<!---->
+<!--	<bean id="PostulanteDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">-->
+<!--		<property name="proxyInterfaces">-->
+<!--			<value>pe.gob.trabajo.pcd.modelo.dao.PostulanteDAO</value>-->
+<!--		</property>-->
+<!--		<property name="interceptorNames">-->
+<!--			<list>-->
+<!--				<value>hibernateInterceptor</value>-->
+<!--				<value>PostulanteDaoTarget</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+	
+	<!-- MAESTRO -->
+	<bean id="MaestroDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.MaestroDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="MaestroDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.MaestroDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>MaestroDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- PROCESO -->
+<!--	<bean id="ProcesoDaoTarget"-->
+<!--		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.ProcesoDAOImpl"-->
+<!--		autowire="byName" scope="singleton"/>-->
+<!---->
+<!--	<bean id="ProcesoDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">-->
+<!--		<property name="proxyInterfaces">-->
+<!--			<value>pe.gob.trabajo.pcd.modelo.dao.ProcesoDAO</value>-->
+<!--		</property>-->
+<!--		<property name="interceptorNames">-->
+<!--			<list>-->
+<!--				<value>hibernateInterceptor</value>-->
+<!--				<value>ProcesoDaoTarget</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
+	
+	<!-- AUDITORIA -->
+	<bean id="AuditoriaDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.AuditoriaDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="AuditoriaDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.AuditoriaDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>AuditoriaDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- PROFESIONAL -->
+	<bean id="ProfesionalDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.ProfesionalDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="ProfesionalDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.ProfesionalDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>ProfesionalDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- PROVEEDOR MAESTROS -->
+	<bean id="ProveedorMaestroDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.ProveedorMaestroDAOImpl"
+		autowire="no" scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactoryMaestros" />
+		</property>
+	</bean>
+
+	<bean id="ProveedorMaestroDAO" class="org.springframework.aop.framework.ProxyFactoryBean"
+		scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.ProveedorMaestroDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptorMaestros</value>
+				<value>ProveedorMaestroDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- EMPRESA -->
+	<bean id="EmpresaDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.EmpresaDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="EmpresaDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.EmpresaDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>EmpresaDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- PEDIDO -->
+	<bean id="PedidoDaoTarget"
+		class="pe.gob.trabajo.pcd.modelo.dao.hibernate.PedidoDAOImpl"
+		autowire="byName" scope="singleton"/>
+
+	<bean id="PedidoDAO" class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+		<property name="proxyInterfaces">
+			<value>pe.gob.trabajo.pcd.modelo.dao.PedidoDAO</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>PedidoDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

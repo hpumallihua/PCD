@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+            function seleccionarProfesion(valIdProfesion, valIdGrupoProfesion, oIdProfesion){
+            	valIdProfesion.value = oIdProfesion.getSelectedItems().pluck('id');
+            	var data = oIdProfesion.getSelectedItems().pluck('grupoProfesion');
+            	//alert(Object.keys(data));
+//             	Object.keys(data).forEach(function (key) {
+// 				  // do something with data[key]
+//             		alert(data[key]);
+// 				});
+            	//alert(Object.getOwnPropertyNames(data));
+            	//alert(data.keys);
+            	//alert(data["id"]);
+            	valIdGrupoProfesion.value = data.id;
+            }
+    </script>
+	<h:form id="frmEmpleos">
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel style="background-color: #FFFFFF;"
+				rendered="#{registrarFormacionMB.accionRealizada eq registrarFormacionMB.acciones.ACCION_NUEVO
+							or 
+							registrarFormacionMB.accionRealizada eq registrarFormacionMB.acciones.ACCION_EDITAR
+							or
+							registrarFormacionMB.accionRealizada eq registrarFormacionMB.acciones.ACCION_VISUALIZAR}">
+				<f:facet name="header">
+
+					<h:panelGroup>
+						<h:outputText
+							value="#{msg['prf-registro-formacion-registrar-estudio-de']} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.nombres} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+					</h:panelGroup>
+				</f:facet>
+				<t:panelGrid id="gridDatosPersonales" columns="10"
+					styleClass="gridContent"
+					columnClasses="celdaExtremoFormulario,,,,,celdaSeparadorFormulario,,,,celdaExtremoFormulario">
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="#{msg['prf-ayuda-formacion-de-a']}"
+						value="#{msg['prf-registro-formacion-formulario-de']}:"
+						for="inicio" />
+					<t:panelGroup colspan="2">
+						<rich:calendar id="inicio" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="true"
+							showApplyButton="false" enableManualInput="true"
+							inputStyle="#{UtilBean.estiloCampoRequerido}"
+							value="#{registrarFormacionMB.bean.inicio}" datePattern="MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet>
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet>
+						</rich:calendar>
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:outputLabel
+						value="#{msg['prf-registro-formacion-formulario-a']}:"
+						for="termino" />
+					<t:panelGroup colspan="2">
+						<rich:calendar id="termino" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="false"
+							showApplyButton="false" enableManualInput="true"
+							value="#{registrarFormacionMB.bean.termino}"
+							datePattern="MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet>
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet>
+						</rich:calendar>
+
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="#{msg['prf-ayuda-formacion-duracion']}"
+						value="#{msg['prf-registro-formacion-formulario-duracion']}:"
+						for="duracion" />
+					<t:panelGroup colspan="3">
+						<h:inputText id="duracion" size="4" maxlength="3"
+							title="Longitud máxima: 3 caracteres"
+							value="#{registrarFormacionMB.bean.duracion}" required="false">
+							<f:validateLongRange minimum="0" />
+						</h:inputText>
+						<rich:spacer width="5" height="5" title="espacio" />
+						<rich:spacer width="10" height="5" title="espacio" />
+						<t:selectOneMenu value="#{registrarFormacionMB.bean.unidad}"
+							style="width: 150px;">
+							<f:selectItem itemLabel="Meses" itemValue="0" />
+							<f:selectItem itemLabel="Años" itemValue="1" />
+						</t:selectOneMenu>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:panelGroup>
+					<t:panelGroup colspan="5">
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:outputLabel title="#{msg['prf-ayuda-formacion-denominacion']}"
+						value="#{msg['prf-registro-formacion-formulario-denominacion']}:"
+						for="descripcionEstudio" />
+					<t:panelGroup colspan="7">
+						<h:inputHidden id="idEstudio" value="" />
+						<h:inputText id="descripcionEstudio" required="true"
+							value="#{registrarFormacionMB.bean.descripcion}"
+							style="#{UtilBean.estiloCampoRequerido}" styleClass="width100p"
+							maxlength="50" title="Longitud máxima: 50 caracteres"
+							ondblclick="#{rich:component('suggestionEstudio')}.callSuggestion(true)" />
+						<rich:suggestionbox width="450" border="1" shadowDepth=""
+							usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+							onobjectchange="printObjectsSelected(#{rich:element('idEstudio')}, #{rich:component('suggestionEstudio')});"
+							suggestionAction="#{registrarFormacionMB.autocompletarEstudio}"
+							var="estudio" for="descripcionEstudio" fetchValue="#{estudio}"
+							id="suggestionEstudio" tokens=",">
+							<h:column>
+								<h:outputText value="#{estudio}" />
+							</h:column>
+						</rich:suggestionbox>
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+
+
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+					<t:panelGroup colspan="10">
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="#{msg['prf-ayuda-formacion-institucion']}"
+						value="#{msg['prf-registro-formacion-formulario-institucion']}:"
+						for="idInstitucion" />
+
+					<t:panelGroup colspan="7">
+
+						<h:inputHidden id="idInstitucion"
+							value="#{registrarFormacionMB.bean.institucionFormativa.id}">
+							<f:validateLongRange minimum="1" />
+						</h:inputHidden>
+						<h:inputText id="nombreInstitucion" required="false"
+							value="#{registrarFormacionMB.bean.institucionFormativa.descripcion}"
+							styleClass="width100"
+							ondblclick="#{rich:component('suggestionInstitucion')}.callSuggestion(true)" />
+
+						<rich:suggestionbox width="450" border="1" shadowDepth=""
+							usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+							onobjectchange="printObjectsSelected(#{rich:element('idInstitucion')}, #{rich:component('suggestionInstitucion')});"
+							suggestionAction="#{registrarFormacionMB.autocompletarInstitucion}"
+							var="institucion" for="nombreInstitucion"
+							fetchValue="#{institucion.descripcion}"
+							id="suggestionInstitucion" tokens=",">
+							<h:column>
+								<h:outputText value="#{institucion.descripcion}" />
+							</h:column>
+						</rich:suggestionbox>
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel title="#{msg['prf-ayuda-formacion-nivel']}"
+						value="#{msg['prf-registro-formacion-formulario-nivel']}:"
+						for="nivel" />
+					<t:panelGroup colspan="7">
+						<t:selectOneMenu id="nivel" required="true"
+							value="#{registrarFormacionMB.bean.idNivel}" style="width: 100%;">
+							<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+							<f:selectItems
+								value="#{registrarFormacionMB.itemsNivelesFormacion}" />
+							<f:validateLength minimum="1" />
+						</t:selectOneMenu>
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel title="Detalle" value="Detalle de formación:"
+						for="detalle" />
+					<t:panelGroup colspan="7">
+						<h:inputTextarea value="#{registrarFormacionMB.bean.detalleFormacion}" styleClass="width100" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="10">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								<h:commandButton action="#" immediate="true"
+									actionListener="#{registrarFormacionMB.cancelar}"
+									value="#{msg['prf-registro-formacion-formulario-cancelar']}"
+									styleClass="botonBuscar" />
+								<rich:spacer width="5" height="5" title="espacio" />
+
+								<a4j:commandButton
+									value="#{msg['prf-registro-formacion-formulario-guardar']}"
+									action="#"
+									disabled="#{(registrarFormacionMB.bean.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO and !(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo)) or 
+									(!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional))}"
+									actionListener="#{registrarFormacionMB.guardar}"
+									reRender="gridDatosGenerales, dataFormacion"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+				</t:panelGrid>
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+	<h:form>
+		<rich:dataTable id="dataFormacion" var="estudio"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}"
+			styleClass="gridContent" value="#{registrarFormacionMB.estudios}"
+			columnClasses="columnaIzquierda,columnaIzquierda,columnaIzquierda,columnaIzquierda,columnaAcciones">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<h:panelGroup>
+							<h:outputText
+								value="#{msg['prf-registro-formacion-lista-de-estudios-de']} " />
+							<h:panelGroup
+								rendered="#{registrarFormacionMB.accionRealizada eq registrarFormacionMB.acciones.ACCION_LISTAR}">
+
+								<h:outputText
+									value="de #{profesionalMB.profesionalBean.persona.nombres} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+							</h:panelGroup>
+
+						</h:panelGroup>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+							actionListener="#{registrarFormacionMB.nuevo}"
+							reRender="gridDatosGenerales, dataFormacion"
+							title="Registrar Nuevo Estudio">
+							<h:graphicImage value="/images/nuevo.png"
+								alt="Registrar Nuevo Estudio" />
+						</a4j:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+			</f:facet>
+			<rich:column sortBy="#{estudio.descripcion}"
+				styleClass="#{estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-formacion-lista-formacion']}" />
+				</f:facet>
+				<h:panelGroup>
+					<h:graphicImage
+						rendered="#{(estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+						value="/images/validado.png" alt="Validado" title="Validado" />
+					<rich:spacer
+						rendered="#{!(estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+						width="16" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+				</h:panelGroup>
+
+				<h:outputText value="#{estudio.descripcion}" />
+				<h:outputText rendered="#{estudio.idProfesion ne null}" value=" - " />
+				<h:outputText value="#{estudio.descripcionProfesion}"
+					title="#{estudio.institucionFormativa.descripcion}" />
+			</rich:column>
+
+			<rich:column sortBy="#{estudio.descripcionNivel}"
+				styleClass="#{estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['prf-registro-formacion-lista-nivel']}" />
+				</f:facet>
+				<h:outputText value="#{estudio.descripcionNivel}" />
+			</rich:column>
+			<rich:column sortBy="#{estudio.inicio}" sortOrder="DESCENDING"
+				styleClass="#{estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-formacion-lista-periodo']}" />
+				</f:facet>
+				<h:outputText value="Desde " />
+				<h:outputText value="#{estudio.inicio}">
+					<f:convertDateTime timeZone="#{registrarFormacionMB.timeZone}"
+						pattern="MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" hasta " rendered="#{estudio.termino ne null}" />
+				<h:outputText value="#{estudio.termino}"
+					rendered="#{estudio.termino ne null}">
+					<f:convertDateTime timeZone="#{registrarFormacionMB.timeZone}"
+						pattern="MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" a la fecha"
+					rendered="#{estudio.termino eq null}" />
+			</rich:column>
+
+
+			<rich:column
+				styleClass="columnaAcciones #{estudio.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['prf-registro-formacion-lista-acciones']}" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="estudioPrm" name="estudioPrm" value="#{estudio}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+					actionListener="#{registrarFormacionMB.editar}"
+					reRender="gridDatosGenerales,dataFormacion" title="Ver Detalle">
+					<h:graphicImage value="/images/ver.png" alt="Ver Detalle" />
+				</a4j:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+					actionListener="#{registrarFormacionMB.editar}"
+					reRender="gridDatosGenerales,dataFormacion" title="Editar Estudio">
+					<h:graphicImage value="/images/editar.png" alt="Editar Estudio" />
+				</a4j:commandLink>
+				<rich:spacer width="10" height="5" title="espacio" />
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+					onclick="if (!confirmar('#{estudio.descripcion}')) return false;"
+					actionListener="#{registrarFormacionMB.eliminar}"
+					title="Eliminar Estudio"
+					reRender="gridDatosGenerales,dataFormacion">
+					<h:graphicImage value="/images/eliminar.png" alt="Eliminar Estudio" />
+				</a4j:commandLink>
+
+			</rich:column>
+			<f:facet name="footer">
+				<rich:datascroller for="dataFormacion" renderIfSinglePage="false"></rich:datascroller>
+			</f:facet>
+
+		</rich:dataTable>
+	</h:form>
+
+</ui:composition>
+
+</html>

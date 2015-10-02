@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.GrupoOcupacion"
+		table="SITB_GGOCUPACION">
+		<id name="id" type="string">
+			<column name="V_CODGGOCUP" length="1" />
+		</id>
+		<property name="descripcion" type="string">
+			<column name="V_DESGGOCUP" length="250" />
+		</property>
+		<property name="abrggocup" type="string">
+			<column name="V_ABRGGOCUP" length="100" />
+		</property>
+	</class>
+</hibernate-mapping>

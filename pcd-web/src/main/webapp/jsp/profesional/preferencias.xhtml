@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+
+	<h:form>
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel styleClass="gridContent"
+				style="background-color: #FFFFFF;"
+				rendered="#{true or registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_NUEVO
+							or 
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_EDITAR
+							or
+							registrarPreferenciasProfesionalesMB.accionRealizada eq registrarPreferenciasProfesionalesMB.acciones.ACCION_VISUALIZAR}">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText
+							value="#{msg['prf-registro-preferencias-preferencias-de']} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.nombres} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+					</h:panelGroup>
+				</f:facet>
+				<t:panelGrid columns="5" styleClass="gridFormulario"
+					id="gridFormulario" columnClasses=",,celdaSeparadorFormulario,,">
+
+					<t:panelGroup colspan="7">
+						<h:outputLabel value="Condiciones laborales"
+							styleClass="tituloSeccion" />
+					</t:panelGroup>
+					<t:panelGroup colspan="5">
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Empleo deseado:"
+						title="#{msg['prf-ayuda-preferencias-empleo-deseado']}" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:panelGrid styleClass="gridContent">
+						<h:inputText
+							value="#{registrarPreferenciasProfesionalesMB.profesionalBean.empleoDeseado}"
+							styleClass="width100" />
+					</h:panelGrid>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Tipo de empleo:"
+						title="#{msg['prf-ayuda-preferencias-tipo-empleo']}" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:panelGrid styleClass="gridContent">
+						<t:selectOneMenu
+							value="#{registrarPreferenciasProfesionalesMB.profesionalBean.tipoTrabajo}"
+							styleClass="width100p">
+							<f:selectItem value="#{UtilBean.itemSeleccioneCero}" />
+							<f:selectItems
+								value="#{registrarPreferenciasProfesionalesMB.itemsTipoEmpleo}" />
+							<f:validateLongRange minimum="0" />
+						</t:selectOneMenu>
+					</h:panelGrid>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel value="Remuneración (S/.):"
+						title="#{msg['prf-ayuda-preferencias-remuneracion']}" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:panelGrid columns="6" styleClass="gridContent" style="border=0;">
+						<h:panelGroup>
+							<h:outputLabel value="De " for="de" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<h:inputText
+								value="#{registrarPreferenciasProfesionalesMB.profesionalBean.sueldoMinimo}"
+								size="3" id="de" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<h:outputLabel value="A" for="a" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<h:inputText
+								value="#{registrarPreferenciasProfesionalesMB.profesionalBean.sueldoMaximo}"
+								size="3" id="a" />
+						</h:panelGroup>
+						<rich:spacer width="10" height="5" title="espacio" />
+						<rich:spacer width="10" height="5" title="espacio" />
+					</h:panelGrid>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel
+						title="#{msg['prf-ayuda-preferencias-disponibilidad-tiempo']}"
+						value="#{msg['prf-busqueda-detalles-disponibilidad-tiempo']}:"
+						for="disponibilidad" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:panelGrid columns="4" styleClass="gridContent" style="border=0;">
+						<h:panelGroup>
+							<h:inputText id="disponibilidad"
+								value="#{registrarPreferenciasProfesionalesMB.profesionalBean.disponibilidadTiempo}"
+								size="3" />
+							<rich:spacer width="10" height="5" title="espacio" />
+							<h:outputLabel
+								value="#{msg['prf-busqueda-detalles-disponibilidad-tiempo-unidad']}" />
+						</h:panelGroup>
+						<rich:spacer width="10" height="5" title="espacio" />
+						<rich:spacer width="10" height="5" title="espacio" />
+						<rich:spacer width="10" height="5" title="espacio" />
+					</h:panelGrid>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:outputLabel
+						title="#{msg['prf-ayuda-preferencias-disponibilidad-contratacion']}"
+						value="#{msg['prf-busqueda-detalles-disponibilidad-contratacion']}:" />
+					<rich:spacer width="5" height="10" title="espacio" />
+					<h:panelGrid columns="4" styleClass="gridContent" style="border=0;">
+						<h:inputText
+							value="#{registrarPreferenciasProfesionalesMB.profesionalBean.disponibilidadContratacion}"
+							size="3" />
+						<t:selectOneMenu
+							value="#{registrarPreferenciasProfesionalesMB.unidadTiempo}"
+							style="width: 120px;">
+							<f:selectItem itemLabel="Días" itemValue="1" />
+							<f:selectItem itemLabel="Semanas" itemValue="7" />
+							<f:selectItem itemLabel="Meses" itemValue="30" />
+							<f:validateLongRange minimum="0" />
+						</t:selectOneMenu>
+
+						<h:panelGroup styleClass="gridContent">
+							<h:outputLabel title="#{msg['prf-ayuda-preferencias-inmediata']}"
+								value="#{msg['prf-busqueda-detalles-disponibilidad-contratacion-inmediata']}" />
+							<rich:spacer width="5" height="10" title="espacio" />
+							<t:selectBooleanCheckbox
+								value="#{registrarPreferenciasProfesionalesMB.disponibilidadInmediata}" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+
+					<t:panelGroup colspan="4">
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda, columnaDerecha">
+							<h:outputLabel value="Ciudades"
+								title="#{msg['prf-ayuda-preferencias-ciudades']}"
+								for="ciudadPick" styleClass="tituloSeccion" />
+							<t:panelGroup>
+								<h:outputLabel value="Dispuesto a trabajar fuera "
+									title="#{msg['prf-ayuda-preferencias-dispuesto-trabajar-fuera']}" />
+								<rich:spacer width="5" height="10" title="espacio" />
+								<t:selectBooleanCheckbox
+									value="#{registrarPreferenciasProfesionalesMB.profesionalBean.trabajoFuera}" />
+							</t:panelGroup>
+						</h:panelGrid>
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="5">
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+					<t:panelGroup colspan="4">
+
+						<rich:pickList id="ciudadPick" sourceListWidth="350"
+							targetListWidth="300"
+							value="#{registrarPreferenciasProfesionalesMB.listaCiudadesSeleccionadas}"
+							copyControlLabel="Agregar" removeControlLabel="Eliminar"
+							copyAllControlLabel="Agregar todos"
+							title="#{msg['prf-ayuda-preferencias-ciudades']}"
+							removeAllControlLabel="Eliminar todos"
+							moveControlsVerticalAlign="bottom">
+							<f:selectItems 
+								value="#{registrarPreferenciasProfesionalesMB.ciudades}"/>
+						</rich:pickList>
+					</t:panelGroup>
+
+					<t:panelGroup colspan="7">
+						<h:outputLabel value="Áreas de interés"
+							title="#{msg['prf-ayuda-preferencias-areas-interes']}"
+							for="areaPick" styleClass="tituloSeccion" />
+					</t:panelGroup>
+					<t:panelGroup colspan="5">
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="4">
+
+						<rich:pickList id="areaPick" sourceListWidth="350"
+							targetListWidth="300"
+							value="#{registrarPreferenciasProfesionalesMB.listaAreasSeleccionadas}"
+							copyControlLabel="Agregar" removeControlLabel="Eliminar"
+							copyAllControlLabel="Agregar todos"
+							removeAllControlLabel="Eliminar todos"
+							title="#{msg['prf-ayuda-preferencias-areas-interes']}"
+							moveControlsVerticalAlign="bottom">
+							<f:selectItems
+								value="#{registrarPreferenciasProfesionalesMB.itemsArea}" />
+						</rich:pickList>
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<t:panelGroup colspan="7">
+						<h:outputLabel value="Sectores de interés"
+							title="#{msg['prf-ayuda-preferencias-sectores-interes']}"
+							for="sectorPick" styleClass="tituloSeccion" />
+					</t:panelGroup>
+					<t:panelGroup colspan="5">
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:panelGroup colspan="4">
+
+						<rich:pickList id="sectorPick" sourceListWidth="350"
+							targetListWidth="300"
+							value="#{registrarPreferenciasProfesionalesMB.listaSectoresSeleccionados}"
+							copyControlLabel="Agregar" removeControlLabel="Eliminar"
+							copyAllControlLabel="Agregar todos"
+							removeAllControlLabel="Eliminar todos"
+							title="#{msg['prf-ayuda-preferencias-areas-interes']}"
+							moveControlsVerticalAlign="bottom">
+							<f:selectItems
+								value="#{registrarPreferenciasProfesionalesMB.itemsSector}" />
+						</rich:pickList>
+					</t:panelGroup>
+
+					<t:panelGroup colspan="7">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+
+
+				</t:panelGrid>
+
+				<h:panelGrid columns="2" styleClass="gridContent"
+					columnClasses=",columnaDerecha">
+					<h:outputText value="" />
+					<h:panelGroup>
+
+						<h:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+							immediate="true" value="Cancelar" styleClass="botonBuscar" />
+						<rich:spacer width="10" height="5" title="espacio" />
+						<a4j:commandButton
+							value="#{msg['prf-registro-preferencias-formulario-guardar']}"
+							actionListener="#{registrarPreferenciasProfesionalesMB.guardar}"
+							disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+							reRender="gridDatosGenerales, dataPreferenciasProfesionales"
+							styleClass="botonBuscar"
+							onclick="Richfaces.showModalPanel('modalEstado')"
+							oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+					</h:panelGroup>
+				</h:panelGrid>
+
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+
+</ui:composition>
+
+</html>

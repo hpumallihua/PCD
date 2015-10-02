@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+
+
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+		
+		<t:panelGrid columns="7" styleClass="gridContent"
+			columnClasses=",,,celdaSeparadorFormulario,,,">
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			
+			<t:outputLabel title="#{msg['prf-ayuda-datos-empresa-numero-ruc']}"
+				value="#{msg['prf-registro-datos-empresa-formulario-numero-ruc']}:"
+				for="numeroRUC" />
+			<t:panelGroup>
+				<a4j:region>
+					<h:inputText id="numeroRUC" tabindex="0"
+						disabled="#{sesionMB.usuarioSesion.rolEmpleador}"
+						style="#{UtilBean.estiloCampoRequerido}" maxlength="11"
+						title="Longitud máxima: 11 caracteres"
+						value="#{registrarEmpresaMB.empresaBean.ruc}">
+
+						<a4j:support event="onkeyup"
+							oncomplete="if (#{registrarEmpresaMB.empresaBean.id gt 0}){ Richfaces.showModalPanel('modalMensaje');}"
+							actionListener="#{registrarEmpresaMB.buscarEmpresa}"
+							reRender="gridDatosEmpresa" />
+
+					</h:inputText>
+					<h:outputText value=" (*)" />
+				</a4j:region>
+			</t:panelGroup>
+			<rich:spacer width="5" height="5" title="espacio" />
+			
+			<t:outputLabel title="Regimen Empresarial"
+				value="Regimen Empresarial:"
+				for="tipoDocumentoEmpresaId" />
+			<t:panelGroup>
+				<h:selectOneMenu id="tipoDocumentoEmpresaId"
+					style="width: 120px; #{UtilBean.estiloCampoRequerido}"
+					value="#{registrarEmpresaMB.empresaBean.tipoEmpresa}">
+					<f:selectItems value="#{registrarEmpresaMB.itemsTipoEmpresa}" />
+					<f:validateLongRange minimum="1" />
+				</h:selectOneMenu>
+				<h:outputText value=" (*)" />
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+		</t:panelGrid>
+
+		<t:panelGrid id="gridDatosEmpresa" columns="7"
+			styleClass="gridContent"
+			columnClasses=",,,celdaSeparadorFormulario,,,">
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+				<rich:separator lineType="beveled" height="3" width="100%"
+					style="background-color: #808080; background-image: url('');"
+					align="center" />
+			</t:panelGroup>
+
+
+			<t:panelGroup colspan="7">
+				<rich:spacer width="5" height="10" title="espacio" />
+			</t:panelGroup>
+
+
+			<t:panelGroup colspan="7">
+				<t:panelGrid columns="7" border="0" width="100%">
+					<t:column>
+						<rich:spacer width="5" height="5" title="espacio" />
+						<h:inputHidden value="#{registrarEmpresaMB.empresaBean.id}" />
+					</t:column>
+					<t:column>
+						<t:outputLabel
+							title="#{msg['prf-ayuda-datos-empresa-nombre-comercial']}"
+							value="#{msg['prf-registro-datos-empresa-formulario-nombre-comercial']}:"
+							for="nombreComercial" />
+					</t:column>
+					<t:column>
+						<h:inputText id="nombreComercial"
+							value="#{registrarEmpresaMB.empresaBean.nombreComercial}"
+							required="true" maxlength="254"
+							title="Longitud máxima: 254 caracteres" styleClass="width100"
+							style="#{UtilBean.estiloCampoRequerido}" />
+					</t:column>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+
+					<t:column>
+						<t:outputLabel
+							title="#{msg['prf-ayuda-datos-empresa-razon-social']}"
+							value="#{msg['prf-registro-datos-empresa-formulario-razon-social']}:"
+							for="razonSocial" />
+					</t:column>
+					<t:column>
+						<h:inputText id="razonSocial"
+							value="#{registrarEmpresaMB.empresaBean.razonSocial}"
+							required="true" maxlength="254"
+							title="Longitud máxima: 254 caracteres" styleClass="width100"
+							style="#{UtilBean.estiloCampoRequerido}" />
+					</t:column>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+
+					<t:column>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:column>
+					<t:column>
+						<t:outputLabel
+							title="#{msg['prf-ayuda-datos-empresa-actividad-economica']}"
+							value="#{msg['prf-registro-datos-empresa-formulario-actividad-economica']}:"
+							for="idCiiuHidden" />
+					</t:column>
+					<t:panelGroup colspan="4">
+						<h:inputHidden id="idCiiuHidden"
+							value="#{registrarEmpresaMB.empresaBean.ciiu}" />
+						<h:inputText id="descripcionCiiu" required="tru" maxlength="254"
+							title="Longitud máxima: 254 caracteres. Digite para buscar sugerencias"
+							value="#{registrarEmpresaMB.empresaBean.ciiuDescripcion}"
+							styleClass="width100" style="#{UtilBean.estiloCampoRequerido}"
+							ondblclick="#{rich:component('suggestionCiiu')}.callSuggestion(true)" />
+
+						<rich:suggestionbox width="450" border="1" shadowDepth=""
+							usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+							onobjectchange="printObjectsSelected(#{rich:element('idCiiuHidden')}, #{rich:component('suggestionCiiu')});"
+							suggestionAction="#{registrarEmpresaMB.autocompletarCiiu}"
+							var="ciiu" for="descripcionCiiu" fetchValue="#{ciiu.descripcion}"
+							id="suggestionCiiu">
+							<h:column>
+								<h:outputText value="#{ciiu.descripcion}" />
+							</h:column>
+						</rich:suggestionbox>
+					</t:panelGroup>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+					
+					<t:column>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:column>
+					<t:column>
+						<t:outputLabel
+							title="Direccion"
+							value="Direccion:"
+							for="direccion" />
+					</t:column>
+					<t:panelGroup colspan="4">
+						 
+						<h:inputText id="direccion" required="true" maxlength="250"
+							title="Longitud máxima: 250 caracteres"
+							value="#{registrarEmpresaMB.empresaBean.direccion}"
+							styleClass="width100" style="#{UtilBean.estiloCampoRequerido}"
+							ondblclick="#{rich:component('suggestionCiiu')}.callSuggestion(true)" />
+ 
+					</t:panelGroup>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+
+
+
+					<t:column>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:column>
+					<t:column>
+						<t:outputLabel
+							title="#{msg['prf-ayuda-datos-empresa-num-empleados']}"
+							value="#{msg['prf-registro-datos-empresa-formulario-num-empleados']}:"
+							for="numEmpleados" />
+					</t:column>
+					<t:column>
+						<h:inputText id="numEmpleados"
+							value="#{registrarEmpresaMB.empresaBean.numEmpleados}"
+							required="true" maxlength="254"
+							onkeyup="#{UtilBean.campoSoloEntero}"
+							title="Longitud máxima: 254 caracteres" styleClass="width5"
+							style="#{UtilBean.estiloCampoRequerido} #{UtilBean.estiloCampoNumerico}" />
+					</t:column>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+
+					<t:column>
+						<t:outputLabel
+							title="Persona de Contacto"
+							value="Persona de Contacto:"
+							for="perContacto" />
+					</t:column>
+					<t:column>
+						<h:inputText id="perContacto"
+							value="#{registrarEmpresaMB.empresaBean.personaContacto}"
+							required="true" maxlength="200" 
+							title="Longitud máxima: 200 caracteres"  styleClass="width100"
+							style="#{UtilBean.estiloCampoRequerido}" />
+					</t:column>
+					<t:column>
+						<h:outputText value=" (*)" />
+					</t:column>
+
+					
+
+				</t:panelGrid>
+			</t:panelGroup>
+
+		</t:panelGrid>
+
+
+		<rich:spacer width="5" height="10" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="#{sesionMB.usuarioSesion.alInicio}"
+						rendered="#{!sesionMB.usuarioSesion.rolEmpleador}"
+						immediate="true"
+						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{(!sesionMB.usuarioSesion.rolProfesional and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_EMPLEADOR)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_EMPLEADOR}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:commandButton action="#"
+						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+						disabled="#{!(sesionMB.usuarioSesion.rolAdministrador 
+										or sesionMB.usuarioSesion.rolConsultorEmpleo
+										or sesionMB.usuarioSesion.rolEmpleador)}"
+						actionFor="frmDatosGenerales"
+						actionListener="#{registrarEmpresaMB.guardar}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+
+		<f:subview id="subArchivo">
+			<!-- ventana modal de respuesta-->
+			<!-- <ui:include src="/jsp/admPostulanteModalArchivo.xhtml" /> -->
+		</f:subview>
+
+		<f:subview id="subMensaje">
+			<!-- ventana modal de respuesta-->
+			<ui:include src="/jsp/empresa/admEmpresaMensaje.xhtml" />
+		</f:subview>
+
+	</h:form>
+
+</ui:composition>
+
+</html>

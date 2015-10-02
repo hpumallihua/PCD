@@ -1,0 +1,55 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<h:form>
+		<h:panelGrid columns="1">
+			<h:graphicImage value="/images/cabecera.jpg">
+			</h:graphicImage>
+		</h:panelGrid>
+		<h:panelGrid columns="3" styleClass="gridContent"
+			columnClasses="cabeceraControl,cabeceraText,cabeceraControl">
+			<h:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="cabeceraUsuarioEtiqueta,cabeceraUsuarioValor columnaIzquierda">
+				<h:outputText value="Usuario:" />
+				<h:outputText rendered="#{!sesionMB.usuarioSesion.rolEmpleador}"
+					value="#{sesionMB.usuarioSesion.persona.nombres} #{sesionMB.usuarioSesion.persona.apellidoPaterno}" />
+				<h:outputText rendered="#{sesionMB.usuarioSesion.rolEmpleador}"
+					value="#{sesionMB.usuarioSesion.empresa.ruc} - #{sesionMB.usuarioSesion.empresa.nombreComercial}" />
+				<h:outputText value="Rol:"
+					rendered="#{sesionMB.usuarioSesion.usuario ne null or !empty sesionMB.usuarioSesion.usuario.rol.descripcion}" />
+				<h:outputText
+					value="#{sesionMB.usuarioSesion.usuario.rol.descripcion}"
+					rendered="#{sesionMB.usuarioSesion.usuario ne null}" />
+			</h:panelGrid>
+			<h:outputText value="PCD" />
+			<h:panelGrid columns="1" styleClass="gridContent"
+				columnClasses="cabeceraUsuarioValor">
+
+				<a4j:commandLink immediate="true" action="#{sesionMB.logOut}">
+					<h:graphicImage value="/images/logout.png" alt="Salir"
+						title="Salir" />
+					<a4j:actionparam name="accion"
+						value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+						assignTo="#{sesionMB.contexto}" />
+				</a4j:commandLink>
+				<a4j:commandLink id="enlaceSalir" immediate="true"
+					action="#{sesionMB.logOut}" value="Salir"
+					style="text-decoration: none;color:black">
+					<a4j:actionparam name="accion"
+						value="#{sesionMB.constantes.CONTEXTO_ADMINISTRADOR}"
+						assignTo="#{sesionMB.contexto}" />
+				</a4j:commandLink>
+			</h:panelGrid>
+		</h:panelGrid>
+		<h:outputText styleClass="cabeceraUsuarioValor" rendered="false"
+			value="[#{sesionMB.contexto}] - ADM=100, POSTULANTE = 200, EMPLEADOR = 300, PEDIDO = 400, POSTULACION = 500" />
+
+
+
+	</h:form>
+
+</ui:composition>
+

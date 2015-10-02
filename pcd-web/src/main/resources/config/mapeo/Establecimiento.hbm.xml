@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Establecimiento"
+		table="PDTBC_ESTABLECMNTO">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODETBNTO" scale="0">
+				<comment>CÓDIGO DEL ESTABLECIMIENTO.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_ESTBLCMNTOID</param>
+			</generator>
+		</id>
+		<property name="tipoEstablecimiento" type="java.lang.Long">
+			<column name="N_CODTPOSTB" scale="0">
+				<comment>CODIGO DEL TIPO DE ESTABLECIMIENTO.</comment>
+			</column>
+		</property>
+		<property name="departamento" type="string">
+			<column name="V_CODDEP" length="2">
+				<comment>CODIGO DEL DEPARTAMENTO.</comment>
+			</column>
+		</property>
+		<property name="provincia" type="string">
+			<column name="V_CODPRO" length="2">
+				<comment>CODIGO DE LA PROVINCIA.</comment>
+			</column>
+		</property>
+		<property name="distrito" type="string">
+			<column name="V_CODDIS" length="2">
+				<comment>CODIGO DEL DISTRITO.</comment>
+			</column>
+		</property>
+		<property name="direccion" type="string">
+			<column name="V_DRCCION" length="500">
+				<comment>DESCRIPCION DE LA DIRECCION.</comment>
+			</column>
+		</property>
+		<property name="personaContacto" type="string">
+			<column name="V_PRCNT" length="500">
+				<comment>NOMBRE DE LA PERSONA DE CONTACTO.</comment>
+			</column>
+		</property>
+		<property name="nombreLugarResidencia" type="string">
+			<column name="V_LUGRES" length="500">
+				<comment>DESCRIPCION DEL LUGAR DE RESIDENCIA.</comment>
+			</column>
+		</property>
+		<property name="codigoOficinaAsociada" type="string">
+			<column name="V_CODOFIC" length="4">
+				<comment>CODIGO DE OFICINA.</comment>
+			</column>
+		</property>
+		<property name="telefono" type="string">
+			<column name="V_TELFNO" length="50">
+				<comment>NUMERO TELEFONICO PRINCIPAL.</comment>
+			</column>
+		</property>
+		<property name="flag" type="string">
+			<column name="V_FLAGESTBL" length="500">
+				<comment>FLAG DEL ESTABLECIMIENTO.</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+
+		<many-to-one name="empresa"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Empresa" fetch="join" lazy="false">
+			<column name="N_CODEMPRSA" scale="0" not-null="true">
+				<comment>CODIGO DE LA EMPRESA.</comment>
+			</column>
+		</many-to-one>
+
+
+	</class>
+</hibernate-mapping>

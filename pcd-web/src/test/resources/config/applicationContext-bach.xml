@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="indexarArchivosJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="CronService" />
+		<property name="targetMethod" value="indexarArchivos" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="indexarArchivosTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="indexarArchivosJob" />
+		<property name="cronExpression" value="0 0 23 * * ? * mon,tue,wed,thu,fri" />
+<!-- 		<property name="cronExpression" value="0 0/1 * * * ?" /> -->
+	</bean>
+
+	<bean id="cargaEmpresasJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="MaestroService" />
+		<property name="targetMethod" value="cargaEmpresas" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- http://wikis.sun.com/display/OIA11gDocs/Oracle+Identity+Analytics+Scheduling 
+		.=================== second (0 - 59) | .================ minute (0 - 59) 
+		| | .============= hour (0 - 23) | | | .========== day of month (1 - 31) 
+		| | | | .======= month (1 - 12) OR jan,feb,mar,apr ... | | | | | .==== day 
+		of week (1 - 7) (Sunday=1) OR sun,mon,tue,wed,thu,fri,sat | | | | | | * * 
+		* * * * -->
+
+	<bean id="cargaDatosMaestrosTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="cargaEmpresasJob" />
+		 <property name="cronExpression" value="0 0 23 * * ? * SAT" /> 
+<!-- 		<property name="cronExpression" value="30 28 * * * ?" /> -->
+	</bean>
+
+	<bean id="SchedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cargaDatosMaestrosTrigger" />
+				<ref bean="indexarArchivosTrigger" />
+				<!-- <ref bean="verificarEnvioAlertasTrigger"/> -->
+			</list>
+		</property>
+	</bean>
+</beans>

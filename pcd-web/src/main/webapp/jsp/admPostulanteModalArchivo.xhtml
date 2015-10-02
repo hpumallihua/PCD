@@ -1,0 +1,34 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:jsp="http://java.sun.com/JSP/Page">
+
+	<!-- ventana modal de foto-->
+	<rich:modalPanel id="modalArchivo" autosized="true" headerClass="dr-pmenu-selected-item">
+		<f:facet name="header">
+			<h:outputText value="Cargar fotograf&#237;a" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:graphicImage title="cerrar" value="/images/cerrar.png"
+				style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('modalArchivo')" />
+		</f:facet>
+
+			<t:inputFileUpload id="Foto" accept="image/*" 
+				value="#{registrarDatosPersonalesMB.beanUploadFoto.archivoUpload}" storage="file"
+				maxlength="#{registrarIdiomaMB.constantes.ARCHIVO_TAMANO_MAXIMO}">
+			</t:inputFileUpload>
+
+			<h:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaDerecha">
+					<a4j:commandButton value="Aceptar"
+						onclick="Richfaces.hideModalPanel('modalArchivo')"
+						immediate="true">
+					</a4j:commandButton>
+			</h:panelGrid>
+	</rich:modalPanel>
+</ui:composition>
+

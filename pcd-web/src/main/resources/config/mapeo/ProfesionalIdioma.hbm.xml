@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.ProfesionalIdioma"
+		table="PDMVD_PRSNALIDIOMA">
+		<id name="id" type="java.lang.Long">
+			<column name="N_CODPRFIDM" precision="20" scale="0">
+				<comment>CÓDIGO DEL PROFESIONAL CON IDIOMA.</comment>
+			</column>
+			<generator class="sequence">
+				<param name="sequence">SEQ_PRFSNALIDMAID</param>
+			</generator>
+		</id>
+		<many-to-one name="idioma"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Idioma" fetch="select"
+			lazy="false">
+			<column name="N_CODIDMA" precision="5" scale="0">
+				<comment>CÓDIGO DEL IDIOMA.</comment>
+			</column>
+		</many-to-one>
+		<many-to-one name="profesional"
+			class="pe.gob.trabajo.pcd.modelo.dominio.Profesional" fetch="select">
+			<column name="N_CODPRSNAL" scale="0">
+				<comment>CÓDIGO PROFESIONAL</comment>
+			</column>
+		</many-to-one>
+		<property name="comprensionAuditiva" type="java.lang.Integer">
+			<column name="N_CMPRADTVA">
+				<comment>NUMERO DE LA COMPRENSION AUDITIVA.</comment>
+			</column>
+		</property>
+		<property name="comprensionLectura" type="java.lang.Integer">
+			<column name="N_CMPRLCTRA">
+				<comment>NUMERO DE LA COMPRENSION DE LECTURA.</comment>
+			</column>
+		</property>
+		<property name="hablar" type="java.lang.Integer">
+			<column name="N_HABLAR">
+				<comment>INDICADOR NUMERAL DE HABLAR.</comment>
+			</column>
+		</property>
+		<property name="escribir" type="java.lang.Integer">
+			<column name="N_ESCRBIR">
+				<comment>INDICADOR NUMERAL DE ESCRIBIR.</comment>
+			</column>
+		</property>
+		<property name="overall" type="java.lang.Long">
+			<column name="N_OVERALL">
+				<comment>INDICADOR NUMERAL DE ORAL.</comment>
+			</column>
+		</property>
+		<property name="nativo" type="java.lang.Integer">
+			<column name="N_NATIVO">
+				<comment>INDICADOR NUMERAL DE NATIVO.</comment>
+			</column>
+		</property>
+		<property name="estadoRegistro" type="java.lang.Character">
+			<column name="C_ESTRGSTRO" length="1">
+				<comment>INDICADOR SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+		<property name="fechaCreacion" type="timestamp" update="false">
+			<column name="D_FECCREA" length="23">
+				<comment>FECHA EN LA QUE SE CREÓ EL REGISTRO</comment>
+			</column>
+		</property>
+		<property name="fechaActualizacion" type="timestamp" insert="false">
+			<column name="D_FECACT" length="23">
+				<comment>FECHA EN LA QUE SE REALIZÓ LA ÚLTIMA MODIFICACIÓN AL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="idUsuarioCreador" type="java.lang.Long"
+			update="false">
+			<column name="N_CODUSRCRE" scale="0">
+				<comment>USUARIO QUE REGISTRA.</comment>
+			</column>
+		</property>
+		<property name="idUsroActualizador" type="java.lang.Long"
+			insert="false">
+			<column name="N_CODUSRACT" scale="0">
+				<comment>USUARIO QUE MODIFICA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="idUsroValidador" type="java.lang.Long">
+			<column name="N_CODUSRVAL" scale="0">
+				<comment>USUARIO QUE VALIDA LOS DATOS DEL REGISTRO.</comment>
+			</column>
+		</property>
+		<property name="fechaValidacion" type="timestamp">
+			<column name="D_FECVAL" length="23">
+				<comment>FECHA EN LA QUE SE VALIDO EL
+					REGISTRO</comment>
+			</column>
+		</property>
+		<property name="validado" type="java.lang.Character">
+			<column name="C_ESTVAL" length="1">
+				<comment>INDICADOR DE VALIDACION SI EL REGISRO SE ENCUENTRA ACTIVO</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

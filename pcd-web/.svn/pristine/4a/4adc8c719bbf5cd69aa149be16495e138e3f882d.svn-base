@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    </script>
+	<h:form id="frmEmpleos">
+		<t:panelGrid columns="1" styleClass="gridContent"
+			id="gridDatosGenerales">
+			<rich:panel style="background-color: #FFFFFF;"
+				rendered="#{registrarEmpleosMB.accionRealizada eq registrarEmpleosMB.acciones.ACCION_NUEVO
+							or 
+							registrarEmpleosMB.accionRealizada eq registrarEmpleosMB.acciones.ACCION_EDITAR
+							or
+							registrarEmpleosMB.accionRealizada eq registrarEmpleosMB.acciones.ACCION_VISUALIZAR}">
+				<f:facet name="header">
+
+					<h:panelGroup>
+						<h:outputText value="#{msg['prf-registro-empleos-empleos-de']} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.nombres} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+						<h:outputText
+							value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+					</h:panelGroup>
+				</f:facet>
+				<t:panelGrid id="gridDatosPersonales" columns="10"
+					styleClass="gridContent"
+					columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,celdaSeparadorFormulario,,,celdaExtremoFormulario,celdaExtremoFormulario">
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="#{msg['prf-ayuda-empleos-de-a']}"
+						value="#{msg['prf-registro-empleos-formulario-de']}:" for="inicio" />
+					<t:panelGroup colspan="1">
+						<rich:calendar id="inicio" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="true"
+							showApplyButton="false" enableManualInput="true"
+							inputStyle="#{UtilBean.estiloCampoRequerido}"
+							value="#{registrarEmpleosMB.bean.inicio}" datePattern="MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet>
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet>
+						</rich:calendar>
+
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:outputLabel value="#{msg['prf-registro-empleos-formulario-a']}:"
+						title="#{msg['prf-ayuda-empleos-de-a']}" for="termino" />
+					<t:panelGroup colspan="2">
+						<rich:calendar id="termino" popup="true" locale="es_PE"
+							showWeekDaysBar="false" showWeeksBar="false" required="false"
+							showApplyButton="false" enableManualInput="true"
+							value="#{registrarEmpleosMB.bean.termino}" datePattern="MM/yyyy">
+							<f:facet name="header">
+								<h:panelGrid columns="3" width="100%"
+									columnClasses="fake, width100 talign">
+									<h:outputText value="{previousMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{currentMonthControl}"
+										style="font-weight:bold;" />
+									<h:outputText value="{nextMonthControl}"
+										style="font-weight:bold;" />
+								</h:panelGrid>
+							</f:facet>
+							<h:outputText value="{day}"></h:outputText>
+							<f:facet name="footer">
+								<h:outputText value="{selectedDateControl}" />
+							</f:facet>
+						</rich:calendar>
+						<rich:spacer width="5" height="5" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<h:outputLabel title="Institución" value="Institución:"
+						for="institucion" />
+					<t:panelGroup colspan="7">
+						<h:inputText id="institucion"
+							value="#{registrarEmpleosMB.bean.institucion}"
+							style="#{UtilBean.estiloCampoRequerido}" styleClass="width100p"
+							maxlength="254" title="Longitud máxima: 254 caracteres" />
+					</t:panelGroup>
+					<h:outputText value=" (*)" />
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="Puesto" value="Puesto:" for="idPuesto" />
+					<t:panelGroup colspan="6">
+
+						<h:inputHidden id="idPuesto" required="true"
+							value="#{registrarEmpleosMB.bean.cargo}" />
+						<h:inputText id="descripcionPuesto" required="false"
+							maxlength="254" title="Longitud máxima: 254 caracteres"
+							value="#{registrarEmpleosMB.bean.descripcionCargo}"
+							style="#{UtilBean.estiloCampoRequerido}" styleClass="width100p"
+							ondblclick="#{rich:component('suggestionPuesto')}.callSuggestion(true)" />
+						<rich:suggestionbox width="450" border="1" shadowDepth=""
+							usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+							onobjectchange="printObjectsSelected(#{rich:element('idPuesto')}, #{rich:component('suggestionPuesto')});"
+							suggestionAction="#{registrarEmpleosMB.autocompletarCargo}"
+							var="puesto" for="descripcionPuesto"
+							fetchValue="#{puesto.nombre}" id="suggestionPuesto">
+							<h:column>
+								<h:outputText value="#{puesto.nombre}" />
+							</h:column>
+						</rich:suggestionbox>
+					</t:panelGroup>
+					<h:graphicImage value="/images/arrow.png"
+						onclick="#{rich:component('suggestionPuesto')}.callSuggestion(true)"
+						alt="" />
+					<h:outputText value=" (*)" />
+
+
+
+					<rich:spacer width="5" height="10" title="espacio" />
+					<t:outputLabel title="Horas al día" value="Horas al día:"
+						for="horas" />
+					<h:inputText id="horas" value="#{registrarEmpleosMB.bean.horas}" />
+
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+					</t:panelGroup>
+
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:outputLabel title="Detallar la experiencia laboral"
+						value="Detalle:" for="actividades" />
+					<t:panelGroup colspan="7">
+						<h:inputTextarea id="actividades" rows="4" required="false"
+							onkeyup="contar(this, #{rich:element('outActividades')}, 500)"
+							value="#{registrarEmpleosMB.bean.actividades}"
+							styleClass="width100">
+							<f:validateLength maximum="500" />
+						</h:inputTextarea>
+					</t:panelGroup>
+					<rich:spacer width="5" height="5" title="espacio" />
+					<t:panelGroup colspan="9" styleClass="contadorCaracteres">
+						<h:outputLabel id="outActividades" value="*"
+							title="Contador de caracteres" />
+					</t:panelGroup>
+					<rich:spacer width="5" height="10" title="espacio" />
+					
+
+					<t:panelGroup colspan="10">
+						<rich:spacer width="5" height="10" title="espacio" />
+						<rich:separator lineType="beveled" height="3" width="100%"
+							style="background-color: #808080; background-image: url('');"
+							align="center" />
+					</t:panelGroup>
+					<t:panelGroup colspan="10">
+						<t:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<rich:spacer width="5" height="5" title="espacio" />
+							<t:panelGroup>
+								
+								<h:commandButton action="#" immediate="true"
+									actionListener="#{registrarEmpleosMB.cancelar}"
+									value="#{msg['prf-registro-empleos-formulario-cancelar']}"
+									styleClass="botonBuscar" />
+								<rich:spacer width="5" height="5" title="espacio" />
+
+								<a4j:commandButton
+									value="#{msg['prf-registro-empleos-formulario-guardar']}"
+									action="#"
+									disabled="#{(registrarEmpleosMB.bean.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO and !(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo)) or 
+									(!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional))}"
+									actionListener="#{registrarEmpleosMB.guardar}"
+									reRender="gridDatosGenerales, dataEmpleos"
+									styleClass="botonBuscar"
+									onclick="Richfaces.showModalPanel('modalEstado')"
+									oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+							</t:panelGroup>
+
+						</t:panelGrid>
+					</t:panelGroup>
+				</t:panelGrid>
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+
+	<h:form>
+		<rich:dataTable id="dataEmpleos" var="empleo" styleClass="gridContent"
+			rows="#{UtilBean.parametros.ELEMENTOS_POR_PAGINA}"
+			value="#{registrarEmpleosMB.empleos}"
+			columnClasses="columnaIzquierda,columnaIzquierda,columnaIzquierda,columnaIzquierda,columnaAcciones">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:panelGrid columns="2" styleClass="gridContent"
+						columnClasses="columnaIzquierda,columnaDerecha">
+						<h:panelGroup>
+							<h:outputText
+								value="#{msg['prf-registro-empleos-lista-de-empleos']} " />
+							<h:panelGroup
+								rendered="#{registrarEmpleosMB.accionRealizada eq registrarEmpleosMB.acciones.ACCION_LISTAR}">
+
+								<h:outputText
+									value="de #{profesionalMB.profesionalBean.persona.nombres} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+							</h:panelGroup>
+
+						</h:panelGroup>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+							actionListener="#{registrarEmpleosMB.nuevo}"
+							reRender="gridDatosGenerales, dataEmpleos"
+							title="Registrar Nuevo Empleo">
+							<h:graphicImage value="/images/nuevo.png"
+								alt="Registrar Nuevo Empleo" />
+						</a4j:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+			</f:facet>
+			<rich:column sortBy="#{empleo.descripcionCargo}"
+				styleClass="#{empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText
+						value="Puesto" />
+				</f:facet>
+				<h:panelGroup>
+					<h:graphicImage
+						rendered="#{(empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+						value="/images/validado.png" alt="Validado" title="Validado" />
+					<rich:spacer
+						rendered="#{!(empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO)}"
+						width="16" height="5" title="espacio" />
+					<rich:spacer width="5" height="5" title="espacio" />
+				</h:panelGroup>
+				<h:outputText value="#{empleo.cargo} - " rendered="false"
+					styleClass="#{empleo.empleoPrincipal?'textoResaltado':''}" />
+				<h:outputText value="#{empleo.descripcionCargo}"
+					styleClass="#{empleo.empleoPrincipal?'textoResaltado':''}" />
+			</rich:column>
+			<rich:column sortBy="#{empleo.institucion}"
+				styleClass="#{empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText value="Institución" />
+				</f:facet>
+				<h:outputText value="#{empleo.institucion}" />
+			</rich:column>
+			<rich:column sortBy="#{empleo.inicio}"
+				styleClass="#{empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}"
+				sortOrder="DESCENDING">
+				<f:facet name="header">
+					<h:outputText value="#{msg['prf-registro-empleos-lista-periodo']}" />
+				</f:facet>
+				<h:outputText value="Desde " />
+				<h:outputText value="#{empleo.inicio}">
+					<f:convertDateTime timeZone="#{registrarEmpleosMB.timeZone}"
+						pattern="MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" hasta " rendered="#{empleo.termino ne null}" />
+				<h:outputText value="#{empleo.termino}"
+					rendered="#{empleo.termino ne null}">
+					<f:convertDateTime timeZone="#{registrarEmpleosMB.timeZone}"
+						pattern="MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" a la fecha"
+					rendered="#{empleo.termino eq null}" />
+			</rich:column>
+
+			<rich:column
+				styleClass="#{empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText
+						value="Detalle" />
+				</f:facet>
+				<h:outputText
+					value="#{UtilBean.convertirHtml[UtilBean.recortarTexto[empleo.actividades]]}"
+					title="#{empleo.actividades}" escape="false" />
+			</rich:column>
+			<rich:column
+				styleClass="#{empleo.validado eq UtilBean.parametros.ESTADO_VALIDACION_VALIDO ? '':'datoNoValidado'}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['prf-registro-empleos-lista-acciones']}" />
+				</f:facet>
+				<h:commandLink>
+					<f:param id="empleoPrm" name="empleoPrm" value="#{empleo}" />
+				</h:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+					actionListener="#{registrarEmpleosMB.editar}"
+					reRender="gridDatosGenerales,dataEmpleos" title="Ver Detalle">
+					<h:graphicImage value="/images/ver.png" alt="Ver Detalle" />
+				</a4j:commandLink>
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+					actionListener="#{registrarEmpleosMB.editar}"
+					reRender="gridDatosGenerales,dataEmpleos" title="Editar Empleo">
+					<h:graphicImage value="/images/editar.png" alt="Editar Empleo" />
+				</a4j:commandLink>
+				<rich:spacer width="10" height="5" title="espacio" />
+				<a4j:commandLink styleClass="columnaAcciones"
+					rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+					onclick="if (!confirmar('#{empleo.descripcion}')) return false;"
+					actionListener="#{registrarEmpleosMB.eliminar}"
+					title="Eliminar Empleo" reRender="gridDatosGenerales,dataEmpleos">
+					<h:graphicImage value="/images/eliminar.png" alt="Eliminar Empleo" />
+				</a4j:commandLink>
+			</rich:column>
+
+			<f:facet name="footer">
+				<rich:datascroller for="dataEmpleos" maxPages="20"
+					renderIfSinglePage="false" />
+			</f:facet>
+
+		</rich:dataTable>
+	</h:form>
+
+</ui:composition>
+
+</html>

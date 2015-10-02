@@ -1,0 +1,31 @@
+.columnaMediosContacto {
+	vertical-align: top;
+	width: 150px;
+	text-align: left;
+	border-right: solid 2px #E0E0E0;
+	border-left: solid 2px #E0E0E0;
+}
+
+.columnaMediosContacto img {
+	text-decoration: none;
+	border: 0;
+}
+
+.tablaSimple {
+	padding: 0px;
+	border: 0px;
+}
+
+.columnaCheck {
+	width: 20px;
+}
+
+
+/*.rich-list-picklist-button-disabled {
+	background-image: url(/);
+	background-color: #9FBDEB;
+	color: #6A92CF;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 11px;
+}
+*/

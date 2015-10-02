@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/layout/plantillaGestor.xhtml">
+	<ui:define name="tituloPagina">Contactos</ui:define>
+
+	<ui:define name="menuLateral">
+		<ui:include src="../../layout/menuGeneral.xhtml" />
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+    	</script>
+		<h:form>
+			<t:panelGrid columns="1" styleClass="gridContent"
+				id="gridDatosGenerales">
+				<rich:panel styleClass="gridContent"
+					style="background-color: #FFFFFF;"
+					rendered="#{registrarContactoMB.accionRealizada eq registrarContactoMB.acciones.ACCION_NUEVO
+							or 
+							registrarContactoMB.accionRealizada eq registrarContactoMB.acciones.ACCION_EDITAR
+							or
+							registrarContactoMB.accionRealizada eq registrarContactoMB.acciones.ACCION_VISUALIZAR}">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText value="Contactos de " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.nombres} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+							<h:outputText
+								value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+						</h:panelGroup>
+					</f:facet>
+
+					<t:panelGrid columns="3" styleClass="gridFormulario"
+						columnClasses="formularioBusqueda2colsIzq,formularioBusqueda2colsDer">
+
+						<h:outputLabel value="Nombre:" for="nombrePersona"
+							title="#{msg['prf-ayuda-contactos-nombre']}" />
+
+						<h:panelGroup>
+							<h:inputText id="nombrePersona" required="true" maxlength="254"
+								title="Longitud máxima: 254 caracteres"
+								value="#{registrarContactoMB.contactoBean.contacto.nombreContacto}"
+								styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+						</h:panelGroup>
+
+						<h:outputText value=" (*)" />
+						<h:outputLabel value="Relación/Parentesco:" for="parentesco"
+							title="#{msg['prf-ayuda-contactos-relacion-parentesco']}" />
+						<t:selectOneMenu id="parentesco"
+							value="#{registrarContactoMB.contactoBean.contacto.parentesco}"
+							style="#{UtilBean.estiloCampoRequerido}">
+							<f:selectItem value="#{UtilBean.itemSeleccioneCero}" />
+							<f:selectItems value="#{registrarContactoMB.itemsParentesco}" />
+							<f:validateLongRange minimum="1" />
+						</t:selectOneMenu>
+						<h:outputText value=" (*)" />
+
+						<h:outputLabel value="Tipo:" for="tipoContacto"
+							title="#{msg['prf-ayuda-contactos-relacion-parentesco']}" />
+						<t:selectOneMenu id="tipoContacto"
+							value="#{registrarContactoMB.contactoBean.contacto.contactoMedio.tipoContacto.id}"
+							style="#{UtilBean.estiloCampoRequerido}">
+							<f:selectItem value="#{UtilBean.itemSeleccioneCero}" />
+							<f:selectItems value="#{registrarContactoMB.itemsTipoContacto}" />
+							<f:validateLongRange minimum="1" />
+						</t:selectOneMenu>
+						<h:outputText value=" (*)" />
+
+						<h:outputLabel value="Dato:" for="datoContacto"
+							title="#{msg['prf-ayuda-contactos-nombre']}" />
+
+						<h:panelGroup>
+							<h:inputText id="datoContacto" required="true" maxlength="254"
+								title="Longitud máxima: 254 caracteres"
+								value="#{registrarContactoMB.contactoBean.contacto.contactoMedio.valor}"
+								styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+						</h:panelGroup>
+
+						<h:outputText value=" (*)" />
+
+
+						<t:outputLabel value="Comentarios:" for="comentarios"
+							title="#{msg['prf-ayuda-contactos-comentarios']}" />
+						<t:panelGroup colspan="1">
+							<h:inputTextarea id="comentarios" rows="4" required="false"
+								onkeyup="contar(this, #{rich:element('outComentarios')}, 500)"
+								value="#{registrarContactoMB.contactoBean.contacto.comentario}"
+								styleClass="width100p">
+								<f:validateLength maximum="500" />
+							</h:inputTextarea>
+						</t:panelGroup>
+						<rich:spacer width="10" height="5" title="espacio" />
+						<t:panelGroup colspan="2" styleClass="contadorCaracteres">
+							<h:outputLabel id="outComentarios" value="*"
+								title="Contador de caracteres" />
+						</t:panelGroup>
+						<rich:spacer width="10" height="5" title="espacio" />
+
+						<t:panelGroup colspan="7">
+							<rich:separator lineType="beveled" height="3" width="100%"
+								style="background-color: #808080; background-image: url('');"
+								align="center" />
+						</t:panelGroup>
+
+						<t:panelGroup colspan="7">
+							<rich:spacer width="5" height="10" title="espacio" />
+							<h:panelGrid columns="2" styleClass="gridContent"
+								columnClasses=",columnaDerecha">
+								<h:outputText value="" />
+
+								<h:panelGroup>
+									<a4j:commandButton value="Cancelar"
+										actionListener="#{registrarContactoMB.cancelar}"
+										reRender="gridDatosGenerales, dataContactos" immediate="true"
+										styleClass="botonBuscar" />
+									<rich:spacer width="10" height="5" title="espacio" />
+									<a4j:commandButton value="Guardar" action="#"
+										disabled="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+										actionListener="#{registrarContactoMB.guardar}"
+										reRender="gridDatosGenerales, dataContactos"
+										styleClass="botonBuscar"
+										onclick="Richfaces.showModalPanel('modalEstado')"
+										oncomplete="Richfaces.hideModalPanel('modalEstado')" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</t:panelGroup>
+					</t:panelGrid>
+				</rich:panel>
+			</t:panelGrid>
+		</h:form>
+
+		<h:form>
+			<rich:dataGrid value="#{registrarContactoMB.contactos}" border="0"
+				id="dataContactos" var="contacto" styleClass="gridContent"
+				rowKeyVar="fila" onRowMouseOver="this.className='filaMouseOver'"
+				onRowMouseOut="this.className='filaMouseOut'"
+				headerClass="columnaIzquierda rich-pmenu-top-group rich-table-subheadercell">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:panelGrid columns="2" styleClass="gridContent"
+							columnClasses="columnaIzquierda,columnaDerecha">
+							<h:panelGroup
+								rendered="#{!(registrarContactoMB.accionRealizada eq registrarContactoMB.acciones.ACCION_NUEVO
+							or 
+							
+							registrarContactoMB.accionRealizada eq registrarContactoMB.acciones.ACCION_VISUALIZAR)}">
+								<h:outputText value="Lista de contactos de " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.nombres} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoPaterno} " />
+								<h:outputText
+									value="#{profesionalMB.profesionalBean.persona.apellidoMaterno}" />
+							</h:panelGroup>
+							<a4j:commandLink styleClass="columnaAcciones"
+								rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+								actionListener="#{registrarContactoMB.nuevo}"
+								reRender="gridDatosGenerales, dataContactos"
+								title="Registrar Nuevo Contacto">
+								<h:graphicImage value="/images/nuevo.png"
+									alt="Registrar Nuevo Contacto" />
+							</a4j:commandLink>
+						</h:panelGrid>
+					</h:panelGroup>
+				</f:facet>
+				<h:panelGrid styleClass="gridContent" columns="4"
+					columnClasses=",,columnaMediosContacto,columnaAcciones">
+
+					<h:panelGrid columns="1">
+						<a4j:commandLink styleClass="tituloFila" title="Ver Contacto"
+							actionListener="#{registrarContactoMB.editar}"
+							reRender="gridDatosGenerales,dataContactos">
+							<h:panelGroup>
+								<h:outputText value="#{contacto.idPersonaDestino} "
+									rendered="false" />
+								<h:outputText value="#{contacto.nombreContacto} " />
+							</h:panelGroup>
+						</a4j:commandLink>
+						<h:outputText value="#{contacto.comentario}" />
+					</h:panelGrid>
+					<rich:spacer width="5" height="10" title="espacio" />
+
+
+					<h:dataTable value="#{contacto.valoresContacto}" var="medio"
+						rows="10">
+						<h:column>
+							<h:panelGrid columns="2">
+								<h:graphicImage value="../../images/mobile-phone-8-16.png"
+									rendered="#{medio.tipoContacto.id eq 1}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/email-12-16.png"
+									rendered="#{medio.tipoContacto.id eq 2}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/phone-17-16.png"
+									rendered="#{medio.tipoContacto.id eq 3}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/office-phone-16.png"
+									rendered="#{medio.tipoContacto.id eq 4}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/facebook-6-16.png"
+									rendered="#{medio.tipoContacto.id eq 5}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/twitter-16.png"
+									rendered="#{medio.tipoContacto.id eq 6}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/linkedin-6-16.png"
+									rendered="#{medio.tipoContacto.id eq 7}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/google-plus-16.png"
+									rendered="#{medio.tipoContacto.id eq 8}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:graphicImage value="../../images/business-contact-16.png"
+									rendered="#{medio.tipoContacto.id gt 8}"
+									alt="#{medio.tipoContacto.descripcion}" />
+								<h:outputText value="#{medio.valor}" />
+							</h:panelGrid>
+						</h:column>
+					</h:dataTable>
+
+
+					<h:panelGroup>
+						<h:commandLink>
+							<f:param id="contactoPrm" name="contactoPrm" value="#{contacto}" />
+						</h:commandLink>
+
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{!(sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional)}"
+							actionListener="#{registrarContactoMB.editar}"
+							reRender="gridDatosGenerales,dataContactos" title="Ver Detalle">
+							<h:graphicImage value="/images/ver.png" alt="Ver Detalle" />
+						</a4j:commandLink>
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+							actionListener="#{registrarContactoMB.editar}"
+							reRender="gridDatosGenerales,dataContactos"
+							title="Editar Contacto">
+							<h:graphicImage value="/images/editar.png" alt="Editar Contacto" />
+						</a4j:commandLink>
+						<rich:spacer width="10" height="5" title="espacio" />
+						<a4j:commandLink styleClass="columnaAcciones"
+							rendered="#{sesionMB.usuarioSesion.rolAdministrador or sesionMB.usuarioSesion.rolConsultorEmpleo or sesionMB.usuarioSesion.rolProfesional}"
+							onclick="if (!confirmar('#{tipo.dscrpcon}')) return false;"
+							actionListener="#{registrarContactoMB.eliminar}"
+							title="Eliminar Contacto"
+							reRender="gridDatosGenerales, dataContactos">
+							<h:graphicImage value="/images/eliminar.png"
+								alt="Eliminar Contacto" />
+						</a4j:commandLink>
+					</h:panelGroup>
+				</h:panelGrid>
+			</rich:dataGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

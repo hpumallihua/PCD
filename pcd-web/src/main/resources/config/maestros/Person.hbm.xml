@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pe.gob.trabajo.pcd.modelo.dominio.Person" table="PTT_CIUDADANO"
+		schema="silnet" >
+		<id name="dni" type="string">
+			<column name="DNI" length="8" />
+		</id>
+		<property name="apellidoPaterno" type="string">
+			<column name="V_APEPAT" length="50" />
+		</property>
+		<property name="apellidoMaterno" type="string">
+			<column name="V_APEMAT" length="20" />
+		</property>
+		<property name="nombres" type="string">
+			<column name="V_NOMBRES" length="50" />
+		</property>
+		<property name="fechaNacimientoNoEstandar" type="string">
+			<column name="V_FECNAC" length="8" />
+		</property>
+		<property name="codigoSexo" type="string">
+			<column name="V_CODSEX" length="1" />
+		</property>
+		<property name="codigoUbigeo" type="string">
+			<column name="V_UBIGEO" length="10" />
+		</property>
+	</class>
+</hibernate-mapping>
