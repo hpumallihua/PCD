@@ -4,7 +4,8 @@
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:t="http://myfaces.apache.org/tomahawk">
-
+  
+<!-- 	<h:inputText value="#{pedidoMB.pedido.id}" /> -->
 	<h:inputHidden value="#{pedidoMB.pedido.id}" /> 
 	<rich:panelMenu style="width:100%" mode="ajax" iconExpandedGroup="disc"
 		iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
@@ -40,6 +41,31 @@
 			</rich:panelMenuItem>
 			
 			<rich:panelMenuItem label="Datos Adicionales" action="formacionPedido"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			
+			<rich:panelMenuItem label="Prueba" action="datosPostulacion"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="2"
+					assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion"
+					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+					assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>
+			<rich:panelMenuItem label="Prueba" action="buscarPersonaPedido"
 				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
 				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
 				immediate="true"

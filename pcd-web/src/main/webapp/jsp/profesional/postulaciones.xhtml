@@ -48,12 +48,12 @@
 					<h:outputText value="#{postulacion.pedido.descripcion}" />
 				</rich:column>
 				<rich:column
-					sortBy="#{postulacion.pedido.empleador.establecimiento.empresa.nombreComercial}">
+					sortBy="#{postulacion.pedido.empleador.nombreComercial}">
 					<f:facet name="header">
 						<h:outputText value="Empresa" />
 					</f:facet>
 					<h:outputText
-						value="#{postulacion.pedido.empleador.establecimiento.empresa.nombreComercial}" />
+						value="#{postulacion.pedido.empleador.nombreComercial}" />
 				</rich:column>
 				<rich:column sortBy="#{postulacion.pedido.fechaCreacion}"
 					sortOrder="DESCENDING">

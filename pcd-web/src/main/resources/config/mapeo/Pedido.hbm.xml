@@ -21,29 +21,99 @@
 				<comment>FECHA EN LA QUE SE CAMBIA EL ESTADO A INACTIVO EL PEDDO</comment>
 			</column>
 		</property>
-		<many-to-one name="empleador" class="pe.gob.trabajo.pcd.modelo.dominio.Empresa">
-			<column name="N_CODEMPLDR" scale="0">
-				<comment>CÓDIGO DE EMPRESA.</comment>
-			</column>
-		</many-to-one>
 		<property generated="never" lazy="false" name="nombre" type="string">
 			<column length="500" name="V_DSCRPCN">
 				<comment>NOMBRE DEL PUESTO.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="area" type="string">
-			<column length="100" name="V_DSCRAREA">
-				<comment>DESCRIPCION DEL AREA.</comment>
+		<property generated="never" lazy="false" name="nroPuestosCubrir" type="java.lang.Integer">
+			<column length="4" name="N_NUMPTOCUBRIR">
+				<comment>Nº PUESTOS A CUBRIR.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="reporta" type="string">
-			<column length="100" name="V_RPRT">
-				<comment>PUESTO QUE SUPERVISA.</comment>
+		<property generated="never" lazy="false" name="nroCandidatosEnviar" type="java.lang.Integer">
+			<column length="4" name="N_NUMCTOENVIAR">
+				<comment>Nº CANDIDATOS A ENVIAR.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="coordina" type="string">
-			<column length="100" name="V_CRDNA">
-				<comment>CARGO CON QUIEN SE COORDINA.</comment>
+		<property generated="never" lazy="false" name="nombreContacto" type="string">
+			<column length="100" name="V_NOMBRECTO">
+				<comment>NOMBRE DE LA PERSONA DE CONTACTO DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="puestoContacto" type="string">
+			<column length="100" name="V_PUESTOCTO">
+				<comment>PUESTO DE LA PERSONA DE CONTACTO DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="telefContacto" type="string">
+			<column length="20" name="V_TELEFCTO">
+				<comment>TELEFONO DE LA PERSONA DE CONTACTO DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="anexoContacto" type="string">
+			<column length="10" name="V_ANEXOCTO">
+				<comment>ANEXO DE LA PERSONA DE CONTACTO DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="correoContacto" type="string">
+			<column length="60" name="V_CORREOCTO">
+				<comment>CORREO DE LA PERSONA DE CONTACTO DE LA EMPRESA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="fechaIniEntrevista" type="timestamp">
+			<column length="23" name="D_ININTRVISTA">
+				<comment>FECHA INICIO DE ENTREVISTA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="fechaFinEntrevista" type="timestamp">
+			<column length="23" name="D_FINNTRVISTA">
+				<comment>FECHA FIN DE ENTREVISTA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="horarioEntrevista" type="string">
+			<column length="60" name="V_HORARIONTRVISTA">
+				<comment>HORARIO DE LA ENTREVISTA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="lugarEntrevista" type="string">
+			<column length="100" name="V_LUGARNTRVISTA">
+				<comment>LUGAR DE LA ENTREVISTA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="codTipoRemuneracion" type="java.lang.Integer">
+			<column length="2" name="N_CODTPRMNRCN">
+				<comment>CODIGO TIPO REMUNERACION.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="movilidad" type="java.lang.Integer">
+			<column length="1" name="N_MOVILIDAD">
+				<comment>OTROS BENEFICIOS - MOVILIDAD.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="refrigerio" type="java.lang.Integer">
+			<column length="1" name="N_RFRGRIO">
+				<comment>OTROS BENEFICIOS - REFRIGERIO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="bonificacion" type="java.lang.Integer">
+			<column length="1" name="N_BONIFICN">
+				<comment>OTROS BENEFICIOS - BONIFICACION.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="seguro" type="java.lang.Integer">
+			<column length="1" name="N_SEGURO">
+				<comment>OTROS BENEFICIOS - SEGURO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="comisiones" type="java.lang.Integer">
+			<column length="1" name="N_COMISN">
+				<comment>OTROS BENEFICIOS - COMISIONES.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="codTipoPuesto" type="java.lang.Integer">
+			<column length="4" name="N_CODTPPTO">
+				<comment>CODIGO TIPO PUESTO.</comment>
 			</column>
 		</property>
 		<property generated="never" lazy="false" name="personalACargo"  type="java.lang.Integer">
@@ -51,25 +121,24 @@
 				<comment>PERSONAL A CARGO SI O NO.</comment>
 			</column>
 		</property>
-        <property generated="never" lazy="false" name="numPersonalACargo"  type="java.lang.Integer">
+		        <property generated="never" lazy="false" name="numPersonalACargo"  type="java.lang.Integer">
             <column name="N_NUMPRCGO">
 				<comment>NÚMERO DEL PERSONAL A CARGO.</comment>
 			</column>
         </property>
-        <property generated="never" lazy="false" name="planCarrera"  type="string">
-			<column length="500" name="V_PLNCRRR">
-				<comment>LINEA O PLAN DE CARRERA.</comment>
+        <property generated="never" lazy="false" name="tareas" type="string">
+			<column length="254" name="V_TARS">
+				<comment>TAREAS U OBJETIVO PRINCIPAL.</comment>
 			</column>
 		</property>
-		
-		<property generated="never" lazy="false" name="remuneracion" type="java.lang.Double">
+		<property generated="never" lazy="false" name="jornada"  type="java.lang.Integer">
+            <column name="N_JRND">
+				<comment>TIPO DE JORNADA.</comment>
+			</column>
+        </property>
+        <property generated="never" lazy="false" name="remuneracion" type="java.lang.Double">
 			<column name="N_RMNRCN" precision="10" scale="2">
 				<comment>REMUNERACION</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="beneficio" type="string">
-			<column length="500" name="V_BNFC">
-				<comment>DESCRIPCION DE LOS BENEFICIOS.</comment>
 			</column>
 		</property>
 		<property generated="never" lazy="false" name="horario" type="string">
@@ -77,7 +146,7 @@
 				<comment>DESCRIPCION DEL HORARIO.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="departamento" type="string">
+				<property generated="never" lazy="false" name="departamento" type="string">
 			<column name="V_CODDEP" length="2">
 				<comment>CODIGO DEL DEPARTAMENTO.</comment>
 			</column>
@@ -92,188 +161,325 @@
 				<comment>CODIGO DEL DISTRITO.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="direccion" type="string">
-			<column name="V_DRCCION" length="500">
-				<comment>DESCRIPCION DE LA DIRECCION.</comment>
-			</column>
-		</property>
+<!-- 		<property generated="never" lazy="false" name="direccion" type="string"> -->
+<!-- 			<column name="V_DRCCION" length="500"> -->
+<!-- 				<comment>DESCRIPCION DE LA DIRECCION.</comment> -->
+<!-- 			</column> -->
+<!-- 		</property> -->
 		<property generated="never" lazy="false" name="nombreLugarResidencia" type="string">
 			<column name="V_LUGRES" length="500">
 				<comment>DESCRIPCION DEL LUGAR DE RESIDENCIA.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="recursoMaterial" type="string">
-			<column name="V_RCMTRL" length="500">
-				<comment>RECURSOS MATERIALES.</comment>
+		
+		<property generated="never" lazy="false" name="codEstudiosFormales" type="java.lang.Integer">
+			<column length="4" name="N_CODESTUDIO">
+				<comment>CODIGO ESTUDIO FORMAL.</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="tipoContrato"  type="java.lang.Integer">
-			<column name="N_TPCNTR">
-				<comment>TIPO CONTRATO 0:Indeterminado 1:Sujeto a modalidad.</comment>
+		<property generated="never" lazy="false" name="profesion" type="string">
+			<column length="254" name="V_PROFESION">
+				<comment>PROFESION.</comment>
 			</column>
 		</property>
-        <property generated="never" lazy="false" name="duracion"  type="java.lang.Integer">
-            <column name="N_DRCN">
-				<comment>TIEMPO DE DURACION DEL CONTRATO EN MESES.</comment>
-			</column>
-        </property>
-        <property generated="never" lazy="false" name="jornada"  type="java.lang.Integer">
-            <column name="N_JRND">
-				<comment>TIPO DE JORNADA.</comment>
-			</column>
-        </property>
-        <property generated="never" lazy="false" name="fechaInicio" type="timestamp">
-			<column length="23" name="D_FCHAINIC">
-				<comment>FECHA DE INICIO DEL PUESTO</comment>
+		<property generated="never" lazy="false" name="codGrado" type="java.lang.Integer">
+			<column length="4" name="N_CODGRADO">
+				<comment>CODIGO GRADO.</comment>
 			</column>
 		</property>
-        <property generated="never" lazy="false" name="otrosCondicionLaboral" type="string">
-			<column length="254" name="V_OTRS">
-				<comment>OTROS DATOS RELACIONADOS.</comment>
+		<property generated="never" lazy="false" name="licenciaConducir" type="java.lang.Integer">
+			<column length="1" name="N_LICCONDUCIR">
+				<comment>LICENCIA CONDUCIR 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="categoriaLicenciaConducir" type="string">
+			<column length="254" name="V_CATLICCONDUCIR">
+				<comment>CATEGORIA LICENCIA CONDUCIR.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="vehiculoPropio" type="java.lang.Integer">
+			<column length="1" name="N_VEHICULO">
+				<comment>VEHICULO PROPIO 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="sexoPreferente" type="java.lang.Integer">
+			<column length="1" name="N_SEXOPREF">
+				<comment>SEXO PREFERENTE</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="edadIni" type="java.lang.Integer">
+			<column length="4" name="N_EDADINI">
+				<comment>EDAD PREFERENTE INICIO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="edadFin" type="java.lang.Integer">
+			<column length="4" name="N_EDADFIN">
+				<comment>EDAD PREFERENTE FINAL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="experienciaRequerida" type="java.lang.Integer">
+			<column length="4" name="N_EXPERIENCIA">
+				<comment>EXPERIENCIA REQUERIDA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="codTipoExperiencia" type="java.lang.Integer">
+			<column length="4" name="N_CODTPEXP">
+				<comment>CODIGO TIPO EXPERIENCIA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="codTipoDiscapacidad" type="java.lang.Integer">
+			<column length="4" name="N_DISCAPACIDAD">
+				<comment>CODIGO TIPO DISCAPACIDAD</comment>
+			</column>
+		</property>
+
+		<property generated="never" lazy="false" name="habilidad1" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD1">
+				<comment>APARIENCIA Y AUTOCUIDADO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad2" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD2">
+				<comment>MOVILIDAD EN LA COMUNIDAD</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad3" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD3">
+				<comment>MEMORIA VISUAL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad4" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD4">
+				<comment>SEMEJANZAS Y DIFERENCIAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad5" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD5">
+				<comment>ORIENTACION ESPACIAL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad6" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD6">
+				<comment>CONOCIMIENTO NUMERICO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad7" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD7">
+				<comment>APRENDIZAJE DE TAREAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad8" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD8">
+				<comment>LENGUAJE EXPRESIVO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad9" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD9">
+				<comment>CONOCIMIENTO DE ESCRITURA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad10" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD10">
+				<comment>LENGUAJE COMPRENSIVO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad11" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD11">
+				<comment>CONOCIMIENTO DE LECTURA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad12a" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD12A">
+				<comment>EXIGENCIAS DINAMICAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad12b" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD12B">
+				<comment>CARGA ESTATICA. POSTURA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad12c" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD12C">
+				<comment>MANEJO Y TRANSPORTE DE CARGA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad12d" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD12D">
+				<comment>ACCESIBILIDAD</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad13" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD13">
+				<comment>COORDINACION MANIPULATIVA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad14a" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD14A">
+				<comment>AUTONOMIA LABORAL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad14b" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD14B">
+				<comment>REALIZACION DE LA TAREA</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad15" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD15">
+				<comment>REPETITIVIDAD</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad16" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD16">
+				<comment>ATENCION</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad17" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD17">
+				<comment>RITMO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad18" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD18">
+				<comment>ORGANIZACION</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad19" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD19">
+				<comment>INTERES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad20" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD20">
+				<comment>RELACIONES DE TRABAJO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad21" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD21">
+				<comment>SEGURIDAD</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad22" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD22">
+				<comment>AMBIENTE TERMICO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad23" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD23">
+				<comment>AMBIENTE SONORO</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad24" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD24">
+				<comment>CONDICIONES LUMINICAS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="habilidad25" type="java.lang.Integer">
+			<column length="1" name="N_HABILIDAD25">
+				<comment>HIGIENE AMBIENTAL</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="contratoPcdActual" type="java.lang.Integer">
+			<column length="1" name="N_CNTRATOACTUAL">
+				<comment>SI LA EMPRESA TIENE CONTRATADO DISCAPACITADOS 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="contratoPcdAntes" type="java.lang.Integer">
+			<column length="1" name="N_CNTRATOANTES">
+				<comment>SI LA EMPRESA HA CONTRATADO DISCAPACITADOS ANTES 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="instalacionAdecuada" type="java.lang.Integer">
+			<column length="1" name="N_INSTALACIONPCD">
+				<comment>LA EMPRESA TIENE ADECUADA SUS INSTALACIONES 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="barreras" type="string">
+			<column length="500" name="V_DSCBARRERA">
+				<comment>DESCRIPCION BARRERA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nroSuperiores" type="java.lang.Integer">
+			<column length="4" name="N_SUPERIORES">
+				<comment>SUPERIORES</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nroCompaneros" type="java.lang.Integer">
+			<column length="4" name="N_COMPANEROS">
+				<comment>COMPANEROS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nroSubordinados" type="java.lang.Integer">
+			<column length="4" name="N_SUBORDINADOS">
+				<comment>SUBORDINADOS</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descCompaneros" type="string">
+			<column length="500" name="V_DSCCOMPANEROS">
+				<comment>DESCRIPCION DE COMPANEROS DE TRABAJO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descMoviliario" type="string">
+			<column length="500" name="V_DSCMOVILIARIO">
+				<comment>DESCRIPCION MOVILIARIO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descTecnologia" type="string">
+			<column length="500" name="V_DSCTECNOLOGIA">
+				<comment>DESCRIPCION TECNOLOGIA.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descHerramientas" type="string">
+			<column length="500" name="V_DSCHERRAMIENTAS">
+				<comment>DESCRIPCION HERRAMIENTAS.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descMaquinarias" type="string">
+			<column length="500" name="V_DSCMAQUINARIAS">
+				<comment>DESCRIPCION MAQUINARIAS.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descVehiculos" type="string">
+			<column length="500" name="V_DSCVEHICULOS">
+				<comment>DESCRIPCION VEHICULOS.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descOtros" type="string">
+			<column length="500" name="V_DSCOTROS">
+				<comment>DESCRIPCION OTROS.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descEntornoAmbiental" type="string">
+			<column length="500" name="V_DSCENTORNO">
+				<comment>DESCRIPCION ENTORNO AMBIENTAL.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descFactoresRiesgo" type="string">
+			<column length="500" name="V_DSCFACTOR">
+				<comment>DESCRIPCION FACTOR RIESGO.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="descProyAjustes" type="string">
+			<column length="500" name="V_DSCAJUSTES">
+				<comment>DESCRIPCION PROYECCIONES DE AJUSTES.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="cuotaEmpleo" type="java.lang.Integer">
+			<column length="1" name="N_CUOTAEMPLEO">
+				<comment>CUOTA DE EMPLEO 0:NO 1:SI.</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="motivoContratoOtros" type="string">
+			<column length="254" name="V_MOTIVOTROS">
+				<comment>MOTIVO DE CONTRATACION OTROS.</comment>
 			</column>
 		</property>
 		
-		<property generated="never" lazy="false" name="tareas" type="string">
-			<column length="254" name="V_TARS">
-				<comment>TAREAS U OBJETIVO PRINCIPAL.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="operaciones" type="string">
-			<column length="254" name="V_OPRCS">
-				<comment>OPERACIONES.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="funciones" type="string">
-			<column length="254" name="V_FNCNS">
-				<comment>FUNCIONES.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="maquinarias" type="string">
-			<column length="254" name="V_MQNRS">
-				<comment>MAQUINARIAS.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="herramientas" type="string">
-			<column length="254" name="V_HRRAMTS">
-				<comment>HERRAMIENTAS.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="observaciones" type="string">
-			<column length="254" name="V_OBSVCS">
-				<comment>OBSERVACIONES.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="trabajoGrupo" type="string">
-			<column length="254" name="V_TRBJGRP">
-				<comment>TRABAJO EN GRUPO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="habilidadSocial" type="string">
-			<column length="254" name="V_HBDSCL">
-				<comment>HABILIDADES SOCIALES.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="nivelEducativo" type="string">
-			<column length="6" name="V_CODNIVEDU">
-				<comment>CODIGO DEL NIVEL EDUCATIVO</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="tipoExperiencia"  type="java.lang.Integer">
-			<column name="N_TPXPRC">
-				<comment>TIPO EXPERIENCIA 0:NO 1:SI .</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="datoExperiencia" type="string">
-			<column length="254" name="V_DTXPRC">
-				<comment>DATOS DE LA EXPERIENCIA.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="organigrama" type="string">
-			<column length="254" name="V_RGNGRM">
-				<comment>ORGANIZACION DEL TRABAJO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="condiciones" type="string">
-			<column length="254" name="V_CNDCNS">
-				<comment>CONDICIONES DEL TRABAJO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="infoComplementaria" type="string">
-			<column length="254" name="V_NFCMPL">
-				<comment>RUTA DEL ARCHIVO CON INFO COMPLEMENTARIA.</comment>
-			</column>
-		</property>
 		
-		<property generated="never" lazy="false" name="ambRuidoComennt" type="string">
-			<column length="254" name="V_MBRDOCM">
-				<comment>AMB COMENT RUIDO.</comment>
+		<many-to-one name="empleador" class="pe.gob.trabajo.pcd.modelo.dominio.Empresa">
+			<column name="N_CODEMPLDR" scale="0">
+				<comment>CÓDIGO DE EMPRESA.</comment>
 			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambRuidoValor"  type="java.lang.Integer">
-			<column name="N_MBRDOVL">
-				<comment>AMB VALOR RUIDO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambIluminaComennt" type="string">
-			<column length="254" name="V_MBILUCM">
-				<comment>AMB COMENT RUIDO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambIluminaValor"  type="java.lang.Integer">
-			<column name="N_MBILUVL">
-				<comment>AMB VALOR RUIDO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambVentilaComennt" type="string">
-			<column length="254" name="V_MBVNTCM">
-				<comment>AMB COMENT VENTILACION.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambVentilaValor"  type="java.lang.Integer">
-			<column name="N_MBVNTVL">
-				<comment>AMB VALOR VENTILACION.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambTemperaComennt" type="string">
-			<column length="254" name="V_MBTMPRCM">
-				<comment>AMB COMENT TEMPERATURA.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambTemperaValor"  type="java.lang.Integer">
-			<column name="N_MBTMPRVL">
-				<comment>AMB VALOR TEMPERATURA.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambHumedadComennt" type="string">
-			<column length="254" name="V_MBHMDDCM">
-				<comment>AMB COMENT HUMEDAD.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambHumedadValor"  type="java.lang.Integer">
-			<column name="N_MBHMDDVL">
-				<comment>AMB VALOR HUMEDAD.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambPolvoComennt" type="string">
-			<column length="254" name="V_MBPLVOCM">
-				<comment>AMB COMENT POLVO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambPolvoValor"  type="java.lang.Integer">
-			<column name="N_MPLVOVL">
-				<comment>AMB VALOR POLVO.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambVibraComennt" type="string">
-			<column length="254" name="V_MBVBRCCM">
-				<comment>AMB COMENT VIBRACION.</comment>
-			</column>
-		</property>
-		<property generated="never" lazy="false" name="ambVibraValor"  type="java.lang.Integer">
-			<column name="N_MBVBRCVL">
-				<comment>AMB VALOR VIBRACION.</comment>
-			</column>
-		</property>
+		</many-to-one>
 		
 		
 		<property name="flag" type="string">

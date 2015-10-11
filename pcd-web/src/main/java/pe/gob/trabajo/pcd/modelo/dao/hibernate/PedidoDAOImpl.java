@@ -157,9 +157,9 @@ public class PedidoDAOImpl extends GenericDaoImpl<Pedido, Long> implements Pedid
 			if (busquedaBean.getFechaRegistroIni()!=null && busquedaBean.getFechaRegistroFin()!=null) {
 				criteria.add(Restrictions.between( "fechaRegistro", busquedaBean.getFechaRegistroIni(), new Date(busquedaBean.getFechaRegistroFin().getTime() + 86400000) ));
 			}
-			if (busquedaBean.getPedido().getNivelEducativo()!=null && !"".equals(busquedaBean.getPedido().getNivelEducativo()) ) {
+			/*if (busquedaBean.getPedido().getNivelEducativo()!=null && !"".equals(busquedaBean.getPedido().getNivelEducativo()) ) {
 				criteria.add(Restrictions.eq("nivelEducativo", busquedaBean.getPedido().getNivelEducativo()));
-			}
+			}*/
 			if (busquedaBean.getEmpresa()!=null && busquedaBean.getEmpresa().getId()!=null) {
 				
 				String 	ruc 		= busquedaBean.getEmpresa().getRuc();

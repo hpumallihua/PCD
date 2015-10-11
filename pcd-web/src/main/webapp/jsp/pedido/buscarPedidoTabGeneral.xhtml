@@ -87,12 +87,12 @@
 								styleClass="tituloSeccion" style="text-transform:uppercase;" />
 							
 							<h:outputText
-								value="Observaciones:       #{varpedido.beneficio}" />
+								value="Observaciones:       #{varpedido.tareas}" />
 							<h:outputText
 								value="Remuneracion:     #{varpedido.remuneracion} " />
 							<t:panelGroup colspan="4">
 								<h:outputText value="Fecha Inicio" />
-								<h:outputText value="#{varpedido.fechaInicio}" />
+								<h:outputText value="#{varpedido.fechaRegistro}" />
 								
 							</t:panelGroup>
 						</h:panelGrid>
@@ -124,6 +124,16 @@
 								<a4j:commandLink
 									actionListener="#{pedidoMB.seleccionar}"
 									action="crearPedido" title="Editar Datos"
+									rendered="#{!(sesionMB.usuarioSesion.rolProfesional)}">
+									<h:graphicImage value="/images/editar.png" alt="Editar Datos" />
+									<a4j:actionparam name="accion"
+										value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
+										assignTo="#{sesionMB.contexto}" />
+								</a4j:commandLink>
+								
+								<a4j:commandLink
+									actionListener="#{pedidoMB.seleccionar}"
+									action="datosPostulacion" title="Editar Datos"
 									rendered="#{!(sesionMB.usuarioSesion.rolProfesional)}">
 									<h:graphicImage value="/images/editar.png" alt="Editar Datos" />
 									<a4j:actionparam name="accion"

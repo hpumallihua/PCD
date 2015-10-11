@@ -68,6 +68,7 @@ public class RegistrarPedidoDetalleMB extends GenericManagedBean {
 	 * @see pe.gob.trabajo.pcd.vista.faces.bean.GenericManagedBean#init()
 	 */
 	public void init() {
+		logger.debug("init RegistrarPedidoDetalleMB");
 		Pedido bean = (Pedido) getSpringBean("PedidoPrt");
 		logger.debug("PedidoPrt: Pedido:" + bean);
 		setPedidoBean(bean);
@@ -103,7 +104,7 @@ public class RegistrarPedidoDetalleMB extends GenericManagedBean {
 	 * @param e the e
 	 */
 	public void guardar(ActionEvent e) {
-		logger.debug("Guardando pedido... ");
+		logger.debug("Guardando pedido detalle... ");
 		Pedido bean = pedidoBean;
 		validar();
 		Empresa emp = new Empresa();
@@ -250,7 +251,7 @@ public class RegistrarPedidoDetalleMB extends GenericManagedBean {
 		logger.debug("Descripc:      --"+busquedaBean.getPedido().getDescripcion()+"--");
 		logger.debug("Fecha Ini:     --"+busquedaBean.getFechaRegistroIni()+"--");
 		logger.debug("Fecha Fin:     --"+busquedaBean.getFechaRegistroFin()+"--");
-		logger.debug("NiveEducativo: --"+busquedaBean.getPedido().getNivelEducativo()+"--");
+		//logger.debug("NiveEducativo: --"+busquedaBean.getPedido().getNivelEducativo()+"--");
 		
 		if (empresaBean!=null && getUsuarioSesion().isRolEmpleador()) {
 			busquedaBean.setEmpresa(empresaBean);

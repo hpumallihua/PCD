@@ -5,15 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
-import javax.faces.model.SelectItem;
-import javax.faces.validator.ValidatorException;
 
 import org.apache.log4j.Logger;
 
-import pe.gob.trabajo.pcd.modelo.dominio.Empleador;
 import pe.gob.trabajo.pcd.modelo.dominio.Empresa;
-import pe.gob.trabajo.pcd.modelo.dominio.EspecialidadProfesional;
-import pe.gob.trabajo.pcd.modelo.dominio.Establecimiento;
 import pe.gob.trabajo.pcd.modelo.dominio.Idioma;
 import pe.gob.trabajo.pcd.modelo.dominio.NivelEducativo;
 import pe.gob.trabajo.pcd.modelo.dominio.NivelIdioma;
@@ -23,7 +18,6 @@ import pe.gob.trabajo.pcd.modelo.dominio.PersonaCargo;
 import pe.gob.trabajo.pcd.modelo.dominio.Postulacion;
 import pe.gob.trabajo.pcd.modelo.dominio.Profesion;
 import pe.gob.trabajo.pcd.modelo.dominio.Profesional;
-import pe.gob.trabajo.pcd.modelo.dominio.Usuario;
 import pe.gob.trabajo.pcd.servicio.util.Constantes;
 import pe.gob.trabajo.pcd.vista.bean.BusquedaBean;
 import pe.gob.trabajo.pcd.vista.faces.util.Items;
@@ -250,7 +244,7 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 		logger.debug("Descripc:      --"+busquedaBean.getPedido().getDescripcion()+"--");
 		logger.debug("Fecha Ini:     --"+busquedaBean.getFechaRegistroIni()+"--");
 		logger.debug("Fecha Fin:     --"+busquedaBean.getFechaRegistroFin()+"--");
-		logger.debug("NiveEducativo: --"+busquedaBean.getPedido().getNivelEducativo()+"--");
+		//logger.debug("NiveEducativo: --"+busquedaBean.getPedido().getNivelEducativo()+"--");
 		
 		if (empresaBean!=null && getUsuarioSesion().isRolEmpleador()) {
 			busquedaBean.setEmpresa(empresaBean);
@@ -367,7 +361,9 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 					UtilBean.initNullObject(postulacionGuardada);
 				}
 				
-			}			
+			}	else {
+				agregarMensajeErrorTransaccion("Seleccione un profesional");
+			}		
 			
 		}
 	}
