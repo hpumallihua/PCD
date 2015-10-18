@@ -12,7 +12,9 @@ import pe.gob.trabajo.pcd.vista.bean.ReporteE3;
 import pe.gob.trabajo.pcd.vista.bean.ReporteE4;
 import pe.gob.trabajo.pcd.vista.bean.ReporteEmpresa;
 import pe.gob.trabajo.pcd.vista.bean.ReporteOferta;
+import pe.gob.trabajo.pcd.modelo.dominio.Capacitacion;
 import pe.gob.trabajo.pcd.modelo.dominio.Certificacion;
+import pe.gob.trabajo.pcd.modelo.dominio.Conocimiento;
 import pe.gob.trabajo.pcd.modelo.dominio.Contacto;
 import pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad;
 import pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral;
@@ -87,6 +89,24 @@ public interface ProfesionalService extends GenericService<Profesional> {
 	 * @return the list
 	 */
 	public List<Certificacion> obtenerCertificaciones(Profesional profesional);
+	
+	/**
+	 * Obtener certificaciones.
+	 *
+	 * @param profesional the profesional
+	 * @return the list
+	 */
+	public List<Capacitacion> obtenerCapacitaciones(Profesional profesional);
+	
+	/**
+	 * Obtener certificaciones.
+	 *
+	 * @param profesional the profesional
+	 * @return the list
+	 */
+	public List<Conocimiento> obtenerConocimientos(Profesional profesional);
+	
+	
 
 	/**
 	 * Obtener experiencia especialidad.
@@ -144,6 +164,22 @@ public interface ProfesionalService extends GenericService<Profesional> {
 	 * @return the contacto
 	 */
 	public Contacto guardarContacto(Contacto contacto);
+	
+	/**
+	 * Guardar Capacitacion.
+	 *
+	 * @param contacto the Capacitacion
+	 * @return the Capacitacion
+	 */
+	public Capacitacion guardarCapacitacion(Capacitacion capacitacion);
+	
+	/**
+	 * Guardar Conocimiento.
+	 *
+	 * @param contacto the Capacitacion
+	 * @return the Capacitacion
+	 */
+	public Conocimiento guardarConocimiento(Conocimiento conocimiento);
 
 	/**
 	 * Guardar experiencia especialidad.
