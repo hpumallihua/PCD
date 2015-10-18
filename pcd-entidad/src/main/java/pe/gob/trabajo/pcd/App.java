@@ -15,5 +15,6 @@ public class App
         double div2 = (double)3 / 100;
         
         System.out.println( "Hello World=" +div2 );
+        System.out.println( "Hello Worldrrr=" +div2 );
     }
 }
