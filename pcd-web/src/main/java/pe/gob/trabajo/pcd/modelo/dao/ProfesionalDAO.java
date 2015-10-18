@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import pe.gob.trabajo.pcd.modelo.dominio.Area;
+import pe.gob.trabajo.pcd.modelo.dominio.Capacitacion;
 import pe.gob.trabajo.pcd.modelo.dominio.Certificacion;
+import pe.gob.trabajo.pcd.modelo.dominio.Conocimiento;
 import pe.gob.trabajo.pcd.modelo.dominio.Contacto;
 import pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad;
 import pe.gob.trabajo.pcd.modelo.dominio.ExperienciaLaboral;
@@ -87,6 +89,23 @@ public List<Ubigeo> buscarPreferenciasCiudad(Profesional profesional);
 	 * @return the list
 	 */
 	public List<ProfesionalIdioma> obtenerIdiomas(Profesional profesional);
+	
+	/**
+	 * Obtener capacitaciones.
+	 *
+	 * @param profesional the profesional
+	 * @return the list
+	 */
+	public List<Capacitacion> obtenerCapacitaciones(Profesional profesional);
+	
+	/**
+	 * Obtener capacitaciones.
+	 *
+	 * @param profesional the profesional
+	 * @return the list
+	 */
+	public List<Conocimiento> obtenerConocimientos(Profesional profesional);
+	
 	
 	/**
 	 * Obtener certificaciones.
