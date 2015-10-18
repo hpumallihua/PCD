@@ -16,6 +16,7 @@ import pe.gob.trabajo.pcd.modelo.dao.PersonaDAO;
 import pe.gob.trabajo.pcd.modelo.dominio.Contacto;
 import pe.gob.trabajo.pcd.modelo.dominio.ContactoMedio;
 import pe.gob.trabajo.pcd.modelo.dominio.Persona;
+import pe.gob.trabajo.pcd.modelo.dominio.PersonaDiscapacidad;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaIntegranteFamilia;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaNecesidadApoyo;
 import pe.gob.trabajo.pcd.modelo.dominio.Profesional;
@@ -330,6 +331,17 @@ public class PersonaDAOImpl extends GenericDaoImpl<Persona, Long>
 		
 		String hql = "select c from PersonaNecesidadApoyo c where c.persona.id = ?";
 		List<PersonaNecesidadApoyo> lista = getSession().createQuery(hql).setLong(0, persona.getId()).list();
+		
+		return lista;
+	}
+	
+	/* (non-Javadoc)
+	 * @see pe.gob.trabajo.pcd.modelo.dao.PersonaDAO#obtenerNecesidadesApoyo(pe.gob.trabajo.pcd.modelo.dominio.Persona)
+	 */
+	public List<PersonaDiscapacidad> obtenerDiscapacidades(Persona persona) {
+		
+		String hql = "select c from PersonaDiscapacidad c where c.persona.id = ?";
+		List<PersonaDiscapacidad> lista = getSession().createQuery(hql).setLong(0, persona.getId()).list();
 		
 		return lista;
 	}
