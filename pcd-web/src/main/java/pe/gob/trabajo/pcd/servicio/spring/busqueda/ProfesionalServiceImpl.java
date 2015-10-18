@@ -12,7 +12,9 @@ import org.hibernate.Hibernate;
 import pe.gob.trabajo.pcd.modelo.dao.ProfesionalDAO;
 import pe.gob.trabajo.pcd.modelo.dao.ProveedorMaestroDAO;
 import pe.gob.trabajo.pcd.modelo.dominio.Area;
+import pe.gob.trabajo.pcd.modelo.dominio.Capacitacion;
 import pe.gob.trabajo.pcd.modelo.dominio.Certificacion;
+import pe.gob.trabajo.pcd.modelo.dominio.Conocimiento;
 import pe.gob.trabajo.pcd.modelo.dominio.Contacto;
 import pe.gob.trabajo.pcd.modelo.dominio.Distrito;
 import pe.gob.trabajo.pcd.modelo.dominio.DistritoId;
@@ -48,8 +50,7 @@ import pe.gob.trabajo.pcd.vista.bean.ReporteOferta;
 /**
  * The Class ProfesionalServiceImpl.
  */
-public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
-		implements ProfesionalService {
+public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>implements ProfesionalService {
 
 	/** The profesional dao. */
 	public ProfesionalDAO profesionalDAO;
@@ -98,8 +99,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * pe.gob.trabajo.pcd.servicio.spring.comun.GenericServiceImpl#getDao()
+	 * @see pe.gob.trabajo.pcd.servicio.spring.comun.GenericServiceImpl#getDao()
 	 */
 	@Override
 	public ProfesionalDAO getDao() {
@@ -118,33 +118,23 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 		List<Profesional> consulta = getProfesionalDAO().buscarProfesional(ids);
 		for (Profesional itemProfesional : consulta) {
 			Hibernate.initialize(itemProfesional.getPersona());
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getTipoDocumentoIdentidad());
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getLugarResidencia());
+			Hibernate.initialize(itemProfesional.getPersona().getTipoDocumentoIdentidad());
+			Hibernate.initialize(itemProfesional.getPersona().getLugarResidencia());
 			if (itemProfesional.getPersona().getDepartamentoResidencia() != null
 					&& itemProfesional.getPersona().getProvinciaResidencia() != null
 					&& itemProfesional.getPersona().getDistritoResidencia() != null) {
 				Distrito distritoResidencia = (Distrito) getProveedorMaestroDAO()
-						.findObjectByPK(
-								new DistritoId(itemProfesional.getPersona()
-										.getDistritoResidencia(),
-										itemProfesional.getPersona()
-												.getProvinciaResidencia(),
-										itemProfesional.getPersona()
-												.getDepartamentoResidencia()),
-								Distrito.class);
+						.findObjectByPK(new DistritoId(itemProfesional.getPersona().getDistritoResidencia(),
+								itemProfesional.getPersona().getProvinciaResidencia(),
+								itemProfesional.getPersona().getDepartamentoResidencia()), Distrito.class);
 				if (distritoResidencia != null) {
-					itemProfesional.getPersona().setNombreLugarResidencia(
-							distritoResidencia.getNombre());
+					itemProfesional.getPersona().setNombreLugarResidencia(distritoResidencia.getNombre());
 				}
 			}
 
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getLugarNacimiento());
+			Hibernate.initialize(itemProfesional.getPersona().getLugarNacimiento());
 			Hibernate.initialize(itemProfesional.getPersona().getContactos());
-			for (Contacto contacto : itemProfesional.getPersona()
-					.getContactos()) {
+			for (Contacto contacto : itemProfesional.getPersona().getContactos()) {
 				if (contacto != null) {
 					Hibernate.initialize(contacto);
 					// Hibernate.initialize(contacto.getPersona());
@@ -167,19 +157,15 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * pe.gob.trabajo.pcd.modelo.dominio.Profesional, java.lang.Integer[],
 	 * pe.gob.trabajo.pcd.modelo.dominio.Preferencia[], java.util.List)
 	 */
-	public List<Profesional> buscarProfesionales(String[] especialidades,
-			String[] puestos, String[] roles, String[] empresas,
-			String[] sectores, String[] tiposFormacion,
-			String[] nivelFormacion, String[] camposEstudio, String[] idiomas,
-			String[] nivelIdioma, Profesional profesional, Integer[] edades,
+	public List<Profesional> buscarProfesionales(String[] especialidades, String[] puestos, String[] roles,
+			String[] empresas, String[] sectores, String[] tiposFormacion, String[] nivelFormacion,
+			String[] camposEstudio, String[] idiomas, String[] nivelIdioma, Profesional profesional, Integer[] edades,
 			String[] lugares, List<?> ids) {
-		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(
-				0);
+		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(0);
 
 		// Especialidades
 		if (especialidades != null && especialidades.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			// Definiendo las clases de consulta
 			List<String> listaEspecialidades = new ArrayList<String>();
 			for (int i = 0; i < especialidades.length; i++) {
@@ -193,8 +179,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Puestos
 		if (puestos != null && puestos.length > 0) {
-			HashMap<String, List<?>> claveValoresPuestos = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresPuestos = new HashMap<String, List<?>>(0);
 			List<String> listaPuestos = new ArrayList<String>();
 			for (int i = 0; i < puestos.length; i++) {
 				listaPuestos.add(puestos[i]);
@@ -205,8 +190,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Roles
 		if (roles != null && roles.length > 0) {
-			HashMap<String, List<?>> claveValoresRoles = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresRoles = new HashMap<String, List<?>>(0);
 			List<String> listaRoles = new ArrayList<String>();
 			for (int i = 0; i < roles.length; i++) {
 				listaRoles.add(roles[i]);
@@ -217,8 +201,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Empresas
 		if (empresas != null && empresas.length > 0) {
-			HashMap<String, List<?>> claveValoresEmpresas = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresEmpresas = new HashMap<String, List<?>>(0);
 			// Definiendo las clases de consulta
 			List<String> listaEmpresas = new ArrayList<String>();
 			for (int i = 0; i < empresas.length; i++) {
@@ -232,8 +215,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Sectores
 		if (sectores != null && sectores.length > 0) {
-			HashMap<String, List<?>> claveValoresSectores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresSectores = new HashMap<String, List<?>>(0);
 			List<Long> listaSectores = new ArrayList<Long>();
 			for (int i = 0; i < sectores.length; i++) {
 				listaSectores.add(new Long(sectores[i]));
@@ -244,8 +226,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Tipo formacion
 		if (tiposFormacion != null && tiposFormacion.length > 0) {
-			HashMap<String, List<?>> claveValoresTiposFormacion = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresTiposFormacion = new HashMap<String, List<?>>(0);
 			List<String> listaTiposFormacion = new ArrayList<String>();
 			for (int i = 0; i < tiposFormacion.length; i++) {
 				listaTiposFormacion.add(tiposFormacion[i]);
@@ -256,21 +237,18 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Nivel formacion
 		if (nivelFormacion != null) {
-			HashMap<String, List<?>> claveValoresNivelesFormacion = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresNivelesFormacion = new HashMap<String, List<?>>(0);
 			List<String> listaNivelesFormacion = new ArrayList<String>();
 			for (int i = 0; i < nivelFormacion.length; i++) {
 				listaNivelesFormacion.add(nivelFormacion[i]);
 			}
-			claveValoresNivelesFormacion.put("nivelFormacion",
-					listaNivelesFormacion);
+			claveValoresNivelesFormacion.put("nivelFormacion", listaNivelesFormacion);
 			criterios.put("nivelFormacion", claveValoresNivelesFormacion);
 		}
 
 		// Campos de estudio
 		if (camposEstudio != null && camposEstudio.length > 0) {
-			HashMap<String, List<?>> claveValoresCamposEstudio = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresCamposEstudio = new HashMap<String, List<?>>(0);
 			List<String> listaCamposEstudio = new ArrayList<String>();
 			for (int i = 0; i < camposEstudio.length; i++) {
 				listaCamposEstudio.add(camposEstudio[i]);
@@ -281,8 +259,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// idiomas
 		if (idiomas != null && idiomas.length > 0) {
-			HashMap<String, List<?>> claveValoresIdiomas = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresIdiomas = new HashMap<String, List<?>>(0);
 			List<String> listaIdiomas = new ArrayList<String>();
 			for (int i = 0; i < idiomas.length; i++) {
 				listaIdiomas.add(idiomas[i]);
@@ -293,8 +270,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Nivel idioma
 		if (nivelIdioma != null) {
-			HashMap<String, List<?>> claveValoresNivelesIdioma = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresNivelesIdioma = new HashMap<String, List<?>>(0);
 			List<Long> listaNivelesIdioma = new ArrayList<Long>();
 			for (int i = 0; i < nivelIdioma.length; i++) {
 				listaNivelesIdioma.add(Long.valueOf(nivelIdioma[i]));
@@ -305,8 +281,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Profesional
 		if (profesional != null) {
-			HashMap<String, List<?>> claveValoresProfesional = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresProfesional = new HashMap<String, List<?>>(0);
 			List<Object> listaProfesionales = new ArrayList<Object>();
 			listaProfesionales.add(profesional);
 			claveValoresProfesional.put("profesional", listaProfesionales);
@@ -331,8 +306,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 				rangoFechaNacimiento[0] = cal;
 			}
 
-			HashMap<String, List<?>> claveValoresEdades = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresEdades = new HashMap<String, List<?>>(0);
 			List<Object> listaEdades = new ArrayList<Object>();
 			listaEdades.add(rangoFechaNacimiento);
 			claveValoresEdades.put("fechaNacimiento", listaEdades);
@@ -349,8 +323,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// Preferencias
 		if (lugares != null && lugares.length > 0) {
-			HashMap<String, List<?>> claveValoresPreferencias = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValoresPreferencias = new HashMap<String, List<?>>(0);
 			// Definiendo las clases de consulta
 			List<String> listaPreferencias = new ArrayList<String>();
 			for (int i = 0; i < lugares.length; i++) {
@@ -360,44 +333,33 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 			criterios.put("lugaresResidencia", claveValoresPreferencias);
 		}
 
-		List<Profesional> consulta = (ArrayList<Profesional>) getDao()
-				.buscarProfesional(criterios, ids);
+		List<Profesional> consulta = (ArrayList<Profesional>) getDao().buscarProfesional(criterios, ids);
 		for (Profesional itemProfesional : consulta) {
 			Hibernate.initialize(itemProfesional.getPersona());
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getTipoDocumentoIdentidad());
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getLugarResidencia());
+			Hibernate.initialize(itemProfesional.getPersona().getTipoDocumentoIdentidad());
+			Hibernate.initialize(itemProfesional.getPersona().getLugarResidencia());
 			if (itemProfesional.getPersona().getDepartamentoResidencia() != null
 					&& itemProfesional.getPersona().getProvinciaResidencia() != null
 					&& itemProfesional.getPersona().getDistritoResidencia() != null) {
 				Distrito distritoResidencia = (Distrito) getProveedorMaestroDAO()
-						.findObjectByPK(
-								new DistritoId(itemProfesional.getPersona()
-										.getDistritoResidencia(),
-										itemProfesional.getPersona()
-												.getProvinciaResidencia(),
-										itemProfesional.getPersona()
-												.getDepartamentoResidencia()),
-								Distrito.class);
+						.findObjectByPK(new DistritoId(itemProfesional.getPersona().getDistritoResidencia(),
+								itemProfesional.getPersona().getProvinciaResidencia(),
+								itemProfesional.getPersona().getDepartamentoResidencia()), Distrito.class);
 				if (distritoResidencia != null) {
-					itemProfesional.getPersona().setNombreLugarResidencia(
-							distritoResidencia.getNombre());
+					itemProfesional.getPersona().setNombreLugarResidencia(distritoResidencia.getNombre());
 				}
 			}
-			Hibernate.initialize(itemProfesional.getPersona()
-					.getLugarNacimiento());
+			Hibernate.initialize(itemProfesional.getPersona().getLugarNacimiento());
 			Hibernate.initialize(itemProfesional.getPersona().getContactos());
-//			for (Certificacion c : consulta) {
-//				
-//			}
-//			Hibernate.initialize(itemProfesional.getExperienciasEspecialidad());
-//			Hibernate.initialize(itemProfesional.getExperienciasLaborales());
-//			Hibernate.initialize(itemProfesional.getCertificaciones());
-//			Hibernate.initialize(itemProfesional.getIdiomas());
-//			Hibernate.initialize(itemProfesional.getFormaciones());
-			for (Contacto contacto : itemProfesional.getPersona()
-					.getContactos()) {
+			// for (Certificacion c : consulta) {
+			//
+			// }
+			// Hibernate.initialize(itemProfesional.getExperienciasEspecialidad());
+			// Hibernate.initialize(itemProfesional.getExperienciasLaborales());
+			// Hibernate.initialize(itemProfesional.getCertificaciones());
+			// Hibernate.initialize(itemProfesional.getIdiomas());
+			// Hibernate.initialize(itemProfesional.getFormaciones());
+			for (Contacto contacto : itemProfesional.getPersona().getContactos()) {
 				if (contacto != null) {
 					Hibernate.initialize(contacto);
 					// Hibernate.initialize(contacto.getPersona());
@@ -433,11 +395,9 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * guardarExperienciaEspecialidad
 	 * (pe.gob.trabajo.pcd.modelo.dominio.ExperienciaEspecialidad)
 	 */
-	public ExperienciaEspecialidad guardarExperienciaEspecialidad(
-			ExperienciaEspecialidad experienciaEspecialidad) {
+	public ExperienciaEspecialidad guardarExperienciaEspecialidad(ExperienciaEspecialidad experienciaEspecialidad) {
 		if (experienciaEspecialidad.getId() == null) {
-			experienciaEspecialidad
-					.setEstadoRegistro(Constantes.ESTADO_REGISTRO_ACTIVO);
+			experienciaEspecialidad.setEstadoRegistro(Constantes.ESTADO_REGISTRO_ACTIVO);
 		}
 		experienciaEspecialidad.setFechaActualizacion(new Date());
 		experienciaEspecialidad.setFechaCreacion(new Date());
@@ -486,21 +446,17 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * guardarPreferencias(java.util.List, java.util.List, java.util.List,
 	 * pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
-	public int guardarPreferencias(List areas, List sectores, List ciudades,
-			Profesional profesional) {
+	public int guardarPreferencias(List areas, List sectores, List ciudades, Profesional profesional) {
 		Long idProfesional = profesional.getId();
 		int retorno = -1;
 
 		getDao().saveObject(profesional);
-		 retorno = getDao().borrarPreferencias(areas,
-		 Constantes.TIPO_PREFERENCIA_AREA.getId(), idProfesional);
-		 getDao().saveCollection(areas);
-		retorno += getDao().borrarPreferencias(sectores,
-				Constantes.TIPO_PREFERENCIA_SECTOR.getId(), idProfesional);
+		retorno = getDao().borrarPreferencias(areas, Constantes.TIPO_PREFERENCIA_AREA.getId(), idProfesional);
+		getDao().saveCollection(areas);
+		retorno += getDao().borrarPreferencias(sectores, Constantes.TIPO_PREFERENCIA_SECTOR.getId(), idProfesional);
 		getDao().saveCollection(sectores);
-		 retorno += getDao().borrarPreferencias(ciudades,
-		 Constantes.TIPO_PREFERENCIA_CIUDAD.getId(), idProfesional);
-		 getDao().saveCollection(ciudades);
+		retorno += getDao().borrarPreferencias(ciudades, Constantes.TIPO_PREFERENCIA_CIUDAD.getId(), idProfesional);
+		getDao().saveCollection(ciudades);
 		return retorno;
 	}
 
@@ -556,10 +512,13 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	public List<Preferencia> obtenerPreferencias(Profesional profesional) {
 		List<Preferencia> retorno = new ArrayList<Preferencia>();
 		if (profesional != null && !profesional.getId().equals(0L)) {
-			List<Preferencia> prefCiudad = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_CIUDAD.getId(), profesional.getId());
-			List<Preferencia> prefArea = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_AREA.getId(), profesional.getId());
-			List<Preferencia> prefSector = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_SECTOR.getId(), profesional.getId());
-			
+			List<Preferencia> prefCiudad = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_CIUDAD.getId(),
+					profesional.getId());
+			List<Preferencia> prefArea = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_AREA.getId(),
+					profesional.getId());
+			List<Preferencia> prefSector = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_SECTOR.getId(),
+					profesional.getId());
+
 			retorno.addAll(prefCiudad);
 			retorno.addAll(prefArea);
 			retorno.addAll(prefSector);
@@ -574,36 +533,30 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (non-Javadoc)
 	 * 
 	 * @see pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#
-	 * obtenerPreferenciasSector
-	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
+	 * obtenerPreferenciasSector (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Preferencia> obtenerPreferenciasSector(Profesional profesional) {
-		List<Preferencia> preferencias = getDao()
-				.buscarPreferencias(Constantes.TIPO_PREFERENCIA_SECTOR.getId(),
-						profesional.getId());
+		List<Preferencia> preferencias = getDao().buscarPreferencias(Constantes.TIPO_PREFERENCIA_SECTOR.getId(),
+				profesional.getId());
 
 		// List<Preferencia> preferencias = obtenerPreferencias(profesional);
 		List<Preferencia> retorno = new ArrayList<Preferencia>();
 		List<Sector> listaSector = null;
 
 		for (Preferencia preferencia : preferencias) {
-			if (preferencia.getTipoPreferencia().getId()
-					.compareTo(Constantes.TIPO_PREFERENCIA_SECTOR.getId()) == 0) {
-				Sector sector = (Sector) proveedorMaestroDAO.findObjectByPK(
-						preferencia.getId().getIdPrfrnca(), Sector.class);
+			if (preferencia.getTipoPreferencia().getId().compareTo(Constantes.TIPO_PREFERENCIA_SECTOR.getId()) == 0) {
+				Sector sector = (Sector) proveedorMaestroDAO.findObjectByPK(preferencia.getId().getIdPrfrnca(),
+						Sector.class);
 				if (sector != null) {
 					PreferenciaId preferenciaId = new PreferenciaId();
 					preferenciaId.setIdPrfrnca(sector.getId());
 					preferenciaId.setIdPrfsnal(profesional.getId());
-					preferenciaId
-							.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_SECTOR
-									.getId());
+					preferenciaId.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_SECTOR.getId());
 
 					Preferencia itemPreferenciaSector = new Preferencia();
 					itemPreferenciaSector.setSector(sector);
 					itemPreferenciaSector.setId(preferenciaId);
-					itemPreferenciaSector
-							.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_SECTOR);
+					itemPreferenciaSector.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_SECTOR);
 					retorno.add(itemPreferenciaSector);
 				}
 			}
@@ -633,26 +586,22 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (non-Javadoc)
 	 * 
 	 * @see pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#
-	 * obtenerPreferenciasArea
-	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
+	 * obtenerPreferenciasArea (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Preferencia> obtenerPreferenciasArea(Profesional profesional) {
 		List<Preferencia> retorno = new ArrayList<Preferencia>();
 		if (profesional != null && !profesional.getId().equals(0L)) {
-			List<Area> listaAreas = getDao()
-					.buscarPreferenciasArea(profesional);
+			List<Area> listaAreas = getDao().buscarPreferenciasArea(profesional);
 			for (Area area : listaAreas) {
 				PreferenciaId preferenciaId = new PreferenciaId();
 				preferenciaId.setIdPrfrnca(area.getId());
 				preferenciaId.setIdPrfsnal(profesional.getId());
-				preferenciaId.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_AREA
-						.getId());
+				preferenciaId.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_AREA.getId());
 
 				Preferencia itemPreferenciaArea = new Preferencia();
 				itemPreferenciaArea.setArea(area);
 				itemPreferenciaArea.setId(preferenciaId);
-				itemPreferenciaArea
-						.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_AREA);
+				itemPreferenciaArea.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_AREA);
 				retorno.add(itemPreferenciaArea);
 			}
 		}
@@ -663,27 +612,22 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (non-Javadoc)
 	 * 
 	 * @see pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#
-	 * obtenerPreferenciasCiudad
-	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
+	 * obtenerPreferenciasCiudad (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Preferencia> obtenerPreferenciasCiudad(Profesional profesional) {
 		List<Preferencia> retorno = new ArrayList<Preferencia>();
 		if (profesional != null && !profesional.getId().equals(0L)) {
-			List<Ubigeo> listaCiudades = getDao().buscarPreferenciasCiudad(
-					profesional);
+			List<Ubigeo> listaCiudades = getDao().buscarPreferenciasCiudad(profesional);
 			for (Ubigeo ciudad : listaCiudades) {
 				PreferenciaId preferenciaId = new PreferenciaId();
 				preferenciaId.setIdPrfrnca(ciudad.getId());
 				preferenciaId.setIdPrfsnal(profesional.getId());
-				preferenciaId
-						.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_CIUDAD
-								.getId());
+				preferenciaId.setIdTpoPrfrnca(Constantes.TIPO_PREFERENCIA_CIUDAD.getId());
 
 				Preferencia itemPreferenciaArea = new Preferencia();
 				itemPreferenciaArea.setCiudad(ciudad);
 				itemPreferenciaArea.setId(preferenciaId);
-				itemPreferenciaArea
-						.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_CIUDAD);
+				itemPreferenciaArea.setTipoPreferencia(Constantes.TIPO_PREFERENCIA_CIUDAD);
 				retorno.add(itemPreferenciaArea);
 			}
 		}
@@ -709,14 +653,12 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 		// }
 		//
 		// return listaReferencia;
-		List<Referencia> lista = getProfesionalDAO().obtenerReferencias(
-				profesional);
+		List<Referencia> lista = getProfesionalDAO().obtenerReferencias(profesional);
 		for (Referencia referencia : lista) {
 			// Hibernate.initialize(referencia.getPuesto());
 			if (referencia.getCargo() != null) {
-				PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO()
-						.findObjectByPK(referencia.getCargo(),
-								PersonaCargo.class);
+				PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO().findObjectByPK(referencia.getCargo(),
+						PersonaCargo.class);
 				if (cargo != null) {
 					referencia.setDescripcionCargo(cargo.getDescripcion());
 				}
@@ -737,12 +679,11 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<ProfesionalIdioma> obtenerIdiomas(Profesional profesional) {
-		List<ProfesionalIdioma> lista = getProfesionalDAO().obtenerIdiomas(
-				profesional);
+		List<ProfesionalIdioma> lista = getProfesionalDAO().obtenerIdiomas(profesional);
 		for (ProfesionalIdioma idioma : lista) {
 			if (idioma.getOverall() != null) {
-				NivelIdioma nivelIdioma = (NivelIdioma) getProfesionalDAO()
-						.findObjectByPK(idioma.getOverall(), NivelIdioma.class);
+				NivelIdioma nivelIdioma = (NivelIdioma) getProfesionalDAO().findObjectByPK(idioma.getOverall(),
+						NivelIdioma.class);
 				if (nivelIdioma != null) {
 					idioma.setNivelIdioma(nivelIdioma);
 				}
@@ -758,17 +699,14 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * obtenerCertificaciones(pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Certificacion> obtenerCertificaciones(Profesional profesional) {
-		List<Certificacion> lista = getProfesionalDAO().obtenerCertificaciones(
-				profesional);
+		List<Certificacion> lista = getProfesionalDAO().obtenerCertificaciones(profesional);
 		for (Certificacion certificacion : lista) {
 			// Hibernate.initialize(certificacion.getEspecialidadProfesional());
 			if (certificacion.getIdOcupacion() != null) {
-				Ocupacion ocupacion = (Ocupacion) proveedorMaestroDAO
-						.findObjectByPK(certificacion.getIdOcupacion(),
-								Ocupacion.class);
+				Ocupacion ocupacion = (Ocupacion) proveedorMaestroDAO.findObjectByPK(certificacion.getIdOcupacion(),
+						Ocupacion.class);
 				if (ocupacion != null) {
-					certificacion.setDescripcionObjetoOcupacion(ocupacion
-							.getDescripcion());
+					certificacion.setDescripcionObjetoOcupacion(ocupacion.getDescripcion());
 				}
 			}
 		}
@@ -782,19 +720,15 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * obtenerExperienciaEspecialidad
 	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
-	public List<ExperienciaEspecialidad> obtenerExperienciaEspecialidad(
-			Profesional profesional) {
-		List<ExperienciaEspecialidad> lista = getProfesionalDAO()
-				.obtenerExperienciaEspecialidad(profesional);
+	public List<ExperienciaEspecialidad> obtenerExperienciaEspecialidad(Profesional profesional) {
+		List<ExperienciaEspecialidad> lista = getProfesionalDAO().obtenerExperienciaEspecialidad(profesional);
 		for (ExperienciaEspecialidad experienciaEspecialidad : lista) {
 			// Hibernate.initialize(experienciaEspecialidad
 			// .getEspecialidadProfesional());
 			Ocupacion ocupacion = (Ocupacion) proveedorMaestroDAO
-					.findObjectByPK(experienciaEspecialidad.getIdOcupacion(),
-							Ocupacion.class);
+					.findObjectByPK(experienciaEspecialidad.getIdOcupacion(), Ocupacion.class);
 			if (ocupacion != null) {
-				experienciaEspecialidad.setDescripcionOcupacion(ocupacion
-						.getDescripcion());
+				experienciaEspecialidad.setDescripcionOcupacion(ocupacion.getDescripcion());
 			}
 		}
 		return lista;
@@ -820,31 +754,29 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<ExperienciaLaboral> obtenerEmpleos(Profesional profesional) {
-		ArrayList<ExperienciaLaboral> lista = (ArrayList<ExperienciaLaboral>) getProfesionalDAO().obtenerEmpleos(
-				profesional);
+		ArrayList<ExperienciaLaboral> lista = (ArrayList<ExperienciaLaboral>) getProfesionalDAO()
+				.obtenerEmpleos(profesional);
 		for (ExperienciaLaboral empleo : lista) {
 			Hibernate.initialize(empleo.getEmpresa());
 			// Hibernate.initialize(empleo.getPuesto());
 			if (empleo.getCargo() != null) {
-				PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO()
-						.findObjectByPK(empleo.getCargo(), PersonaCargo.class);
+				PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO().findObjectByPK(empleo.getCargo(),
+						PersonaCargo.class);
 				if (cargo != null) {
 					empleo.setDescripcionCargo(cargo.getNombre());
 				}
 			}
 			// Hibernate.initialize(empleo.getRolLaboral());
 			if (empleo.getIdOcupacion() != null) {
-				Ocupacion ocupacion = (Ocupacion) getProveedorMaestroDAO()
-						.findObjectByPK(empleo.getIdOcupacion(),
-								Ocupacion.class);
+				Ocupacion ocupacion = (Ocupacion) getProveedorMaestroDAO().findObjectByPK(empleo.getIdOcupacion(),
+						Ocupacion.class);
 				if (ocupacion != null) {
 					empleo.setDescripcionOcupacion(ocupacion.getDescripcion());
 				}
 			}
 			// Hibernate.initialize(empleo.getSector());
 			if (empleo.getIdSector() != null) {
-				Sector sector = (Sector) getProveedorMaestroDAO()
-						.findObjectByPK(empleo.getIdSector(), Sector.class);
+				Sector sector = (Sector) getProveedorMaestroDAO().findObjectByPK(empleo.getIdSector(), Sector.class);
 				if (sector != null) {
 					empleo.setDescripcionSector(sector.getDescripcion());
 				}
@@ -862,8 +794,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Contacto> obtenerContactos(Profesional profesional) {
-		List<Contacto> lista = getProfesionalDAO()
-				.obtenerContactos(profesional);
+		List<Contacto> lista = getProfesionalDAO().obtenerContactos(profesional);
 		for (Contacto contacto : lista) {
 			Hibernate.initialize(contacto.getPersona());
 			Hibernate.initialize(contacto.getContactoMedios());
@@ -879,28 +810,21 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
 	 */
 	public List<Formacion> obtenerEstudios(Profesional profesional) {
-		List<Formacion> lista = getProfesionalDAO()
-				.obtenerEstudios(profesional);
+		List<Formacion> lista = getProfesionalDAO().obtenerEstudios(profesional);
 		for (Formacion formacion : lista) {
-			if (formacion.getIdNivel() != null
-					&& !formacion.getIdNivel().equals("")) {
-				NivelEducativo nivel = (NivelEducativo) proveedorMaestroDAO
-						.findObjectByPK(formacion.getIdNivel(),
-								NivelEducativo.class);
+			if (formacion.getIdNivel() != null && !formacion.getIdNivel().equals("")) {
+				NivelEducativo nivel = (NivelEducativo) proveedorMaestroDAO.findObjectByPK(formacion.getIdNivel(),
+						NivelEducativo.class);
 				if (nivel != null) {
 					formacion.setDescripcionNivel(nivel.getDescripcion());
 				}
 			}
-			if (formacion.getIdProfesion() != null
-					&& !formacion.getIdProfesion().equals("")) {
-				Profesion profesion = (Profesion) proveedorMaestroDAO
-						.findObjectByPK(formacion.getIdProfesion(),
-								Profesion.class);
+			if (formacion.getIdProfesion() != null && !formacion.getIdProfesion().equals("")) {
+				Profesion profesion = (Profesion) proveedorMaestroDAO.findObjectByPK(formacion.getIdProfesion(),
+						Profesion.class);
 				if (profesion != null) {
-					formacion.setDescripcionProfesion(profesion
-							.getDescripcion());
-					formacion.setIdGrupoProfesion(profesion.getGrupoProfesion()
-							.getId());
+					formacion.setDescripcionProfesion(profesion.getDescripcion());
+					formacion.setIdGrupoProfesion(profesion.getGrupoProfesion().getId());
 				}
 			}
 			Hibernate.initialize(formacion.getTipoFormacion());
@@ -910,6 +834,58 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 		return lista;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#obtenerEstudios
+	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
+	 */
+	public List<Capacitacion> obtenerCapacitaciones(Profesional profesional) {
+		List<Capacitacion> lista = getProfesionalDAO().obtenerCapacitaciones(profesional);
+
+		return lista;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#obtenerEstudios
+	 * (pe.gob.trabajo.pcd.modelo.dominio.Profesional)
+	 */
+	public List<Conocimiento> obtenerConocimientos(Profesional profesional) {
+		List<Conocimiento> lista = getProfesionalDAO().obtenerConocimientos(profesional);
+
+		return lista;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#guardarEstudio
+	 * (pe.gob.trabajo.pcd.modelo.dominio.Formacion)
+	 */
+	public Conocimiento guardarConocimiento(Conocimiento conocimiento) {
+		
+		getDao().saveObject(conocimiento);
+		return conocimiento;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * pe.gob.trabajo.pcd.servicio.busqueda.ProfesionalService#guardarEstudio
+	 * (pe.gob.trabajo.pcd.modelo.dominio.Formacion)
+	 */
+	public Capacitacion guardarCapacitacion(Capacitacion capacitacion) {
+		
+		getDao().saveObject(capacitacion);
+		return capacitacion;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -936,19 +912,14 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	public Profesional obtenerProfesional(Persona persona) {
 		Profesional profesional = null;
 		if (persona != null) {
-			profesional = (Profesional) getProfesionalDAO().findObjectByPK(
-					persona.getId(), Profesional.class);
+			profesional = (Profesional) getProfesionalDAO().findObjectByPK(persona.getId(), Profesional.class);
 			if (profesional != null) {
 				Hibernate.initialize(profesional.getPersona());
-				Hibernate.initialize(profesional.getPersona()
-						.getTipoDocumentoIdentidad());
-				Hibernate.initialize(profesional.getPersona()
-						.getLugarResidencia());
-				Hibernate.initialize(profesional.getPersona()
-						.getLugarNacimiento());
+				Hibernate.initialize(profesional.getPersona().getTipoDocumentoIdentidad());
+				Hibernate.initialize(profesional.getPersona().getLugarResidencia());
+				Hibernate.initialize(profesional.getPersona().getLugarNacimiento());
 				Hibernate.initialize(profesional.getPersona().getContactos());
-				for (Contacto contacto : profesional.getPersona()
-						.getContactos()) {
+				for (Contacto contacto : profesional.getPersona().getContactos()) {
 					if (contacto != null) {
 						Hibernate.initialize(contacto);
 						Hibernate.initialize(contacto.getContactoMedios());
@@ -966,16 +937,13 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 	 * buscarProfesionales(java.lang.String[], java.lang.String[],
 	 * java.lang.String[], java.lang.String[], java.lang.String[])
 	 */
-	public List<ReporteE1> getReporteE1(String[] direcciones,
-			String[] profesionales, String[] tecnicos, String[] operativos,
-			String[] noCalificados,String fechaInicio, String fechaFin) {
-		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(
-				0);
+	public List<ReporteE1> getReporteE1(String[] direcciones, String[] profesionales, String[] tecnicos,
+			String[] operativos, String[] noCalificados, String fechaInicio, String fechaFin) {
+		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(0);
 
 		// direcciones
 		if (direcciones != null && direcciones.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listadirecciones = new ArrayList<String>();
 			for (int i = 0; i < direcciones.length; i++) {
 				listadirecciones.add(direcciones[i]);
@@ -986,8 +954,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// profesionales
 		if (profesionales != null && profesionales.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaProfesionales = new ArrayList<String>();
 			for (int i = 0; i < profesionales.length; i++) {
 				listaProfesionales.add(profesionales[i]);
@@ -998,8 +965,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// tecnicos
 		if (tecnicos != null && tecnicos.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaTecnicos = new ArrayList<String>();
 			for (int i = 0; i < tecnicos.length; i++) {
 				listaTecnicos.add(tecnicos[i]);
@@ -1010,8 +976,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// operativos
 		if (operativos != null && operativos.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaOperativos = new ArrayList<String>();
 			for (int i = 0; i < operativos.length; i++) {
 				listaOperativos.add(operativos[i]);
@@ -1022,8 +987,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// noCalificados
 		if (noCalificados != null && noCalificados.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaNoCalificados = new ArrayList<String>();
 			for (int i = 0; i < noCalificados.length; i++) {
 				listaNoCalificados.add(noCalificados[i]);
@@ -1032,25 +996,20 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 			criterios.put("noCalificado", claveValores);
 		}
 
-		List<ReporteE1> consulta = (ArrayList<ReporteE1>) getDao()
-				.getReporteE1(criterios, fechaInicio, fechaFin);
+		List<ReporteE1> consulta = (ArrayList<ReporteE1>) getDao().getReporteE1(criterios, fechaInicio, fechaFin);
 
 		return consulta;
 	}
 
-	public List<ReporteE2> getReporteE2(String[] grupo1, String[] grupo2,
-			String[] grupo3, String[] grupo4, String[] grupo5, String[] grupo6,
-			String[] grupo7, String[] grupo8, String[] grupo9,
-			String[] grupo10, String[] grupo11, String[] grupo12,
-			String fechaInicio, String fechaFin) {
+	public List<ReporteE2> getReporteE2(String[] grupo1, String[] grupo2, String[] grupo3, String[] grupo4,
+			String[] grupo5, String[] grupo6, String[] grupo7, String[] grupo8, String[] grupo9, String[] grupo10,
+			String[] grupo11, String[] grupo12, String fechaInicio, String fechaFin) {
 
-		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(
-				0);
+		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(0);
 
 		// grupo1
 		if (grupo1 != null && grupo1.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo1 = new ArrayList<String>();
 			for (int i = 0; i < grupo1.length; i++) {
 				listaGrupo1.add(grupo1[i]);
@@ -1061,8 +1020,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo2
 		if (grupo2 != null && grupo2.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo2 = new ArrayList<String>();
 			for (int i = 0; i < grupo2.length; i++) {
 				listaGrupo2.add(grupo2[i]);
@@ -1073,8 +1031,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo3
 		if (grupo3 != null && grupo3.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo3 = new ArrayList<String>();
 			for (int i = 0; i < grupo3.length; i++) {
 				listaGrupo3.add(grupo3[i]);
@@ -1085,8 +1042,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo4
 		if (grupo4 != null && grupo4.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo4 = new ArrayList<String>();
 			for (int i = 0; i < grupo4.length; i++) {
 				listaGrupo4.add(grupo4[i]);
@@ -1097,8 +1053,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo5
 		if (grupo5 != null && grupo5.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo5 = new ArrayList<String>();
 			for (int i = 0; i < grupo5.length; i++) {
 				listaGrupo5.add(grupo5[i]);
@@ -1109,8 +1064,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo6
 		if (grupo6 != null && grupo6.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo6 = new ArrayList<String>();
 			for (int i = 0; i < grupo6.length; i++) {
 				listaGrupo6.add(grupo6[i]);
@@ -1121,8 +1075,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo7
 		if (grupo7 != null && grupo7.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo7 = new ArrayList<String>();
 			for (int i = 0; i < grupo7.length; i++) {
 				listaGrupo7.add(grupo7[i]);
@@ -1133,8 +1086,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo8
 		if (grupo8 != null && grupo8.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo8 = new ArrayList<String>();
 			for (int i = 0; i < grupo8.length; i++) {
 				listaGrupo8.add(grupo8[i]);
@@ -1145,8 +1097,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo9
 		if (grupo9 != null && grupo9.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo9 = new ArrayList<String>();
 			for (int i = 0; i < grupo9.length; i++) {
 				listaGrupo9.add(grupo9[i]);
@@ -1157,8 +1108,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo10
 		if (grupo10 != null && grupo10.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo10 = new ArrayList<String>();
 			for (int i = 0; i < grupo10.length; i++) {
 				listaGrupo10.add(grupo10[i]);
@@ -1169,8 +1119,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo11
 		if (grupo11 != null && grupo11.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo11 = new ArrayList<String>();
 			for (int i = 0; i < grupo11.length; i++) {
 				listaGrupo11.add(grupo11[i]);
@@ -1181,8 +1130,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo12
 		if (grupo12 != null && grupo12.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo12 = new ArrayList<String>();
 			for (int i = 0; i < grupo12.length; i++) {
 				listaGrupo12.add(grupo2[i]);
@@ -1191,33 +1139,27 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 			criterios.put("grupo12", claveValores);
 		}
 
-		List<ReporteE2> consulta = (ArrayList<ReporteE2>) getDao().getReporteE2(
-				criterios, fechaInicio, fechaFin);
+		List<ReporteE2> consulta = (ArrayList<ReporteE2>) getDao().getReporteE2(criterios, fechaInicio, fechaFin);
 
 		return consulta;
 	}
 
 	public List<ReporteE3> getReporteE3(String fechaInicio, String fechaFin) {
 
-		List<ReporteE3> consulta = (ArrayList<ReporteE3>) getDao()
-				.getReporteE3(fechaInicio, fechaFin);
+		List<ReporteE3> consulta = (ArrayList<ReporteE3>) getDao().getReporteE3(fechaInicio, fechaFin);
 
 		return consulta;
 	}
-	
-	public List<ReporteE4> getReporteE4(String[] grupo1, String[] grupo2,
-			String[] grupo3, String[] grupo4, String[] grupo5, String[] grupo6,
-			String[] grupo7, String[] grupo8, String[] grupo9,
-			String[] grupo10, String[] grupo11, String[] grupo12,
-			String fechaInicio, String fechaFin) {
 
-		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(
-				0);
+	public List<ReporteE4> getReporteE4(String[] grupo1, String[] grupo2, String[] grupo3, String[] grupo4,
+			String[] grupo5, String[] grupo6, String[] grupo7, String[] grupo8, String[] grupo9, String[] grupo10,
+			String[] grupo11, String[] grupo12, String fechaInicio, String fechaFin) {
+
+		HashMap<String, HashMap<String, List<?>>> criterios = new HashMap<String, HashMap<String, List<?>>>(0);
 
 		// grupo1
 		if (grupo1 != null && grupo1.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo1 = new ArrayList<String>();
 			for (int i = 0; i < grupo1.length; i++) {
 				listaGrupo1.add(grupo1[i]);
@@ -1228,8 +1170,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo2
 		if (grupo2 != null && grupo2.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo2 = new ArrayList<String>();
 			for (int i = 0; i < grupo2.length; i++) {
 				listaGrupo2.add(grupo2[i]);
@@ -1240,8 +1181,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo3
 		if (grupo3 != null && grupo3.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo3 = new ArrayList<String>();
 			for (int i = 0; i < grupo3.length; i++) {
 				listaGrupo3.add(grupo3[i]);
@@ -1252,8 +1192,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo4
 		if (grupo4 != null && grupo4.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo4 = new ArrayList<String>();
 			for (int i = 0; i < grupo4.length; i++) {
 				listaGrupo4.add(grupo4[i]);
@@ -1264,8 +1203,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo5
 		if (grupo5 != null && grupo5.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo5 = new ArrayList<String>();
 			for (int i = 0; i < grupo5.length; i++) {
 				listaGrupo5.add(grupo5[i]);
@@ -1276,8 +1214,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo6
 		if (grupo6 != null && grupo6.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo6 = new ArrayList<String>();
 			for (int i = 0; i < grupo6.length; i++) {
 				listaGrupo6.add(grupo6[i]);
@@ -1288,8 +1225,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo7
 		if (grupo7 != null && grupo7.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo7 = new ArrayList<String>();
 			for (int i = 0; i < grupo7.length; i++) {
 				listaGrupo7.add(grupo7[i]);
@@ -1300,8 +1236,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo8
 		if (grupo8 != null && grupo8.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo8 = new ArrayList<String>();
 			for (int i = 0; i < grupo8.length; i++) {
 				listaGrupo8.add(grupo8[i]);
@@ -1312,8 +1247,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo9
 		if (grupo9 != null && grupo9.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo9 = new ArrayList<String>();
 			for (int i = 0; i < grupo9.length; i++) {
 				listaGrupo9.add(grupo9[i]);
@@ -1324,8 +1258,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo10
 		if (grupo10 != null && grupo10.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo10 = new ArrayList<String>();
 			for (int i = 0; i < grupo10.length; i++) {
 				listaGrupo10.add(grupo10[i]);
@@ -1336,8 +1269,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo11
 		if (grupo11 != null && grupo11.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo11 = new ArrayList<String>();
 			for (int i = 0; i < grupo11.length; i++) {
 				listaGrupo11.add(grupo11[i]);
@@ -1348,8 +1280,7 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 
 		// grupo12
 		if (grupo12 != null && grupo12.length > 0) {
-			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(
-					0);
+			HashMap<String, List<?>> claveValores = new HashMap<String, List<?>>(0);
 			List<String> listaGrupo12 = new ArrayList<String>();
 			for (int i = 0; i < grupo12.length; i++) {
 				listaGrupo12.add(grupo2[i]);
@@ -1358,20 +1289,18 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 			criterios.put("grupo12", claveValores);
 		}
 
-		List<ReporteE4> consulta = (ArrayList<ReporteE4>) getDao().getReporteE4(
-				criterios, fechaInicio, fechaFin);
+		List<ReporteE4> consulta = (ArrayList<ReporteE4>) getDao().getReporteE4(criterios, fechaInicio, fechaFin);
 
 		return consulta;
 	}
-	
+
 	public List<ReporteOferta> buscarPorRangoFecha(String fechaInicio, String fechaFin) {
 
-		List<ReporteOferta> consulta = (ArrayList<ReporteOferta>) getDao()
-				.buscarPorRangoFecha(fechaInicio, fechaFin);
+		List<ReporteOferta> consulta = (ArrayList<ReporteOferta>) getDao().buscarPorRangoFecha(fechaInicio, fechaFin);
 
 		return consulta;
 	}
-	
+
 	public List<Postulacion> obtenerPostulaciones(Profesional profesional) {
 		List<Postulacion> lista = getProfesionalDAO().obtenerPostulaciones(profesional);
 		for (Postulacion postulacion : lista) {
@@ -1380,30 +1309,32 @@ public class ProfesionalServiceImpl extends GenericServiceImpl<Profesional>
 		}
 		return lista;
 	}
-	
-	public List<Profesional> buscarProfesionales(List<Long> idConsultores, List<String> idOficinas, Date fechaInicio, Date fechaFin) {
+
+	public List<Profesional> buscarProfesionales(List<Long> idConsultores, List<String> idOficinas, Date fechaInicio,
+			Date fechaFin) {
 		List<Profesional> profesionales = new ArrayList<Profesional>();
 		profesionales = getProfesionalDAO().buscarProfesional(idConsultores, idOficinas, fechaInicio, fechaFin);
-		
+
 		for (Profesional p : profesionales) {
 			for (ExperienciaLaboral empleo : p.getExperienciasLaborales()) {
 				if (empleo != null) {
 					if (empleo.getCargo() != null) {
-						PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO()
-								.findObjectByPK(empleo.getCargo(), PersonaCargo.class);
+						PersonaCargo cargo = (PersonaCargo) getProveedorMaestroDAO().findObjectByPK(empleo.getCargo(),
+								PersonaCargo.class);
 						if (cargo != null) {
 							empleo.setDescripcionCargo(cargo.getNombre());
 						}
-					}					
+					}
 				}
 			}
-			Distrito d = getProveedorMaestroDAO().getMaestroDistrito(new DistritoId(p.getPersona().getDistritoResidencia(), p.getPersona().getProvinciaResidencia(), p.getPersona().getDepartamentoResidencia()));
+			Distrito d = getProveedorMaestroDAO()
+					.getMaestroDistrito(new DistritoId(p.getPersona().getDistritoResidencia(),
+							p.getPersona().getProvinciaResidencia(), p.getPersona().getDepartamentoResidencia()));
 			if (d != null) {
 				p.getPersona().setNombreLugarResidencia(d.getNombre());
 			}
 		}
-		
-		
+
 		return profesionales;
 	}
 

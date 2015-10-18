@@ -19,6 +19,7 @@ import pe.gob.trabajo.pcd.modelo.dominio.DistritoId;
 import pe.gob.trabajo.pcd.modelo.dominio.Ocupacion;
 import pe.gob.trabajo.pcd.modelo.dominio.Person;
 import pe.gob.trabajo.pcd.modelo.dominio.Persona;
+import pe.gob.trabajo.pcd.modelo.dominio.PersonaDiscapacidad;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaIntegranteFamilia;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaNecesidadApoyo;
 import pe.gob.trabajo.pcd.modelo.dominio.Profesional;
@@ -420,6 +421,11 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona> implements
 
 	public List<PersonaNecesidadApoyo> obtenerNecesidadesApoyo(Persona persona) {
 		List<PersonaNecesidadApoyo> lista = getPersonaDAO().obtenerNecesidadesApoyo(persona);
+		return lista;
+	}
+	
+	public List<PersonaDiscapacidad> obtenerDiscapacidades(Persona persona) {
+		List<PersonaDiscapacidad> lista = getPersonaDAO().obtenerDiscapacidades(persona);
 		return lista;
 	}
 	
