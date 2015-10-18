@@ -6,6 +6,7 @@ import java.util.List;
 import pe.gob.trabajo.pcd.modelo.dominio.Contacto;
 import pe.gob.trabajo.pcd.modelo.dominio.ContactoMedio;
 import pe.gob.trabajo.pcd.modelo.dominio.Persona;
+import pe.gob.trabajo.pcd.modelo.dominio.PersonaDiscapacidad;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaIntegranteFamilia;
 import pe.gob.trabajo.pcd.modelo.dominio.PersonaNecesidadApoyo;
 import pe.gob.trabajo.pcd.modelo.dominio.Profesional;
@@ -153,6 +154,14 @@ public interface PersonaDAO extends GenericDao<Persona, Long> {
 	 * @return the list
 	 */
 	public List<PersonaNecesidadApoyo> obtenerNecesidadesApoyo(Persona persona);
+	
+	/**
+	 * Obtener necesidades de apoyo.
+	 *
+	 * @param persona the persona
+	 * @return the list
+	 */
+	public List<PersonaDiscapacidad> obtenerDiscapacidades(Persona persona);
 	
 	/**
 	 * Obtener Integrantes Familia.
