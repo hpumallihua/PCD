@@ -10,7 +10,7 @@ public class Pedido extends BeanEntidadGenericoAutogenerado implements
 
 	private static final long serialVersionUID = 6620639202423186067L;
 	private Date fechaRegistro;
-	private Date fechaCierre;
+	private Date fechaCierre; 
 	private Empresa empleador;
 
 	private String nombre;
