@@ -91,7 +91,7 @@ public class BuscarPedidoMB extends GenericManagedBean {
 	/**
 	 * Metodo que prepara el bean empresa para modificar
 	 *
-	 * @param ActionEvent e ocurre cuando el usuario realiza una acción
+	 * @param ActionEvent e ocurre cuando el usuario realiza una acciï¿½n
 	 */
 	public void modificar(ActionEvent e) {
 		
@@ -103,8 +103,8 @@ public class BuscarPedidoMB extends GenericManagedBean {
 
 	/**
 	 * Metodo que busca pedido
-	 *
-	 * @param ActionEvent e ocurre cuando el usuario realiza una acción
+	 * 
+	 * @param ActionEvent e ocurre cuando el usuario realiza una acciï¿½n
 	 */
 	public void buscarPedido(ActionEvent e) {
 		logger.info("Validando datos de la busqueda... ");
