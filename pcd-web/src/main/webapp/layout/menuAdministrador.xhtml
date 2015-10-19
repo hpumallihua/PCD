@@ -9,7 +9,7 @@
 		iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown"
 		rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
 
-		<rich:panelMenuGroup label="Administración" expanded="true">
+		<rich:panelMenuGroup label="AdministraciÃ³n" expanded="true">
 			<rich:panelMenuItem label="Especialidades" action="registrarMaestro"
 				rendered="false" immediate="true"
 				actionListener="#{registrarMaestroMB.init}">
@@ -20,13 +20,13 @@
 				<a4j:actionparam value="Especialidad Profesional"
 					assignTo="#{registrarMaestroMB.tituloFormulario}" />
 			</rich:panelMenuItem>
-			<rich:panelMenuItem label="Áreas" action="registrarMaestro"
+			<rich:panelMenuItem label="Ã�reas" action="registrarMaestro"
 				immediate="true" actionListener="#{registrarMaestroMB.init}">
 				<a4j:actionparam value="Area"
 					assignTo="#{registrarMaestroMB.parametro}" />
-				<a4j:actionparam value="Área"
+				<a4j:actionparam value="Ã�rea"
 					assignTo="#{registrarMaestroMB.tituloLista}" />
-				<a4j:actionparam value="Área"
+				<a4j:actionparam value="Ã�rea"
 					assignTo="#{registrarMaestroMB.tituloFormulario}" />
 			</rich:panelMenuItem>
 			<rich:panelMenuItem label="Instituciones formativas"
@@ -36,7 +36,7 @@
 					assignTo="#{registrarMaestroMB.parametro}" />
 				<a4j:actionparam value="Instituciones formativas"
 					assignTo="#{registrarMaestroMB.tituloLista}" />
-				<a4j:actionparam value="Institución formativa"
+				<a4j:actionparam value="InstituciÃ³n formativa"
 					assignTo="#{registrarMaestroMB.tituloFormulario}" />
 			</rich:panelMenuItem>
 			<rich:panelMenuItem label="Idiomas" action="registrarMaestro"
@@ -51,7 +51,7 @@
 
 		</rich:panelMenuGroup>
 
-		<rich:panelMenuGroup label="Configuración" expanded="true">															
+		<rich:panelMenuGroup label="ConfiguraciÃ³n" expanded="true">															
 			<rich:panelMenuItem label="Estados estudio" action="registrarMaestro"
 				immediate="true" actionListener="#{registrarMaestroMB.init}">
 				<a4j:actionparam value="EstadoFormacion"
@@ -102,7 +102,7 @@
 					assignTo="#{registrarParametroMB.tituloFormulario}" />
 			</rich:panelMenuItem>
 			
-			<rich:panelMenuItem label="Parámetros" action="registrarParametro"
+			<rich:panelMenuItem label="ParÃ¡metros" action="registrarParametro"
 				immediate="true" actionListener="#{registrarParametroMB.init}">
 				<a4j:actionparam value="Parametro"
 					assignTo="#{registrarParametroMB.parametro}" />
@@ -113,6 +113,11 @@
 		<rich:panelMenuGroup label="Reportes" expanded="true" rendered="true">
 			<rich:panelMenuItem label="Reporte Estadistico - 1" action="reporte"
 				rendered="true" immediate="true">
+			</rich:panelMenuItem>
+		</rich:panelMenuGroup>
+		
+		<rich:panelMenuGroup label="Calculo anual de trabajadores con discapacidad" expanded="true" rendered="true">
+			<rich:panelMenuItem label="Estimacion del total de trabajadores y la cuota de empleo" action="estimacionCuotaEmpleo" rendered="true" immediate="true">
 			</rich:panelMenuItem>
 		</rich:panelMenuGroup>
 

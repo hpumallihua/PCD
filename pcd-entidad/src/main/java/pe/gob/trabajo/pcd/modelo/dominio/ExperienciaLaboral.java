@@ -47,6 +47,9 @@ public class ExperienciaLaboral extends BeanEntidadGenericoAutogeneradoValidable
 //	private Date fechaValidacion;
 //	private Character validado;
 	
+	private String actividadEconomica;//camm
+	private String actividades2; //camm
+	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -222,5 +225,19 @@ public class ExperienciaLaboral extends BeanEntidadGenericoAutogeneradoValidable
 			this.principal = 0;
 		}
 	}
+	public String getActividadEconomica() {
+		return actividadEconomica;
+	}
+	public void setActividadEconomica(String actividadEconomica) {
+		this.actividadEconomica = actividadEconomica;
+	}
+	public String getActividades2() {
+		return actividades2;
+	}
+	public void setActividades2(String actividades2) {
+		this.actividades2 = actividades2;
+	}
+	
+	
 		
 }

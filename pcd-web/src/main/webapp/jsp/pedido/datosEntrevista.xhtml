@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+	
+	
+	
+		<rich:spacer width="5" height="10" title="espacio" />
+		<t:panelGroup colspan="6">
+			<h:outputLabel styleClass="tituloFila" value="Observaciones adicionales" />
+		</t:panelGroup>
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+		<t:outputLabel title="Ingresar datos para equipamentos" value="Entorno Ambiental (temperatura, ruido, iluminación, etc):" for="entornoAmbiental" />
+		<t:panelGroup colspan="4">
+			<h:inputTextarea id="entornoAmbiental"
+				onkeyup="contar(this, #{rich:element('outEntornoAmbiental')}, 1000)"
+				value="#{registrarPedidoMB.pedidoBean.descEntornoAmbiental}"
+				styleClass="width100" required="false"  maxlength="1000"
+				validatorMessage="mensaje-->" />
+		</t:panelGroup>
+		<h:outputText styleClass="body" value=" (*)" />
+		<rich:spacer width="5" height="5" title="espacio" />
+		<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+			<h:outputText styleClass="body" value=" " />
+			<h:outputLabel id="outEntornoAmbiental" value="*" title="Contador de caracteres" />
+		</t:panelGroup>
+		<h:outputText value=" " />
+		
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+		<t:outputLabel title="Ingresar datos para horarios Trabajo" value="Factores de Riesgo (indicar posibles situaciones de riesgo):" for="riesgo" />
+		<t:panelGroup colspan="4">
+			<h:inputTextarea id="riesgo"
+				onkeyup="contar(this, #{rich:element('outRiesgo')}, 1000)"
+				value="#{registrarPedidoMB.pedidoBean.descFactoresRiesgo}"
+				styleClass="width100" required="false"  maxlength="1000"
+				validatorMessage="mensaje-->" />
+		</t:panelGroup>
+		<h:outputText styleClass="body" value=" (*)" />
+		<rich:spacer width="5" height="5" title="espacio" />
+		<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+			<h:outputText styleClass="body" value=" " />
+			<h:outputLabel id="outRiesgo" value="*" title="Contador de caracteres" />
+		</t:panelGroup>
+		<h:outputText value=" " />
+		
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+		<t:outputLabel title="Ingresar datos para adaptaciones" value="Proyecciones de ajustes razonables:" for="proyecciones" />
+		<t:panelGroup colspan="4">
+			<h:inputTextarea id="proyecciones"
+				onkeyup="contar(this, #{rich:element('outProyecciones')}, 1000)"
+				value="#{registrarPedidoMB.pedidoBean.descProyAjustes}"
+				styleClass="width100" required="false"  maxlength="1000"
+				validatorMessage="mensaje-->" />
+		</t:panelGroup>
+		<h:outputText styleClass="body" value=" (*)" />
+		<rich:spacer width="5" height="5" title="espacio" />
+		<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+			<h:outputText styleClass="body" value=" " />
+			<h:outputLabel id="outProyecciones" value="*" title="Contador de caracteres" />
+		</t:panelGroup>
+		<h:outputText value=" " />
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+		<t:panelGroup colspan="6">
+			<h:outputLabel styleClass="tituloFila" value="Motivo de la Contratación" />
+		</t:panelGroup>
+		
+		<rich:spacer width="5" height="5" title="espacio" />
+		<t:outputLabel title="Indicar si la empresa tiene contratado ahora personas con discapacidad" value="Cumplimiento de la cuota de empleo:" for="cuotaEmpleo" />
+		<t:panelGroup>
+			<h:selectOneRadio id="cuotaEmpleo" layout="lineDirection"
+				required="true" value="#{registrarPedidoMB.pedidoBean.cuotaEmpleo}">
+				<f:selectItem itemLabel="SI" itemValue="1" />
+				<f:selectItem itemLabel="NO" itemValue="0" />
+				<a4j:support event="onchange"
+					reRender="lblOtro, txtOtro"
+					ajaxSingle="true" />
+			</h:selectOneRadio>
+		</t:panelGroup>
+		<h:outputText value=" " />
+		<t:outputLabel id="lblOtro" title="Indicar si la empresa contrato antes personas con discapacidad" 
+			value="Otro (indicar):" for="contratoPcdAntes" style="display:#{(registrarPedidoMB.pedidoBean.cuotaEmpleo eq '0')?'block':'none'}"/>
+		<t:panelGroup>
+			<h:inputText id="txtOtro"
+							style="display:#{(registrarPedidoMB.pedidoBean.cuotaEmpleo eq '0')?'block':'none'}"
+							value="#{registrarPedidoMB.pedidoBean.motivoContratoOtros}" />
+		</t:panelGroup>
+		<h:outputText value=" " />
+	
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Entrevista" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses=",,,celdaSeparadorFormulario,,,">
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Fecha de inicio de la entrevista" value="Dia(s):" for="fechaINI" />
+			<t:panelGroup>
+				<rich:calendar id="fechaINI" popup="true" locale="es_PE"
+					showWeekDaysBar="false" showWeeksBar="false" required="false"
+					showApplyButton="false" enableManualInput="true"
+					inputStyle="#{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.fechaIniEntrevista}"
+					datePattern="dd/MM/yyyy">
+					<f:facet name="header">
+						<h:panelGrid columns="3" width="100%"
+							columnClasses="fake, width100 talign">
+							<h:outputText value="{previousMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{currentMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{nextMonthControl}"
+								style="font-weight:bold;" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="{day}"></h:outputText>
+					<f:facet name="footer">
+						<h:outputText value="{selectedDateControl}" />
+					</f:facet>
+				</rich:calendar>
+			</t:panelGroup>
+			<t:outputLabel title="Fecha de fin de la entravista" value="Al:" for="fechaFIN" />
+			<t:panelGroup>
+				<rich:calendar id="fechaFIN" popup="true" locale="es_PE"
+					showWeekDaysBar="false" showWeeksBar="false" required="false"
+					showApplyButton="false" enableManualInput="true"
+					inputStyle="#{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.fechaFinEntrevista}"
+					datePattern="dd/MM/yyyy">
+					<f:facet name="header">
+						<h:panelGrid columns="3" width="100%"
+							columnClasses="fake, width100 talign">
+							<h:outputText value="{previousMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{currentMonthControl}"
+								style="font-weight:bold;" />
+							<h:outputText value="{nextMonthControl}"
+								style="font-weight:bold;" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="{day}"></h:outputText>
+					<f:facet name="footer">
+						<h:outputText value="{selectedDateControl}" />
+					</f:facet>
+				</rich:calendar>
+			</t:panelGroup>
+			<t:outputLabel title="Ingresar horario de entrevista" value="Horario:" for="horarioEntrevista" />
+			<t:panelGroup>
+				<h:inputText id="horarioEntrevista"
+					value="#{registrarPedidoMB.pedidoBean.horarioEntrevista}" required="true"
+					maxlength="60" title="Longitud máxima: 60 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar lugar de la entrevista" value="Lugar:" for="lugarEntrevista" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="lugarEntrevista"
+					value="#{registrarPedidoMB.pedidoBean.lugarEntrevista}" required="true"
+					maxlength="100" title="Longitud máxima: 100 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			
+		</t:panelGrid>
+		
+		<rich:spacer width="5" height="25" title="espacio" />
+		
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Información de la persona de contacto de la empresa" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses=",,,celdaSeparadorFormulario,,,">
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar nombre de la persona de contacto de la empresa" value="Nombre contacto:" for="nombreContacto" />
+			<t:panelGroup>
+				<h:inputText id="nombreContacto"
+					value="#{registrarPedidoMB.pedidoBean.nombreContacto}" required="true"
+					maxlength="100" title="Longitud máxima: 100 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<t:outputLabel title="Ingresar en puesto que ocupa el contacto de la empresa" value="Puesto que ocupa:" for="puestoContacto" />
+			<t:panelGroup>
+				<h:inputText id="puestoContacto"
+					value="#{registrarPedidoMB.pedidoBean.puestoContacto}" required="true"
+					maxlength="100" title="Longitud máxima: 100 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar telefono del contacto de la empresa" value="Telefono:" for="telefonoContacto" />
+			<t:panelGroup>
+				<h:inputText id="telefonoContacto" onkeyup="#{UtilBean.campoSoloEntero}"
+					value="#{registrarPedidoMB.pedidoBean.telefContacto}" required="true"
+					maxlength="20" title="Longitud máxima: 20 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoNumerico}" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />
+			<t:outputLabel title="Ingresar anexo del contacto de la empresa" value="Anexo:" for="anexoContacto" />
+			<t:panelGroup>
+				<h:inputText id="anexoContacto" onkeyup="#{UtilBean.campoSoloEntero}"
+					value="#{registrarPedidoMB.pedidoBean.anexoContacto}" required="true"
+					maxlength="10" title="Longitud máxima: 10 caracteres"
+					styleClass="width20p" style="#{UtilBean.estiloCampoNumerico}" />
+				<h:outputText value=" (*)" />
+			</t:panelGroup>  
+			<rich:spacer width="5" height="5" title="espacio" />
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar correo electronico del contacto de la empresa" value="Correo electronico:" for="correoContacto" />
+			<t:panelGroup colspan="3" >   
+				<h:inputText id="correoContacto"
+					value="#{registrarPedidoMB.pedidoBean.correoContacto}" required="true"
+					maxlength="100" title="Longitud máxima: 100 caracteres"
+					styleClass="width100" style="#{UtilBean.estiloCampoRequerido}" />
+			</t:panelGroup>
+			<h:outputText value=" (*)" />
+			<rich:spacer width="5" height="5" title="espacio" />
+			
+		</t:panelGrid>
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="buscarPedido"
+						immediate="true"
+						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{(!sesionMB.usuarioSesion.rolEmpleador and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_PEDIDO}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:commandButton action="#"
+						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+						disabled="#{sesionMB.usuarioSesion.rolProfesional}"
+						actionFor="frmDatosGenerales,frmMenu"
+						actionListener="#{registrarPedidoMB.guardar}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+
+	</h:form>
+
+</ui:composition>
+
+</html>

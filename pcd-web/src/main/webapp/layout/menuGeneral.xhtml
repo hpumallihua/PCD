@@ -5,8 +5,7 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 	<h:form>
-		<f:subview id="opcionesAdministrador"
-			rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
+		<f:subview id="opcionesAdministrador" rendered="#{sesionMB.usuarioSesion.rolAdministrador}">
 			<f:subview id="contextoAdministrador"
 				rendered="#{sesionMB.contexto eq null or sesionMB.contexto eq sesionMB.constantes.CONTEXTO_ADMINISTRADOR}">
 				<ui:include src="menuPostulante.xhtml" />

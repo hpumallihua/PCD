@@ -292,6 +292,8 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 		if (bean != null) {
 			if (bean instanceof Pedido) {
 				pedidoBean = bean;
+				logger.info("id pedido="+pedidoBean.getId());
+				logger.info("nombre pedido="+pedidoBean.getNombre());
 			}
 		}	
 	}
@@ -304,10 +306,13 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 	 */
 	public void consultaPedido(ActionEvent e) {
 		Pedido bean = (Pedido)getRowParameter(e, "pedidoPrm");
+		logger.info(bean);
 		setAccionRealizada(Constantes.ACCION_VISUALIZAR);
 		if (bean != null) {
 			if (bean instanceof Pedido) {
 				pedidoBean = bean;
+				logger.info("id pedido="+pedidoBean.getId());
+				logger.info("nombre pedido="+pedidoBean.getNombre());
 			}
 		}	
 	}
@@ -320,7 +325,8 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 	public void postularPedido(ActionEvent e) {
 		setAccionRealizada(Constantes.ACCION_VISUALIZAR);
 		if (pedidoBean != null) {
-			logger.debug("Descripcion del Pedido: --"+pedidoBean.getDescripcion()+"--");
+			logger.debug("Id del Pedido: --"+pedidoBean.getId()+"--");
+			logger.debug("Nombre del Pedido: --"+pedidoBean.getNombre()+"--");
 			Profesional profesional = (Profesional) getRowParameter(e, "profesionalPrm");
 			Long idUser = null;
 			
@@ -356,6 +362,7 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 					
 				} catch (Exception e1) {
 					logger.error(e1.getStackTrace());
+					e1.printStackTrace();
 					agregarMensajeErrorTransaccion("No se pudo guardar la postulacion");
 				} finally {
 					UtilBean.initNullObject(postulacionGuardada);
@@ -374,8 +381,8 @@ public class RegistrarPedidoMB extends GenericManagedBean {
 		if (bean != null) {
 			if (bean instanceof Pedido) {
 				pedidoBean = bean;
-				logger.debug("Pedido Id   : --"+pedidoBean.getId()+"--");
-				logger.debug("Descripcion : --"+pedidoBean.getDescripcion()+"--");
+				logger.debug("Id Pedido   : --"+pedidoBean.getId()+"--");
+				logger.debug("Nombre pedido : --"+pedidoBean.getNombre()+"--");
 				listaPostulaciones = (ArrayList<Postulacion>) getServicio().getPedidoService().buscarPostulacionesPorPedido(pedidoBean);
 				logger.debug("tamaño lista : --"+listaPostulaciones.size()+"--");
 			}

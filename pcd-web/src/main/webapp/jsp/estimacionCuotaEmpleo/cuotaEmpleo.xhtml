@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<h:form id="frmReporteE1">
+		<t:panelGrid columns="1" styleClass="gridContent" id="gridDatosGenerales">
+			<rich:panel style="background-color: #FFFFFF;" rendered="true">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Reportes" />
+					</h:panelGroup>
+				</f:facet>
+
+<!--                 <rich:datascroller for="auction" maxPages="5"/> -->
+<!--                 <rich:spacer height="30" />              -->
+                <rich:messages style="color:red"></rich:messages>
+                <rich:dataTable id="auction" value="#{estimacionMB.listEstimacion}" columnClasses="col1,col2,col3,col4"
+                                        var="item" rows="12" width="100%"> 
+                    <rich:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nº trabajadores"/>
+                        </f:facet>
+                        
+                        <rich:message for="bid" /><br/>
+                        <h:inputText id="bid" value="#{item.nroTrabajadores}" label="Bid">
+                            <f:validateDoubleRange minimum="0" maximum="1000"/>
+                        </h:inputText>
+
+                		<h:commandLink value="recalcular" actionListener="#{estimacionMB.calcular}" action="#">
+							<f:param id="estimacionPrm" name="estimacionPrm" value="#{item}" />
+						</h:commandLink>
+   
+                    </rich:column>
+                    <rich:column  style="text-align: center;">
+                        <f:facet name="header">
+                            <h:outputText value="Meses laborados en el año"/>
+                        </f:facet>
+                        <h:outputText id="highestBid" value="#{item.nroMes}">                  
+                        </h:outputText>
+                    </rich:column>
+                    <rich:column  style="text-align: center;">
+                        <f:facet name="header">
+                            <h:outputText value="Calculo ponderado"/>
+                        </f:facet>                     
+                        <h:outputText value="#{item.calculoPonderado}"/>
+                    </rich:column>
+                    <rich:column  style="text-align: right;">
+                        <f:facet name="header">
+                            <h:outputText value="Suma ponderada"/>
+                        </f:facet>
+                        <h:outputText id="amount" value="#{item.sumaPonderada}" >
+                            <f:convertNumber pattern="#,##0.00"/>
+                        </h:outputText>
+                    </rich:column>
+                    
+                    <f:facet name="footer">
+	                    <h:panelGrid columns="4" style="width:100%;" columnClasses="col1,col2,col3,col4" >
+	                    
+	                    	<rich:columnGroup>
+	                            <rich:column>Base de calculo</rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column  style="text-align: right;">
+	                                <h:outputText id="baseCalculo" value="#{estimacionMB.baseCalculo}"></h:outputText>
+	                            </rich:column>
+                            </rich:columnGroup>
+                              
+                            <rich:columnGroup>
+	                            <rich:column>Base de calculo redondeado</rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column  style="text-align: right;">
+	                                <h:outputText id="baseCalculoRedondeado" value="#{estimacionMB.baseCalculoRedondeado}"></h:outputText>
+	                            </rich:column>
+                            </rich:columnGroup>
+                     
+                     		<rich:columnGroup>
+	                            <rich:column>Cuota (3%)</rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column  style="text-align: right;">
+	                                <h:outputText id="cuota" value="#{estimacionMB.cuota}"></h:outputText>
+	                            </rich:column>
+                            </rich:columnGroup>
+
+							<rich:columnGroup>
+	                            <rich:column>Cuota redondeada</rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column></rich:column>
+	                            <rich:column  style="text-align: right;">
+	                                <h:outputText id="cuotaRedondeado" value="#{estimacionMB.cuotaRedondeado}"></h:outputText>
+	                            </rich:column>
+                            </rich:columnGroup>
+                    	</h:panelGrid>
+                    </f:facet>
+                    
+                </rich:dataTable> 
+                <rich:messages style="color:red"></rich:messages>
+
+			</rich:panel>
+		</t:panelGrid>
+	</h:form>
+</ui:composition>
+</html>

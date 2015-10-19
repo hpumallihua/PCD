@@ -8,195 +8,13 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 <ui:composition>
 	<script type="text/javascript">
-            function printObjectsSelected(output, sgcomponent){
-            alert("printObjectsSelected");
-            	//output.value = sgcomponent.getSelectedItems().pluck('id');
-            	output.value = output.value + ',' + sgcomponent.getSelectedItems().pluck('id');            	
-            }
-            function showCheckedValue(op){
-               if(op==1){
-	               //alert(document.getElementById('frmDatosGenerales:expReq').checked);
-	               if(document.getElementById('frmDatosGenerales:expReq').checked){
-	            	   document.getElementById('frmDatosGenerales:idexpReq').value="1";
-	            	   //alert(document.getElementById('frmDatosGenerales:idexpReq').value);
-	            	   document.getElementById('frmDatosGenerales:idNumexpReq').style.visibility='visible'; 
-	            	   document.getElementById('frmDatosGenerales:numexpReq').style.visibility='visible'; 
-	               }else{
-	            	   document.getElementById('frmDatosGenerales:idexpReq').value="0";
-	            	   //alert(document.getElementById('frmDatosGenerales:idexpReq').value);
-	            	   document.getElementById('frmDatosGenerales:idNumexpReq').style.visibility='hidden'; 
-	            	   document.getElementById('frmDatosGenerales:numexpReq').style.visibility='hidden'; 
-	               }
-               }
-               if(op==2){
-            	   if(document.getElementById('frmDatosGenerales:tipoContrato').checked){
-	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="1";
-	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='hidden'; 
-	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='hidden'; 
-	               }else{
-	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="0"; 
-	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='visible'; 
-	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='visible';
-	               }          	   
-               }
-               
-               if(op==3){
-            	   if(document.getElementById('frmDatosGenerales:chkLicConducir').checked){
-	            	   document.getElementById('frmDatosGenerales:licenciaConducir').value="1";
-	            	   document.getElementById('frmDatosGenerales:lblCategoria').style.visibility='hidden'; 
-	            	   document.getElementById('frmDatosGenerales:txtCategoria').style.visibility='hidden'; 
-	               }else{
-	            	   document.getElementById('frmDatosGenerales:licenciaConducir').value="0"; 
-	            	   document.getElementById('frmDatosGenerales:lblCategoria').style.visibility='visible'; 
-	            	   document.getElementById('frmDatosGenerales:txtCategoria').style.visibility='visible';
-	               }          	   
-               }
-               if(op==4){
-            	   if(document.getElementById('frmDatosGenerales:chkVehiculo').checked){
-	            	   document.getElementById('frmDatosGenerales:vehiculoPropio').value="1";
-	               }else{
-	            	   document.getElementById('frmDatosGenerales:vehiculoPropio').value="0"; 
-	               }          	   
-               }
-               
-            }
-            function asignarLugar(dep, prov, dis, sgcomponent){
-            	dep.value = sgcomponent.getSelectedItems().pluck('idDprtmnto');
-            	prov.value = sgcomponent.getSelectedItems().pluck('idPrvnca');
-            	dis.value = sgcomponent.getSelectedItems().pluck('idDstrto');
-            }
+	    function printObjectsSelected(output, sgcomponent){
+	    	//output.value = sgcomponent.getSelectedItems().pluck('id');
+	    	output.value = output.value + ',' + sgcomponent.getSelectedItems().pluck('id');            	
+	    }
     </script>
 	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
 	
-		<t:panelGroup colspan="7">
-			<h:outputLabel value="Requisitos" styleClass="tituloSeccion" />
-			<rich:separator lineType="beveled" height="3" width="100%"
-				style="background-color: #808080; background-image: url('');" align="center" />
-		</t:panelGroup>
-		
-		<t:panelGrid columns="7" styleClass="gridContent" columnClasses="celdaExtremoFormulario,celdaEtiquetaFormulario,,,,,celdaExtremoFormulario">
-		
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Seleccionar estudios formales" value="Estudios formales:" for="estudiosFormales"/>
-			<t:panelGroup colspan="5"> 
-				<h:selectOneMenu id="estudiosFormales" required="true" style="width: 320px; #{UtilBean.estiloCampoRequerido}"
-					value="#{registrarPedidoDetalleMB.pedidoBean.codEstudiosFormales}">
-					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
-					<f:selectItem itemValue="1" itemLabel="Ninguno" />
-					<f:selectItem itemValue="2" itemLabel="Primaria Incompleta" />
-					<f:selectItem itemValue="3" itemLabel="Primaria Completa" />
-					<f:selectItem itemValue="4" itemLabel="Secundaria Incompleta" />
-					<f:selectItem itemValue="5" itemLabel="Secundaria completa" />
-					<f:selectItem itemValue="6" itemLabel="Basica especial" />
-					<f:selectItem itemValue="7" itemLabel="Superior No universitaria Incompleta" />
-					<f:selectItem itemValue="8" itemLabel="Superior No universitaria Completa" />
-					<f:selectItem itemValue="9" itemLabel="Superior Universitaria Incompleta" />
-					<f:selectItem itemValue="10" itemLabel="Superior Universitaria Completa" />
-				</h:selectOneMenu>
-				<h:outputText value=" (*)" />
-			</t:panelGroup>
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Ingresar Profesíon" value="Profesíon:" for="profesion" />
-			<t:panelGroup colspan="4">
-				<h:inputText id="profesion" 
-					value="#{registrarPedidoDetalleMB.pedidoBean.profesion}" required="true"
-					maxlength="254" title="Longitud máxima: 254 caracteres"
-					styleClass="width100"  />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Seleccionar grado" value="Grado:" for="grado"/>
-			<t:panelGroup colspan="4">
-				<h:selectOneMenu id="grado" required="true" style="width: 320px; #{UtilBean.estiloCampoRequerido}"
-					value="#{registrarPedidoDetalleMB.pedidoBean.codGrado}">
-					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
-					<f:selectItem itemValue="1" itemLabel="Bachiller" />
-					<f:selectItem itemValue="2" itemLabel="Titulado" />
-					<f:selectItem itemValue="3" itemLabel="Magister" />
-					<f:selectItem itemValue="4" itemLabel="Doctor" />
-				</h:selectOneMenu>
-				<h:outputText value=" (*)" />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si requiere licencia de conducir" value="Licencia de conducir:" for="licenciaConducir" />
-			<t:panelGroup>
-				<h:selectOneRadio id="licenciaConducir" layout="lineDirection" required="true" value="#{registrarPedidoDetalleMB.pedidoBean.licenciaConducir}">
-					<f:selectItem itemLabel="SI" itemValue="1" />
-					<f:selectItem itemLabel="NO" itemValue="0" />
-					<a4j:support event="onchange" reRender="lblCategoria, txtCategoria" ajaxSingle="true" />
-				</h:selectOneRadio>
-			</t:panelGroup>
-			<h:outputText value=" " />
-			<t:outputLabel title="Indicar la categoria" value="Categoria:" 
-				for="txtCategoria" id="lblCategoria" style="display:#{(registrarPedidoDetalleMB.pedidoBean.licenciaConducir eq '1')?'block':'none'}" />
-			<h:inputText id="txtCategoria" value="#{registrarPedidoDetalleMB.pedidoBean.categoriaLicenciaConducir}"
-				maxlength="10" title="Digite la cantidad de personas a cargo" styleClass="width5" 
-				style="display:#{(registrarPedidoDetalleMB.pedidoBean.licenciaConducir eq '1')?'block':'none'};" />
-			<h:outputText value=" " />
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si requiere vehiculo propio" value="Vehiculo propio:" for="vehiculoPropio" />
-			<t:panelGroup>
-				<h:selectOneRadio id="vehiculoPropio" layout="lineDirection" required="true" value="#{registrarPedidoDetalleMB.pedidoBean.vehiculoPropio}">
-					<f:selectItem itemLabel="SI" itemValue="1" />
-					<f:selectItem itemLabel="NO" itemValue="0" />
-				</h:selectOneRadio>
-			</t:panelGroup>
-			<h:outputText value=" " /> 
-			<t:outputLabel title="Indicar si requiere sexo preferente" value="Sexo preferente:" for="sexoPreferente" />
-			<t:panelGroup>
-				<h:selectOneMenu id="sexoPreferente" required="true" style="width: 320px; #{UtilBean.estiloCampoRequerido}"
-					value="#{registrarPedidoDetalleMB.pedidoBean.sexoPreferente}">
-					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
-					<f:selectItem itemValue="1" itemLabel="Masculino" />
-					<f:selectItem itemValue="2" itemLabel="Femenino" />
-					<f:selectItem itemValue="3" itemLabel="Indistinto" />
-				</h:selectOneMenu>
-				<h:outputText value=" (*)" />
-			</t:panelGroup>
-			<h:outputText value=" " /> 
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si requiere edad preferente" value="Edad preferente:" for="edadDesde" />
-			<h:inputText id="edadDesde" required="true" onkeyup="#{UtilBean.campoSoloEntero}"
-				value="#{registrarPedidoDetalleMB.pedidoBean.edadIni}"
-				maxlength="10" title="Digite la cantidad de personas a cargo"
-				styleClass="width5" style="#{UtilBean.estiloCampoNumerico}" />
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si requiere edad preferente" value="a:" for="edadHasta" />
-			<h:inputText id="edadHasta" required="true" onkeyup="#{UtilBean.campoSoloEntero}"
-				value="#{registrarPedidoDetalleMB.pedidoBean.edadFin}"
-				maxlength="10" title="Digite la cantidad de personas a cargo"
-				styleClass="width5" style="#{UtilBean.estiloCampoNumerico}" />
-			<h:outputText value=" " /> 
-		
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Ingresar experiencia requerida" value="Experiencia requerida:" for="experienciaRequerida" />
-			<t:panelGroup colspan="4">
-				<h:inputText id="experienciaRequerida" required="true" onkeyup="#{UtilBean.campoSoloDecimal}" maxlength="10"
-					title="Longitud máxima: 10 digitos" value="#{registrarPedidoDetalleMB.pedidoBean.experienciaRequerida}"
-					styleClass="width20p" style="#{UtilBean.estiloCampoRequerido} #{UtilBean.estiloCampoNumerico} ">
-				</h:inputText>
-				<rich:spacer width="5" height="5" title="espacio" />
-				<h:selectOneMenu id="tipoExpRequeridad" required="true" style="width: 120px; #{UtilBean.estiloCampoRequerido}"
-					value="#{registrarPedidoDetalleMB.pedidoBean.codTipoExperiencia}">
-					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
-					<f:selectItem itemValue="1" itemLabel="Años" />
-					<f:selectItem itemValue="2" itemLabel="Meses" />
-					<f:selectItem itemValue="3" itemLabel="Semanas" />
-					<f:selectItem itemValue="4" itemLabel="dias" />
-				</h:selectOneMenu>
-			</t:panelGroup>		
-			<h:outputText value=" " />
-			
-		</t:panelGrid> 
-
-		<rich:spacer width="5" height="15" title="espacio" />
-		
 		<t:panelGroup colspan="7">
 			<h:outputLabel value="Inserción de Personas con Discapacidad" styleClass="tituloSeccion" />
 			<rich:separator lineType="beveled" height="3" width="100%"
@@ -216,7 +34,7 @@
 			<t:outputLabel title="Indicar tipo de discapacidad" value="Tipo discapacidad:" for="tipoDiscapacidad" />
 			<t:panelGroup colspan="4">
 				<h:selectOneMenu id="tipoDiscapacidad" required="true" style="width: 320px; #{UtilBean.estiloCampoRequerido}"
-					value="#{registrarPedidoDetalleMB.pedidoBean.codTipoDiscapacidad}">
+					value="#{registrarPedidoMB.pedidoBean.codTipoDiscapacidad}">
 					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
 					<f:selectItem itemValue="1" itemLabel="Física Miembro Superior" />
 					<f:selectItem itemValue="2" itemLabel="Física Miembro Inferior" />
@@ -261,7 +79,7 @@
 
 						<h:outputText value="1. Apariencia y autocuidado"/>
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad1}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad1}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -271,7 +89,7 @@
 						
 						<h:outputText value="2. Movilidad en la comunidad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad2}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad2}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -281,7 +99,7 @@
 						
 						<h:outputText value="3. Memoria visual" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad3}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad3}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -291,7 +109,7 @@
 						
 						<h:outputText value="4. Semejanzas y diferencias" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad4}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad4}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -301,7 +119,7 @@
 						
 						<h:outputText value="5. Orientación espacial" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad5}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad5}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -311,7 +129,7 @@
 						
 						<h:outputText value="6. Conocimiento numérico"/>
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad6}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad6}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -321,7 +139,7 @@
 						
 						<h:outputText value="7. Aprendizaje de tareas" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad7}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad7}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -331,7 +149,7 @@
 						
 						<h:outputText value="8. Lenguaje expresivo" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad8}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad8}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -341,7 +159,7 @@
 						
 						<h:outputText value="9. Conocimiento de escritura" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad9}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad9}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -351,7 +169,7 @@
 						
 						<h:outputText value="10. Lenguaje comprensivo"/>
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad10}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad10}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -361,7 +179,7 @@
 						
 						<h:outputText value="11. Conocimiento de la lectura" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad11}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad11}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -371,7 +189,7 @@
 						
 						<h:outputText value="12.a. Exigencias dinámicas" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad12a}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad12a}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -381,7 +199,7 @@
 						
 						<h:outputText value="12.b. Carga estática. Postura" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad12b}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad12b}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -391,7 +209,7 @@
 						
 						<h:outputText value="12.c. Manejo y transporte carga"/>
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad12c}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad12c}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -401,7 +219,7 @@
 						
 						<h:outputText value="12.d. Accesibilidad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad12d}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad12d}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -433,7 +251,7 @@
 
 						<h:outputText value="13. Apariencia y autocuidado" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad13}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad13}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -443,7 +261,7 @@
 						
 						<h:outputText value="14.a. Movilidad en la comunidad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad14a}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad14a}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -453,7 +271,7 @@
 						
 						<h:outputText value="14.b. Realización de la tarea" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad14b}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad14b}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -463,7 +281,7 @@
 						
 						<h:outputText value="15. Repetividad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad15}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad15}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -473,7 +291,7 @@
 						
 						<h:outputText value="16. Atención" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad16}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad16}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -483,7 +301,7 @@
 						
 						<h:outputText value="17. Ritmo" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad17}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad17}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -493,7 +311,7 @@
 						
 						<h:outputText value="18. Organización" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad18}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad18}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -503,7 +321,7 @@
 						
 						<h:outputText value="19. Interés" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad19}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad19}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -513,7 +331,7 @@
 						
 						<h:outputText value="20. Relaciones de trabajo" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad20}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad20}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -523,7 +341,7 @@
 						
 						<h:outputText value="21. Seguridad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad21}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad21}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -534,7 +352,7 @@
 						
 						<h:outputText value="22. Seguridad" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad22}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad22}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -544,7 +362,7 @@
 						
 						<h:outputText value="23. Ambiente sonoro" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad23}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad23}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -554,7 +372,7 @@
 						
 						<h:outputText value="24. Condiciones lumínicas" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad24}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad24}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -564,7 +382,7 @@
 						
 						<h:outputText value="25. Higiene ambiental" />
 						<t:selectOneRadio styleClass="gridContent"
-							value="#{registrarPedidoDetalleMB.pedidoBean.habilidad25}">
+							value="#{registrarPedidoMB.pedidoBean.habilidad25}">
 							<f:selectItem itemValue="1" itemLabel=""/>
 							<f:selectItem itemValue="2" itemLabel=""/>
 							<f:selectItem itemValue="3" itemLabel=""/>
@@ -576,6 +394,32 @@
 				</h:panelGrid>
 			</t:panelGroup>
 			<h:outputText value=" " /> 
+			
+			<rich:spacer width="5" height="10" title="espacio" />
+			<t:panelGroup colspan="6">
+				<h:outputLabel styleClass="tituloFila" value="la empresa tiene contratado ahora personas con discapacidad" />
+			</t:panelGroup>
+		
+			<rich:spacer width="5" height="5" title="espacio" />	
+			<t:panelGroup colspan="2">
+				<h:selectOneRadio id="contratoPcd" layout="lineDirection"
+					required="true" value="#{registrarPedidoMB.pedidoBean.contratoPcdActual}">
+					<f:selectItem itemLabel="SI" itemValue="1" />
+					<f:selectItem itemLabel="NO" itemValue="0" />
+					<a4j:support event="onchange" reRender="lblContratoPcdAntes, contratoPcdAntes" ajaxSingle="true" />
+				</h:selectOneRadio>
+			</t:panelGroup>
+			<t:outputLabel id="lblContratoPcdAntes" title="Indicar si la empresa contrato antes personas con discapacidad" 
+				value="¿Contrato antes?:" for="contratoPcdAntes" style="display:#{(registrarPedidoMB.pedidoBean.contratoPcdActual eq '0')?'block':'none'}"/>
+			<t:panelGroup colspan="2">
+				<h:selectOneRadio id="contratoPcdAntes" layout="lineDirection"
+					required="true" value="#{registrarPedidoMB.pedidoBean.contratoPcdAntes}"
+					style="display:#{(registrarPedidoMB.pedidoBean.contratoPcdActual eq '0')?'block':'none'}">
+					<f:selectItem itemLabel="SI" itemValue="1" />
+					<f:selectItem itemLabel="NO" itemValue="0" />
+				</h:selectOneRadio>
+			</t:panelGroup>
+			<h:outputText value=" " />
 		
 		</t:panelGrid>
 		
@@ -595,6 +439,7 @@
 				<t:panelGroup>
 					<a4j:commandButton action="buscarPedido" immediate="true"
 						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						actionListener="#{registrarPedidoMB.limpiarBusqueda}"
 						styleClass="botonBuscar">
 						<a4j:actionparam name="accion"
 							value="#{(!sesionMB.usuarioSesion.rolEmpleador and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_PEDIDO}"
@@ -606,7 +451,7 @@
 						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
 						disabled="#{sesionMB.usuarioSesion.rolProfesional}"
 						actionFor="frmDatosGenerales,frmMenu"
-						actionListener="#{registrarPedidoDetalleMB.guardar}"
+						actionListener="#{registrarPedidoMB.guardar}"
 						styleClass="botonBuscar" />
 				</t:panelGroup>
 

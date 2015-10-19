@@ -23,43 +23,12 @@
 			</t:panelGroup>
 			
 			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si la empresa tiene contratado ahora personas con discapacidad" value="¿La empresa tiene contratado ahora personas con discapacidad?:" for="contratoPcd" />
-			<t:panelGroup>
-				<h:selectOneRadio id="contratoPcd" layout="lineDirection"
-					required="true" value="#{registrarPedidoMB.pedidoBean.contratoPcdActual}">
-					<f:selectItem itemLabel="SI" itemValue="1" />
-					<f:selectItem itemLabel="NO" itemValue="0" />
-					<a4j:support event="onchange"
-						reRender="lblContratoPcdAntes, contratoPcdAntes"
-						ajaxSingle="true" />
-				</h:selectOneRadio>
-			</t:panelGroup>
-			<h:outputText value=" " />
-			<t:outputLabel id="lblContratoPcdAntes" title="Indicar si la empresa contrato antes personas con discapacidad" 
-				value="¿Contrato antes?:" for="contratoPcdAntes" style="display:#{(registrarPedidoMB.pedidoBean.contratoPcdActual eq '0')?'block':'none'}"/>
-			<t:panelGroup>
-				<h:selectOneRadio id="contratoPcdAntes" layout="lineDirection"
-					required="true" value="#{registrarPedidoMB.pedidoBean.contratoPcdAntes}"
-					style="display:#{(registrarPedidoMB.pedidoBean.contratoPcdActual eq '0')?'block':'none'}">
-					<f:selectItem itemLabel="SI" itemValue="1" />
-					<f:selectItem itemLabel="NO" itemValue="0" />
-<!-- 					<a4j:support event="onchange" -->
-<!-- 						reRender="porcentajeDiscapacidad,vigenciaCertificado" -->
-<!-- 						ajaxSingle="true" /> -->
-				</h:selectOneRadio>
-			</t:panelGroup>
-			<h:outputText value=" " />
-
-			<rich:spacer width="5" height="5" title="espacio" />
 			<t:outputLabel title="Indicar si la empresa tiene adecuadas sus instalaciones para personas con discapacidad" value="¿La empresa tiene adecuadas sus instalaciones para personas con discapacidad?:" for="instalacionPcd" />
 			<t:panelGroup colspan="4">
 				<h:selectOneRadio id="instalacionPcd" layout="lineDirection"
 					required="true" value="#{registrarPedidoMB.pedidoBean.instalacionAdecuada}">
 					<f:selectItem itemLabel="SI" itemValue="1" />
 					<f:selectItem itemLabel="NO" itemValue="0" />
-<!-- 					<a4j:support event="onchange" -->
-<!-- 						reRender="lblContratoPcdAntes, contratoPcdAntes" -->
-<!-- 						ajaxSingle="true" /> -->
 				</h:selectOneRadio>
 			</t:panelGroup>
 			<h:outputText value=" " />
@@ -81,7 +50,7 @@
 			</t:panelGroup>
 			<h:outputText value=" " />
 			
-			<rich:spacer width="5" height="10" title="espacio" />
+						<rich:spacer width="5" height="10" title="espacio" />
 			<t:panelGroup colspan="6">
 				<h:outputLabel styleClass="tituloFila" value="En su lugar de trabajo. ¿Con cuántas personas interactuará frecuentemente la persona con discapacidad?" />
 			</t:panelGroup>
@@ -123,13 +92,11 @@
 				<h:outputLabel id="outCaractCompaneros" value="*" title="Contador de caracteres" />
 			</t:panelGroup>
 			<h:outputText value=" " />
-			
+
 			<rich:spacer width="5" height="10" title="espacio" />
 			<t:panelGroup colspan="6">
 				<h:outputLabel styleClass="tituloFila" value="Elementos a utilizar en el puesto de trabajo" />
 			</t:panelGroup>
-			
-			
 			
 			<rich:spacer width="5" height="5" title="espacio" />
 			<h:outputText value="  " />
@@ -206,97 +173,11 @@
 			<t:panelGroup colspan="7">
 				<rich:spacer width="5" height="10" title="espacio" />
 			</t:panelGroup>
-			
-			<rich:spacer width="5" height="10" title="espacio" />
-			<t:panelGroup colspan="6">
-				<h:outputLabel styleClass="tituloFila" value="Observaciones adicionales" />
-			</t:panelGroup>
-			
-			<rich:spacer width="5" height="10" title="espacio" />
-			<t:outputLabel title="Ingresar datos para equipamentos" value="Entorno Ambiental (temperatura, ruido, iluminación, etc):" for="entornoAmbiental" />
-			<t:panelGroup colspan="4">
-				<h:inputTextarea id="entornoAmbiental"
-					onkeyup="contar(this, #{rich:element('outEntornoAmbiental')}, 1000)"
-					value="#{registrarPedidoMB.pedidoBean.descEntornoAmbiental}"
-					styleClass="width100" required="false"  maxlength="1000"
-					validatorMessage="mensaje-->" />
-			</t:panelGroup>
-			<h:outputText styleClass="body" value=" (*)" />
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
-				<h:outputText styleClass="body" value=" " />
-				<h:outputLabel id="outEntornoAmbiental" value="*" title="Contador de caracteres" />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			
-			<rich:spacer width="5" height="10" title="espacio" />
-			<t:outputLabel title="Ingresar datos para horarios Trabajo" value="Factores de Riesgo (indicar posibles situaciones de riesgo):" for="riesgo" />
-			<t:panelGroup colspan="4">
-				<h:inputTextarea id="riesgo"
-					onkeyup="contar(this, #{rich:element('outRiesgo')}, 1000)"
-					value="#{registrarPedidoMB.pedidoBean.descFactoresRiesgo}"
-					styleClass="width100" required="false"  maxlength="1000"
-					validatorMessage="mensaje-->" />
-			</t:panelGroup>
-			<h:outputText styleClass="body" value=" (*)" />
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
-				<h:outputText styleClass="body" value=" " />
-				<h:outputLabel id="outRiesgo" value="*" title="Contador de caracteres" />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			
-			<rich:spacer width="5" height="10" title="espacio" />
-			<t:outputLabel title="Ingresar datos para adaptaciones" value="Proyecciones de ajustes razonables:" for="proyecciones" />
-			<t:panelGroup colspan="4">
-				<h:inputTextarea id="proyecciones"
-					onkeyup="contar(this, #{rich:element('outProyecciones')}, 1000)"
-					value="#{registrarPedidoMB.pedidoBean.descProyAjustes}"
-					styleClass="width100" required="false"  maxlength="1000"
-					validatorMessage="mensaje-->" />
-			</t:panelGroup>
-			<h:outputText styleClass="body" value=" (*)" />
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
-				<h:outputText styleClass="body" value=" " />
-				<h:outputLabel id="outProyecciones" value="*" title="Contador de caracteres" />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			<rich:spacer width="5" height="10" title="espacio" />
-			<t:panelGroup colspan="6">
-				<h:outputLabel styleClass="tituloFila" value="Motivo de la Contratación" />
-			</t:panelGroup>
-			
-			<rich:spacer width="5" height="5" title="espacio" />
-			<t:outputLabel title="Indicar si la empresa tiene contratado ahora personas con discapacidad" value="Cumplimiento de la cuota de empleo:" for="cuotaEmpleo" />
-			<t:panelGroup>
-				<h:selectOneRadio id="cuotaEmpleo" layout="lineDirection"
-					required="true" value="#{registrarPedidoMB.pedidoBean.cuotaEmpleo}">
-					<f:selectItem itemLabel="SI" itemValue="1" />
-					<f:selectItem itemLabel="NO" itemValue="0" />
-					<a4j:support event="onchange"
-						reRender="lblOtro, txtOtro"
-						ajaxSingle="true" />
-				</h:selectOneRadio>
-			</t:panelGroup>
-			<h:outputText value=" " />
-			<t:outputLabel id="lblOtro" title="Indicar si la empresa contrato antes personas con discapacidad" 
-				value="Otro (indicar):" for="contratoPcdAntes" style="display:#{(registrarPedidoMB.pedidoBean.cuotaEmpleo eq '0')?'block':'none'}"/>
-			<t:panelGroup>
-				<h:inputText id="txtOtro"
-								style="display:#{(registrarPedidoMB.pedidoBean.cuotaEmpleo eq '0')?'block':'none'}"
-								value="#{registrarPedidoMB.pedidoBean.motivoContratoOtros}" />
-			</t:panelGroup>
-			<h:outputText value=" " />
-			
-			
+
 		</t:panelGrid>
-
-		<rich:spacer width="5" height="25" title="espacio" />
-
+		
+		<rich:spacer width="5" height="10" title="espacio" />
+		
 		<t:panelGroup colspan="7">
 			<rich:spacer width="5" height="10" title="espacio" />
 			<rich:separator lineType="beveled" height="3" width="100%"

@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {	 
+
+		});
+	</script>
+	
+	<script type="text/javascript">
+            function printObjectsSelected(output, sgcomponent){
+            	output.value = sgcomponent.getSelectedItems().pluck('id');
+            }
+            function showCheckedValue(op){
+               if(op==1){
+	               //alert(document.getElementById('frmDatosGenerales:perCargod').checked);
+	               if(document.getElementById('frmDatosGenerales:perCargod').checked){
+	            	   document.getElementById('frmDatosGenerales:idPerCargod').value="1";
+	            	   //alert(document.getElementById('frmDatosGenerales:idPerCargod').value);
+	            	   document.getElementById('frmDatosGenerales:idNumPerCargo').style.visibility='visible'; 
+	            	   document.getElementById('frmDatosGenerales:numPerCargo').style.visibility='visible'; 
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:idPerCargod').value="0";
+	            	   //alert(document.getElementById('frmDatosGenerales:idPerCargod').value);
+	            	   document.getElementById('frmDatosGenerales:idNumPerCargo').style.visibility='hidden'; 
+	            	   document.getElementById('frmDatosGenerales:numPerCargo').style.visibility='hidden'; 
+	               }
+               }
+               if(op==2){
+            	   if(document.getElementById('frmDatosGenerales:tipoContrato').checked){
+	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="1";
+	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='hidden'; 
+	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='hidden'; 
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:idTipoContrato').value="0"; 
+	            	   document.getElementById('frmDatosGenerales:idNumDuracion').style.visibility='visible'; 
+	            	   document.getElementById('frmDatosGenerales:numDuracion').style.visibility='visible';
+	               }          	   
+               }
+               if(op==3){
+            	   if(document.getElementById('frmDatosGenerales:chkMovilidad').checked){
+	            	   document.getElementById('frmDatosGenerales:movilidad').value="1";
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:movilidad').value="0"; 
+	               }          	   
+               }
+               if(op==4){
+            	   if(document.getElementById('frmDatosGenerales:chkRefrigerio').checked){
+	            	   document.getElementById('frmDatosGenerales:refrigerio').value="1";
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:refrigerio').value="0"; 
+	               }          	   
+               }
+               if(op==5){
+            	   if(document.getElementById('frmDatosGenerales:chkBonificacion').checked){
+	            	   document.getElementById('frmDatosGenerales:bonificacion').value="1";
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:bonificacion').value="0"; 
+	               }          	   
+               }
+               if(op==6){
+            	   if(document.getElementById('frmDatosGenerales:chkSeguro').checked){
+	            	   document.getElementById('frmDatosGenerales:seguro').value="1";
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:seguro').value="0"; 
+	               }          	   
+               }
+               if(op==7){
+            	   if(document.getElementById('frmDatosGenerales:chkComisiones').checked){
+	            	   document.getElementById('frmDatosGenerales:comisiones').value="1";
+	               }else{
+	            	   document.getElementById('frmDatosGenerales:comisiones').value="0"; 
+	               }          	   
+               }
+            }
+            function asignarLugar(dep, prov, dis, sgcomponent){
+            	dep.value = sgcomponent.getSelectedItems().pluck('idDprtmnto');
+            	prov.value = sgcomponent.getSelectedItems().pluck('idPrvnca');
+            	dis.value = sgcomponent.getSelectedItems().pluck('idDstrto');
+            }
+            
+            window.onload = function() {
+            
+           		var movilidad = document.getElementById('frmDatosGenerales:movilidad').value;
+           		if(movilidad == 1){
+           			document.getElementById('frmDatosGenerales:chkMovilidad').checked = true;
+           		}else{
+           			document.getElementById('frmDatosGenerales:chkMovilidad').checked = false;
+           		}
+           		
+           		var refrigerio = document.getElementById('frmDatosGenerales:refrigerio').value;
+           		if(refrigerio == 1){
+           			document.getElementById('frmDatosGenerales:chkRefrigerio').checked = true;
+           		}else{
+           			document.getElementById('frmDatosGenerales:chkRefrigerio').checked = false;
+           		}
+           		
+           		var bonificacion = document.getElementById('frmDatosGenerales:bonificacion').value;
+           		if(bonificacion == 1){
+           			document.getElementById('frmDatosGenerales:chkBonificacion').checked = true;
+           		}else{
+           			document.getElementById('frmDatosGenerales:chkBonificacion').checked = false;
+           		}
+           		
+           		var seguro = document.getElementById('frmDatosGenerales:seguro').value;
+           		if(seguro == 1){
+           			document.getElementById('frmDatosGenerales:chkSeguro').checked = true;
+           		}else{
+           			document.getElementById('frmDatosGenerales:chkSeguro').checked = false;
+           		}
+           		
+           		var comisiones = document.getElementById('frmDatosGenerales:comisiones').value;
+           		if(comisiones == 1){
+           			document.getElementById('frmDatosGenerales:chkComisiones').checked = true;
+           		}else{
+           			document.getElementById('frmDatosGenerales:chkComisiones').checked = false;
+           		}
+           		      
+        	}
+            
+    </script>
+
+	<h:form id="frmDatosGenerales" enctype="multipart/form-data">
+		
+		<t:panelGroup colspan="7">
+			<h:outputLabel value="Información adicional sobre el puesto" styleClass="tituloSeccion" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+
+		<t:panelGrid columns="7" styleClass="gridContent" columnClasses=",,,celdaSeparadorFormulario,,,">
+		
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Indicar si requiere personal a cargo" value="Personal a Cargo:" for="idPerCargo" />
+			<t:panelGroup>
+				<h:selectOneRadio id="idPerCargo" layout="lineDirection" required="true" value="#{registrarPedidoMB.pedidoBean.personalACargo}">
+					<f:selectItem itemLabel="SI" itemValue="1" />
+					<f:selectItem itemLabel="NO" itemValue="0" />
+					<a4j:support event="onchange" reRender="lblPerCargo, numPerCargo" ajaxSingle="true" />
+				</h:selectOneRadio>
+			</t:panelGroup>
+			<h:outputText value=" " />
+			<t:outputLabel id="lblPerCargo"  title="Indicar la cantidad de pesonas a cargo"
+				value="Cantidad de Personas:" for="numPerCargo" 
+				style="display:#{(registrarPedidoMB.pedidoBean.personalACargo eq '1')?'block':'none'}" />
+			<h:inputText id="numPerCargo" onkeyup="#{UtilBean.campoSoloEntero}"
+				value="#{registrarPedidoMB.pedidoBean.numPersonalACargo}"
+				maxlength="10" title="Digite la cantidad de personas a cargo"
+				styleClass="width5"
+				style="display:#{(registrarPedidoMB.pedidoBean.personalACargo eq '1')?'block':'none'}; #{UtilBean.estiloCampoNumerico}" />
+			<h:outputText value=" " /> 
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar las principales tareas y responsabilidades para el puesto, para ingresar la siguente linea presione shift + enter" 
+						    value="Tareas y responsabilidades:" for="descripTarea"/>
+			<t:panelGroup colspan="4">
+				<h:inputTextarea id="descripTarea"
+					onkeyup="contar(this, #{rich:element('outTarea')}, 1000)"
+					value="#{registrarPedidoMB.pedidoBean.tareas}"
+					styleClass="width100" required="true"
+					style="#{UtilBean.estiloCampoRequerido}" maxlength="1000"
+					validatorMessage="mensaje-->" />
+			</t:panelGroup>
+			<h:outputText styleClass="body" value=" (*)" />					
+			<rich:spacer width="5" height="5" title="espacio" />	
+			<t:panelGroup colspan="5" styleClass="contadorCaracteres">
+				<h:outputText styleClass="body" value=" " />
+				<h:outputLabel id="outTarea" value="*" title="Contador de caracteres." />
+			</t:panelGroup>
+			<h:outputText value=" " />
+
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Seleccionar el tipo de empleo" value="Tipo de empleo:" for="tipoEmpleo" />
+			<t:panelGroup>
+				<h:selectOneMenu id="tipoEmpleo" style="width: 120px; #{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.jornada}">
+					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+					<f:selectItem itemValue="1" itemLabel="A tiempo Completo" />
+					<f:selectItem itemValue="2" itemLabel="A tiempo Parcial" />
+					<f:selectItem itemValue="3" itemLabel="Eventual" />
+					<f:selectItem itemValue="4" itemLabel="Permanente" />
+				</h:selectOneMenu>
+				<h:outputText value=" " />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			<t:outputLabel title="Ingresar remuneracion con 2 decimales"
+				value="Remuneracion:" for="remuneracionMonto" />
+			<t:panelGroup>
+				<h:inputText id="remuneracionMonto" required="true" onkeyup="#{UtilBean.campoSoloDecimal}" maxlength="10"
+					title="Longitud máxima: 10 digitos" value="#{registrarPedidoMB.pedidoBean.remuneracion}"
+					styleClass="width20p" style="#{UtilBean.estiloCampoRequerido} #{UtilBean.estiloCampoNumerico} ">
+				</h:inputText>
+				<h:outputText value="" />
+			</t:panelGroup>
+			<t:panelGroup>
+				<h:selectOneMenu id="remuneracionTipo" style="width: 120px; #{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.codTipoRemuneracion}">
+					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+					<f:selectItem itemValue="1" itemLabel="Mensual" />
+					<f:selectItem itemValue="2" itemLabel="Quincenal" />
+					<f:selectItem itemValue="3" itemLabel="Semanal" />
+					<f:selectItem itemValue="4" itemLabel="Diario" />
+				</h:selectOneMenu>
+				<h:outputText value=" " />
+			</t:panelGroup>
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Ingresar el horario de trabajo" value="Horario de trabajo:" for="horario" />
+			<t:panelGroup colspan="4">
+				<h:inputText id="horario" value="#{registrarPedidoMB.pedidoBean.horario}"
+					maxlength="254" title="Longitud máxima: 254 caracteres" styleClass="width100" />
+			</t:panelGroup>
+			<h:outputText value="  " />
+			
+			
+			<rich:spacer width="5" height="5" title="espacio" /> 
+			<t:outputLabel title="#{msg['prf-ayuda-datos-personales-ciudad']}"
+				value="#{msg['prf-registro-datos-personales-formulario-ciudad']}:"
+				for="idDepResidencia" />
+			<h:panelGroup>
+				<h:inputHidden id="idDepResidencia"
+					value="#{registrarPedidoMB.pedidoBean.departamento}" />
+				<h:inputHidden id="idProvResidencia"
+					value="#{registrarPedidoMB.pedidoBean.provincia}" />
+				<h:inputHidden id="idDisResidencia"
+					value="#{registrarPedidoMB.pedidoBean.distrito}" />
+
+				<h:inputText id="descripcionResidencia" required="true" style="#{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.nombreLugarResidencia}"
+					styleClass="width100" maxlength="254"
+					title="Longitud máxima: 254 caracteres" 
+					ondblclick="#{rich:component('suggestionResidencia')}.callSuggestion(true)" />
+
+				<rich:suggestionbox width="250" border="1" shadowDepth=""
+					minChars="3"
+					requestDelay="100"
+					usingSuggestObjects="true" selectValueClass="dr-pnl-h"
+					onobjectchange="asignarLugar(#{rich:element('idDepResidencia')}, #{rich:element('idProvResidencia')}, #{rich:element('idDisResidencia')}, #{rich:component('suggestionResidencia')});"
+					suggestionAction="#{registrarPedidoMB.autocompletarResidencia}"
+					var="residencia" for="descripcionResidencia"
+					fetchValue="#{residencia.nombre}" id="suggestionResidencia"
+					tokens=",">
+					<t:column>
+						<f:facet name="header">
+							<h:outputText value="Distrito" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.nombre} " />
+						<h:outputText rendered="#{!residencia.distrito}" value="--" />
+					</t:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Provincia" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.nombre}" />
+						<h:outputText rendered="#{residencia.departamento}" value="--" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoProvincia.nombre}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Región" />
+						</f:facet>
+						<h:outputText rendered="#{residencia.departamento}"
+							value="#{residencia.ubigeoRegion.nombre} " />
+						<h:outputText rendered="#{residencia.provincia}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+						<h:outputText rendered="#{residencia.distrito}"
+							value="#{residencia.ubigeoRegion.nombre}" />
+					</h:column>
+
+				</rich:suggestionbox>
+			</h:panelGroup>
+			<h:outputText value=" (*)" />
+			<h:outputText value=" " />
+			<h:outputText value=" " />
+			<h:outputText value=" " />
+			
+			  
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Seleccionar otros beneficios" value="Otros beneficios:" />
+			<t:panelGroup>
+				<h:outputLabel for="chkMovilidad" value="Movilidad" />
+				<h:inputHidden id="movilidad" value="#{registrarPedidoMB.pedidoBean.movilidad}" />
+				<h:selectBooleanCheckbox id="chkMovilidad" onclick="showCheckedValue(3)" />
+			</t:panelGroup>
+			<t:panelGroup>
+				<h:outputLabel for="chkRefrigerio" value="Refrigerio" />
+				<h:inputHidden id="refrigerio" value="#{registrarPedidoMB.pedidoBean.refrigerio}" />
+				<h:selectBooleanCheckbox id="chkRefrigerio" onclick="showCheckedValue(4)"  />
+			</t:panelGroup>
+			<t:panelGroup>
+				<h:outputLabel for="chkBonificacion" value="Bonificacion" />
+				<h:inputHidden id="bonificacion" value="#{registrarPedidoMB.pedidoBean.bonificacion}" />
+				<h:selectBooleanCheckbox id="chkBonificacion" onclick="showCheckedValue(5)" />
+			</t:panelGroup>
+			<h:panelGroup>
+				<h:outputLabel for="chkSeguro" value="Seguro" />
+				<h:inputHidden id="seguro" value="#{registrarPedidoMB.pedidoBean.seguro}" />
+				<h:selectBooleanCheckbox id="chkSeguro" onclick="showCheckedValue(6)"  />
+			</h:panelGroup>
+			<t:panelGroup>
+				<h:outputLabel for="chkComisiones" value="Comisiones" />
+				<h:inputHidden id="comisiones" value="#{registrarPedidoMB.pedidoBean.comisiones}" />
+				<h:selectBooleanCheckbox id="chkComisiones" onclick="showCheckedValue(7)" />
+			</t:panelGroup>
+			
+			<rich:spacer width="5" height="5" title="espacio" />
+			<t:outputLabel title="Seleccionar el tipo de puesto" value="El puesto es:" for="puestoTipo" />
+			<t:panelGroup colspan="4">
+				<h:selectOneMenu id="puestoTipo" style="width: 320px; #{UtilBean.estiloCampoRequerido}"
+					value="#{registrarPedidoMB.pedidoBean.codTipoPuesto}">
+					<f:selectItem value="#{UtilBean.itemSeleccioneVacio}" />
+					<f:selectItem itemValue="1" itemLabel="Un puesto nuevo que no existia" />
+					<f:selectItem itemValue="2" itemLabel="Un puesto que existia pero quedo vacante" />
+					<f:selectItem itemValue="3" itemLabel="Un puesto actualmente cubierto pero que necesita reemplazo transitorio" />
+					<f:selectItem itemValue="4" itemLabel="Un puesto por temporada o campaña" />
+				</h:selectOneMenu>
+				<h:outputText value=" (*)" />
+			</t:panelGroup>
+			<h:outputText value=" " />
+			
+		</t:panelGrid>
+		
+		<rich:spacer width="5" height="15" title="espacio" />
+
+		<t:panelGroup colspan="7">
+			<rich:spacer width="5" height="10" title="espacio" />
+			<rich:separator lineType="beveled" height="3" width="100%"
+				style="background-color: #808080; background-image: url('');"
+				align="center" />
+		</t:panelGroup>
+		<t:panelGroup colspan="7">
+			<t:panelGrid columns="2" styleClass="gridContent"
+				columnClasses="columnaIzquierda,columnaDerecha">
+				<rich:spacer width="5" height="5" title="espacio" />
+				<t:panelGroup>
+					<a4j:commandButton action="buscarPedido"
+						immediate="true"
+						value="#{msg['prf-registro-datos-personales-formulario-cancelar']}"
+						actionListener="#{registrarPedidoMB.limpiarBusqueda}"
+						styleClass="botonBuscar">
+						<a4j:actionparam name="accion"
+							value="#{(!sesionMB.usuarioSesion.rolEmpleador and sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)?sesionMB.constantes.CONTEXTO_ADMINISTRADOR:sesionMB.constantes.CONTEXTO_PEDIDO}"
+							assignTo="#{sesionMB.contexto}" />
+					</a4j:commandButton>
+					<rich:spacer width="5" height="5" title="espacio" />
+
+					<t:commandButton action="#"
+						value="#{msg['prf-registro-datos-personales-formulario-guardar']}"
+						disabled="#{sesionMB.usuarioSesion.rolProfesional}"
+						actionFor="frmDatosGenerales,frmMenu"
+						actionListener="#{registrarPedidoMB.guardar}"
+						styleClass="botonBuscar" />
+				</t:panelGroup>
+
+			</t:panelGrid>
+		</t:panelGroup>
+		
+	</h:form>
+
+</ui:composition>
+
+</html>

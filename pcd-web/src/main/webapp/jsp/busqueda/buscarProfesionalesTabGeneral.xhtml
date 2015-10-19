@@ -37,19 +37,23 @@
 
 		<rich:spacer width="5" height="5" title="espacio" />
 
-		<t:panelGrid columns="2" styleClass="gridContent"
-			columnClasses="columnaIzquierda,columnaDerecha">
+		<t:panelGrid columns="2" styleClass="gridContent" columnClasses="columnaIzquierda,columnaDerecha">
 			<rich:spacer width="5" height="5" title="espacio" />
-			<h:panelGrid columns="2" styleClass="gridContent"
-				style="background-color: #FFFFFF; font-size: 11px;"
-				columnClasses=",columnaDerecha">
-				<rich:spacer width="5" height="10" title="espacio" />
-				<h:panelGroup>
+			<h:panelGrid columns="2" style="width: 100%;">
+
+				<h:panelGroup rendered="#{
+						(!sesionMB.usuarioSesion.rolEmpleador or !sesionMB.usuarioSesion.rolProfesional) 
+						and (sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)}" style="color: red; text-align: left;">
+					<h:outputText value="Oferta laboral: " />
+					<h:outputText value="#{registrarPedidoMB.pedidoBean.nombre}" />
+				</h:panelGroup>
+				
+				<h:panelGroup >
 					<h:outputLabel value="Incluir CV en la búsqueda:" />
-					<t:selectBooleanCheckbox
-						value="#{buscarProfesionalMB.bean.incluirCV}" />
+					<t:selectBooleanCheckbox value="#{buscarProfesionalMB.bean.incluirCV}" />
 				</h:panelGroup>
 			</h:panelGrid>
+			
 			<rich:spacer width="5" height="5" title="espacio" />
 			<h:panelGroup>
 				<h:commandButton action="#"
@@ -248,7 +252,7 @@
 						and (sesionMB.contexto eq sesionMB.constantes.CONTEXTO_PEDIDO)}">
 					<a4j:commandLink
 						actionListener="#{registrarPedidoMB.postularPedido}" action="#"
-						title="Postular a #{registrarPedidoMB.pedidoBean.descripcion}">
+						title="Postular a #{registrarPedidoMB.pedidoBean.nombre}">
 						<h:graphicImage value="/images/postulaciones.png" alt="Postular" />
 						<a4j:actionparam name="accion"
 							value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
@@ -258,11 +262,6 @@
 
 			</h:panelGrid>
 		</rich:dataGrid>
-
-
 	</h:form>
 </ui:composition>
-
-
-
 </html>

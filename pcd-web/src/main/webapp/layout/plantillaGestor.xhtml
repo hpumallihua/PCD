@@ -7,68 +7,65 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 
-<f:loadBundle
-	basename="pe.gob.trabajo.pcd.vista.recursos.mensajes" var="msg" />
+<f:loadBundle basename="pe.gob.trabajo.pcd.vista.recursos.mensajes" var="msg" />
 <head>
-<title><ui:insert name="tituloPagina">Titulo</ui:insert></title>
-<a4j:loadStyle src="/styles/silnetbase.css" />
-<a4j:loadStyle src="/styles/silnetformularios.css" />
-<a4j:loadStyle src="/styles/silnettablas.css" />
-<a4j:loadScript src="/js/silnet.js" />
-<ui:include src="estilos.jsp" />
+	<title><ui:insert name="tituloPagina">Titulo</ui:insert></title>
+	<a4j:loadStyle src="/styles/silnetbase.css" />
+	<a4j:loadStyle src="/styles/silnetformularios.css" />
+	<a4j:loadStyle src="/styles/silnettablas.css" />
+	<a4j:loadScript src="/js/silnet.js" />
+	<ui:include src="estilos.jsp" />
 </head>
 
 <body bgcolor="#ffffff">
 
-<table style="border: 0px solid #bdced1" align="center" cellpadding="0"
-	cellspacing="0" border="0" width="900">
+<table style="border: 0px solid #bdced1" align="center" cellpadding="0"	cellspacing="0" border="0" width="900">
 	<tbody>
-
 		<tr>
-			<td class="header" height="42" align="center" valign="middle"
-				colspan="3" width="100%" bgcolor="#FFFFFF"><ui:insert
-				name="cabeceraPagina">
-				<ui:include src="../layout/cabecera.xhtml" />
-			</ui:insert><rich:separator lineType="beveled" height="3" width="100%"
-				align="center" /></td>
-		</tr>
-
-		<tr>
-
-			<td>
-			<table width="100%" style="height: 450px" align="left" 
-				cellpadding="0" cellspacing="0" border="0">
-				<tbody>
-					<tr valign="top">
-						<td valign="top" style="width: 180px;"></td>
-						<td valign="top" style="width: 30px;"></td>
-						<td align="left" valign="top"><h:panelGrid id="panelMensajes"
-							styleClass="gridContent">
-							<a4j:outputPanel ajaxRendered="true">
-								<ui:insert name="mensajes">
-
-								</ui:insert>
-							</a4j:outputPanel>
-
-						</h:panelGrid></td>
-					</tr>
-					<tr valign="top">
-						<td valign="top" style="width: 180px;"><ui:insert
-							name="menuLateral" /> <ui:insert name="subMenu" /></td>
-						<td valign="top" style="width: 30px;"></td>
-						<td align="left" valign="top"><ui:insert name="cuerpo">Contenido</ui:insert></td>
-					</tr>
-				</tbody>
-			</table>
+			<td class="header" height="42" align="center" valign="middle" colspan="3" width="100%" bgcolor="#FFFFFF">
+				<ui:insert name="cabeceraPagina">
+					<ui:include src="../layout/cabecera.xhtml" />
+				</ui:insert>
+				<rich:separator lineType="beveled" height="3" width="100%" align="center" />
 			</td>
 		</tr>
-
 		<tr>
-			<td colspan="3" valign="bottom" height="1" width="100%"
-				align="center" style="color: #006d92; font-size: 12px;"
-				bgcolor="#FFFFFF"><ui:insert name="pie">
-				<ui:include src="../layout/piepagina.xhtml" />
-			</ui:insert></td>
+			<td>
+				<table width="100%" style="height: 450px" align="left" cellpadding="0" cellspacing="0" border="0">
+					<tbody>
+						<tr valign="top">
+							<td valign="top" style="width: 180px;"></td>
+							<td valign="top" style="width: 30px;"></td>
+							<td align="left" valign="top">
+								<h:panelGrid id="panelMensajes" styleClass="gridContent">
+									<a4j:outputPanel ajaxRendered="true">
+										<ui:insert name="mensajes">
+		
+										</ui:insert>
+									</a4j:outputPanel>
+								</h:panelGrid>
+							</td>
+						</tr>
+						<tr valign="top">
+							<td valign="top" style="width: 180px;">
+								<ui:insert name="menuLateral" /> 
+								<ui:insert name="subMenu" />
+							</td>
+							<td valign="top" style="width: 30px;"></td>
+							<td align="left" valign="top">
+								<ui:insert name="cuerpo">Contenido</ui:insert>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" valign="bottom" height="1" width="100%" align="center" style="color: #006d92; font-size: 12px;" bgcolor="#FFFFFF">
+				<ui:insert name="pie">
+					<ui:include src="../layout/piepagina.xhtml" />
+				</ui:insert>
+			</td>
 		</tr>
 	</tbody>
 </table>

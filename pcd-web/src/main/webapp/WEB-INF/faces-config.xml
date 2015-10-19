@@ -300,7 +300,7 @@
 	<managed-bean>
 		<managed-bean-name>registrarPedidoMB</managed-bean-name>
 		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.RegistrarPedidoMB</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
 			<property-name>pedidoBean</property-name>
 			<property-class>pe.gob.trabajo.pcd.modelo.dominio.Pedido</property-class>
@@ -367,6 +367,11 @@
 			<property-class>pe.gob.trabajo.pcd.vista.locator.ServiceLocator</property-class>
 			<value>#{ServiceLocator}</value>
 		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>estimacionMB</managed-bean-name>
+		<managed-bean-class>pe.gob.trabajo.pcd.vista.faces.bean.EstimacionMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>postulacionesProfesionalMB</managed-bean-name>
@@ -728,6 +733,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>informacionAdicionalPuesto</from-outcome>
+			<to-view-id>/jsp/pedido/registrarInformacionAdicionalPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>detallePedido</from-outcome>
 			<to-view-id>/jsp/pedido/registrarDetallePedido.xhtml</to-view-id>
 			<redirect />
@@ -735,6 +745,11 @@
 		<navigation-case>
 			<from-outcome>formacionPedido</from-outcome>
 			<to-view-id>/jsp/pedido/registrarExperienciaPedido.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>datosEntrevista</from-outcome>
+			<to-view-id>/jsp/pedido/registrarDatosEntrevista.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -763,6 +778,12 @@
 			<to-view-id>/jsp/reporte/reporte.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>estimacionCuotaEmpleo</from-outcome>
+			<to-view-id>/jsp/estimacionCuotaEmpleo/estimacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
 		<navigation-case>
 			<from-outcome>usuarioEmpresa</from-outcome>
 			<to-view-id>/jsp/empresa/usuarioEmpresa.xhtml</to-view-id>

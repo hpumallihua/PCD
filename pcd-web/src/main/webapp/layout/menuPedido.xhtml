@@ -19,65 +19,46 @@
 				disabled="#{sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
 				immediate="true"
 				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
-				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
-				<a4j:actionparam name="opcion" value="2"
-					assignTo="#{profesionalMB.opcionProfesional}" />
-				<a4j:actionparam name="accion"
-					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
-					assignTo="#{sesionMB.contexto}" />
+				styleClass="#{profesionalMB.opcionProfesional eq 1?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="1" assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion" value="#{sesionMB.constantes.CONTEXTO_PEDIDO}" assignTo="#{sesionMB.contexto}" />
 			</rich:panelMenuItem>
 			
-			<rich:panelMenuItem label="Datos Complementarios" action="detallePedido"
+			<rich:panelMenuItem label="Informacion adicional" action="informacionAdicionalPuesto"
 				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
-				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(registrarPedidoMB.pedidoBean.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
 				immediate="true"
-				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
 				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
-				<a4j:actionparam name="opcion" value="2"
-					assignTo="#{profesionalMB.opcionProfesional}" />
-				<a4j:actionparam name="accion"
-					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
-					assignTo="#{sesionMB.contexto}" />
+				<a4j:actionparam name="opcion" value="2" assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion" value="#{sesionMB.constantes.CONTEXTO_PEDIDO}" assignTo="#{sesionMB.contexto}" />
+			</rich:panelMenuItem>  
+			
+			<rich:panelMenuItem label="Inserción de personas" action="detallePedido"
+				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(registrarPedidoMB.pedidoBean.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				immediate="true"
+				styleClass="#{profesionalMB.opcionProfesional eq 3?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="3" assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion" value="#{sesionMB.constantes.CONTEXTO_PEDIDO}" assignTo="#{sesionMB.contexto}" />
 			</rich:panelMenuItem>
 			
-			<rich:panelMenuItem label="Datos Adicionales" action="formacionPedido"
+			<rich:panelMenuItem label="Entorno laboral" action="formacionPedido"
 				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
-				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(registrarPedidoMB.pedidoBean.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
 				immediate="true"
-				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
-				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
-				<a4j:actionparam name="opcion" value="2"
-					assignTo="#{profesionalMB.opcionProfesional}" />
-				<a4j:actionparam name="accion"
-					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
-					assignTo="#{sesionMB.contexto}" />
+				styleClass="#{profesionalMB.opcionProfesional eq 4?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="4" assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion" value="#{sesionMB.constantes.CONTEXTO_PEDIDO}" assignTo="#{sesionMB.contexto}" />
 			</rich:panelMenuItem>
 			
-			<rich:panelMenuItem label="Prueba" action="datosPostulacion"
+			<rich:panelMenuItem label="Datos de Entrevista" action="datosEntrevista"
 				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
-				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
+				disabled="#{!(registrarPedidoMB.pedidoBean.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
 				immediate="true"
-				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
-				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
-				<a4j:actionparam name="opcion" value="2"
-					assignTo="#{profesionalMB.opcionProfesional}" />
-				<a4j:actionparam name="accion"
-					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
-					assignTo="#{sesionMB.contexto}" />
+				styleClass="#{profesionalMB.opcionProfesional eq 5?'dr-pmenu-selected-item':''}">
+				<a4j:actionparam name="opcion" value="5" assignTo="#{profesionalMB.opcionProfesional}" />
+				<a4j:actionparam name="accion" value="#{sesionMB.constantes.CONTEXTO_PEDIDO}" assignTo="#{sesionMB.contexto}" />
 			</rich:panelMenuItem>
-			<rich:panelMenuItem label="Prueba" action="buscarPersonaPedido"
-				rendered="#{!sesionMB.usuarioSesion.rolProfesional}"
-				disabled="#{!(pedidoMB.pedido.id ne null) or sesionMB.usuarioSesion.rolConsultorABE or sesionMB.usuarioSesion.rolProfesional}"
-				immediate="true"
-				actionListener="#{registrarPedidoMB.limpiarBusqueda}"
-				styleClass="#{profesionalMB.opcionProfesional eq 2?'dr-pmenu-selected-item':''}">
-				<a4j:actionparam name="opcion" value="2"
-					assignTo="#{profesionalMB.opcionProfesional}" />
-				<a4j:actionparam name="accion"
-					value="#{sesionMB.constantes.CONTEXTO_PEDIDO}"
-					assignTo="#{sesionMB.contexto}" />
-			</rich:panelMenuItem>
-			
 			
 			<rich:panelMenuItem label="Buscar" action="buscarPedido"
 				immediate="true"

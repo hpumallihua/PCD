@@ -50,6 +50,7 @@ public class BuscarPedidoMB extends GenericManagedBean {
 		
 		Pedido bean = (Pedido) getSpringBean("PedidoPrt");
 		logger.debug("PedidoPrt: Pedido:" + bean);
+		logger.info("PedidoPrt: Pedido:" + bean);
 		setPedidoBean(bean);
 		
 		
@@ -106,17 +107,22 @@ public class BuscarPedidoMB extends GenericManagedBean {
 	 * @param ActionEvent e ocurre cuando el usuario realiza una acción
 	 */
 	public void buscarPedido(ActionEvent e) {
-		logger.debug("Validando datos de la busqueda... ");
+		logger.info("Validando datos de la busqueda... ");
 		setAccionRealizada(Constantes.ACCION_LISTAR);
-		logger.debug("Nombre:      --"+busquedaBean.getPedido().getNombre()+"--");
-		logger.debug("Fecha Ini:   --"+busquedaBean.getFechaRegistroIni()+"--");
-		logger.debug("Fecha Fin:   --"+busquedaBean.getFechaRegistroFin()+"--");
-		if (busquedaBean.getFechaRegistroIni()!=null || busquedaBean.getFechaRegistroFin()!=null) {
+		logger.info("Nombre:      --"+busquedaBean.getPedido().getNombre()+"--");
+		logger.info("Fecha Ini:   --"+busquedaBean.getFechaRegistroIni()+"--");
+		logger.info("Fecha Fin:   --"+busquedaBean.getFechaRegistroFin()+"--");
+		
+		if (busquedaBean.getFechaRegistroIni() != null && busquedaBean.getFechaRegistroFin() == null) {
+			busquedaBean.setFechaRegistroFin(new Date());
+		}
+		if (busquedaBean.getFechaRegistroIni()!=null && busquedaBean.getFechaRegistroFin()!=null) {
 			if (busquedaBean.getFechaRegistroIni().compareTo(busquedaBean.getFechaRegistroFin()) > 0  ) {
 				throw new ValidatorException( agregarMensajeErrorTransaccion("La fecha inicial no debe ser mayor a la fecha final"));
 			}
 		}
 		if (pedidoBean!=null && getUsuarioSesion().isRolAdministrador()) {
+			logger.info("id pedido="+pedidoBean.getId());
 			busquedaBean.setPedido(pedidoBean);
 		}
 		listaPedidos = (ArrayList<Pedido>) getServicio().getPedidoService().buscarPedidos(busquedaBean);
